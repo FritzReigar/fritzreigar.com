@@ -1,201 +1,279 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Fritz Reif — Backend Developer, AI Trainer & QA Analyst based in Valencia. Specializing in Java, C++, AI training and backend systems. Available for freelance and junior roles." />
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Fritz Reif — Backend Developer, AI Trainer & QA Analyst" />
-    <meta property="og:description" content="Backend systems with Java and C++. AI Trainer & QA Analyst for Lionbridge. Registered freelancer. Open to backend projects and junior roles." />
+    <meta name="description" content="Fritz Reif — Desarrollador backend y servicios web en Valencia. Webs y tiendas online con WordPress/WooCommerce, presencia online local, dominios y hosting, desarrollo con Java y C++, QA de IA." />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="Fritz Reif — Desarrollador y servicios web" />
+    <meta property="og:description" content="Desarrollo backend, webs y tiendas online, presencia digital para negocios y QA de modelos de IA. Autónomo en Valencia." />
     <meta property="og:url" content="https://fritzreigar.com" />
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
     <meta property="og:image" content="https://fritzreigar.com/assets/img/og-preview.png" />
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/styles.css" />
-    <title>Fritz Reif — Backend Developer, AI Trainer & QA Analyst</title>
+    <title>Fritz Reif — Desarrollador y servicios web</title>
+    <script>
+      // Aplica el tema guardado antes del primer pintado para evitar el parpadeo
+      (function () {
+        var t = localStorage.getItem('fritzreigar-theme');
+        if (t === 'dark' || (!t && matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
   </head>
 
   <body>
-    <button id="theme-toggle">[ LIGHT_MODE ]</button>
-    <section id="hero" class="section-container">
-      <h1>Hello, I am Fritz<span class="cursor">_</span></h1>
-      <p class="subtitle">
-        Backend Developer | AI Trainer & QA Analyst | DAM Student
-      </p>
-      <p>
-        Building backend systems with Java and C++. Working as an AI Trainer & QA Analyst for Lionbridge and AI Red-Teaming Engineer for Data Annotation Tech. Registered freelancer open to backend projects and junior roles.
-      </p>
-    </section>
+    <a class="skip-link" href="#contenido" data-i18n="skip-link">Saltar al contenido</a>
 
-    <section id="experience" class="section-container">
-      <h2>// WORK_EXPERIENCE</h2>
-      <div class="experience-list">
-
-        <article class="experience-item">
-          <div class="experience-header">
-            <span class="experience-role">AI Trainer & QA Analyst / Project Tester</span>
-            <span class="experience-date">Jul 2025 — Present</span>
-          </div>
-          <div class="experience-company">Lionbridge Technologies Inc.</div>
-          <ul class="experience-details">
-            <li>Auditing and evaluation of LLM outputs for logic, accuracy and factual consistency.</li>
-            <li>Bug reporting and technical documentation.</li>
-            <li>Remote collaboration with international teams in English.</li>
-            <li>+1,000 model outputs reviewed across multiple AI projects.</li>
-            <li>Game testing across multiple platforms via Lionbridge Games.</li>
-          </ul>
-        </article>
-
-        <article class="experience-item">
-          <div class="experience-header">
-            <span class="experience-role">AI Red-Teaming & Prompt Engineer</span>
-            <span class="experience-date">Jan 2026 — Present</span>
-          </div>
-        <div class="experience-company">Data Annotation Tech</div>
-        <ul class="experience-details">
-          <li>Adversarial prompt engineering to identify failure modes and vulnerabilities in large language models.</li>
-          <li>Development of evaluation rubrics to assess model response quality and alignment.</li>
-          <li>Remote asynchronous work on AI safety projects.</li>
-        </ul>
-        </article>
-
-        <article class="experience-item">
-          <div class="experience-header">
-            <span class="experience-role">IT Technical Assistant</span>
-            <span class="experience-date">2019</span>
-          </div>
-          <div class="experience-company">Valencia City Council — Police Department</div>
-          <ul class="experience-details">
-            <li>Level 1 user technical support in a governmental environment.</li>
-            <li>Maintenance and administration of IT infrastructure.</li>
-          </ul>
-        </article>
-
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="#">Fritz Reif</a>
+        <nav class="site-nav" aria-label="Secciones">
+          <a href="#servicios" data-i18n="nav-servicios">Servicios</a>
+          <a href="#experiencia" data-i18n="nav-experiencia">Experiencia</a>
+          <a href="#proyectos" data-i18n="nav-proyectos">Proyectos</a>
+          <a href="#contacto" data-i18n="nav-contacto">Contacto</a>
+        </nav>
+        <div class="header-controls">
+          <button id="lang-toggle" type="button" aria-label="Switch to English">EN</button>
+          <button id="theme-toggle" type="button" aria-label="Cambiar tema">◐</button>
+        </div>
       </div>
-    </section>
+    </header>
 
-    <section id="operations" class="section-container">
-      <h2>// ACTIVE_OPERATIONS</h2>
-      <div class="project-list">
-        <article class="project-card">
-          <div class="project-header">
-            <span class="project-id">ID: 01</span>
-            <span class="project-status">STATUS: [ONLINE]</span>
-          </div>
-          <div class="project-content">
-            <h3>CPP-Galaxian-Engine</h3>
-            <p>Native C++ recreation of arcade classic Galaxian built without commercial engines. Implements a custom Game Loop, manual entity management via static arrays, a Finite State Machine for enemy AI (Formation/Attack), and a hand-coded AABB collision system. Full technical documentation included.</p>
-            <div class="project-tags">C++ | FSM | AABB | MEMORY_MANAGEMENT | CUSTOM_ENGINE</div>
-            <a href="https://github.com/FritzReigar/CPP-Galaxian-Engine" target="_blank" class="terminal-btn-link">>> [ VIEW_REPOSITORY ]</a>
-          </div>
-        </article>
-        <article class="project-card">
-          <div class="project-header">
-            <span class="project-id">ID: 02</span>
-            <span class="project-status">STATUS: [ONLINE]</span>
-          </div>
-          <div class="project-content">
-            <h3>Unity-3D-Combat-Prototype</h3>
-            <p>Physics-based third-person character controller in Unity (C#). Movement uses Rigidbody.AddForce via PhysX. Camera-relative controls calculated with Vector3.Dot products. Orbital camera with LateUpdate anti-jitter. Ground detection via Physics.CheckBox. Includes hitbox/hurtbox combat prototype.</p>
-            <div class="project-tags">C# | UNITY | PHYSX | VECTOR_MATH | RIGIDBODY</div>
-            <a href="https://github.com/FritzReigar/Unity-3D-Combat-Prototype" target="_blank" class="terminal-btn-link">>> [ VIEW_REPOSITORY ]</a>
-          </div>
-        </article>
-        <article class="project-card">
-          <div class="project-header">
-            <span class="project-id">ID: 03</span>
-            <span class="project-status">STATUS: [LOADING]</span>
-          </div>
-          <div class="project-content">
-            <h3>POKÉDEX TCG (MVP)</h3>
-            <p>Official API consumption, data normalization, and SQL persistence.</p>
-            <div class="project-tags">JAVA | SPRING_BOOT | SQL | API</div>
-            <a href="#" class="terminal-btn-link">>> [ SYSTEM_INITIALIZING... ]</a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section id="arsenal" class="section-container">
-      <h2>// TECHNICAL_ARSENAL</h2>
-      <div class="arsenal-grid">
-        <article>
-          <h3>[ 01. CORE_LOGIC ]</h3>
-          <p>Java (Spring Boot) | C++ | C# | SQL (PostgreSQL) | Python</p>
-        </article>
-        <article>
-          <h3>[ 02. SPECIALTIES ]</h3>
-          <p>API Integration | Data Scraping | Unit Testing | Design Patterns | AI Auditing | Adversarial Prompting</p>
-        </article>
-        <article>
-          <h3>[ 03. INFRASTRUCTURE ]</h3>
-          <p>Git / GitHub | Docker | Linux (Bash) | Cloudflare | Maven | IntelliJ</p>
-        </article>
-        <article>
-          <h3>[ 04. LANGUAGES ]</h3>
-          <p>ES (Native) | EN (B2+ -> C1) | VAL (C1) | DE (A2 -> B1)</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="metrics" class="section-container">
-      <h2>// PERFORMANCE_LOGS</h2>
-      <div class="arsenal-grid">
-        <article>
-          <h3>[ PROFESSIONAL_STATS ]</h3>
-          <p>
-            > +8 Months Professional AI QA<br>
-            > Active on Lionbridge Technologies & Data Annotation Tech<br>
-            > +1k LLM outputs audited for logic & accuracy
+    <main id="contenido">
+      <section id="hero" class="section hero">
+        <div class="container">
+          <p class="hero-chip">
+            <span class="chip-dot" aria-hidden="true"></span>
+            <span data-i18n="hero-chip">Disponible para nuevos proyectos</span>
           </p>
-        </article>
-        <article>
-          <h3>[ ACADEMIC_TRACK ]</h3>
-          <p>
-            > 1st Year DAM Student (IES El Grao, Valencia)<br>
-            > Focused on OOP & Software Architecture<br>
-            > Registered Freelancer (Autónomo)
-          </p>
-        </article>
-        <article>
-          <h3>[ CURRENT_OBJECTIVES ]</h3>
-          <p>
-            > Completing DAM (2025-2026)<br>
-            > Building: Pokédex TCG API (Spring Boot)<br>
-            > Status: Ready for Backend Deployment
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <section id="contact" class="section-container">
-      <h2>// ESTABLISH_CONNECTION</h2>
-      <div class="contact-wrapper">
-        <p>Available for backend projects, AI-related roles and junior positions.</p>
-        <form action="https://formspree.io/f/xojkdwog" method="POST" class="terminal-form">
-          <div class="form-group">
-            <label>> IDENTITY (EMAIL):</label>
-            <input type="email" name="email" required placeholder="operator@network.com" />
+          <h1>Fritz Reif</h1>
+          <p class="hero-role" data-i18n="hero-role">Desarrollador backend · Webs y ecommerce para negocios · QA de IA</p>
+          <p class="hero-intro" data-i18n="hero-intro">Construyo sistemas backend con Java y C++, evalúo modelos de IA para Lionbridge y DataAnnotation, y creo webs, tiendas online y presencia digital para pequeños negocios. Autónomo en Valencia, estudiante de DAM.</p>
+          <div class="hero-actions">
+            <a class="btn-primary" href="#contacto" data-i18n="hero-cta-contact">Escríbeme</a>
+            <a class="text-link" href="#proyectos" data-i18n="hero-cta-projects">Ver proyectos</a>
           </div>
-          <div class="form-group">
-            <label>> MISSION (MESSAGE):</label>
-            <textarea name="message" required placeholder="Describe technical requirements..."></textarea>
-          </div>
-          <button type="submit" class="terminal-btn">[ SEND_DATA ]</button>
-        </form>
-      </div>
-    </section>
+        </div>
+      </section>
 
-    <footer class="footer-container">
-      <div class="footer-info">
-        <div class="footer-status">SYSTEM_STATUS: STABLE</div>
-        <div>LAST_UPDATE: MARCH_2026 // LOC: VALENCIA_ES</div>
-      </div>
-      <div class="social-links">
-        <a href="https://github.com/FritzReigar" target="_blank">[ GITHUB ]</a>
-        <a href="https://www.linkedin.com/in/fritz-reif-garcia/" target="_blank">[ LINKEDIN ]</a>
+      <section id="servicios" class="section">
+        <div class="container">
+          <p class="section-kicker">01</p>
+          <h2 data-i18n="sec-servicios">Servicios</h2>
+          <div class="services-grid">
+            <article class="card">
+              <h3 data-i18n="svc-1-t">Webs y tiendas online</h3>
+              <p data-i18n="svc-1-d">Diseño y desarrollo con WordPress y WooCommerce: catálogo, pagos, envíos y formación para que gestiones tu tienda sin depender de nadie.</p>
+            </article>
+            <article class="card">
+              <h3 data-i18n="svc-2-t">Presencia online local</h3>
+              <p data-i18n="svc-2-d">Alta y gestión de Google Business Profile, SEO local y reseñas para que tus clientes te encuentren.</p>
+            </article>
+            <article class="card">
+              <h3 data-i18n="svc-3-t">Dominios, hosting y correo</h3>
+              <p data-i18n="svc-3-d">Registro de dominios, hosting, DNS, SSL y correo corporativo. La parte técnica, resuelta.</p>
+            </article>
+            <article class="card">
+              <h3 data-i18n="svc-4-t">Desarrollo a medida</h3>
+              <p data-i18n="svc-4-d">APIs, integraciones y automatizaciones con Java y Python cuando una web estándar se queda corta.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="experiencia" class="section">
+        <div class="container">
+          <p class="section-kicker">02</p>
+          <h2 data-i18n="sec-experiencia">Experiencia</h2>
+          <div class="experience-list">
+
+            <article class="experience-item">
+              <p class="experience-date" data-i18n="exp-1-date">2026 — Actualidad</p>
+              <div>
+                <h3 class="experience-role" data-i18n="exp-1-role">Técnico web freelance</h3>
+                <p class="experience-company" data-i18n="exp-1-org">Autónomo · Valencia</p>
+                <ul class="experience-details">
+                  <li data-i18n="exp-1-b1">Tienda online de Missphone con WordPress y WooCommerce.</li>
+                  <li data-i18n="exp-1-b2">Web de Limpiezas Artemisa y gestión de su Google Business Profile.</li>
+                  <li data-i18n="exp-1-b3">Dominios, hosting, DNS y correo corporativo para clientes.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="experience-item">
+              <p class="experience-date" data-i18n="exp-2-date">Jul 2025 — Actualidad</p>
+              <div>
+                <h3 class="experience-role">AI Trainer & QA Analyst</h3>
+                <p class="experience-company">Lionbridge Technologies</p>
+                <ul class="experience-details">
+                  <li data-i18n="exp-2-b1">Auditoría y evaluación de respuestas de LLMs: lógica, precisión y consistencia factual.</li>
+                  <li data-i18n="exp-2-b2">Más de 1.000 salidas de modelo revisadas en varios proyectos de IA.</li>
+                  <li data-i18n="exp-2-b3">Reporte de bugs, documentación técnica y testing de videojuegos con Lionbridge Games.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="experience-item">
+              <p class="experience-date" data-i18n="exp-3-date">Ene 2026 — Actualidad</p>
+              <div>
+                <h3 class="experience-role">AI Red-Teaming & Prompt Engineer</h3>
+                <p class="experience-company">DataAnnotation</p>
+                <ul class="experience-details">
+                  <li data-i18n="exp-3-b1">Prompts adversariales para detectar fallos y vulnerabilidades en LLMs.</li>
+                  <li data-i18n="exp-3-b2">Rúbricas de evaluación de calidad y alineamiento de respuestas.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="experience-item">
+              <p class="experience-date">2019</p>
+              <div>
+                <h3 class="experience-role" data-i18n="exp-4-role">Técnico informático</h3>
+                <p class="experience-company" data-i18n="exp-4-org">Ayuntamiento de Valencia — Policía Local</p>
+                <ul class="experience-details">
+                  <li data-i18n="exp-4-b1">Soporte técnico de nivel 1 y mantenimiento de infraestructura IT.</li>
+                </ul>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <section id="proyectos" class="section">
+        <div class="container">
+          <p class="section-kicker">03</p>
+          <h2 data-i18n="sec-proyectos">Proyectos</h2>
+          <div class="projects-grid">
+
+            <article class="card project-card">
+              <p class="project-label" data-i18n="prj-1-label">Cliente · En curso</p>
+              <h3>Missphone</h3>
+              <p data-i18n="prj-1-d">Tienda online con WordPress y WooCommerce: catálogo de productos, pagos y envíos para un negocio de telefonía.</p>
+              <p class="project-tags">WordPress · WooCommerce</p>
+              <div class="project-links">
+                <a class="text-link" href="https://missphone.es" target="_blank" rel="noopener" data-i18n="prj-visit">Visitar web ↗</a>
+              </div>
+            </article>
+
+            <article class="card project-card">
+              <p class="project-label" data-i18n="prj-2-label">Cliente · En curso</p>
+              <h3>Limpiezas Artemisa</h3>
+              <p data-i18n="prj-2-d">Web corporativa y gestión del perfil de Google Business para una empresa de servicios de limpieza.</p>
+              <p class="project-tags">Web · SEO local · GBP</p>
+              <div class="project-links">
+                <a class="text-link" href="https://limpiezasartemisa.com" target="_blank" rel="noopener" data-i18n="prj-visit">Visitar web ↗</a>
+              </div>
+            </article>
+
+            <article class="card project-card">
+              <p class="project-label" data-i18n="prj-3-label">Producto propio · En desarrollo</p>
+              <h3>SnugPort</h3>
+              <p data-i18n="prj-3-d">Centro de operaciones para freelancers y pequeños negocios: control de tiempo y tarifas, proyectos, pipeline de clientes y vencimientos. Local-first: tus datos viven en tu navegador.</p>
+              <p class="project-tags">JavaScript · Local-first</p>
+            </article>
+
+            <article class="card project-card">
+              <p class="project-label" data-i18n="prj-6-label">Proyecto intermodular DAM · Prototipo</p>
+              <h3>DragonQuestHispano</h3>
+              <p data-i18n="prj-6-d">La primera web en español sobre Dragon Quest Smash/Grow: guías, tier lists y noticias. Generada con Hugo, CI/CD en Cloudflare Pages y CDN con reglas de caché propias. Con tráfico real desde el lanzamiento.</p>
+              <p class="project-tags">Hugo · Markdown · Cloudflare Pages</p>
+              <div class="project-links">
+                <a class="text-link" href="https://dragonquesthispano.com" target="_blank" rel="noopener" data-i18n="prj-visit">Visitar web ↗</a>
+                <a class="text-link" href="https://github.com/FritzReigar/dragonquesthispano" target="_blank" rel="noopener" data-i18n="prj-link">Ver repositorio ↗</a>
+              </div>
+            </article>
+
+            <article class="card project-card">
+              <p class="project-label" data-i18n="prj-done-label">Personal · Completado</p>
+              <h3>CPP-Galaxian-Engine</h3>
+              <p data-i18n="prj-4-d">Recreación nativa del arcade Galaxian sin motor comercial: game loop propio, máquina de estados para la IA enemiga y colisiones AABB a mano.</p>
+              <p class="project-tags">C++ · Motor propio</p>
+              <div class="project-links">
+                <a class="text-link" href="https://github.com/FritzReigar/CPP-Galaxian-Engine" target="_blank" rel="noopener" data-i18n="prj-link">Ver repositorio ↗</a>
+              </div>
+            </article>
+
+            <article class="card project-card">
+              <p class="project-label" data-i18n="prj-done-label">Personal · Completado</p>
+              <h3>Unity-3D-Combat-Prototype</h3>
+              <p data-i18n="prj-5-d">Controlador de personaje en tercera persona basado en físicas, cámara orbital y prototipo de combate con hitboxes.</p>
+              <p class="project-tags">C# · Unity · PhysX</p>
+              <div class="project-links">
+                <a class="text-link" href="https://github.com/FritzReigar/Unity-3D-Combat-Prototype" target="_blank" rel="noopener" data-i18n="prj-link">Ver repositorio ↗</a>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <section id="stack" class="section">
+        <div class="container">
+          <p class="section-kicker">04</p>
+          <h2>Stack</h2>
+          <div class="stack-grid">
+            <div>
+              <h3 data-i18n="stk-1-t">Código</h3>
+              <p>Java (Spring Boot) · C++ · C# · Python · SQL · JavaScript</p>
+            </div>
+            <div>
+              <h3>Web</h3>
+              <p>WordPress · WooCommerce · HTML/CSS · SEO local · Google Business Profile</p>
+            </div>
+            <div>
+              <h3 data-i18n="stk-3-t">Herramientas</h3>
+              <p>Git & GitHub · Docker · Linux · Cloudflare · Maven</p>
+            </div>
+            <div>
+              <h3 data-i18n="stk-4-t">Idiomas</h3>
+              <p data-i18n="stk-4-d">Español (nativo) · Inglés (C1) · Valenciano (C1) · Alemán (A2)</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contacto" class="section">
+        <div class="container">
+          <p class="section-kicker">05</p>
+          <h2 data-i18n="sec-contacto">Contacto</h2>
+          <p class="contact-intro" data-i18n="contact-intro">¿Tienes un proyecto o quieres proponerme algo? Escríbeme y te respondo pronto.</p>
+          <p class="contact-email"><span data-i18n="contact-email">O directamente a</span> <a href="mailto:contact@fritzreigar.com">contact@fritzreigar.com</a></p>
+          <form action="https://formspree.io/f/xojkdwog" method="POST" class="contact-form">
+            <div class="form-group">
+              <label for="form-email">Email</label>
+              <input id="form-email" type="email" name="email" required placeholder="tu@email.com" data-i18n-ph="form-email-ph" />
+            </div>
+            <div class="form-group">
+              <label for="form-message" data-i18n="form-msg-label">Mensaje</label>
+              <textarea id="form-message" name="message" required placeholder="Cuéntame qué necesitas…" data-i18n-ph="form-msg-ph"></textarea>
+            </div>
+            <button type="submit" class="btn-primary" data-i18n="form-send">Enviar</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© 2026 Fritz Reif · Valencia</p>
+        <div class="social-links">
+          <a href="https://github.com/FritzReigar" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.linkedin.com/in/fritz-reif-garcia/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="mailto:contact@fritzreigar.com">Email</a>
+        </div>
       </div>
     </footer>
+
     <script src="js/theme.js"></script>
+    <script src="js/i18n.js"></script>
   </body>
 </html>
