@@ -1,6 +1,6 @@
 # Portfolio — fritzreigar.com
 
-Portfolio personal de Fritz Reif: desarrollador backend, QA de IA y servicios
+Portfolio personal de Fritz Reigar: desarrollador backend, QA de IA y servicios
 web para negocios (WordPress/WooCommerce, presencia online local, dominios y
 hosting).
 

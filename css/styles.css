@@ -13,6 +13,8 @@
   --accent-soft:     rgba(14, 116, 144, 0.08);
   --border:          #e2e7ee;
   --header-bg:       rgba(247, 248, 250, 0.85);
+  --success:         #15803d;
+  --danger:          #b91c1c;
 }
 
 html.dark {
@@ -27,6 +29,8 @@ html.dark {
   --accent-soft:     rgba(76, 196, 221, 0.1);
   --border:          #223140;
   --header-bg:       rgba(13, 20, 28, 0.85);
+  --success:         #4ade80;
+  --danger:          #f87171;
 }
 
 /* ── BASE ──────────────────────────────────────────────────────── */
@@ -363,6 +367,12 @@ a { color: var(--accent); }
   border-color: var(--accent);
 }
 .contact-form textarea { height: 130px; resize: vertical; }
+
+.hp-field { display: none; }
+
+.form-status { margin-top: 16px; font-size: 0.9rem; }
+.form-status.ok { color: var(--success); }
+.form-status.error { color: var(--danger); }
 
 /* ── FOOTER ────────────────────────────────────────────────────── */
 .site-footer {

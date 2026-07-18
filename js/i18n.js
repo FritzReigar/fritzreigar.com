@@ -3,8 +3,8 @@
 // los placeholders de formulario, data-i18n-ph="clave".
 
 const EN = {
-  'meta-title': 'Fritz Reif — Developer & web services',
-  'meta-description': 'Fritz Reif — Backend developer and web services in Valencia, Spain. Websites and online stores with WordPress/WooCommerce, local online presence, domains and hosting, Java and C++ development, AI QA.',
+  'meta-title': 'Fritz Reigar — Developer & web services',
+  'meta-description': 'Fritz Reigar — Backend developer and web services in Valencia, Spain. Websites and online stores with WordPress/WooCommerce, local online presence, domains and hosting, Java and C++ development, AI QA.',
 
   'skip-link': 'Skip to content',
 

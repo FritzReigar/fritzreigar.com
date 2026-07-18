@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <title>404 — Fritz Reigar</title>
+    <script>
+      // Aplica el tema guardado antes del primer pintado para evitar el parpadeo
+      (function () {
+        var t = localStorage.getItem('fritzreigar-theme');
+        if (t === 'dark' || (!t && matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+    <style>
+      /* Estilos propios de la 404, encima de styles.css */
+      .error-page {
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .error-code {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.85rem;
+        letter-spacing: 0.08em;
+        color: var(--accent);
+        margin-bottom: 8px;
+      }
+      .error-page p { color: var(--text-muted); }
+      .error-page .btn-primary { margin-top: 28px; align-self: flex-start; }
+    </style>
+  </head>
+  <body>
+    <main class="error-page">
+      <div class="container">
+        <p class="error-code">ERROR 404</p>
+        <h1>Página no encontrada</h1>
+        <p>Esta página no existe o ha cambiado de sitio.<br />This page doesn't exist or has moved.</p>
+        <a class="btn-primary" href="/">Volver al inicio · Back home</a>
+      </div>
+    </main>
+  </body>
+</html>
