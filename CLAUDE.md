@@ -11,7 +11,8 @@ Portfolio personal de Fritz (fritzreigar.com). Sitio estático de una sola pági
 ## Desarrollo y deploy
 
 - No hay comandos de build ni lint. Para ver cambios en local basta abrir `index.html` en el navegador, o servirlo con `python -m http.server`.
-- Remote: `https://github.com/FritzReigar/portfolio-v1.git`, rama `main`. El deploy sale de pushear a `main` (la configuración de hosting no vive en este repo).
+- Remote: `https://github.com/FritzReigar/fritzreigar.com.git`, rama `main`. El deploy sale de pushear a `main` (la configuración de hosting no vive en este repo).
+- **Ojo con la caché**: tras un push, `fritzreigar.com` puede seguir sirviendo el HTML anterior durante horas — el edge de Cloudflare lo cachea (`cf-cache-status: HIT`) pese al `Cache-Control: max-age=0, must-revalidate`. No es un deploy fallido: se comprueba con `curl -sI https://fritzreigar.com` frente a la misma URL con `?nocache=1`. Se arregla purgando la caché desde el panel de Cloudflare.
 
 ## Arquitectura
 
