@@ -29,11 +29,13 @@ El sitio está orientado a **reclutadores**: el hero y las primeras secciones ve
 
 ## Proyecto principal: Snugport
 
-Snugport es el proyecto insignia y abre la sección de proyectos como tarjeta destacada. Se escribe **Snugport** (no «SnugPort»). El repo del producto vive aparte, en `~/Projects/propios/panel-de-control`; el resumen de handoff que sirvió para escribir la ficha está en `docs/RESUMEN-PARA-PORTFOLIO.md` (gitignored).
+Snugport es el proyecto insignia y abre la sección de proyectos como tarjeta destacada. Se escribe **Snugport** (no «SnugPort»). El repo del producto vive aparte; el resumen de handoff que sirvió para escribir la ficha está en `docs/RESUMEN-PARA-PORTFOLIO.md` (gitignored).
 
-Lo que se puede afirmar: app desplegada, sync multidispositivo validado Mac↔Windows, auth completa, muro de suscripción a nivel de RLS de Postgres, 4 temas, accesibilidad auditada, offline-first, cero dependencias, ~8.200 líneas, 10 secciones.
+Lo que se puede afirmar (verificado contra el repo `~/Projects/propios/snugport-app` y la web en agosto de 2026): producto en el mercado, sync multidispositivo validado Mac↔Windows, auth completa, **Stripe en producción** con webhook propio y precios públicos (€4,99/mes o €29,99 primer año), muro de suscripción a nivel de RLS de Postgres, PWA instalable con service worker, 4 temas, accesibilidad auditada, offline-first, bilingüe ES/EN, 80 divisas, cero dependencias (no hay `package.json`), ~28.800 líneas, 124 archivos, 13 secciones, v2.26.
 
-El enlace del sitio y del CV apunta a `https://panel-de-control-5j7.pages.dev/`, que es el destino vivo. El dominio definitivo será `snugport.app`: cuando esté vinculado a Cloudflare Pages hay que cambiarlo en **los dos sitios a la vez** — `index.html` (hay un comentario marcándolo) y `docs/cv/cv-es.html`, donde además el texto visible del enlace debe coincidir con el destino. Lo que **no** se puede afirmar: que ya cobra clientes, que hay usuarios pagando, que Stripe está en producción, ni contar Finanzas/Horario/Gimnasio/Comidas como features. El branding está cerrado: no proponer rediseños de marca.
+Ojo con «cero build»: existe `build.sh`, pero es un script de copia para Cloudflare Pages, no un bundler. La formulación exacta es «sin bundler ni transpilación».
+
+El enlace del sitio y del CV apunta a `https://snugport.app/`, que es el destino vivo. Si vuelve a cambiar, hay que tocarlo en **los dos sitios a la vez** — `index.html` y `docs/cv/cv-es.html`, donde además el texto visible del enlace debe coincidir con el destino. Lo que **no** se puede afirmar: cifras de usuarios registrados, suscriptores o ingresos — no son verificables desde fuera y Fritz no las ha dado. Gimnasio y Comidas tampoco cuentan como features: no están en el producto público. Finanzas y Horario **sí** se pueden contar desde agosto de 2026, ya salen en la landing. El branding está cerrado: no proponer rediseños de marca.
 
 ## El CV
 
@@ -41,9 +43,9 @@ El CV vive en `docs/cv/cv-es.html` (gitignored): un HTML pensado para imprimirse
 
 **Web y CV comparten contenido y tienen que cuadrar**: mismo orden de puestos, mismos bullets, mismos proyectos, mismos niveles de idioma. Si se toca uno, se revisa el otro — una discrepancia la detecta cualquier reclutador.
 
-Niveles de idioma vigentes, fijados por Fritz: español nativo, valenciano C1, **inglés C1**, **alemán B1**. El CV viejo (`docs/CV_Fritz_Reif_Dev_Text.pdf`) dice B2+ y A2; está desactualizado, no sirve de referencia para esto. El puesto de 2019 en el Ayuntamiento sí fueron **prácticas** y así debe seguir.
+Niveles de idioma vigentes, fijados por Fritz: español nativo, valenciano C1, **inglés C1**, **alemán A2** (dejó la EOI en 2026; no mencionarla). El CV viejo (`docs/CV_Fritz_Reif_Dev_Text.pdf`) dice B2+ para inglés; está desactualizado, no sirve de referencia para esto. El puesto de 2019 en el Ayuntamiento sí fueron **prácticas** y así debe seguir.
 
-La formación va **sin fechas** en los dos sitios, por decisión suya; el DAM conserva «En curso» porque es estado, no fecha.
+La formación va **sin fechas** en los dos sitios, por decisión suya; el DAM conserva «En curso» porque es estado, no fecha. Fritz está repitiendo asignaturas de primero, así que «En curso» seguirá un tiempo: no lo cambies a titulado ni lo dejes sin estado — sin estado se lee como que tiene el título.
 
 ## Archivos aportados a mano
 

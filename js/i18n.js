@@ -18,7 +18,7 @@ const EN = {
 
   'hero-chip': 'Open to offers · Valencia or remote',
   'hero-role': 'Backend developer · AI model QA',
-  'hero-intro': 'I build backend systems with Java, Spring Boot and C++, and evaluate language models for Lionbridge and DataAnnotation: response auditing, red teaming and quality rubrics. I am building Snugport, a SaaS for freelancers written in vanilla JavaScript without a single dependency. Software development student in Valencia, Spain; on the side I run websites and online stores for small businesses.',
+  'hero-intro': 'I build backend systems with Java, Spring Boot and C++, and evaluate language models for Lionbridge and DataAnnotation: response auditing, red teaming and quality rubrics. I am building Snugport, a SaaS for freelancers already on the market, written in vanilla JavaScript without a single dependency. Software development student in Valencia, Spain; on the side I run websites and online stores for small businesses.',
   'hero-cta-cv': 'Download CV',
   'hero-cta-contact': 'Get in touch',
 
@@ -48,7 +48,7 @@ const EN = {
   'exp-1-date': '2026 — Present',
   'exp-1-role': 'Freelance developer & web technician',
   'exp-1-org': 'Self-employed · Valencia, Spain',
-  'exp-1-b1': 'Missphone online store with WordPress and WooCommerce: catalog, payment gateway and shipping.',
+  'exp-1-b1': 'Maintenance and clean-up of the Missphone WooCommerce store, inherited from another developer: bug fixing across catalog, payment gateway and shipping.',
   'exp-1-b2': 'Limpiezas Artemisa website and Google Business Profile management for local lead generation.',
   'exp-1-b3': 'End-to-end client infrastructure: domains, hosting, DNS, SSL and business email.',
   'exp-1-tags': 'WordPress · WooCommerce · DNS · Local SEO',
@@ -59,9 +59,9 @@ const EN = {
   'exp-4-tags': 'IT support · Hardware · Networking',
 
   'sec-proyectos': 'Projects',
-  'prj-3-label': 'Own product · Deployed',
-  'prj-3-d': 'Operations hub for freelancers: time tracking with hourly rates, projects, client pipeline, deadlines and operational checklists, all in a single page that runs with no install and no connection. Written entirely in vanilla JavaScript: zero dependencies, zero build step, ~8,200 lines of my own code and 10 product sections.',
-  'prj-3-d2': 'Optional cross-device sync runs on Supabase (Postgres, Auth and Edge Functions) talking to its REST API without the official client, and the subscription wall lives in the database RLS policies rather than the browser: the server decides. The wall is on writing, never on reading, so nobody’s data is held hostage. Mac ↔ Windows round-trip validated live.',
+  'prj-3-label': 'Own product · On the market',
+  'prj-3-d': 'Operations hub for freelancers: time tracking with hourly rates, projects, client pipeline, deadlines and operational checklists, all in a single page that runs with no install and no connection. Written entirely in vanilla JavaScript: zero dependencies, no bundler or transpilation, ~28,800 lines of my own code and 13 product sections (v2.26). Installable PWA with its own service worker.',
+  'prj-3-d2': 'Optional cross-device sync runs on Supabase (Postgres, Auth and Edge Functions) talking to its REST API without the official client, and the subscription wall —monthly or yearly, billed through Stripe with its own webhook— lives in the database RLS policies rather than the browser: the server decides. The wall is on writing, never on reading, so nobody’s data is held hostage. Mac ↔ Windows round-trip validated live.',
   'prj-visit-app': 'Try the app ↗',
   'prj-6-label': 'Own project · In production',
   'prj-6-d': 'The first Spanish-language site about Dragon Quest Smash/Grow: guides, tier lists and news. Around 1,500 unique visitors and 35,000 requests a month. Static site built with Hugo, deployed through CI/CD on Cloudflare Pages and served by a CDN with custom cache rules.',
@@ -69,7 +69,7 @@ const EN = {
   'prj-4-d': 'Native recreation of the arcade classic Galaxian without a commercial engine: custom game loop, entity management with static arrays, state machine for enemy AI and hand-written AABB collisions.',
   'prj-5-d': 'Third-person character controller in Unity: Rigidbody physics, orbital camera, ground detection and a hitbox/hurtbox system for combat.',
   'prj-1-label': 'Client · In progress',
-  'prj-1-d': 'Online store with WordPress and WooCommerce: product catalog, payments and shipping for a phone business.',
+  'prj-1-d': 'Maintenance and bug fixing on an inherited WooCommerce store for a phone business: catalog, payments and shipping.',
   'prj-2-label': 'Client · In progress',
   'prj-2-d': 'Corporate website and Google Business Profile management for a cleaning services company.',
   'prj-link': 'View repository ↗',
@@ -89,7 +89,7 @@ const EN = {
   'edu-3-name': 'Specialisation in Video Game Design and Development',
   'edu-3-meta': 'ESAT, Valencia',
   'edu-2-name': 'Spoken languages',
-  'edu-2-meta': 'Spanish (native) · Valencian (C1) · English (C1) · German (B1)',
+  'edu-2-meta': 'Spanish (native) · Valencian (C1) · English (C1) · German (A2)',
 
   'sec-servicios': 'Web services for businesses',
   'sec-servicios-intro': 'Alongside development, I work as a freelancer with small businesses that need their online presence solved end to end.',
