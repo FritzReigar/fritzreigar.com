@@ -372,6 +372,25 @@ img { max-width: 100%; height: auto; }
 
 .project-card .text-link { font-size: 0.85rem; }
 
+/* La imagen sale a sangre: contrarresta el padding de .card. El radio interior
+   es 13px, uno menos que el de la tarjeta, para que no asome el borde. */
+.project-shot {
+  margin: -28px -28px 22px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 13px 13px 0 0;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-2);
+}
+.project-shot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.card:hover .project-shot img { transform: scale(1.03); }
+
 /* El proyecto principal ocupa la fila entera: es lo primero que se mira */
 .project-featured {
   grid-column: 1 / -1;
@@ -379,6 +398,11 @@ img { max-width: 100%; height: auto; }
 }
 .project-featured h3 { font-size: 1.25rem; }
 .project-featured p { max-width: 70ch; }
+
+/* En la destacada la imagen es una banda ancha, no un cuadro 16:9: a lo largo
+   de toda la tarjeta un 16:9 sería una pared, y estirarla a la altura del
+   texto la recortaría a una tira vertical. */
+.project-featured .project-shot { aspect-ratio: 21 / 9; }
 
 /* ── EXPERIENCIA ───────────────────────────────────────────────── */
 .experience-list { display: flex; flex-direction: column; }
@@ -583,6 +607,8 @@ img { max-width: 100%; height: auto; }
   .stack-grid { grid-template-columns: 1fr; }
 
   .project-featured { grid-column: auto; }
+  /* En móvil la banda ancha es demasiado baja para leerse: vuelve a 16:9 */
+  .project-featured .project-shot { aspect-ratio: 16 / 9; }
 
   .experience-item { grid-template-columns: 1fr; gap: 8px; }
   .experience-date { margin: 0; }
@@ -600,6 +626,8 @@ img { max-width: 100%; height: auto; }
 
 /* ── MOVIMIENTO REDUCIDO ───────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
+  .card:hover .project-shot img { transform: none; }
+
   html { scroll-behavior: auto; }
   *,
   *::before,
