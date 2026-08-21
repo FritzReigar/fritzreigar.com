@@ -65,9 +65,8 @@ const EN = {
   'sec-proyectos': 'Projects',
   // Textos alternativos de las capturas de proyecto
   'prj-3-alt': 'snugport.app home page: the live hour tracker next to the produced, unpaid and waiting amounts',
-  'prj-6-alt': 'dragonquesthispano.com home page showing a Dragon Quest Smash/Grow weapon tier list',
+  'prj-6-alt': 'The guides section of dragonquesthispano.com, with an illustrated card for each guide',
   'prj-4-alt': 'The Galaxian engine mid-game: the enemy formation with one diving, and the player ship firing',
-  'prj-5-alt': 'A scene from the Unity combat prototype: the third-person character facing several enemies',
   'prj-3-label': 'Own product · On the market',
   'prj-3-d': 'Operations hub for freelancers: time tracking with hourly rates, projects, client pipeline, deadlines and operational checklists, all in a single page that runs with no install and no connection. Written entirely in vanilla JavaScript: zero dependencies, no bundler or transpilation, ~28,800 lines of my own code and 13 product sections (v2.26). Installable PWA with its own service worker.',
   'prj-3-d2': 'Optional cross-device sync runs on Supabase (Postgres, Auth and Edge Functions) talking to its REST API without the official client, and the subscription wall —monthly or yearly, billed through Stripe with its own webhook— lives in the database RLS policies rather than the browser: the server decides. The wall is on writing, never on reading, so nobody’s data is held hostage. Mac ↔ Windows round-trip validated live. The four Edge Functions are ~800 lines of TypeScript on Deno; the Stripe webhook verifies signatures with HMAC-SHA256 and Web Crypto, without the Stripe SDK.',

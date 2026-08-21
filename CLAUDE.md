@@ -50,16 +50,20 @@ chrome --headless --no-pdf-header-footer --print-to-pdf=out.pdf file:///.../cv-e
 python -c "import re,io; print(re.findall(rb'/Count\s+(\d+)', io.open('out.pdf','rb').read()))"
 ```
 
-Si se desborda, el resorte es `line-height` en `body` (está en 1.34; a 1.38 ya no cabe), antes que recortar contenido. `docs/CV_Fritz_Reif_Dev_Text.pdf` es la versión vieja, anterior al giro a backend-first; se conserva solo como referencia.
+Si se desborda, el resorte es `line-height` en `body` (está en **1.32**; a 1.34 ya no cabe), antes que recortar contenido. Ojo: las `.entrada` llevan `break-inside: avoid`, así que cuando desborda salta el bloque entero y recortar una frase suelta no sirve de nada — hay que tocar el interlineado. `docs/CV_Fritz_Reif_Dev_Text.pdf` es la versión vieja, anterior al giro a backend-first; se conserva solo como referencia.
 
 **Web y CV comparten contenido y tienen que cuadrar**: mismo orden de puestos, mismos bullets, mismos proyectos, mismos niveles de idioma. Si se toca uno, se revisa el otro — una discrepancia la detecta cualquier reclutador.
 
 Niveles de idioma vigentes, fijados por Fritz: español nativo, valenciano C1, **inglés C1**, **alemán A2** (dejó la EOI en 2026; no mencionarla). El CV viejo (`docs/CV_Fritz_Reif_Dev_Text.pdf`) dice B2+ para inglés; está desactualizado, no sirve de referencia para esto. El puesto de 2019 en el Ayuntamiento sí fueron **prácticas** y así debe seguir.
+
+Lionbridge y DataAnnotation son **trabajo por cuenta propia**, no empleo: los dos puestos llevan «Autónomo, remoto» en la línea de organización. Fritz está de autónomo desde julio de 2025. La entrada de desarrollo web se queda en **Abr 2026** aunque la actividad como autónomo sea anterior: sus bullets son de clientes web que llegaron entonces, y retrasar la fecha diría que llevaba un año haciendo webs de cliente.
 
 La formación va **sin fechas** en los dos sitios, por decisión suya; el DAM conserva «En curso» porque es estado, no fecha. Fritz está repitiendo asignaturas de primero, así que «En curso» seguirá un tiempo: no lo cambies a titulado ni lo dejes sin estado — sin estado se lee como que tiene el título.
 
 ## Archivos aportados a mano
 
 - `assets/cv/fritz-reigar-cv.pdf` y `assets/cv/fritz-reigar-cv-en.pdf` — los PDF exportados desde `docs/cv/cv-es.html` y `docs/cv/cv-en.html`. Los enlazan el botón del header, el CTA principal del hero y el footer, y `js/i18n.js` conmuta entre ellos según el idioma activo. Al cambiar cualquier CV hay que reexportar **los dos**.
-- `assets/img/proyectos/*.webp` — las capturas de las tarjetas de proyecto, todas normalizadas a 1200×675 (16:9) para que `object-fit: cover` no recorte de forma distinta en cada una. Snugport y DragonQuestHispano son capturas de la web viva; Galaxian y Unity, fotogramas sacados del `gameplay_preview.gif` de sus repos de GitHub. Missphone y Limpiezas Artemisa **no llevan imagen** a propósito: la tienda no la hizo Fritz y la web de Artemisa aún no está en su dominio.
+- `assets/img/proyectos/*.webp` — las capturas de las tarjetas de proyecto, todas normalizadas a 1200×675 (16:9) para que `object-fit: cover` no recorte de forma distinta en cada una. Snugport es la portada de `snugport.app`; DragonQuestHispano, la sección `/guias/` (no la portada: allí se entra directo en un artículo y no se ve que el sitio tenga volumen); Galaxian, un fotograma del `gameplay_preview.gif` de su repo.
+
+  **Tres tarjetas van sin imagen a propósito** y no hay que «arreglarlo»: Missphone (la tienda no la hizo Fritz), Limpiezas Artemisa (aún no está en su dominio) y Unity-3D-Combat-Prototype (el gameplay se ve de prototipo de clase y restaba). Quedan agrupadas al final de la rejilla, y eso crea la jerarquía: lo que tiene imagen pesa más.
 - `assets/img/fritz.jpg` — retrato del hero, cuadrado (recomendado 640×640). **Todavía no existe**: mientras falte, un `onerror` retira la figura y el hero queda a una columna sin romperse.
