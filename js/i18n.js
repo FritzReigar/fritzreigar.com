@@ -20,6 +20,9 @@ const EN = {
   'nav-contacto': 'Contact',
   'header-cv': 'CV',
 
+  'hero-meta-perfil': 'Profile',
+  'hero-meta-disponibilidad': 'Availability',
+  'hero-meta-contacto': 'Contact',
   'hero-chip': 'Open to offers · Valencia or remote',
   'hero-role': 'Backend developer · AI model QA',
   'hero-intro': 'I build backend systems with Java, C++ and SQL, and evaluate language models for Lionbridge and DataAnnotation: response auditing, red teaming and quality rubrics. I am building Snugport, a SaaS for freelancers already on the market, written in vanilla JavaScript without a single dependency. Software development student in Valencia, Spain; on the side I run websites and online stores for small businesses.',

@@ -18,14 +18,14 @@ Portfolio personal de Fritz (fritzreigar.com). Sitio estático de una sola pági
 
 - **Theming**: variables CSS definidas en `:root` (tema claro, el por defecto) y sobreescritas en `html.dark`. Un script inline en el `<head>` aplica el tema guardado antes del primer pintado (evita parpadeo); `js/theme.js` conecta el botón y persiste la preferencia en `localStorage` (clave `fritzreigar-theme`). Cualquier color nuevo debe entrar como variable con valor en ambos temas, nunca hardcodeado.
 - **Bilingüe ES/EN**: el español es el idioma por defecto y vive directamente en el HTML; el inglés está en el diccionario `EN` de `js/i18n.js`. Los elementos traducibles llevan `data-i18n="clave"` (texto), `data-i18n-ph="clave"` (placeholders) o `data-i18n-alt="clave"` (textos alternativos de imagen). Los enlaces al CV llevan `data-cv` y ninguna clave: se les reescribe el `href` al PDF del idioma activo. Al añadir contenido nuevo hay que añadir su clave y traducción al diccionario. Prioridad al elegir idioma: `?lang=es|en` en la URL > `localStorage` (clave `fritzreigar-lang`) > `navigator.language`. Al cambiar a inglés se añade `?lang=en` a la URL con `replaceState`, para poder compartir el enlace ya traducido.
-- **Secciones** de `index.html`, en este orden: hero, experiencia, proyectos, stack y formación, servicios y contacto (formulario Formspree), más header sticky con nav y footer. La numeración `01`–`05` de `.section-kicker` es manual: si se reordenan las secciones hay que renumerarlas a mano.
+- **Secciones** de `index.html`, en este orden: hero, experiencia, proyectos, stack y formación, servicios y contacto (formulario Formspree), más header sticky con nav y footer. Las secciones no van numeradas: la cabecera de sección es la regla gruesa superior + `h2` en caja alta (lo dibuja el CSS del `h2`, sin markup extra).
 - **Navegación**: `js/nav.js` lleva el menú hamburguesa en móvil y marca con `.is-active` el enlace de la sección visible (IntersectionObserver).
 - **Aparición al hacer scroll**: `js/reveal.js` anima los bloques de primer nivel de cada sección. El estado oculto solo se aplica bajo `html.js-reveal`, que añade el propio script: sin JS el contenido sigue visible. No animar `.card` ni `.experience-item`, porque el `transform` del reveal pisaría el de `:hover`.
 - **SEO/social**: meta tags, Open Graph, Twitter Card y JSON-LD (`@graph` con `ProfilePage` + `Person`) en el `<head>`, en español. `title` y `meta description` también se traducen vía `js/i18n.js`. Imagen de preview y favicons en `assets/img/`. No hay `hreflang`: el inglés no tiene URL propia servida, así que declararlo sería falso.
 
 ## Posicionamiento del contenido
 
-El sitio está orientado a **reclutadores**: el hero y las primeras secciones venden el perfil de desarrollador backend (Java/C++/SQL) y QA de modelos de IA (Lionbridge, DataAnnotation), y los servicios web freelance para negocios (WordPress/WooCommerce, Google Business Profile, dominios/hosting) van después, como línea paralela real pero secundaria. Estética: minimal profesional — nada de neones, glow ni jerga de terminal.
+El sitio está orientado a **reclutadores**: el hero y las primeras secciones venden el perfil de desarrollador backend (Java/C++/SQL) y QA de modelos de IA (Lionbridge, DataAnnotation), y los servicios web freelance para negocios (WordPress/WooCommerce, Google Business Profile, dominios/hosting) van después, como línea paralela real pero secundaria. Estética: **retícula suiza minimal** (rediseño de agosto de 2026) — Archivo como única familia, títulos en caja alta, rojo señal como único acento (`--accent`, `#c62f24` claro / `#f0584b` oscuro), radio cero en todo (nada de esquinas redondeadas), y hairlines que organizan contenido real, no decoración. Nada de neones, glow ni jerga de terminal. Los tres prototipos que originaron el rediseño (`rediseno-1-editorial.html`, `rediseno-2-suizo.html`, `rediseno-3-nocturno.html`, en la raíz, gitignorados) se conservan como referencia por si hay otro rediseño: no desplegar ni enlazar.
 
 ## Proyecto principal: Snugport
 
@@ -39,7 +39,7 @@ El enlace del sitio y del CV apunta a `https://snugport.app/`, que es el destino
 
 ## El CV
 
-El CV vive en `docs/cv/cv-es.html` y `docs/cv/cv-en.html` (los dos gitignored): HTML pensados para imprimirse a PDF desde el navegador, con la misma tipografía y acento que el sitio.
+El CV vive en `docs/cv/cv-es.html` y `docs/cv/cv-en.html` (los dos gitignored): HTML pensados para imprimirse a PDF desde el navegador, con la misma tipografía y acento que el sitio (desde agosto de 2026, alineados al rediseño suizo: Archivo, rojo `#c62f24`, reglas negras sobre los títulos, sin monoespaciada).
 
 **`cv-en.html` está generado**: su `<head>` entero es copia del de `cv-es.html`, para que los estilos no puedan divergir. Si se toca el diseño, se toca en el español y se regenera el inglés; si se toca el contenido, hay que tocar los dos.
 
@@ -50,7 +50,7 @@ chrome --headless --no-pdf-header-footer --print-to-pdf=out.pdf file:///.../cv-e
 python -c "import re,io; print(re.findall(rb'/Count\s+(\d+)', io.open('out.pdf','rb').read()))"
 ```
 
-Si se desborda, el resorte es `line-height` en `body` (está en **1.32**; a 1.34 ya no cabe), antes que recortar contenido. Ojo: las `.entrada` llevan `break-inside: avoid`, así que cuando desborda salta el bloque entero y recortar una frase suelta no sirve de nada — hay que tocar el interlineado. `docs/CV_Fritz_Reif_Dev_Text.pdf` es la versión vieja, anterior al giro a backend-first; se conserva solo como referencia.
+Si se desborda, el resorte es `line-height` en `body` (está en **1.28** desde el cambio a Archivo, que es más ancha que Outfit: con 1.32 se iba a tres páginas), antes que recortar contenido. Ojo: las `.entrada` llevan `break-inside: avoid`, así que cuando desborda salta el bloque entero y recortar una frase suelta no sirve de nada — hay que tocar el interlineado. `docs/CV_Fritz_Reif_Dev_Text.pdf` es la versión vieja, anterior al giro a backend-first; se conserva solo como referencia.
 
 **Web y CV comparten contenido y tienen que cuadrar**: mismo orden de puestos, mismos bullets, mismos proyectos, mismos niveles de idioma. Si se toca uno, se revisa el otro — una discrepancia la detecta cualquier reclutador.
 
@@ -60,10 +60,18 @@ Lionbridge y DataAnnotation son **trabajo por cuenta propia**, no empleo: los do
 
 La formación va **sin fechas** en los dos sitios, por decisión suya; el DAM conserva «En curso» porque es estado, no fecha. Fritz está repitiendo asignaturas de primero, así que «En curso» seguirá un tiempo: no lo cambies a titulado ni lo dejes sin estado — sin estado se lee como que tiene el título.
 
+## LinkedIn
+
+El perfil (`linkedin.com/in/fritz-reif-garcia`) se alineó con el CV en agosto de 2026 y entra en la misma regla de coherencia: si cambian web o CV, se revisa LinkedIn. Decisiones fijas de Fritz: los textos del perfil van **en inglés** (con el idioma del perfil declarado en español), el nombre visible se queda como **Fritz Reif García** (el real; la marca «Fritz Reigar» va solo en el banner), y el puesto destacado de la presentación es Founder & Developer en Snugport.
+
+El banner de portada (1584×396) sale de `docs/banner-linkedin.html` (gitignored), con la estética del rediseño suizo y la composición cargada a la derecha porque la foto de perfil tapa la esquina inferior izquierda. Se renderiza con Chrome headless: `chrome --headless=new --window-size=1584,396 --screenshot=banner-linkedin.png` (con `--user-data-dir` temporal si Chrome está abierto).
+
+Dos trampas del editor de LinkedIn: al añadir un puesto nuevo **sobrescribe el titular** con «(puesto) en (empresa)» y hay que restaurarlo en `edit/intro/`; y el campo «añadir enlace» de contenido multimedia rechaza `https://fritzreigar.com` — solo acepta `https://www.fritzreigar.com/`.
+
 ## Archivos aportados a mano
 
 - `assets/cv/fritz-reigar-cv.pdf` y `assets/cv/fritz-reigar-cv-en.pdf` — los PDF exportados desde `docs/cv/cv-es.html` y `docs/cv/cv-en.html`. Los enlazan el botón del header, el CTA principal del hero y el footer, y `js/i18n.js` conmuta entre ellos según el idioma activo. Al cambiar cualquier CV hay que reexportar **los dos**.
 - `assets/img/proyectos/*.webp` — las capturas de las tarjetas de proyecto, todas normalizadas a 1200×675 (16:9) para que `object-fit: cover` no recorte de forma distinta en cada una. Snugport es la portada de `snugport.app`; DragonQuestHispano, la sección `/guias/` (no la portada: allí se entra directo en un artículo y no se ve que el sitio tenga volumen); Galaxian, un fotograma del `gameplay_preview.gif` de su repo.
 
   **Tres tarjetas van sin imagen a propósito** y no hay que «arreglarlo»: Missphone (la tienda no la hizo Fritz), Limpiezas Artemisa (aún no está en su dominio) y Unity-3D-Combat-Prototype (el gameplay se ve de prototipo de clase y restaba). Quedan agrupadas al final de la rejilla, y eso crea la jerarquía: lo que tiene imagen pesa más.
-- `assets/img/fritz.jpg` — retrato del hero, cuadrado (recomendado 640×640). **Todavía no existe**: mientras falte, un `onerror` retira la figura y el hero queda a una columna sin romperse.
+- `assets/img/fritz.jpg` — retrato del hero, cuadrado (recomendado 640×640); se muestra como cuadrado plano con borde, junto al nombre gigante. **Todavía no existe**: mientras falte, un `onerror` retira la figura y el nombre ocupa el ancho entero sin romperse.
