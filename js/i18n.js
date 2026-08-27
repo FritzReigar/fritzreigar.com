@@ -34,7 +34,7 @@ const EN = {
   'exp-3-org': 'DataAnnotation Tech · Remote',
   'exp-3-b1': 'Adversarial test case design to identify failure modes and vulnerabilities in language models.',
   'exp-3-b2': 'Evaluation rubrics to measure the quality and alignment of model responses.',
-  'exp-3-b3': 'Asynchronous work on AI safety and alignment projects.',
+  'exp-3-b3': 'Asynchronous work on the quality and safety of model responses.',
   'exp-3-tags': 'Adversarial prompting · LLM evaluation · RLHF',
   'exp-2-date': 'Jul 2025 — Present',
   'exp-2-org': 'Lionbridge Technologies · Remote',
