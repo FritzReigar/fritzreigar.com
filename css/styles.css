@@ -434,7 +434,7 @@ img { max-width: 100%; height: auto; }
 }
 .project-featured .project-desc p { font-size: 0.96rem; color: var(--text-muted); }
 
-/* Las dos tarjetas con imagen: bloques abiertos con regla superior */
+/* Las tarjetas con imagen: bloques abiertos con regla superior */
 .projects-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -457,6 +457,16 @@ img { max-width: 100%; height: auto; }
   transition: transform 0.3s ease;
 }
 .project-card:hover .project-shot img { transform: scale(1.02); }
+
+/* La tarjeta ancha ocupa la fila entera: imagen a la izquierda, texto a la derecha */
+.project-card--wide {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 20px 40px;
+  align-items: start;
+}
+.project-card--wide .project-shot { margin: 0; }
 .project-card h3 {
   font-size: 1.3rem;
   font-weight: 800;
@@ -655,6 +665,7 @@ img { max-width: 100%; height: auto; }
 
   .project-featured .project-body { grid-template-columns: 1fr; }
   .projects-grid { grid-template-columns: 1fr; }
+  .project-card--wide { grid-template-columns: 1fr; }
   .project-index-row { grid-template-columns: 1fr; gap: 6px; }
 
   .stack-grid { grid-template-columns: 1fr 1fr; }
