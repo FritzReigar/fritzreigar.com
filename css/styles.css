@@ -501,7 +501,7 @@ img { max-width: 100%; height: auto; }
 /* ── STACK Y FORMACIÓN ─────────────────────────────────────────── */
 .stack-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   border-top: 1px solid var(--border-strong);
   border-bottom: 1px solid var(--border-strong);
 }
