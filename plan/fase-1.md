@@ -511,3 +511,24 @@ fase 2 se planifica y se pinta con ella, y el lienzo queda solo como imagen de r
     `--color-error`.
   Y dos ajustes menores: los botones del 404 van en una fila de tres en tablet, y «English» no se
   pinta hasta que exista el inglés.
+- **2026-11-04, tras la tanda 1.4: cinco añadidos para la planificación de la fase 2.** Astro se queda
+  (web estática de contenido, cero JS por defecto, rutas `/en/`, `astro:assets` y todo lo del estudio
+  reutilizable). Lo que se propone sumar, pequeño y casi todo pruebas, para que el diseño no se rompa
+  sin verse:
+  1. **Pruebas de captura de las 16 vistas** (`toHaveScreenshot` de Playwright), en reposo como el
+     lienzo: si el avatar vuelve a pisar la cara en tablet, rojo.
+  2. **Las comprobaciones del lienzo, como pruebas en `e2e/`**: ningún texto se sale de su caja a
+     360, 768, 1024 y 1440; con movimiento reducido, cero animaciones; las bandas cubren de borde a
+     borde a 1920. Salen de `docs/lienzo/herramientas/comprobar-desbordes.mjs` y de las medidas de
+     la revisión como visitante.
+  3. **Un lint de tokens en `npm run red`**: el grep de colores de la 1.4, sobre `src/`, para que
+     ningún color se escriba fuera de `tokens.css`.
+  4. **Un script que recorte Archivo**: solo los ejes y los rangos usados (`wdth` 62–100, `wght`
+     400–800) y «→» y «↗» si la fuente los tiene; es lo que la deja por debajo de los 95 KB del
+     presupuesto (`plan/spec-visual.md` § 8).
+  5. **Las fichas como datos**: una colección por idioma con el mismo slug y una prueba de que cada
+     ficha en español tiene su gemela; así `LangLink` solo se pinta cuando existe.
+  Fuera: CMS, islas de React, Tailwind (la spec ya es CSS con tokens), `ClientRouter` y analítica con
+  cookies. Y una línea que mirar al planificar: Cloudflare empuja los proyectos nuevos de Pages hacia
+  Workers con archivos estáticos; el estudio y Artemisa siguen en Pages con `_headers` y middleware,
+  así que lo coherente es quedarse en Pages salvo que algo lo impida.
