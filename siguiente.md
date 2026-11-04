@@ -3,41 +3,51 @@ Fecha: 2026-11-04
 Proyecto: portfolio
 
 ## 1. De qué va la siguiente
-Tanda 1.3 de `plan/fase-1.md`: el lienzo I. Tres prototipos completos (portada entera y ficha de Missphone, con el texto y las capturas reales), cada uno con su pieza diferenciadora: A, el dibujo que se traza solo; B, el barrido con el scroll; C, el cartel suizo.
-Los tres comparten la base suiza con cobalto, se ven a 390 y a 1440 en claro y en oscuro, y eliges tú viéndolos. Sin Astro todavía.
+Tanda 1.4 de `plan/fase-1.md`: el lienzo II. Partiendo de la mezcla A + C elegida (`docs/lienzo/concepto-ac*.html`), se pulen y dibujan cuatro páginas tipo en `docs/lienzo/final.html`: la portada, la ficha de Missphone, la de Snugtone y el 404. Cada una a 390 y a 1440, en claro y en oscuro.
+Se escribe `plan/spec-visual.md`, que tiene que bastar para implementar la web en Astro sin mirar el prototipo. Sin Astro todavía.
 
 ## 2. El prompt
 ```
-Tanda 1.3 del portfolio: lienzo I, tres conceptos.
+Tanda 1.4 del portfolio: lienzo II, la vuelta y la spec.
 
-Lee ENTEROS plan/README.md y la tanda 1.3 de plan/fase-1.md (y sus
-«Desvíos»), y lo que la tanda mande leer (sobre todo plan/contenido.md y
-plan/capturas.md). Carga las skills frontend-design y taste-skill. Haz los
-tres conceptos en docs/lienzo/ con las capturas de docs/capturas/, cada uno
-con la portada entera y la ficha de Missphone, y mándame las 8 capturas de
-cada uno (390 y 1440, claro y oscuro) y la de movimiento reducido. Elijo yo
-en el chat y la elección queda en «Decisiones del lienzo». Regla 13: el
-repo es público. Commit local al acabar; el push, solo con mi OK.
+Lee ENTEROS plan/README.md, la tanda 1.4 de plan/fase-1.md, sus
+«Decisiones del lienzo» y sus «Desvíos», y lo que la tanda mande leer
+(plan/contenido.md y, como modelo, la spec-visual.md del estudio). Parte de
+la mezcla A + C: docs/lienzo/concepto-ac.html, concepto-ac-missphone.html,
+concepto-ac.css y base.css; las herramientas de captura están en
+docs/lienzo/herramientas/. Carga las skills frontend-design y taste-skill.
+Aligera el avatar vectorizado (hoy 228 KB) y deja Contacto preparado para
+una foto real opcional que aún no existe. Dibuja la portada, Missphone,
+Snugtone y el 404 en docs/lienzo/final.html y escribe plan/spec-visual.md.
+Mándame las 16 capturas (4 páginas × 2 anchos × 2 temas). Regla 13: el repo
+es público. Commit local al acabar; el push, solo con mi OK.
 ```
 
 ## 3. Modelo y esfuerzo
-Opus 5.5 en alto: es diseño (lienzo).
+Opus 5.5 en alto: es lienzo de diseño y spec.
 
 ## 4. Cómo abrirla
 Sesión nueva en `~/Projects/propios/portfolio`, sin modo plan.
 
 ## 5. Qué traer
-- Un rato para mirar los tres conceptos en el ordenador y en el móvil, y elegir uno o una mezcla.
-- Nada más: las capturas ya están en `docs/capturas/` y la VPN no hace falta.
+- Un rato para revisar las 16 vistas y dar el OK al lienzo final.
+- Si ya la tienes, la foto de busto para Contacto (1000 px de lado o más). Si no, no hace falta: la página se ve bien sin ella.
 
 ## 6. Qué te llevas
-- Tres prototipos HTML para comparar, con sus capturas.
-- El concepto elegido (o la mezcla) apuntado en «Decisiones del lienzo» de `plan/fase-1.md`.
+- `docs/lienzo/final.html` con las cuatro páginas tipo acabadas.
+- `plan/spec-visual.md` con:
+  - tokens con su contraste medido;
+  - tipografía y retícula;
+  - componentes y movimiento;
+  - presupuesto de KB y de Lighthouse;
+  - tamaños de las imágenes.
+- El avatar aligerado.
 
-La siguiente es la 1.4: pulir el elegido y escribir `plan/spec-visual.md`.
+Con eso se puede planificar la fase 2 (la web en Astro y el corte). Antes queda la 1.5, el andamio de Astro, que no depende del lienzo.
 
 ## 7. Decisiones que tomar
-- **Qué concepto (A, B o C) o qué mezcla.** Recomendada: decidirlo viéndolos en el móvil, no solo en el ordenador.
-- **Las capturas con la Navidad** (la vitrina y los «después» 1 y 2 de Missphone llevan la temporada). Recomendada: dejarlas para el lienzo y rehacerlas en la fase 2 si la web sale pasado Reyes (`plan/capturas.md`).
+- **El push de los commits del lienzo** (`32684d5`, `dfc5e8e` y el de este cierre). Recomendada: subirlos ya, porque solo tocan `plan/`, `CLAUDE.md` y este archivo.
+- **Cómo aligerar el avatar.** Recomendada: simplificar los trazos y dejar el sombreado de la barba como capa ligera, animando solo la línea. Si con eso no baja de unos 60 KB, sacarlo a un archivo aparte.
+- **Las capturas con la Navidad** (la vitrina y los «después» 1 y 2 de Missphone). Recomendada: dejarlas así para el lienzo y rehacerlas en la fase 2 si la web sale pasado Reyes.
 - **El caso Missphone de estudioreigar.com también lo cuenta a la baja.** Recomendada: rehacerlo en una sesión del proyecto del estudio, copiando de `plan/contenido.md` § 2.
-- **Para la 1.5, el nombre del proyecto de Pages** que sirve hoy fritzreigar.com (panel de Cloudflare → Workers y Pages). Recomendada: mirarlo antes de esa tanda; no corre prisa.
+- **Para la 1.5, el nombre del proyecto de Pages** que sirve hoy fritzreigar.com (panel de Cloudflare → Workers y Pages). Recomendada: mirarlo antes de esa tanda.
