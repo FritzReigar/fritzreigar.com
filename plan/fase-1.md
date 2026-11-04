@@ -190,7 +190,7 @@ concepto A lo pide, es de la 1.3) y tocar nada en las webs de los clientes.
 
 ---
 
-### Tanda 1.3 — Lienzo I: tres conceptos   [ ] pendiente
+### Tanda 1.3 — Lienzo I: tres conceptos   [x] hecha (2026-11-04, mezcla A + C)
 **Objetivo**: existen tres prototipos de diseño completos, cada uno con una pieza diferenciadora
 distinta, y Fritz elige uno (o una mezcla) viéndolos.
 
@@ -397,7 +397,27 @@ previa en Pages con `noindex`.
 
 ## Decisiones del lienzo
 
-(La escribe la tanda 1.3: qué concepto, qué se mezcla y por qué.)
+**2026-11-04, tanda 1.3: Fritz elige la mezcla de A y C.** El prototipo es
+`docs/lienzo/concepto-ac.html` y `concepto-ac-missphone.html`, con `concepto-ac.css` sobre `base.css`;
+es el punto de partida de la 1.4.
+
+- **De C, la estructura y la tipografía:** el nombre a tamaño de cartel en Archivo estrecha, que se
+  recompone al cargar (y pisa el pie del avatar a propósito, como en C); los títulos de sección en
+  cartel con su regla cobalto, que entran con el scroll; la banda cobalto del estudio; Missphone
+  sobre el bloque celeste; las dos bandas de capturas entre Trabajo y Proyectos; y en la ficha, los
+  números grandes y las fases en tres columnas.
+- **De A, el dibujo:** el avatar vectorizado se traza solo al cargar (línea y luego rellenos), y la
+  tinta cobalto sale donde dice algo: el óvalo alrededor de «Acepto proyectos» y la flecha entre
+  cada antes y su después en la ficha (no en la pareja del móvil, ni a 560 px o menos).
+- **Lo que se queda fuera:** B entero; la línea de A que unía Trabajo con Proyectos (ese papel ya lo
+  hacen las bandas de C, y juntas se pisaban); y el lazo de tinta alrededor de la captura de
+  Missphone, que Fritz descartó porque, al salir solo ahí, se leía como adorno.
+- **El avatar se queda, y la foto real va aparte.** Fritz preguntó si poner una foto en su lugar. Se
+  queda el avatar en el hero: es su imagen en X, el celeste de la web sale de su fondo y es el origen
+  de la tinta. Una foto real de busto irá en Contacto, junto a «te contesto yo», cuando Fritz la
+  tenga (está pendiente). La 1.4 la prevé como pieza opcional: con o sin ella, Contacto se ve bien.
+- **Para la 1.4:** aligerar el avatar (228 KB), y las tintas llevan `max-width: none`, porque la base
+  (`svg { max-width: 100% }`) las recortaba y el óvalo no cerraba alrededor del texto.
 
 ## Desvíos
 

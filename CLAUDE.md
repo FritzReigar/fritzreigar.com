@@ -11,7 +11,7 @@ La web personal de Fritz (fritzreigar.com): **la persona detrás de Estudio Reig
 ## Replanteamiento en curso
 
 La web pasa a Astro con un rediseño y deja de ser para reclutadores (planificado el 2026-11-04).
-**Tanda en curso: la 1.3, el lienzo I** ([`plan/fase-1.md`](plan/fase-1.md)). Las decisiones y el
+**Tanda en curso: la 1.4, el lienzo II** ([`plan/fase-1.md`](plan/fase-1.md)). Las decisiones y el
 ciclo están en [`plan/README.md`](plan/README.md), que se lee al arrancar cualquier sesión del plan;
 el texto entero de la web nueva, con la fuente de cada afirmación, en
 [`plan/contenido.md`](plan/contenido.md); y las imágenes que enseña, con su origen y su `alt`, en
@@ -45,7 +45,7 @@ La web es **la persona detrás de Estudio Reigar**: un **desarrollador web freel
 - **Missphone** se cuenta como tienda **heredada** (nunca «hecha desde cero»), sin culpar al anterior, por fases y con lo que hizo Fritz; no se dice que se facturó como Estudio Reigar (fue por privado; el crédito del pie de la tienda sí es del estudio). **Artemisa**, sin precio y sin métricas de su ficha de Google; los Lighthouse sí.
 - **Fuera:** DragonQuestHispano y Unity-3D-Combat-Prototype. Galaxian no presenta a Fritz como programador de videojuegos.
 
-Estética del sitio publicado hoy: **retícula suiza minimal** (rediseño de agosto de 2026) — Archivo como única familia, títulos en caja alta, rojo señal como único acento (`--accent`, `#c62f24` claro / `#f0584b` oscuro), radio cero en todo, y hairlines que organizan contenido real, no decoración. **La web nueva conserva la retícula, Archivo y el radio cero, y cambia el acento al cobalto del estudio (`#1f4fa3`) con el celeste del avatar como superficie** (decisión 1 de `plan/README.md`). Nada de neones, glow ni jerga de terminal. Los tres prototipos del rediseño de agosto (`rediseno-1-editorial.html`, `rediseno-2-suizo.html`, `rediseno-3-nocturno.html`, en la raíz, gitignorados) se conservan como referencia: no desplegar ni enlazar.
+Estética del sitio publicado hoy: **retícula suiza minimal** (rediseño de agosto de 2026) — Archivo como única familia, títulos en caja alta, rojo señal como único acento (`--accent`, `#c62f24` claro / `#f0584b` oscuro), radio cero en todo, y hairlines que organizan contenido real, no decoración. **La web nueva conserva la retícula, Archivo y el radio cero, y cambia el acento al cobalto del estudio (`#1f4fa3`) con el celeste del avatar como superficie** (decisión 1 de `plan/README.md`), con la mezcla A + C del lienzo: el cartel suizo en Archivo estrecha y el avatar que se dibuja, con tinta cobalto (las «Decisiones del lienzo» de `plan/fase-1.md`). Nada de neones, glow ni jerga de terminal. Los tres prototipos del rediseño de agosto (`rediseno-1-editorial.html`, `rediseno-2-suizo.html`, `rediseno-3-nocturno.html`, en la raíz, gitignorados) se conservan como referencia: no desplegar ni enlazar.
 
 ## Proyecto principal: Snugport
 
