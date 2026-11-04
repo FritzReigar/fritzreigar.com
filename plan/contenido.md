@@ -112,7 +112,7 @@ de nuevo en la 1.2 (2026-11-04): `plan/capturas.md` § «Lighthouse».
 - Enlace: Ver el proyecto →
 
 **Snugport**
-- Rótulo: Producto propio · A la venta
+- Rótulo: Producto propio · Gratis, con plan de pago
 - > Centro de operaciones para freelancers: horas con tarifa, proyectos, clientes, finanzas y
   > vencimientos. En producción como PWA en JavaScript vanilla, y con el panel migrando a React y
   > TypeScript con más de 1.200 pruebas unitarias.
@@ -538,7 +538,7 @@ lo que usa todo el mundo» para que se entienda sin contexto: **Fritz lo confirm
 
 ## 5. Ficha de Snugport — `/proyectos/snugport`
 
-**Rótulo:** Proyecto · Producto propio · A la venta
+**Rótulo:** Proyecto · Producto propio · Gratis, con plan de pago
 
 **Título:** Snugport
 
@@ -553,8 +553,9 @@ lo que usa todo el mundo» para que se entienda sin contexto: **Fritz lo confirm
 - Migración en curso del panel a React 19 + TypeScript + Tailwind 4, en paralelo a producción: más
   de 1.200 pruebas unitarias (Vitest), más de 300 E2E (Playwright) en móvil y escritorio, y
   mutation testing.
-- A la venta por suscripción con Stripe. Backend sobre Supabase (Postgres, Auth y Edge Functions en
-  TypeScript): el muro de pago vive en las políticas RLS de Postgres, no en el cliente.
+- Gratis, sin cuenta y sin límite; el plan de pago, por suscripción con Stripe, lleva tus datos
+  entre dispositivos. Backend sobre Supabase (Postgres, Auth y Edge Functions en TypeScript): el
+  muro de pago vive en las políticas RLS de Postgres, no en el cliente.
 - Accesibilidad auditada (contraste AA, trampa de foco, `prefers-reduced-motion`), temas a elegir,
   interfaz bilingüe ES/EN y 80 divisas.
 
@@ -574,7 +575,10 @@ cuaderno, caoba y tinta); y Fritz dice que en React son cuatro (2026-11-04). Las
 cuadran y cambian con la migración, así que no se da número. **80 divisas:** 80 entradas `{ code: … }` en
 `snugport-app/js/dominio.js`. Stripe, RLS, Edge Functions, accesibilidad, bilingüe: verificados en
 agosto de 2026 (`CLAUDE.md` § «Proyecto principal: Snugport»). Sin usuarios, suscriptores ni
-ingresos. No se destaca por encima de Snugtone (tanda 1.1).
+ingresos. No se destaca por encima de Snugtone (tanda 1.1). **Gratis, con plan de pago:** lo
+decidió Fritz el 2026-11-04 (Desvíos de la 1.2), porque la landing dice «el panel es gratis. Lo
+que se paga es que viaje entre tus dispositivos» y «Gratis no es una prueba: todas las secciones,
+sin límite ni caducidad» (`https://snugport.app/es/`, leída ese día). Sin precios aquí.
 
 ---
 
@@ -599,7 +603,7 @@ línea en inglés: el inglés tendrá su 404 en `/en/` (decisión 2).
 | Missphone | Missphone · Trabajo · Fritz Reigar | Una tienda WooCommerce heredada: recuperar el control, regalos que se diseñan en la web, 39 páginas al nivel de la portada, la entrega y el lanzamiento. | Missphone: una tienda heredada, puesta al día | Del rescate al lanzamiento de una tienda online de Benetússer, por fases y con su antes y después. |
 | Limpiezas Artemisa | Limpiezas Artemisa · Trabajo · Fritz Reigar | Web estática a medida para una empresa de limpieza de Valencia: SEO local, sin cookies, CSP estricta y Lighthouse móvil de 95-96 en rendimiento y 100 en lo demás. | Limpiezas Artemisa: web nueva y ficha de Google | Una página por servicio, sin una cookie y con la nota de Lighthouse medida. |
 | Snugtone | Snugtone · Proyecto · Fritz Reigar | Reproductor de música de escritorio en Rust y Tauri, gratis y de código abierto: sin cortes, mismo volumen en todos los discos y rescaneo en 0,48 s. | Snugtone, un reproductor de música en Rust | Para tu propia biblioteca: rápido, sin tocar tus archivos y con licencia MIT. |
-| Snugport | Snugport · Proyecto · Fritz Reigar | Centro de operaciones para freelancers: PWA en JavaScript vanilla en producción y panel en migración a React y TypeScript, con más de 1.200 pruebas. | Snugport, el centro de operaciones del freelancer | Horas, proyectos, clientes y finanzas en un panel, a la venta con Stripe. |
+| Snugport | Snugport · Proyecto · Fritz Reigar | Centro de operaciones para freelancers: PWA en JavaScript vanilla en producción y panel en migración a React y TypeScript, con más de 1.200 pruebas. | Snugport, el centro de operaciones del freelancer | Horas, proyectos, clientes y finanzas en un panel: gratis, con plan de pago. |
 | 404 | Página no encontrada · Fritz Reigar | — (con `noindex`) | — | — |
 
 ↳ Cada línea resume lo de su ficha; las cifras, las mismas y con la misma fuente. Formato de
@@ -694,6 +698,7 @@ el CV lleve lo mismo, pero sí que no diga lo contrario.
 | 12 | Artemisa, páginas | «web estática de 13 páginas» | Sin cifra (hoy son 14 más el 404, con el blog crecido) | Quitar la cifra o decir «entregada con 13» |
 | 13 | Galaxian | «personal, completado», con tarjeta propia en proyectos | En pequeño, sin ficha | No es contradicción |
 | 14 | Estudio y datos personales | — | — | Sin choques en puestos, fechas, idiomas, formación ni nombres: la Trayectoria copia el CV |
+| 15 | Snugport, modelo | «producto propio, a la venta» y «A la venta por suscripción con Stripe» | «Gratis, con plan de pago»: el panel es gratis y se paga la sincronización | Decir lo mismo: gratis, con plan de pago por suscripción |
 
 ---
 

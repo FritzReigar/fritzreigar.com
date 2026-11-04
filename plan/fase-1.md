@@ -426,6 +426,8 @@ previa en Pages con `noindex`.
   Y la landing dice «panel gratuito… sin cuenta, y tus datos se quedan en tu dispositivo», mientras
   la ficha (`plan/contenido.md` § 5) dice «A la venta» y «a la venta por suscripción con Stripe».
   No tiene por qué ser contradicción (tiene «Ver precios»), pero puesta al lado de la captura se
-  lee raro: **lo decide Fritz** antes de la fase 2 (por ejemplo, «gratis, con plan de pago»).
+  leía raro. **Fritz decidió el mismo día: «gratis, con plan de pago»** (el panel es gratis y se
+  paga la sincronización entre dispositivos). Aplicado en `plan/contenido.md` § 1.4, § 5 y § 6.2, y
+  apuntado en «Choques con el CV» (fila 15).
 - **2026-11-04, tanda 1.2: el avatar no pasa de 400 px.** `generar-avatares-propuesta.py` retoca
   `avatar-400.png` con coordenadas de esos 400 px y no hay original mayor. Tope: 200 px CSS a 2×.
