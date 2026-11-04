@@ -258,7 +258,7 @@ movimiento reducido); la consola, con el navegador en primer plano.
 
 ---
 
-### Tanda 1.4 — Lienzo II: la vuelta y la spec   [ ] lienzo y spec hechos (2026-11-04); falta el OK de Fritz
+### Tanda 1.4 — Lienzo II: la vuelta y la spec   [x] hecha (2026-11-04, lienzo final y `plan/spec-visual.md`)
 **Objetivo**: el concepto elegido está pulido en todas las páginas tipo y existe
 `plan/spec-visual.md`, que basta para implementarlo sin mirar el prototipo.
 
@@ -418,6 +418,10 @@ es el punto de partida de la 1.4.
   tenga (está pendiente). La 1.4 la prevé como pieza opcional: con o sin ella, Contacto se ve bien.
 - **Para la 1.4:** aligerar el avatar (228 KB), y las tintas llevan `max-width: none`, porque la base
   (`svg { max-width: 100% }`) las recortaba y el óvalo no cerraba alrededor del texto.
+
+**2026-11-04, tanda 1.4: Fritz da el OK al lienzo final** (`docs/lienzo/final.html`, con la
+revisión como visitante de los Desvíos aplicada). **Desde aquí manda `plan/spec-visual.md`**: la
+fase 2 se planifica y se pinta con ella, y el lienzo queda solo como imagen de referencia.
 
 ## Desvíos
 
