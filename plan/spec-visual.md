@@ -6,11 +6,13 @@ fase 2 corta los componentes con ella y pinta cada página con ella, sin volver 
 adivinar. El lienzo queda como imagen de referencia:
 
 - `docs/lienzo/final.html` (gitignored, no se sube): un solo archivo con cinco vistas que se eligen
-  por el fragmento: `final.html` (portada), `#missphone`, `#snugtone`, `#no-encontrada` (el 404) y
-  `#contacto-con-foto` (la variante de Contacto con la foto opcional). Todo el CSS va dentro, en un
-  `<style>`, y no tiene ni una línea de JS.
+  por el fragmento: `final.html` (portada), `#missphone`, `#snugtone`, `#no-encontrada` (el 404),
+  `#contacto-con-foto` (la variante de Contacto con la foto opcional) y `#estados-formulario` (los
+  tres estados del envío). Todo el CSS va dentro, en un `<style>`; el único JS es `final.js`, que
+  cierra el menú del móvil (§ 2.2).
 - Sus capturas, en `docs/lienzo/capturas/final-*.png`: las 16 vistas (4 páginas × 390 y 1440 ×
-  claro y oscuro), Contacto con foto a 390 y a 1440, y la portada con movimiento reducido. Salen de
+  claro y oscuro), Contacto con foto a 390 y a 1440, los estados del formulario a 1440 en los dos
+  temas y la portada con movimiento reducido. Salen de
   `docs/lienzo/herramientas/capturar-final.sh`, que usa `capturar-pagina.mjs` (página entera por CDP,
   tema y movimiento emulados, cada animación acabada: el reposo).
 
@@ -30,8 +32,8 @@ autoalojada, § 8), el hueco rayado de la foto (§ 2.5) y las rutas `../capturas
 
 - **Todo color sale de un token de `:root`**, con su valor en el tema oscuro dentro de
   `@media (prefers-color-scheme: dark)`. Comprobado en el lienzo:
-  `grep -nE "#[0-9a-fA-F]{3,6}\b|rgb\(" docs/lienzo/final.html` solo saca líneas de `:root` (20-37) y
-  de su bloque oscuro (139-152).
+  `grep -nE "#[0-9a-fA-F]{3,6}\b|rgb\(" docs/lienzo/final.html` solo saca líneas de `:root` (21-39) y
+  de su bloque oscuro (139-153).
 - **Tamaños, espacios, duraciones y curvas también son tokens** (los de abajo). Lo que sigue siendo
   literal está en § 1.3.
 - **Nombres en inglés** (regla del ciclo). Los del lienzo ya son los de Astro: la fase 2 los copia tal
@@ -63,6 +65,7 @@ autoalojada, § 8), el hueco rayado de la foto (§ 2.5) y las rutas `../capturas
 | `--color-avatar-ink` | #141414 | igual | línea y rayado de la barba del avatar |
 | `--color-header-bg` | rgb(250 251 252 / 0.92) | rgb(19 22 28 / 0.92) | cabecera pegada, con `backdrop-filter: blur(10px)` |
 | `--color-focus` | #1f4fa3 | #8fb0f0 | anillo de foco |
+| `--color-error` | #b3261e | #ff8f85 | el aviso de que el formulario no se ha enviado |
 
 En oscuro la banda del estudio pasa a un cobalto claro con texto oscuro (`--color-accent` y
 `--color-on-accent` se invierten de luminosidad): es la misma banda, no un tema distinto.
@@ -93,7 +96,7 @@ Una sola familia, **Archivo variable** (ejes `wdth` 62–125 y `wght` 400–900;
 | `--text-figure` | — · 158,4 px | cifras de `FigureList` (a 390 manda `--text-step`) |
 | `--text-poster` | 58,5 · 216 px | títulos de sección |
 | `--text-case` | 87,4 · 322,6 px | título de ficha |
-| `--text-hero` | 121,6 · 388,8 px | el nombre y el «404» |
+| `--text-hero` | 112 · 388,8 px | el nombre y el «404» |
 | `--leading-body` · `-lede` · `-tight` · `-card` · `-poster` · `-hero` | 1.6 · 1.5 · 1.1 · 0.9 · 0.8 · 0.78 | cuerpo · entradillas y campos · subtítulos · tarjetas y números · carteles · nombre y 404 |
 | `--tracking-poster` · `--tracking-hero` | -0.02em · -0.025em | carteles · nombre y 404 |
 
@@ -123,7 +126,7 @@ normal en el HTML y en `contenido.md`). Los rótulos pequeños (`.label`) van en
 |---|---|---|
 | `--width-page` | 1280 px | el contenedor |
 | `--width-text` | 64ch | largo máximo de un párrafo |
-| `--width-avatar` · `--width-avatar-s` | 300 · 150 px | avatar del hero (escritorio · 35rem o menos) |
+| `--width-avatar` | 300 px | tope del avatar; su lado es el alto de una línea del nombre (`--text-hero` × `--leading-hero`): 87 px a 390, 162 a 768, 216 a 1024 y 300 a 1440 |
 | `--width-photo` · `--width-photo-s` | 176 · 128 px | la foto opcional de Contacto |
 | `--width-pair-tall` | 260 px | cada captura de la pareja del móvil |
 | `--width-menu` | 320 px | panel del menú del móvil |
@@ -154,8 +157,7 @@ normal en el HTML y en `contenido.md`). Los rótulos pequeños (`.label`) van en
 | `--duration-ink` · `--delay-ink` | 0,9 s · 2,5 s | el óvalo de «Acepto proyectos» |
 | `--stagger` | 0,1 s | entre las dos líneas del nombre y entre los grupos de trazos del avatar |
 | `--shift-recompose` · `--shift-figure` | 18 % · 30 % | lo que se desplaza un cartel · una cifra |
-| `--band-1-from/-to` · `--band-2-from/-to` | 4 % → -26 % · -14 % → 6 % | el viaje de cada banda |
-| `--band-2-offset` | -18vw | la segunda banda empieza desplazada |
+| `--band-1-from/-to` · `--band-2-from/-to` | 0 → -15 % · -15 % → 0 | el viaje de cada banda (con la serie doble, ningún borde entra en pantalla) |
 
 ### 1.3 Lo que sigue siendo literal
 
@@ -191,6 +193,7 @@ foco y la tinta, 3:1. **Todo pasa en los dos temas.**
 | `--color-line-strong` / `--color-bg` | 17,81 | 15,16 | 3 | bordes de botón y campo, filetes que separan |
 | `--color-focus` / `--color-bg` | 7,49 | 8,31 | 3 | anillo de foco |
 | `--color-on-accent` / `--color-accent` | 7,76 | 8,43 | 3 | foco dentro de la banda del estudio |
+| `--color-error` / `--color-bg` | 6,31 | 8,21 | 4,5 | aviso de error del formulario |
 | `--color-avatar-ink` / `--color-avatar-sky` | 14,07 | igual | 3 | la línea del avatar |
 
 `--color-line` (1,34 y 1,43:1) es solo decorativo: separa lo que ya separa el espacio. Lo que hay
@@ -206,7 +209,8 @@ Foco: 2 px de `--color-focus` a 3 px de distancia, en todo; dentro de la banda d
 ### 2.1 El corte en Astro
 
 - **Todo son componentes `.astro` sin JS.** El único script es `src/scripts/main.ts` (decisión 9), y
-  en esta web solo mejora el formulario (enviar por `fetch` a Formspree y pintar sus tres mensajes).
+  en esta web hace dos cosas: mejora el formulario (enviar por `fetch` a Formspree y pintar sus tres
+  estados) y cierra el menú del móvil (en el lienzo, `final.js`).
   **Ningún movimiento usa JS**: es CSS (§ 4). El menú del móvil es un `<details>`.
 - **Los datos no van en las plantillas**: los textos, en un archivo por idioma (`src/data/`), y las
   fichas (Trabajo y Proyectos) en una colección con Zod, con su rótulo, su resumen de portada, sus
@@ -229,8 +233,8 @@ Foco: 2 px de `--color-focus` a 3 px de distancia, en todo; dentro de la banda d
 | `BaseLayout` | head (title, description, OG, hreflang, JSON-LD), `SkipLink`, `SiteHeader`, `<main>`, `SiteFooter` | `title, description, lang ('es'\|'en'), alternate (ruta gemela), current?, og?, noindex?, jsonLd?` | — | todas |
 | `SkipLink` | «Saltar al contenido», fuera de pantalla hasta recibir el foco | `target` | oculto · con foco (cobalto, arriba a la izquierda) | todas |
 | `SiteHeader` | marca «Fritz Reigar» (a la portada), cinco enlaces, `LangLink`; pegada arriba, con filete fuerte debajo | `lang, current? ('work'\|'projects'\|'how'\|'career'\|'contact')` | nav entera desde 56rem; por debajo, marca + `MobileMenu`; enlace actual con subrayado cobalto de 2 px (`aria-current="page"`: «Trabajo» en las fichas de Trabajo, «Proyectos» en las de Proyectos) | todas |
-| `MobileMenu` | `<details>` «Menú»: panel de 320 px colgado del botón, una fila de 44 px por enlace y el idioma al final | `lang, current?` | cerrado · abierto (botón en tinta invertida) | todas, por debajo de 56rem |
-| `LangLink` | enlace a la gemela en el otro idioma, separado del resto por un filete fino | `href, lang` | «English» en español, «Español» en inglés; `hreflang` y `lang` puestos | todas |
+| `MobileMenu` | `<details>` «Menú»: panel de 320 px colgado del botón, una fila de 44 px por enlace y el idioma al final | `lang, current?` | cerrado · abierto (botón en tinta invertida); se cierra al pulsar un enlace, al pulsar fuera y con Escape (que devuelve el foco a «Menú»), con `main.ts`; sin JS se queda abierto | todas, por debajo de 56rem |
+| `LangLink` | enlace a la gemela en el otro idioma, separado del resto por un filete fino | `href, lang` | «English» en español, «Español» en inglés; `hreflang` y `lang` puestos; **solo se pinta si la gemela está viva** (`en.live`): hasta entonces, ni enlace ni hueco | todas |
 | `SiteFooter` | «© 2026 Fritz Reigar · Valencia» y CV, GitHub, LinkedIn, X y el correo | `lang` | en el móvil, dos líneas | todas |
 
 #### Controles y piezas pequeñas
@@ -251,33 +255,38 @@ Foco: 2 px de `--color-focus` a 3 px de distancia, en todo; dentro de la banda d
 
 | Componente | Qué es | Props | Variantes y estados | Sale en |
 |---|---|---|---|---|
-| `HomeHero` | el nombre en dos líneas a `--text-hero` («Fritz» a la izquierda, «Reigar» a la derecha) con el `Avatar` arriba a la derecha (columnas 9-12; el nombre le pisa el pie a propósito); bajo la regla cobalto de 6 px, la entradilla (1-6), el `StatusBadge` (7-9) y dos `Button` apilados (10-12) | `name, avatarAlt, lede, status, actions[2]` | a 35rem o menos el avatar baja a su fila (150 px) y todo se apila | portada |
+| `HomeHero` | el nombre en dos líneas a `--text-hero` («Fritz» a la izquierda, «Reigar» a la derecha) con el `Avatar` arriba a la derecha (columnas 9-12, al lado de «Fritz» en todos los anchos: mide lo que una línea del nombre y el nombre, por encima con `z-index`, le pisa solo la camiseta); bajo la regla cobalto de 6 px, la entradilla (1-6), el `StatusBadge` (7-9) y dos `Button` apilados (10-12) | `name, avatarAlt, lede, status, actions[2]` | por debajo de 60rem la fila bajo la regla se apila; el avatar no se mueve de su sitio | portada |
 | `CaseHero` | el rótulo con la sección enlazada («Trabajo» o «Proyecto»), el título a `--text-case`, y bajo la regla la entradilla (1-7) y los enlaces (9-12: un `Button` primario y un `ArrowLink`) | `section, sectionHref, kicker, title, lede, primary, secondary` | — | Missphone, Snugtone; además: Artemisa, Snugport |
-| `ErrorHero` | «Error 404», el «404» a `--text-hero` (1-5) y «Esta página no existe» a `--text-display` (6-12) asentados en la misma línea base; bajo la regla, la entradilla (1-6) y tres `Button` apilados (10-12) con la `Ink` flecha apuntando al primero | `code, title, lede, actions[3]` | la flecha solo por encima de 60rem; por debajo, todo apilado | 404 |
+| `ErrorHero` | «Error 404», el «404» a `--text-hero` (1-5) y «Esta página no existe» a `--text-display` (6-12) asentados en la misma línea base; bajo la regla, la entradilla (1-6) y tres `Button` apilados (10-12) con la `Ink` flecha apuntando al primero | `code, title, lede, actions[3]` | la flecha solo por encima de 60rem; entre 35 y 60rem, los tres botones en una fila; a 35rem o menos, en columna | 404 |
 
 #### Portada
 
 | Componente | Qué es | Props | Variantes y estados |
 |---|---|---|---|
 | `StudioBand` | banda cobalto a todo el ancho: `SectionTitle` en `accent`, el texto (1-6) con su `ArrowLink`, y las dos capturas del estudio (7-12, escritorio y móvil en 3fr 1fr, alineadas abajo, con borde en `--color-on-accent`) | `title, text, link, shots{desktop, mobile}` | — |
-| `WorkFeature` | la tarjeta grande de Trabajo: bloque celeste con relleno `--space-inset`; texto (1-4: `Label`, título a `--text-card`, resumen, `ArrowLink` abajo) y la captura de escritorio (5-12) | `entry` (de la colección) | — (solo Missphone) |
+| `WorkFeature` | la tarjeta grande de Trabajo, pulsable entera (ver debajo): bloque celeste con relleno `--space-inset`; texto (1-4: `Label`, título a `--text-card`, resumen, `ArrowLink` abajo) y la captura de escritorio (5-12) | `entry` (de la colección) | — (solo Missphone) |
 | `WorkCard` | la tarjeta normal: captura (1-6) y texto (8-12) sobre el fondo | `entry` | — (Artemisa) |
-| `ShotBands` | dos bandas de seis capturas, entre filetes fuertes, que se desplazan en sentidos contrarios con el scroll; `aria-hidden`, `alt=""` | `rows[2][6]` | quietas sin soporte o con movimiento reducido |
+| `ShotBands` | dos bandas de seis capturas (cada serie dos veces seguida, con las mismas URL: no se descarga nada más, y la banda cubre de borde a borde hasta 2560 px y más), entre filetes fuertes, que se desplazan en sentidos contrarios con el scroll; `aria-hidden`, `alt=""` | `rows[2][6]` | quietas sin soporte o con movimiento reducido |
 | `ProjectFeature` | el proyecto grande: texto (1-4) y tres capturas (5-12: una entera arriba y dos debajo) | `entry` | a 35rem o menos, las tres en columna (Snugtone) |
 | `ProjectCard` | captura y texto en 5fr 3fr, en las columnas 1-8 | `entry` | a 35rem o menos, apilado (Snugport) |
 | `ProjectMini` | captura, rótulo, título a `--text-h3`, dos líneas y enlace al repositorio, en 9-12 con filete a la izquierda | `title, label, text, href, shot` | por debajo de 60rem, filete arriba (Galaxian) |
 | `PrincipleList` | cuatro principios en 2 columnas, cada uno con filete fuerte de 2 px arriba y título en caja alta a `--text-principle` | `items[{title, text}]` | 1 columna por debajo de 60rem |
 | `CareerTable` | tabla de tres columnas (fechas en Archivo 75 % negrita a `--text-l`, puesto en negrita, dónde), filas separadas por filete fino | `rows` | a 45rem o menos cada fila es una ficha de tres líneas (la cabecera queda solo para lectores de pantalla) |
 | `CareerExtra` | formación e idiomas en dos columnas con subtítulo en caja alta, y el CV discreto (`ArrowLink`) | `education[], languages, cvHref` | 1 columna por debajo de 60rem |
-| `ContactSection` | `SectionTitle`, la entradilla con el correo y el CV en gris (1-6) y `ContactForm` (8-12) | `photo?` | sin foto (por defecto) · con foto (§ 2.5) |
-| `ContactForm` | nombre, email, mensaje y «Enviar», etiqueta encima de cada campo, campos de 48 px con borde fuerte; asunto oculto | `action, lang` | reposo · enviando («Enviando…», botón desactivado) · enviado · error (los textos, en `contenido.md` § 1.7); sin JS, POST normal a Formspree |
+| `ContactSection` | `SectionTitle`, la entradilla (con «estudioreigar.com» enlazado), el correo y el CV en gris (1-6) y `ContactForm` (8-12) | `photo?` | sin foto (por defecto) · con foto (§ 2.5) |
+| `ContactForm` | nombre, email, mensaje y «Enviar», etiqueta encima de cada campo, campos de 48 px con borde fuerte; asunto oculto | `action, lang` | reposo · enviando («Enviando…» en el botón, que pasa a `--color-accent-hover` con `aria-disabled`) · enviado (una línea bajo el botón con el cuadrado cobalto, `role="status"`) · error (la misma línea en `--color-error`, con el correo enlazado, `role="alert"`); los textos, en `contenido.md` § 1.7; la validación es la del navegador (`required`, `type="email"`); sin JS, POST normal a Formspree. Dibujados en `#estados-formulario` |
+
+**Las tarjetas se pulsan enteras** (`WorkFeature`, `WorkCard`, `ProjectFeature`, `ProjectCard` y
+`ProjectMini`): su `ArrowLink` lleva un `::after` que cubre la tarjeta. Sigue habiendo un solo enlace
+por tarjeta, con su texto de siempre y sin perder el `alt` de las capturas; con el ratón encima, el
+marco de las capturas y el enlace pasan a cobalto.
 
 #### Fichas
 
 | Componente | Qué es | Props | Variantes y estados |
 |---|---|---|---|
 | `CaseShowcase` | bloque celeste con las capturas de la ficha | `desktop, phone?, caption?` | `pair` (escritorio y móvil en 5fr 1fr, alineadas abajo: Missphone) · `single` (escritorio en 1-9 y el pie en 10-12, abajo: Snugtone); a 35rem o menos solo la de escritorio |
-| `PullQuote` | rótulo (1-2) y la cita en caja alta, Archivo 75 % negrita a `--text-quote`, hasta 30ch (3-12) | `label, text` | «Lo mejor» (Missphone), «Por qué» (Snugtone) |
+| `PullQuote` | rótulo (1-2) y la cita en caja normal (en caja alta, pasadas dos líneas no se leía), Archivo 75 % negrita a `--text-quote`, hasta 32ch (3-12) | `label, text` | «Lo mejor» (Missphone), «Por qué» (Snugtone) |
 | `Prose` | texto corrido en las columnas 5-12, con lista si la hay | `slot` | «Cómo me la encontré» |
 | `BeforeAfter` | la nota de las parejas y una `Pair` por pareja: título en caja alta (1-3) y las dos capturas (4-12) con su pie («Antes» en tinta, «Después» en cobalto) y la `Ink` flecha entre ellas | `note, pairs[{title, before, after, tall?}]` | `tall` (la del móvil: dos columnas de 260 px y sin flecha); sin flecha a 35rem o menos; las flechas alternan su forma |
 | `FigureList` | cifras grandes en Archivo 62 % a `--text-figure`, cada una con la regla cobalto de 6 px encima y su frase debajo; cinco cifras en 3 + 2 | `items[{num, unit?, text}]` | a 60rem o menos, 2 columnas y la última entera; a 35rem o menos, cifras a `--text-step` |
@@ -362,12 +371,12 @@ Móvil primero; los cortes, en `rem`:
 
 | Corte | Qué pasa |
 |---|---|
-| 60rem (960 px) | toda rejilla de 12 se apila; principios, formación y cierre a 1 columna; fases y cifras a 2; los botones del hero y del 404 en dos columnas; el avatar pasa a 8-12; la flecha del 404 se va |
+| 60rem (960 px) | toda rejilla de 12 se apila (salvo el nombre con el avatar); principios, formación, cierre y estados del formulario a 1 columna; fases y cifras a 2; los botones del hero en dos columnas y los del 404 en tres; la flecha del 404 se va |
 | 56rem (896 px) | la nav entera pasa a `MobileMenu` (medida en § 5) |
 | 45rem (720 px) | la trayectoria pasa de tabla a fichas |
-| 35rem (560 px) | el avatar baja bajo el nombre a 150 px; botones en una columna; fases, capas y proyectos en una; sin flecha en las parejas; cifras a `--text-step`; la vitrina sin la captura del móvil; la foto de Contacto encima del texto |
+| 35rem (560 px) | botones en una columna; fases, capas y proyectos en una; sin flecha en las parejas; cifras a `--text-step`; la vitrina sin la captura del móvil; la foto de Contacto encima del texto |
 
-Ningún corte más. Comprobado en el lienzo a 390, 768, 1024 y 1440 con
+Ningún corte más. Comprobado en el lienzo a 360, 390, 600, 768, 900, 1024, 1280, 1440 y 1920 con
 `docs/lienzo/herramientas/comprobar-desbordes.mjs`: ningún texto se sale de su caja ni de la
 ventana. Repetirlo sobre `dist/` es una prueba de la fase 2.
 
@@ -393,8 +402,8 @@ entre filetes fuertes, sin fondo.
   trabajo → Trayectoria → Contacto → pie.
 - **El orden de una ficha**: cabecera → `CaseHero` → `CaseShowcase` → `PullQuote` → secciones con
   `SectionTitle` → `CaseClosing` → pie.
-- Largos medidos en el lienzo: portada 9.130 px a 390 (10,8 pantallas de 844) y 8.548 a 1440;
-  Missphone 8.381 y 8.796; Snugtone 5.516 y 5.828; el 404 cabe en una pantalla.
+- Largos medidos en el lienzo: portada 8.949 px a 390 (10,6 pantallas de 844) y 8.548 a 1440;
+  Missphone 8.367 y 8.690; Snugtone 5.488 y 5.775; el 404 cabe en una pantalla.
 
 ---
 
@@ -419,7 +428,7 @@ sobre `pathLength="1"`.
 | El óvalo de «Acepto proyectos» | la carga, a los 2,5 s | se traza en `--duration-ink`, `--ease-draw` | igual | trazado |
 | La flecha del 404 | la carga, al acabar la subida (1,35 s) | se traza en `--duration-ink`, `--ease-draw` | igual | trazada |
 | Los carteles entran | el scroll: `view()` del título | el texto, de `translate` 18 % a 0 entre `entry 0%` y `cover 40%`; la regla, de `scale: 0 1` a `1 1` (origen a la izquierda) entre `entry 40%` y `cover 45%`; `linear` | en su sitio | en su sitio |
-| Las bandas viajan | el scroll: `view-timeline` de las bandas, `cover 0%` a `cover 100%` | la primera de 4 % a -26 %, la segunda de -14 % a 6 %, `linear` | quietas | quietas |
+| Las bandas viajan | el scroll: `view-timeline` de las bandas, `cover 0%` a `cover 100%` | la primera de 0 a -15 %, la segunda de -15 % a 0, `linear`; con la serie doble, ningún borde de banda entra en pantalla | quietas | quietas |
 | La flecha entre antes y después | el scroll: `view-timeline` de la flecha, `entry 30%` a `cover 55%` | se traza, `linear` | trazada | trazada |
 | Las cifras entran | el scroll: `view()` de la cifra, `entry 10%` a `cover 40%` | `translate` de ±30 % y `opacity` de 0 a 1; las pares desde la derecha, las impares desde la izquierda | en su sitio | en su sitio |
 | Encima | ratón | color de fondo y de texto de los botones y subrayado de la nav en `--duration-hover`, `--ease-out` | igual | igual (es color) |
@@ -428,10 +437,11 @@ Reglas:
 - **El LCP es texto** (el nombre, el título de ficha o el «404») y se pinta en el primer fotograma: la
   recomposición solo lo desplaza, nunca lo oculta. Nada con `opacity: 0` en la primera pantalla
   salvo los rellenos del avatar, que no es candidato a LCP (SVG en línea).
-- **Nada ligado al scroll en la primera pantalla**: el primer cartel con `view()` está a más de una
-  pantalla en los dos anchos (la banda del estudio empieza a 905 px a 390).
+- **Nada ligado al scroll tapa la primera pantalla**: a 1440 el primer cartel con `view()` queda
+  por debajo; a 390 asoma el arranque de la banda del estudio (desde 725 px) y su título empieza a
+  entrar desde ahí, sin tapar nada de lo de arriba.
 - Sin aparición por secciones (`IntersectionObserver`), sin transición entre páginas y sin nada en
-  bucle. El menú del móvil abre de golpe.
+  bucle. El menú del móvil abre y cierra de golpe.
 - La prueba de la fase 2: con movimiento reducido, cero animaciones activas
   (`document.getAnimations().length === 0`, como en la captura de movimiento reducido del lienzo).
 
@@ -483,7 +493,7 @@ Ancho pintado en el lienzo, en px CSS (en las bandas, el alto):
 | `BeforeAfter`, pareja alta | 173 | 260 | 260 | 260 | `(max-width: 35rem) 45vw, 260px` | 380 × 826 |
 | `FeatureRows` | 358 | 707 | 373 | 515 | `(max-width: 60rem) 92vw, 515px` | 1280 × 860 |
 | `ContactSection`, foto | 128 | 176 | 176 | 176 | `(max-width: 35rem) 128px, 176px` | ≥ 704 × 880 |
-| `Avatar` | 150 | 285 | 294 | 300 | SVG en línea | `viewBox` 800 |
+| `Avatar` | 87 | 162 | 216 | 300 | SVG en línea | `viewBox` 800 |
 
 \* Medido con la captura del móvil oculta (el lienzo la ocultó en la tanda; antes medía 258).
 
@@ -518,10 +528,10 @@ px desde arriba, con la cabecera de 64 px), que también saca los anchos de § 5
 
 | Página | 390 × 844 | 1440 × 900 |
 |---|---|---|
-| Portada | el nombre (89-276), el avatar (292-442), la entradilla (496-634), «Acepto proyectos» con su óvalo (658-701) y los dos botones (725-833) | el nombre con el avatar (108-707), la regla y la fila entera: entradilla, estado y los dos botones (761-869) |
+| Portada | el nombre con el avatar al lado de «Fritz» (89-261), la entradilla (315-454), «Acepto proyectos» con su óvalo (478-521), los dos botones (545-653) y el arranque de la banda del estudio (725-); a 360 × 740 también caben los dos botones | el nombre con el avatar (108-707), la regla y la fila entera: entradilla, estado y los dos botones (761-869) |
 | Missphone | rótulo, título (150-220), la entradilla, «Ver la tienda ↗» y el enlace al caso (hasta 609) y la vitrina (641-835) | rótulo, título (145-403), entradilla y enlaces (457-586) y el arranque de la vitrina (642-) |
 | Snugtone | rótulo, título, entradilla, «Descargar para Windows ↗» (380-428), «Código en GitHub ↗» y casi toda la vitrina (504-868) | rótulo, título (145-403), entradilla y enlaces (457-548) y la vitrina (604-) |
-| 404 | todo: el número (125-220), el título, la entradilla y los tres botones (hasta 575) | todo: el número y el título (145-448), la entradilla y los tres botones (502-670) |
+| 404 | todo: el número (125-213), el título, la entradilla y los tres botones (hasta 567) | todo: el número y el título (145-448), la entradilla y los tres botones (502-670) |
 
 La acción principal de cada página está siempre en la primera pantalla, en los dos anchos.
 
@@ -533,11 +543,11 @@ Medido sobre el lienzo; el tope es lo que la fase 2 no puede pasar (gzip, por p�
 
 | Pieza | Lienzo | Tope |
 |---|---|---|
-| Documento de la portada | 76,8 KB (23,6 en gzip): 62,9 del avatar y 13,9 de marcado | 32 KB gzip, con el `<head>` y el JSON-LD |
+| Documento de la portada | 78,2 KB (23,6 en gzip): 62,9 del avatar y 15,3 de marcado (las bandas llevan su serie dos veces) | 32 KB gzip, con el `<head>` y el JSON-LD |
 | Documento de una ficha | Missphone 14,4 KB (4,5 gzip); Snugtone 7,3 (2,7) | 10 KB gzip |
 | Documento del 404 | 2,3 KB (0,9 gzip) | 5 KB gzip |
-| Hoja de estilo, una para todo el sitio | 33,9 KB sin comentarios (6,3 gzip), con las reglas del prototipo | 10 KB gzip |
-| Script (`main.ts`, solo el formulario) | 0 | 3 KB gzip |
+| Hoja de estilo, una para todo el sitio | 35,3 KB sin comentarios (6,5 gzip), con las reglas del prototipo | 10 KB gzip |
+| Script (`main.ts`: el formulario y el menú) | `final.js`, el menú: 0,7 KB (0,4 gzip) | 3 KB gzip |
 | Fuentes | Archivo variable, subconjunto latino con `wdth` y `wght`: 90,1 KB (Google Fonts) | un solo woff2, 95 KB; autoalojado, precargado en las páginas con cartel en la primera pantalla (todas) |
 | Imágenes de la primera pantalla | la vitrina de la ficha (las de la portada van por debajo) | la vitrina en AVIF, ≤ 120 KB a 1440 |
 

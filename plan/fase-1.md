@@ -492,3 +492,18 @@ es el punto de partida de la 1.4.
 - **2026-11-04, tanda 1.4: «→» y «↗» no están en el subconjunto latino de Archivo** de Google Fonts
   (sale la del sistema). Al autoalojar la fuente, la fase 2 mira si Archivo las tiene y las incluye
   (`plan/spec-visual.md` § 8).
+- **2026-11-04, tanda 1.4: la revisión como visitante cambia seis cosas.** Probado a 360, 768, 900,
+  1024, 1280, 1920 y 2560, con la carga a medias, el menú del móvil y el teclado:
+  - el avatar va siempre al lado de «Fritz», con el alto de una línea del nombre, porque entre 600 y
+    960 px el nombre le tapaba la cara (a 360 × 740, de paso, caben ya los dos botones del hero);
+  - el menú del móvil se cierra al pulsar un enlace, al pulsar fuera y con Escape (`main.ts`; en el
+    lienzo, `final.js`);
+  - las bandas llevan cada serie dos veces y viajan desde 0, porque dejaban huecos vacíos al empezar y
+    en pantallas de 1920 o más;
+  - las citas van en caja normal, porque 50 palabras en mayúsculas no se leían;
+  - las tarjetas de Trabajo y Proyectos se pulsan enteras, y «estudioreigar.com» va enlazado en
+    Contacto;
+  - el formulario tiene sus tres estados dibujados (`#estados-formulario`) y un token nuevo,
+    `--color-error`.
+  Y dos ajustes menores: los botones del 404 van en una fila de tres en tablet, y «English» no se
+  pinta hasta que exista el inglés.
