@@ -11,10 +11,11 @@ La web personal de Fritz (fritzreigar.com): **la persona detrás de Estudio Reig
 ## Replanteamiento en curso
 
 La web pasa a Astro con un rediseño y deja de ser para reclutadores (planificado el 2026-11-04).
-**Tanda en curso: la 1.2, las capturas** ([`plan/fase-1.md`](plan/fase-1.md)). Las decisiones y el
+**Tanda en curso: la 1.3, el lienzo I** ([`plan/fase-1.md`](plan/fase-1.md)). Las decisiones y el
 ciclo están en [`plan/README.md`](plan/README.md), que se lee al arrancar cualquier sesión del plan;
 el texto entero de la web nueva, con la fuente de cada afirmación, en
-[`plan/contenido.md`](plan/contenido.md). El repo es público: en `plan/` y en este archivo no entra
+[`plan/contenido.md`](plan/contenido.md); y las imágenes que enseña, con su origen y su `alt`, en
+[`plan/capturas.md`](plan/capturas.md) (los archivos, en `docs/capturas/`, sin subir). El repo es público: en `plan/` y en este archivo no entra
 nada confidencial de clientes. **Hasta el corte, `index.html` sigue publicado como está y no se
 retoca**: los apartados de abajo sobre arquitectura, Snugport, el CV y los archivos describen esa
 web; el posicionamiento ya es el nuevo. El push solo va con el OK de Fritz.

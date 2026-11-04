@@ -92,13 +92,13 @@ Fritz en `x/contenido/cuentas-a-seguir.md` (`@klebandev`). «Una sola persona al
 **Limpiezas Artemisa**
 - Rótulo: Cliente · Web nueva · Entregada en septiembre de 2026 · En mantenimiento
 - > Web a medida para una empresa de limpieza de Valencia: estática, sin una cookie y con una
-  > página por servicio para la búsqueda local. Lighthouse en el móvil de 94 a 98 en rendimiento, y
-  > su ficha de Google al día cada mes.
+  > página por servicio para la búsqueda local. Lighthouse en el móvil: 95-96 en rendimiento y 100
+  > en lo demás. Y su ficha de Google, al día cada mes.
 - Enlace: Ver el caso →
 
 ↳ Las fuentes de cada línea están en las fichas (§2 y §3). Fecha de entrega de Artemisa: 3 de
-septiembre de 2026, `CLAUDE.md` § «Archivos aportados a mano». Las cifras de Lighthouse se vuelven
-a medir en la 1.2.
+septiembre de 2026, `CLAUDE.md` § «Archivos aportados a mano». Las cifras de Lighthouse se midieron
+de nuevo en la 1.2 (2026-11-04): `plan/capturas.md` § «Lighthouse».
 
 ### 1.4 Proyectos
 
@@ -260,14 +260,16 @@ texto, y lo que más pesa de la ficha.
    - Después: la foto arriba y, debajo, el titular, los dos botones y la nota, a tamaño de móvil.
 3. **Las categorías de la portada.**
    - Antes: el nombre de cada categoría montado sobre su foto, a veces encima del propio producto.
-   - Después: tarjetas con la foto arriba y, debajo, el nombre, una línea y el precio desde el que
+   - Después: tarjetas con la foto a un lado y, al otro, el nombre y el precio desde el que
      empieza.
 4. **Una categoría, la de fundas.**
    - Antes: cuatro párrafos en gris sobre una foto de fundas, que no se leían.
-   - Después: la cabecera de color con la foto enmarcada, la misma en todas las páginas.
-5. **La tienda de la calle.**
-   - Antes: texto gris sobre una foto oscura, casi invisible.
-   - Después: un bloque propio, «La tienda, en Benetússer».
+   - Después: la cabecera de color, con un titular que se lee, un botón para hacerla con tu foto y
+     la foto enmarcada; la misma cabecera en todas las páginas.
+5. **Más abajo, en la portada.**
+   - Antes: un bloque de accesorios con el texto en gris sobre una foto oscura, casi invisible.
+   - Después: en ese sitio, la tienda de la calle con su propio bloque, «La tienda, en Benetússer»:
+     la dirección, la foto del local y botones para llamar y para llegar.
 
 **Las cifras:**
 - **39 páginas** puestas al nivel de la portada: 37 rehechas y 2 nuevas
@@ -331,7 +333,7 @@ reparación de iPhone (`missphone/plan/fase-4.md`, tanda 4.13); regalos: `missph
 «Cómo me la encontré». **Lo mejor:** las ideas son de Fritz (chat del 2026-11-04: «destaca lo que
 es la tienda en sí, rosa, fancy, muy personalizable, y los productos se ven bien»); el precio a la
 vista, en el «desde» de cada tarjeta del después de las categorías
-(`missphone/docs/portfolio/despues/2026-09-16-home-1440-03-categorias-alineadas.jpg`). **Cómo me
+(`docs/capturas/missphone/despues/2026-11-04-home-1440-03-categorias.jpg`). **Cómo me
 la encontré:** el tono lo pidió Fritz el 2026-11-04 («recalcar que la encontré en un estado
 deplorable, con palabras no tan duras y que suene profesional»). La cabecera-imagen con el botón
 dibujado: «un hero sin un solo enlace» (`missphone/contexto/plan.md` § «El acuerdo original») y el
@@ -369,7 +371,10 @@ sus «después»), con los pies escritos el 2026-11-04 mirando las capturas: 1, 
 (pareja 7); 5, la `home-1440-05-texto-invisible-sobre-foto` (pareja 5, ancla «La tienda, en
 Benetússer»). Los dos botones y la nota de Google: tanda 1B.7 y los «después» del 16-09. La quinta
 pareja, la de las categorías, la pidió el «antes era horrible» de Fritz (2026-11-04): está en
-«Desvíos» de `fase-1.md`. Los pies se vuelven a mirar en la 1.2, con los «después» de ese día. **Stack:**
+«Desvíos» de `fase-1.md`. Los pies se revisaron en la 1.2 (2026-11-04) con los «después» de ese
+día, en `plan/capturas.md`: la 3 ya no lleva la foto arriba sino a un lado; la 4 gana el titular
+y el botón; y la 5 se retitula, porque en el antes ese sitio era un bloque de accesorios, no la
+tienda. **Stack:**
 `missphone/CLAUDE.md` (mu-plugins, FPD, REST, JSON-LD `Service`) y tanda 1B.7 (`Store` +
 `FAQPage`); Python y Node: `missphone/herramientas/` (`capturar-portfolio.mjs`,
 `verificar-portfolio.py`). **Cómo se trabajó:** `missphone/CLAUDE.md` § 0 («Nada se da por hecho
@@ -423,8 +428,8 @@ en estudioreigar.com ↗ (`https://estudioreigar.com/casos/limpiezas-artemisa`)
 
 ### Medido
 
-> Lighthouse en el móvil, en las páginas indexables: **rendimiento de 94 a 98, accesibilidad 100 y
-> SEO 100**.
+> Lighthouse en el móvil, en la portada y en dos páginas de servicio: **rendimiento 95-96, y 100 en
+> accesibilidad, buenas prácticas y SEO**.
 
 ### De quién es cada cosa
 
@@ -455,8 +460,9 @@ blog con 3 artículos y 3 legales hoy (14, más el 404), `git ls-files "*.html"`
 cosa:** `estudio/casos/limpiezas-artemisa.astro`. **Ficha de Google:** ficha de hoy en
 `index.html` (sin el «20 municipios», que es dato de su perfil). **Mantenimiento:**
 `estudio/casos/limpiezas-artemisa.astro` § «Y después de entregar» (sin precio). **Lighthouse:**
-ficha de hoy en `index.html` y `estudio/casos/limpiezas-artemisa.astro`; **se vuelve a medir en la
-1.2** y, si cambia, se corrige aquí. **Entrega:** 3 de septiembre de 2026 (`CLAUDE.md` del
+medido en la 1.2 (2026-11-04) con Lighthouse 13.5.0 en móvil contra el dominio: medianas de 95 en
+la portada y de 96 en comunidades y en hogares, y 100 en lo demás (`plan/capturas.md` §
+«Lighthouse»). Sustituye al «de 94 a 98» de la ficha de hoy en `index.html`. **Entrega:** 3 de septiembre de 2026 (`CLAUDE.md` del
 portfolio). **Lo que no se enseña:** regla de contenido de la tanda 1.1 (precio de amigo, métricas
 del perfil).
 
@@ -591,7 +597,7 @@ línea en inglés: el inglés tendrá su 404 en `/en/` (decisión 2).
 |---|---|---|---|---|
 | Portada | Fritz Reigar · Desarrollador web freelance en Valencia | Soy Fritz Reigar, desarrollador web freelance en Valencia. Hago webs para negocios con Estudio Reigar y, en mis ratos, apps propias como Snugtone. | Fritz Reigar | Desarrollador web freelance en Valencia: webs para negocios con Estudio Reigar y apps propias en abierto. |
 | Missphone | Missphone · Trabajo · Fritz Reigar | Una tienda WooCommerce heredada: recuperar el control, regalos que se diseñan en la web, 39 páginas al nivel de la portada, la entrega y el lanzamiento. | Missphone: una tienda heredada, puesta al día | Del rescate al lanzamiento de una tienda online de Benetússer, por fases y con su antes y después. |
-| Limpiezas Artemisa | Limpiezas Artemisa · Trabajo · Fritz Reigar | Web estática a medida para una empresa de limpieza de Valencia: SEO local, sin cookies, CSP estricta y Lighthouse móvil de 94 a 98. | Limpiezas Artemisa: web nueva y ficha de Google | Una página por servicio, sin una cookie y con la nota de Lighthouse medida. |
+| Limpiezas Artemisa | Limpiezas Artemisa · Trabajo · Fritz Reigar | Web estática a medida para una empresa de limpieza de Valencia: SEO local, sin cookies, CSP estricta y Lighthouse móvil de 95-96 en rendimiento y 100 en lo demás. | Limpiezas Artemisa: web nueva y ficha de Google | Una página por servicio, sin una cookie y con la nota de Lighthouse medida. |
 | Snugtone | Snugtone · Proyecto · Fritz Reigar | Reproductor de música de escritorio en Rust y Tauri, gratis y de código abierto: sin cortes, mismo volumen en todos los discos y rescaneo en 0,48 s. | Snugtone, un reproductor de música en Rust | Para tu propia biblioteca: rápido, sin tocar tus archivos y con licencia MIT. |
 | Snugport | Snugport · Proyecto · Fritz Reigar | Centro de operaciones para freelancers: PWA en JavaScript vanilla en producción y panel en migración a React y TypeScript, con más de 1.200 pruebas. | Snugport, el centro de operaciones del freelancer | Horas, proyectos, clientes y finanzas en un panel, a la venta con Stripe. |
 | 404 | Página no encontrada · Fritz Reigar | — (con `noindex`) | — | — |

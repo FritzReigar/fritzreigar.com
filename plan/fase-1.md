@@ -134,7 +134,7 @@ llegue); su titular, si tiene uno; y tiempo para dar el OK a las fichas de los d
 
 ---
 
-### Tanda 1.2 — Las capturas   [ ] pendiente
+### Tanda 1.2 — Las capturas   [x] hecha (2026-11-04, v0.1.2)
 **Objetivo**: cada imagen que la web va a enseñar existe a su tamaño, en `docs/capturas/`, y
 `plan/capturas.md` la apunta con su origen, su fecha, su tamaño y su `alt`.
 
@@ -409,3 +409,23 @@ previa en Pages con `noindex`.
   «Fundas para móvil», margen 245), y la tanda 1.2 se ajusta para pedir 5.
 - **2026-11-04, tanda 1.1: los temas de Snugport van sin cifra.** La landing dice siete, el panel en
   React tiene cinco en el código y Fritz cuenta cuatro.
+- **2026-11-04, tanda 1.2: el Lighthouse de Artemisa baja de «94 a 98» a «95-96».** Medido hoy
+  con la 13.5.0 en la portada y dos servicios (medianas 95, 96 y 96; pasadas sueltas de 93 a 97), y
+  buenas prácticas sube a 100. Corregido en `plan/contenido.md` (tarjeta, ficha y `description`).
+- **2026-11-04, tanda 1.2: la pareja 3 de Missphone se reancla y tres pies se reescriben.** Las
+  tarjetas de categoría ya no llevan la foto arriba sino a un lado, y el ancla de su README
+  («Fundas para móvil», 245) cortaba una línea bajo la cabecera: se ancla al título de la sección.
+  Los pies de la 3 y la 4 se ajustan a lo que enseña hoy el «después», y la 5 se retitula: en el
+  antes ese sitio era un bloque de accesorios, no la tienda.
+- **2026-11-04, tanda 1.2: la vitrina de Missphone se rehace y sale con la Navidad.** La del
+  estudio ya no cuadraba. Se rehízo con su script y una línea que descarta el aviso de la tienda
+  (hoy, «hasta el 20 de diciembre»). La portada de hoy lleva la temporada («Navidad» en el menú y su
+  bloque de regalos), y también los «después» 1 y 2: si se publica pasado Reyes, se rehacen
+  (`plan/capturas.md`). Las de octubre se guardan de reserva.
+- **2026-11-04, tanda 1.2: Snugport se captura en `/es/`.** La raíz sirve la landing en inglés.
+  Y la landing dice «panel gratuito… sin cuenta, y tus datos se quedan en tu dispositivo», mientras
+  la ficha (`plan/contenido.md` § 5) dice «A la venta» y «a la venta por suscripción con Stripe».
+  No tiene por qué ser contradicción (tiene «Ver precios»), pero puesta al lado de la captura se
+  lee raro: **lo decide Fritz** antes de la fase 2 (por ejemplo, «gratis, con plan de pago»).
+- **2026-11-04, tanda 1.2: el avatar no pasa de 400 px.** `generar-avatares-propuesta.py` retoca
+  `avatar-400.png` con coordenadas de esos 400 px y no hay original mayor. Tope: 200 px CSS a 2×.
