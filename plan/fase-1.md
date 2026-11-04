@@ -258,7 +258,7 @@ movimiento reducido); la consola, con el navegador en primer plano.
 
 ---
 
-### Tanda 1.4 — Lienzo II: la vuelta y la spec   [ ] pendiente
+### Tanda 1.4 — Lienzo II: la vuelta y la spec   [ ] lienzo y spec hechos (2026-11-04); falta el OK de Fritz
 **Objetivo**: el concepto elegido está pulido en todas las páginas tipo y existe
 `plan/spec-visual.md`, que basta para implementarlo sin mirar el prototipo.
 
@@ -471,3 +471,24 @@ es el punto de partida de la 1.4.
 - **2026-11-04, tanda 1.3: C necesita el eje de anchura de Archivo.** El cartel usa Archivo estrecha
   (`font-stretch` 62 %, del eje `wdth` 62–125). En el lienzo viene de Google Fonts; si gana C, la
   fase 2 autoaloja la variable con ese eje y lo cuenta en el presupuesto de fuentes.
+- **2026-11-04, tanda 1.4: `final.html` es un archivo con cinco vistas.** La portada, `#missphone`,
+  `#snugtone`, `#no-encontrada` (el 404) y `#contacto-con-foto`, que se eligen por el fragmento con
+  `:target`; el CSS va dentro, en un `<style>`, para que el grep de la aceptación lo vea entero.
+  Cero JS. Las 16 capturas y tres más (Contacto con foto a 390 y a 1440, y la portada con movimiento
+  reducido) salen de `docs/lienzo/herramientas/capturar-final.sh`.
+- **2026-11-04, tanda 1.4: el avatar, de 228,7 a 62,6 KB** (18 KB en gzip), con
+  `herramientas/aligerar-avatar.py`: mismas cuatro capas, rellenos trazados de una máscara suavizada
+  (el lienzo I dejaba un halo claro fuera de la línea), rayado sin motas y caminos relativos en
+  enteros sobre un `viewBox` de 800. Lo único que se simplifica es el cuello de la camiseta (una línea
+  en vez de dos finas).
+- **2026-11-04, tanda 1.4: el 404 pone el título al lado del número.** Con el número solo, media
+  pantalla quedaba vacía a 1440: «Esta página no existe» va a su derecha, asentado en la misma línea
+  base, y la tinta es una flecha hacia «Volver al inicio».
+- **2026-11-04, tanda 1.4: a 390 la vitrina de Missphone no lleva la captura del móvil** (le quedaban
+  52 px), y el título de ficha baja su mínimo (a 6,2rem «MISSPHONE» se salía por la derecha).
+- **2026-11-04, tanda 1.4: el idioma es un enlace, no un desplegable.** «English» al final de la nav,
+  tras un filete. Medido con la fuente: marca y nav ocupan 750 px en español y 668 con las etiquetas
+  inglesas; la nav entera entra a 56rem.
+- **2026-11-04, tanda 1.4: «→» y «↗» no están en el subconjunto latino de Archivo** de Google Fonts
+  (sale la del sistema). Al autoalojar la fuente, la fase 2 mira si Archivo las tiene y las incluye
+  (`plan/spec-visual.md` § 8).
