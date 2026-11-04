@@ -431,3 +431,23 @@ previa en Pages con `noindex`.
   apuntado en «Choques con el CV» (fila 15).
 - **2026-11-04, tanda 1.2: el avatar no pasa de 400 px.** `generar-avatares-propuesta.py` retoca
   `avatar-400.png` con coordenadas de esos 400 px y no hay original mayor. Tope: 200 px CSS a 2×.
+- **2026-11-04, tanda 1.3: cada concepto son dos páginas y una hoja.** En vez de un archivo por
+  concepto, `concepto-X.html` (portada), `concepto-X-missphone.html` (ficha, enlazada desde «Ver el
+  caso») y `concepto-X.css`, sobre una `base.css` común con los tokens de los dos temas (todas las
+  parejas texto-fondo pasan AA: la más justa, el cobalto sobre celeste, 5,9:1). Cero JS en los tres,
+  ni un `style=""` ni un `<script>` en línea; el menú del móvil es un `<details>`.
+- **2026-11-04, tanda 1.3: el avatar vectorizado queda limpio, pero pesa.** Con `potrace` (el
+  módulo de Python) en cuatro capas: línea, piel, camiseta y el rayado de la barba, que es lo único
+  que pierde algo de finura. El SVG pesa 228 KB sin comprimir, metido en el HTML: si gana A, la 1.4
+  lo aligera (menos decimales y nodos) o lo saca a un archivo. Los scripts del lienzo
+  (vectorizar, empalmar, capturar) quedan en `docs/lienzo/herramientas/`.
+- **2026-11-04, tanda 1.3: las capturas, con un script propio y no con `capturar.mjs`.** El del
+  estudio solo saca la primera pantalla; `herramientas/capturar-pagina.mjs` saca la página entera
+  por CDP, emula tema y movimiento reducido, recoge la consola y, en el reposo, acaba cada animación
+  (las ligadas al scroll pasan al reloj del documento), como la paridad del estudio. Por eso en las
+  8 capturas de B el antes/después sale ya barrido (solo el «después»): la pieza de cada concepto se
+  ve en una captura más a mitad del movimiento (`concepto-X-pieza-*.png`). Sin soporte de
+  `animation-timeline` o con movimiento reducido, B pone las parejas lado a lado.
+- **2026-11-04, tanda 1.3: C necesita el eje de anchura de Archivo.** El cartel usa Archivo estrecha
+  (`font-stretch` 62 %, del eje `wdth` 62–125). En el lienzo viene de Google Fonts; si gana C, la
+  fase 2 autoaloja la variable con ese eje y lo cuenta en el presupuesto de fuentes.
