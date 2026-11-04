@@ -4,19 +4,20 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Qué es
 
-Portfolio personal de Fritz (fritzreigar.com). Sitio estático de una sola página: `index.html` + `css/styles.css` + `js/` (`theme.js`, `i18n.js`, `form.js`, `nav.js`, `reveal.js`). Sin framework, sin build, sin dependencias, sin tests.
+La web personal de Fritz (fritzreigar.com): **la persona detrás de Estudio Reigar**. Enseña su trabajo para clientes, sus proyectos y quién es; los servicios y los precios viven solo en estudioreigar.com. Hoy se publica un sitio estático de una sola página (`index.html` + `css/styles.css` + `js/`: `theme.js`, `i18n.js`, `form.js`, `nav.js`, `reveal.js`), sin framework, sin build, sin dependencias y sin tests. La web nueva va en Astro, en la rama `astro`, y sustituye a la de hoy en el corte (fase 2).
 
 **Nombre profesional: Fritz Reigar** — es el que va en todo el contenido público del sitio (el nombre real, Fritz Reif Garcia, solo aparece en la URL de LinkedIn).
 
 ## Replanteamiento en curso
 
-La web pasa a Astro con un rediseño y deja de ser para reclutadores: va a ser la persona detrás de
-Estudio Reigar (planificado el 2026-11-04). **Tanda en curso: la 1.1, el contenido**
-([`plan/fase-1.md`](plan/fase-1.md)). Las decisiones y el ciclo están en
-[`plan/README.md`](plan/README.md), que se lee al arrancar cualquier sesión del plan. El repo es
-público: en `plan/` y en este archivo no entra nada confidencial de clientes. **Hasta el corte
-(fase 2), el resto de este archivo describe la web publicada**, y el push solo va con el OK de
-Fritz.
+La web pasa a Astro con un rediseño y deja de ser para reclutadores (planificado el 2026-11-04).
+**Tanda en curso: la 1.2, las capturas** ([`plan/fase-1.md`](plan/fase-1.md)). Las decisiones y el
+ciclo están en [`plan/README.md`](plan/README.md), que se lee al arrancar cualquier sesión del plan;
+el texto entero de la web nueva, con la fuente de cada afirmación, en
+[`plan/contenido.md`](plan/contenido.md). El repo es público: en `plan/` y en este archivo no entra
+nada confidencial de clientes. **Hasta el corte, `index.html` sigue publicado como está y no se
+retoca**: los apartados de abajo sobre arquitectura, Snugport, el CV y los archivos describen esa
+web; el posicionamiento ya es el nuevo. El push solo va con el OK de Fritz.
 
 ## Desarrollo y deploy
 
@@ -35,13 +36,21 @@ Fritz.
 
 ## Posicionamiento del contenido
 
-El sitio está orientado a **reclutadores** y vende el perfil de **desarrollador web y de producto** (desde octubre de 2026; antes era backend Java/C++/SQL y eso ya no es titular): Snugport como producto propio a la venta y en migración a React/TypeScript/Tailwind con tests, webs y tiendas de punta a punta para negocios locales bajo la marca Estudio Reigar, QA de modelos de IA (Lionbridge, DataAnnotation) y desarrollo asistido por IA con tests y CI. TypeScript va primero en lenguajes y en `knowsAbout`; Java, C++ y C# siguen en la lista de lenguajes, pero no encabezan nada. Los servicios web para negocios van después de stack y formación. Estética: **retícula suiza minimal** (rediseño de agosto de 2026) — Archivo como única familia, títulos en caja alta, rojo señal como único acento (`--accent`, `#c62f24` claro / `#f0584b` oscuro), radio cero en todo (nada de esquinas redondeadas), y hairlines que organizan contenido real, no decoración. Nada de neones, glow ni jerga de terminal. Los tres prototipos que originaron el rediseño (`rediseno-1-editorial.html`, `rediseno-2-suizo.html`, `rediseno-3-nocturno.html`, en la raíz, gitignorados) se conservan como referencia por si hay otro rediseño: no desplegar ni enlazar.
+La web es **la persona detrás de Estudio Reigar**: un **desarrollador web freelance en Valencia** que hace webs para negocios con el estudio y, en sus ratos, apps propias que publica en abierto. No es una web para reclutadores: el estado es «Acepto proyectos» (nunca «Abierto a ofertas»), el CV va discreto (pie y Contacto) y la experiencia es una trayectoria corta, una línea por puesto. El texto entero vive en [`plan/contenido.md`](plan/contenido.md).
+
+- **Qué pesa, en este orden:** el estudio (en el hero, enlazando a estudioreigar.com), el **Trabajo** para clientes (Missphone primero y más grande, luego Limpiezas Artemisa) y los **Proyectos** propios (Snugtone primero y más grande, luego Snugport, y Galaxian en pequeño y sin ficha). Trabajo y Proyectos van separados.
+- **Coherencia con X y con el estudio:** la web no puede contradecir la bio de X («vivo de ella como freelancer», estudioreigar.com, proyectos que comparte) ni la web del estudio (una sola persona, webs escritas a mano y sin plantillas, todo a nombre del cliente, programa desde los 18 años). En lo que hable del estudio, sin fechas que delaten lo reciente y sin precios ni lista de servicios.
+- **Tono:** técnico y sobrio en las fichas, que las lee gente que sabe; la palabra sencilla primero solo en lo que lee un cliente.
+- **Missphone** se cuenta como tienda **heredada** (nunca «hecha desde cero»), sin culpar al anterior, por fases y con lo que hizo Fritz; no se dice que se facturó como Estudio Reigar (fue por privado; el crédito del pie de la tienda sí es del estudio). **Artemisa**, sin precio y sin métricas de su ficha de Google; los Lighthouse sí.
+- **Fuera:** DragonQuestHispano y Unity-3D-Combat-Prototype. Galaxian no presenta a Fritz como programador de videojuegos.
+
+Estética del sitio publicado hoy: **retícula suiza minimal** (rediseño de agosto de 2026) — Archivo como única familia, títulos en caja alta, rojo señal como único acento (`--accent`, `#c62f24` claro / `#f0584b` oscuro), radio cero en todo, y hairlines que organizan contenido real, no decoración. **La web nueva conserva la retícula, Archivo y el radio cero, y cambia el acento al cobalto del estudio (`#1f4fa3`) con el celeste del avatar como superficie** (decisión 1 de `plan/README.md`). Nada de neones, glow ni jerga de terminal. Los tres prototipos del rediseño de agosto (`rediseno-1-editorial.html`, `rediseno-2-suizo.html`, `rediseno-3-nocturno.html`, en la raíz, gitignorados) se conservan como referencia: no desplegar ni enlazar.
 
 ## Proyecto principal: Snugport
 
 Snugport es el proyecto insignia y abre la sección de proyectos como tarjeta destacada. Se escribe **Snugport** (no «SnugPort»). El repo del producto vive aparte; el resumen de handoff que sirvió para escribir la ficha está en `docs/RESUMEN-PARA-PORTFOLIO.md` (gitignored).
 
-La ficha de la web reproduce los cuatro bullets del CV: la versión en producción es JavaScript vanilla sin dependencias (PWA instalable, offline), y la migración del panel a React 19 + TypeScript + Tailwind 4 está **en curso**, en paralelo a producción, con más de 600 tests unitarios (Vitest), más de 300 E2E (Playwright) y mutation testing. No volver a poner cifras de tamaño ni de versión (líneas, archivos, secciones, «v2.x»): caducan y ya no cuadran con el CV. Otros hechos verificados en agosto de 2026 contra `~/Projects/propios/snugport-app`: Stripe en producción con webhook propio, muro de pago en las RLS de Postgres, Edge Functions en TypeScript sobre Deno, 4 temas, accesibilidad auditada, bilingüe ES/EN, 80 divisas.
+La ficha de la web reproduce los cuatro bullets del CV: la versión en producción es JavaScript vanilla sin dependencias (PWA instalable, offline), y la migración del panel a React 19 + TypeScript + Tailwind 4 está **en curso**, en paralelo a producción, con más de 600 tests unitarios (Vitest), más de 300 E2E (Playwright) y mutation testing. No volver a poner cifras de tamaño ni de versión (líneas, archivos, secciones, «v2.x»): caducan y ya no cuadran con el CV. Las cifras se recuentan en `~/Projects/propios/snugport/snugport-app` antes de escribirlas: el 2026-11-04 eran 1.246 unitarias y 315 E2E distintas, así que la web nueva dice «más de 1.200» y el CV queda por subir. Los temas no llevan cifra: la landing de producción dice siete, el panel en React tiene cinco en `panel/src/styles/themes.css` y Fritz cuenta cuatro. Otros hechos verificados en agosto de 2026 contra ese repo: Stripe en producción con webhook propio, muro de pago en las RLS de Postgres, Edge Functions en TypeScript sobre Deno, accesibilidad auditada, bilingüe ES/EN y 80 divisas (recontadas el 2026-11-04 en `js/dominio.js`).
 
 El enlace del sitio y del CV apunta a `https://snugport.app/`, que es el destino vivo. Si vuelve a cambiar, hay que tocarlo en **los dos sitios a la vez** — `index.html` y `docs/cv/cv-es.html`, donde además el texto visible del enlace debe coincidir con el destino. Lo que **no** se puede afirmar: cifras de usuarios registrados, suscriptores o ingresos — no son verificables desde fuera y Fritz no las ha dado. Gimnasio y Comidas tampoco cuentan como features: no están en el producto público. Finanzas y Horario **sí** se pueden contar desde agosto de 2026, ya salen en la landing. El branding está cerrado: no proponer rediseños de marca.
 
@@ -60,7 +69,7 @@ python -c "import re,io; print(re.findall(rb'/Count\s+(\d+)', io.open('out.pdf',
 
 Si se desborda, el resorte es `line-height` en `body` (está en **1.28** desde el cambio a Archivo, que es más ancha que Outfit: con 1.32 se iba a tres páginas), antes que recortar contenido. Ojo: las `.entrada` llevan `break-inside: avoid`, así que cuando desborda salta el bloque entero y recortar una frase suelta no sirve de nada — hay que tocar el interlineado. `docs/CV_Fritz_Reif_Dev_Text.pdf` es la versión vieja, anterior al giro a backend-first; se conserva solo como referencia.
 
-**Web y CV comparten contenido y tienen que cuadrar**: mismo orden de puestos, mismos bullets, mismos proyectos, mismos niveles de idioma. Si se toca uno, se revisa el otro — una discrepancia la detecta cualquier reclutador.
+**Web y CV no se contradicen**: mismos hechos, mismas fechas, mismos niveles de idioma y mismos nombres (decisión 4 de `plan/README.md`). Ya no tienen que llevar los mismos bullets ni los mismos proyectos: la web cuenta más de Missphone y de Snugtone, y el CV puede quedarse en lo suyo. Si se toca uno, se revisa el otro. Las diferencias abiertas entre la web nueva y el CV están en la lista «Choques con el CV» de [`plan/contenido.md`](plan/contenido.md), que resuelve la tanda de coherencia de la fase 2.
 
 Niveles de idioma vigentes, fijados por Fritz: español nativo, valenciano C1, **inglés C1**, **alemán A2** (dejó la EOI en 2026; no mencionarla). El CV viejo (`docs/CV_Fritz_Reif_Dev_Text.pdf`) dice B2+ para inglés; está desactualizado, no sirve de referencia para esto. El puesto de 2019 en el Ayuntamiento sí fueron **prácticas** y así debe seguir.
 

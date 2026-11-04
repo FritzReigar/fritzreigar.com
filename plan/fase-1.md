@@ -16,7 +16,7 @@ público).
 
 ---
 
-### Tanda 1.1 — El contenido, en español y verificado   [ ] pendiente
+### Tanda 1.1 — El contenido, en español y verificado   [x] hecha (2026-11-04, v0.1.1)
 **Objetivo**: existe `plan/contenido.md` con todo el texto visible de la web nueva en español
 (portada, las cuatro fichas, el 404, los `title`, las `description`, el Open Graph y el JSON-LD),
 cada afirmación con su fuente, y el `CLAUDE.md` describe el posicionamiento nuevo.
@@ -158,7 +158,7 @@ nombres, tamaños, URL públicas, fechas y `alt`).
 | Pieza | De dónde | Qué se hace |
 |---|---|---|
 | Estudio Reigar | estudioreigar.com | escritorio 1440×900 y móvil 390×844 a densidad 2, con `estudio-reigar/docs/diseno-rediseno/capturar.mjs` (nunca `--window-size`: Chrome headless no baja de 500 px) |
-| Missphone, antes/después | `missphone/docs/portfolio/antes/` | se eligen **4 parejas**: el hero de la portada a 1440, el hero móvil (lienzo 380×826), una categoría a 1440 y el bloque de la tienda a 1440. Los «antes» se copian tal cual. Los «después» se rehacen con `missphone/herramientas/capturar-portfolio.mjs` y un `trabajos.json` propio de esas 4, con salida en `docs/capturas/missphone/despues/` (no en la carpeta del cliente), sobre el mismo lienzo que su antes y con el ancla por contenido. Si el ancla del README ya no existe, se elige mirando el antes |
+| Missphone, antes/después | `missphone/docs/portfolio/antes/` | se eligen **5 parejas**, las de la ficha (`plan/contenido.md` § 2, «Antes y después»): el hero de la portada a 1440, el hero móvil (lienzo 380×826), las tarjetas de categoría de la portada a 1440, la categoría de fundas a 1440 y el bloque de la tienda a 1440. Los «antes» se copian tal cual. Los «después» se rehacen con `missphone/herramientas/capturar-portfolio.mjs` y un `trabajos.json` propio de esas 5, con salida en `docs/capturas/missphone/despues/` (no en la carpeta del cliente), sobre el mismo lienzo que su antes y con el ancla por contenido. Si el ancla del README ya no existe, se elige mirando el antes |
 | Missphone, vitrina | `estudio-reigar/web/src/assets/cases/missphone-{desktop,mobile}.webp` | se copian si siguen cuadrando con la portada servida hoy; si no, se rehacen con el mismo script del estudio |
 | Limpiezas Artemisa | `estudio-reigar/web/src/assets/cases/limpiezas-artemisa-*.webp` | se copian; y se vuelven a medir rendimiento, accesibilidad, buenas prácticas y SEO en móvil de la portada y de dos páginas de servicio, con el Lighthouse 13.5.0 del estudio. Las cifras que vayan a la ficha son las de hoy |
 | Snugtone | `snugtone/assets/captura*.png` (4, de 1280×860) | se copian; nada que hacer |
@@ -175,7 +175,7 @@ concepto A lo pide, es de la 1.3) y tocar nada en las webs de los clientes.
 
 **Aceptación**:
 - `plan/capturas.md` tiene una fila por archivo: nombre, tamaño en px, origen, fecha y `alt`.
-- Las 4 parejas de Missphone tienen el antes y el después **del mismo lienzo exacto** (se comprueba
+- Las 5 parejas de Missphone tienen el antes y el después **del mismo lienzo exacto** (se comprueba
   leyendo el tamaño de los dos con Pillow), y ningún «después» lleva banner de cookies, aviso de
   envío ni barra de administración (el script los nombra en `estorbos=[...]`).
 - Ninguna captura enseña datos personales, pedidos ni paneles de administración.
@@ -402,3 +402,10 @@ previa en Pages con `noindex`.
 ## Desvíos
 
 (Lo que aparezca a mitad de una tanda y no estaba, con su fecha y su tanda.)
+
+- **2026-11-04, tanda 1.1: el antes/después de Missphone pasa de 4 a 5 parejas.** Fritz pidió que
+  se viera bien el estado en que heredó la tienda («el antes era horrible»). Se añade la pareja de
+  las tarjetas de categoría de la portada (la 3 de `missphone/docs/portfolio/README.md`, ancla
+  «Fundas para móvil», margen 245), y la tanda 1.2 se ajusta para pedir 5.
+- **2026-11-04, tanda 1.1: los temas de Snugport van sin cifra.** La landing dice siete, el panel en
+  React tiene cinco en el código y Fritz cuenta cuatro.
