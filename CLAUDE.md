@@ -8,6 +8,16 @@ Portfolio personal de Fritz (fritzreigar.com). Sitio estático de una sola pági
 
 **Nombre profesional: Fritz Reigar** — es el que va en todo el contenido público del sitio (el nombre real, Fritz Reif Garcia, solo aparece en la URL de LinkedIn).
 
+## Replanteamiento en curso
+
+La web pasa a Astro con un rediseño y deja de ser para reclutadores: va a ser la persona detrás de
+Estudio Reigar (planificado el 2026-11-04). **Tanda en curso: la 1.1, el contenido**
+([`plan/fase-1.md`](plan/fase-1.md)). Las decisiones y el ciclo están en
+[`plan/README.md`](plan/README.md), que se lee al arrancar cualquier sesión del plan. El repo es
+público: en `plan/` y en este archivo no entra nada confidencial de clientes. **Hasta el corte
+(fase 2), el resto de este archivo describe la web publicada**, y el push solo va con el OK de
+Fritz.
+
 ## Desarrollo y deploy
 
 - No hay comandos de build ni lint. Para ver cambios en local basta abrir `index.html` en el navegador, o servirlo con `python -m http.server`.
