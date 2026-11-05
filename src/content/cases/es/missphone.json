@@ -1,0 +1,175 @@
+{
+  "section": "work",
+  "order": 1,
+  "kicker": "Cliente · Tienda online heredada · En mantenimiento",
+  "title": "Missphone",
+  "lede": "Tienda de móviles de Benetússer (Valencia): fundas personalizadas, accesorios, reparaciones y regalos con foto, en la tienda de la calle y en su tienda online. La tienda online no la hice yo: la heredé funcionando, y esto es lo que he hecho con ella.",
+  "primary": { "text": "Ver la tienda ↗", "href": "https://missphone.es/" },
+  "secondary": {
+    "text": "El caso contado para negocios, en estudioreigar.com ↗",
+    "href": "https://estudioreigar.com/casos/missphone"
+  },
+  "card": {
+    "label": "Cliente · Tienda online heredada · En mantenimiento",
+    "summary": "Tienda de móviles de Benetússer con fundas personalizadas, accesorios, reparaciones y regalos con foto. Heredé su tienda WooCommerce: recuperé el control, la puse página a página al nivel de la portada, le añadí los regalos que se diseñan en la web y la lancé.",
+    "shots": ["missphone-desktop"]
+  },
+  "showcase": { "desktop": "missphone-desktop", "phone": "missphone-mobile" },
+  "meta": {
+    "title": "Missphone · Trabajo · Fritz Reigar",
+    "description": "Una tienda WooCommerce heredada: recuperar el control, regalos que se diseñan en la web, 39 páginas al nivel de la portada, la entrega y el lanzamiento.",
+    "og": {
+      "title": "Missphone: una tienda heredada, puesta al día",
+      "description": "Del rescate al lanzamiento de una tienda online de Benetússer, por fases y con su antes y después."
+    }
+  },
+  "body": {
+    "pullQuote": {
+      "label": "Lo mejor",
+      "text": "Que la web por fin se parece a la tienda: rosa, coqueta y hecha para personalizar, igual en la portada que en la última marca. Y que el producto luce: cada cosa con su foto, su precio a la vista y, si se personaliza, el diseñador en la misma ficha."
+    },
+    "prose": {
+      "title": "Cómo me la encontré",
+      "intro": "La heredé funcionando y con ventas, sobre WordPress, WooCommerce y un tema comercial, pero en un estado que pedía una intervención a fondo antes que un retoque:",
+      "items": [
+        "La cabecera de la portada era una sola imagen, con el «Click aquí» dibujado dentro, así que no llevaba a ninguna parte.",
+        "Buena parte del texto, en gris sobre fotos, no se leía.",
+        "Las páginas de regalo no enlazaban a ningún producto.",
+        "El catálogo repetía la misma ficha por cada modelo de móvil.",
+        "La administración estaba repartida entre varias manos."
+      ],
+      "outro": "Es lo que le pasa a una web que lleva años abierta sin nadie que la cuide. De quien la montó no hablo: no sé con qué presupuesto trabajó ni qué le pidieron."
+    },
+    "beforeAfter": {
+      "title": "Antes y después",
+      "note": "El «antes» es del 31 de agosto de 2026, guardado antes de tocar nada. El «después» se captura con el mismo ancho y el mismo encuadre, o no se compara.",
+      "pairs": [
+        {
+          "title": "La portada, en escritorio.",
+          "before": {
+            "text": "una sola imagen con el botón dibujado dentro, que no llevaba a ninguna parte.",
+            "shot": "missphone-before-home-desktop"
+          },
+          "after": {
+            "text": "una cabecera de verdad, que dice qué es la tienda y dónde está, con dos botones (diseñar tu funda y ver los accesorios) y la nota de Google.",
+            "shot": "missphone-after-home-desktop"
+          }
+        },
+        {
+          "title": "La portada, en el móvil.",
+          "before": {
+            "text": "la misma imagen, encogida a 380 px hasta no poder leerse.",
+            "shot": "missphone-before-home-mobile"
+          },
+          "after": {
+            "text": "la foto arriba y, debajo, el titular, los dos botones y la nota, a tamaño de móvil.",
+            "shot": "missphone-after-home-mobile"
+          },
+          "tall": true
+        },
+        {
+          "title": "Las categorías de la portada.",
+          "before": {
+            "text": "el nombre de cada categoría montado sobre su foto, a veces encima del propio producto.",
+            "shot": "missphone-before-categories"
+          },
+          "after": {
+            "text": "tarjetas con la foto a un lado y, al otro, el nombre y el precio desde el que empieza.",
+            "shot": "missphone-after-categories"
+          }
+        },
+        {
+          "title": "Una categoría, la de fundas.",
+          "before": {
+            "text": "cuatro párrafos en gris sobre una foto de fundas, que no se leían.",
+            "shot": "missphone-before-cases-page"
+          },
+          "after": {
+            "text": "la cabecera de color, con un titular que se lee, un botón para hacerla con tu foto y la foto enmarcada; la misma cabecera en todas las páginas.",
+            "shot": "missphone-after-cases-page"
+          }
+        },
+        {
+          "title": "Más abajo, en la portada.",
+          "before": {
+            "text": "un bloque de accesorios con el texto en gris sobre una foto oscura, casi invisible.",
+            "shot": "missphone-before-home-lower"
+          },
+          "after": {
+            "text": "en ese sitio, la tienda de la calle con su propio bloque, «La tienda, en Benetússer»: la dirección, la foto del local y botones para llamar y para llegar.",
+            "shot": "missphone-after-home-lower"
+          }
+        }
+      ]
+    },
+    "figureList": {
+      "title": "Las cifras",
+      "items": [
+        { "num": "39", "unit": "páginas", "text": "puestas al nivel de la portada: 37 rehechas y 2 nuevas" },
+        { "num": "8", "unit": "productos", "text": "que se diseñan y se compran en la web" },
+        {
+          "num": "268",
+          "unit": "fichas",
+          "text": "repetidas por modelo, fundidas en 8 productos con desplegable (252 modelos)"
+        },
+        { "num": "15", "unit": "extensiones", "text": "propias en PHP (mu-plugins)" },
+        { "num": "14", "unit": "parejas", "text": "de antes y después, con el mismo lienzo" }
+      ]
+    },
+    "phaseList": {
+      "title": "Qué hice, por fases",
+      "items": [
+        {
+          "title": "El rescate.",
+          "text": "Primero, recuperar el control: la administración y los avisos, a nombre de la casa; una copia de seguridad comprobada antes de tocar nada; los pagos con tarjeta y Bizum y los gastos de envío, revisados con pedidos de prueba. Y el catálogo: 268 fichas que repetían el mismo producto por cada modelo de móvil, fundidas en 8 productos con un desplegable de modelo, con cada dirección vieja redirigida (301) a su producto con el modelo ya elegido."
+        },
+        {
+          "title": "Los regalos que se diseñan en la web.",
+          "text": "Taza, camiseta, cojín y marco, y después alfombrillas y puzles: 8 productos con el diseñador en la propia ficha, y una extensión que impide comprarlos sin su diseño. Las 8 páginas de regalo, con foto, texto y un botón que lleva a diseñar o a comprar."
+        },
+        {
+          "title": "Las páginas, al nivel de la portada.",
+          "text": "37 páginas rehechas —regalo, ocasión, accesorios y las 14 marcas— y 2 nuevas, con las piezas de la portada: cabecera de color con la foto enmarcada, bandas, tarjetas y fotos. El CSS compartido, escrito una vez en bloques con nombre y no página a página. Y la portada, con una cabecera propia."
+        },
+        {
+          "title": "Los flecos.",
+          "text": "Un solo H1 y texto alternativo en cada página, los textos que prometían lo que la tienda no tenía, la tienda y las fichas maquetadas, la imagen al compartir la portada y una limpieza a fondo antes de la copia final."
+        },
+        {
+          "title": "La entrega.",
+          "text": "La web recorrida entera, de la portada al carrito, en escritorio y en móvil; una copia final verificada archivo a archivo; y la entrega en persona, en la tienda, con un documento de todo lo que decidí en su nombre para que lo revisen."
+        },
+        {
+          "title": "El lanzamiento.",
+          "text": "La entrada de estreno en el blog y la ficha de Google al día; una página de reparación de iPhone con sus ocho averías y sus datos estructurados; la tienda convertida en escaparate, con las categorías y los productos que se diseñan; y la temporada (Navidad, San Valentín, el Día de la Madre…) que se enciende y se apaga desde el menú, sin tocar código."
+        }
+      ],
+      "today": "Hoy sigue en mantenimiento."
+    },
+    "caseClosing": {
+      "columns": [
+        {
+          "title": "Con qué",
+          "stack": [
+            "WordPress",
+            "WooCommerce",
+            "PHP (mu-plugins)",
+            "CSS",
+            "Fancy Product Designer",
+            "JSON-LD (Store, FAQPage, Service)",
+            "API REST de WordPress",
+            "Python y Node para medir y capturar sin tocar la tienda"
+          ]
+        },
+        {
+          "title": "Cómo se trabajó",
+          "text": "Nada se da por hecho sin medirlo en la web servida, y antes de cada cambio va su copia y su «antes» capturado. Es una tienda con pedidos y datos de clientes: no se improvisa."
+        },
+        {
+          "title": "Lo que no se enseña",
+          "text": "Cuánto vende, lo que invierte en anuncios y lo que rinden, los datos de sus clientes y el panel de la tienda. Tampoco cómo está protegida. Son suyos, y no se publican ni con permiso."
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,132 @@
+---
+// El cuerpo de una ficha (decisión F1 de plan/fase-2.md): pinta las piezas que trae su JSON, en
+// este orden fijo, sea cual sea el del JSON: PullQuote → Prose → BeforeAfter → FeatureRows →
+// FigureList → PhaseList → LayerStack → CaseClosing. Hoy va sin estilo y sin capturas (tanda 2.2):
+// cada pieza es una sección con su h2. La 2.5 la parte en un componente por pieza y la pinta como
+// plan/spec-visual.md § 2.2 (Fichas); la 2.6 añade las de Proyectos.
+import type { CaseEntry } from '../../data/cases';
+import { type Lang, ui } from '../../data/ui';
+import Rich from '../ui/Rich.astro';
+
+interface Props {
+  body: CaseEntry['data']['body'];
+  lang: Lang;
+}
+
+const { body, lang } = Astro.props;
+const { pullQuote, prose, beforeAfter, featureRows, figureList, phaseList, layerStack, caseClosing } =
+  body;
+const labels = ui[lang].beforeAfter;
+
+// El id de cada sección, de su título: «Qué hice, por fases» → que-hice-por-fases.
+const idOf = (title: string): string =>
+  title
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+---
+{pullQuote && (
+  <section aria-labelledby={idOf(pullQuote.label)}>
+    <h2 id={idOf(pullQuote.label)}>{pullQuote.label}</h2>
+    <blockquote>
+      <p>{pullQuote.text}</p>
+    </blockquote>
+  </section>
+)}
+
+{prose && (
+  <section aria-labelledby={idOf(prose.title)}>
+    <h2 id={idOf(prose.title)}>{prose.title}</h2>
+    <p><Rich text={prose.intro} /></p>
+    {prose.items && (
+      <ul>
+        {prose.items.map((item) => <li><Rich text={item} /></li>)}
+      </ul>
+    )}
+    {prose.outro && <p><Rich text={prose.outro} /></p>}
+  </section>
+)}
+
+{beforeAfter && (
+  <section aria-labelledby={idOf(beforeAfter.title)}>
+    <h2 id={idOf(beforeAfter.title)}>{beforeAfter.title}</h2>
+    <p>{beforeAfter.note}</p>
+    <ol>
+      {beforeAfter.pairs.map((pair) => (
+        <li>
+          <h3>{pair.title}</h3>
+          <p>{labels.before}: {pair.before.text}</p>
+          <p>{labels.after}: {pair.after.text}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+)}
+
+{featureRows && (
+  <section aria-labelledby={featureRows.title && idOf(featureRows.title)}>
+    {featureRows.title && <h2 id={idOf(featureRows.title)}>{featureRows.title}</h2>}
+    <ul>
+      {featureRows.items.map((item) => (
+        <li>
+          {item.title && <h3>{item.title}</h3>}
+          <p><Rich text={item.text} /></p>
+        </li>
+      ))}
+    </ul>
+  </section>
+)}
+
+{figureList && (
+  <section aria-labelledby={idOf(figureList.title)}>
+    <h2 id={idOf(figureList.title)}>{figureList.title}</h2>
+    {figureList.note && <p><Rich text={figureList.note} /></p>}
+    <ul>
+      {figureList.items.map((item) => (
+        <li><strong>{item.unit ? `${item.num} ${item.unit}` : item.num}</strong> <Rich text={item.text} /></li>
+      ))}
+    </ul>
+  </section>
+)}
+
+{phaseList && (
+  <section aria-labelledby={idOf(phaseList.title)}>
+    <h2 id={idOf(phaseList.title)}>{phaseList.title}</h2>
+    <ol>
+      {phaseList.items.map((phase) => (
+        <li>
+          <h3>{phase.title}</h3>
+          <p>{phase.text}</p>
+        </li>
+      ))}
+    </ol>
+    {phaseList.today && <p>{phaseList.today}</p>}
+  </section>
+)}
+
+{layerStack && (
+  <section aria-labelledby={idOf(layerStack.title)}>
+    <h2 id={idOf(layerStack.title)}>{layerStack.title}</h2>
+    <p>{layerStack.lede}</p>
+    {layerStack.layers && (
+      <ol>
+        {layerStack.layers.map((layer) => <li><strong>{layer.name}</strong> {layer.text}</li>)}
+      </ol>
+    )}
+  </section>
+)}
+
+{caseClosing?.columns.map((column) => (
+  <section aria-labelledby={idOf(column.title)}>
+    <h2 id={idOf(column.title)}>{column.title}</h2>
+    {column.text && <p><Rich text={column.text} /></p>}
+    {column.stack && (
+      <ul>
+        {column.stack.map((item) => <li>{item}</li>)}
+      </ul>
+    )}
+    {column.action && <p><a href={column.action.href}>{column.action.text}</a></p>}
+  </section>
+))}

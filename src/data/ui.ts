@@ -1,7 +1,9 @@
 // Las cadenas fijas de la web en los dos idiomas: las del marco (cabecera, menú, pie, salto),
-// las del formulario y el aviso de las páginas inglesas que aún no tienen texto. El texto de cada
-// página lo escribe la página (plan/contenido.md). El idioma lo da la carpeta: src/pages/en/ es
-// inglés (i18n de astro.config.mjs), y se lee con langOf(Astro.currentLocale).
+// las de las fichas que no son de ninguna en concreto, las del formulario y el aviso de las
+// páginas inglesas que aún no tienen texto. El texto de cada página vive en datos: la portada en
+// home.ts y las fichas en la colección `cases` (decisión F1 de plan/fase-2.md). El idioma lo da la
+// carpeta: src/pages/en/ es inglés (i18n de astro.config.mjs), y se lee con
+// langOf(Astro.currentLocale).
 
 export type Lang = 'es' | 'en';
 
@@ -29,6 +31,10 @@ export interface UiText {
     cv: string;
   };
   cvHref: string;
+  // La sección que abre el rótulo de cada ficha, enlazada a la portada (CaseHero).
+  caseSection: Record<'work' | 'projects', string>;
+  // El pie de cada captura de una pareja (BeforeAfter).
+  beforeAfter: { before: string; after: string };
 }
 
 export const EMAIL = 'contact@fritzreigar.com';
@@ -67,6 +73,8 @@ export const ui: Record<Lang, UiText> = {
       cv: 'CV',
     },
     cvHref: '/assets/cv/fritz-reigar-cv.pdf',
+    caseSection: { work: 'Trabajo', projects: 'Proyecto' },
+    beforeAfter: { before: 'Antes', after: 'Después' },
   },
   en: {
     langName: 'English',
@@ -93,6 +101,8 @@ export const ui: Record<Lang, UiText> = {
       cv: 'CV',
     },
     cvHref: '/assets/cv/fritz-reigar-cv-en.pdf',
+    caseSection: { work: 'Work', projects: 'Project' },
+    beforeAfter: { before: 'Before', after: 'After' },
   },
 };
 

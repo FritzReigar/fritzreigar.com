@@ -222,7 +222,7 @@ texto inglés del 404 y la estrategia de carga de la fuente más allá de `swap`
 
 ---
 
-### Tanda 2.2 — Las capturas y las fichas como datos   [ ] pendiente
+### Tanda 2.2 — Las capturas y las fichas como datos   [x] hecha (2026-11-05, v0.2.2)
 **Objetivo**: las capturas que enseña la web están en el repo, tipadas y con su `alt`, y el texto
 en español de la portada y de las cuatro fichas vive en datos, listo para que lo pinten las
 tandas siguientes.
@@ -881,3 +881,31 @@ Analytics, tocar el correo de la zona.
 - **2026-11-05, tanda 2.1: dos `LangLink` por página.** El de la cabecera entera y el del menú
   del móvil, como en el lienzo. `e2e/hreflang.spec.ts` ya espera los dos para cuando el inglés se
   encienda (2.9).
+- **2026-11-05, tanda 2.2: el texto de dos fichas ya tiene la forma de la spec.** El `diff` del
+  texto de `dist/` antes y después sale idéntico en la portada, Missphone, Snugport, los 404 y
+  todos los `<head>` (metadatos y JSON-LD). Cambian, a propósito, dos fichas, porque sus datos ya
+  tienen la forma de la pieza que los pinta: en Snugtone, «Medido» son las cinco cifras de spec
+  § 2.3 (las del lienzo, mismas cifras y misma fuente) y la nota de las capturas va bajo la
+  cabecera, donde estará la vitrina; en Artemisa, «Qué se hizo» separa el título de cada punto de
+  su frase (sin los «:» ni la coma de la frase corrida, y la frase con mayúscula), y «Medido» suma
+  las cuatro cifras de spec § 2.4 a su frase, que queda como `note`.
+- **2026-11-05, tanda 2.2: la tarjeta lleva `shots` (de una a tres), no `shot`.** Snugtone pinta
+  tres capturas en la portada (`ProjectFeature`, spec § 6.3); las demás, una.
+- **2026-11-05, tanda 2.2: piezas que no estaban en la lista de archivos.** `src/data/rich.ts` y
+  `src/components/ui/Rich.astro`: el texto con un `code`, una negrita o un enlace dentro (el
+  `cargo clippy`, el «estudioreigar.com» de Contacto, `X-Frame-Options`, los filtros del buscador
+  de Snugtone) va como lista de trozos, sin HTML; es el «campo propio» de la F1, uno solo para
+  todos. `src/data/cases.ts` lee la ficha de una ruta (el slug es el último trozo de su ruta
+  española: `caseRoutes` y `caseSlugOf`, en `routes.ts`). Y `src/components/case/CaseBody.astro`
+  ya existe, **sin estilo y sin capturas**: pinta las piezas presentes en el orden de la F1 para que
+  las cuatro fichas lean del JSON sin repetir el marcado; la 2.5 la parte en un componente por
+  pieza y la pinta. Los `id` de sus secciones salen del título (`que-hice-por-fases`).
+- **2026-11-05, tanda 2.2: `Shot` toma la clave, no `src` y `alt`.** Props: `shot` (clave de
+  `shots.ts`), `lang`, `sizes`, y `widths`, `eager`, `decorative` (`alt=""`) y `phone` opcionales;
+  `width` y `height` salen de la imagen. El `srcset` va de 400 a 1600 (de 200 a 600 las del móvil)
+  sin pasar del origen, que entra como el último. Ninguna página lo usa aún: se probó con una
+  página de usar y tirar (AVIF y WebP, `lazy` y `async` por defecto, `alt=""` con `decorative`).
+- **2026-11-05, tanda 2.2: lo que queda para la 2.6.** Las tres capas de `LayerStack` de Snugtone
+  (`layers`, opcional) no están en `contenido.md`, solo en el lienzo; y los cuatro puntos de
+  Snugport van como `FeatureRows` sin título, que es lo que hay en el texto. Las capturas pesan
+  1,6 MB entre las 23 (tope 3).

@@ -1,0 +1,62 @@
+{
+  "section": "projects",
+  "order": 2,
+  "kicker": "Producto propio · Gratis, con plan de pago",
+  "title": "Snugport",
+  "lede": "Centro de operaciones para freelancers: tracker de horas con tarifa, proyectos, pipeline de clientes, finanzas, vencimientos y checklists.",
+  "primary": { "text": "Probar la app ↗", "href": "https://snugport.app/" },
+  "card": {
+    "label": "Producto propio · Gratis, con plan de pago",
+    "summary": "Centro de operaciones para freelancers: horas con tarifa, proyectos, clientes, finanzas y vencimientos. En producción como PWA en JavaScript vanilla, y con el panel migrando a React y TypeScript con más de 1.200 pruebas unitarias.",
+    "shots": ["snugport-desktop"]
+  },
+  "showcase": { "desktop": "snugport-desktop", "phone": "snugport-mobile" },
+  "meta": {
+    "title": "Snugport · Proyecto · Fritz Reigar",
+    "description": "Centro de operaciones para freelancers: PWA en JavaScript vanilla en producción y panel en migración a React y TypeScript, con más de 1.200 pruebas.",
+    "og": {
+      "title": "Snugport, el centro de operaciones del freelancer",
+      "description": "Horas, proyectos, clientes y finanzas en un panel: gratis, con plan de pago."
+    }
+  },
+  "body": {
+    "featureRows": {
+      "items": [
+        {
+          "text": "La versión en producción, en JavaScript vanilla sin dependencias, es una PWA instalable que funciona offline."
+        },
+        {
+          "text": "Migración en curso del panel a React 19 + TypeScript + Tailwind 4, en paralelo a producción: más de 1.200 pruebas unitarias (Vitest), más de 300 E2E (Playwright) en móvil y escritorio, y mutation testing."
+        },
+        {
+          "text": "Gratis, sin cuenta y sin límite; el plan de pago, por suscripción con Stripe, lleva tus datos entre dispositivos. Backend sobre Supabase (Postgres, Auth y Edge Functions en TypeScript): el muro de pago vive en las políticas RLS de Postgres, no en el cliente."
+        },
+        {
+          "text": [
+            "Accesibilidad auditada (contraste AA, trampa de foco, ",
+            { "code": "prefers-reduced-motion" },
+            "), temas a elegir, interfaz bilingüe ES/EN y 80 divisas."
+          ]
+        }
+      ]
+    },
+    "caseClosing": {
+      "columns": [
+        {
+          "title": "Con qué",
+          "stack": [
+            "JavaScript vanilla",
+            "React",
+            "TypeScript",
+            "Tailwind",
+            "Supabase",
+            "Postgres RLS",
+            "Stripe",
+            "PWA",
+            "Cloudflare Pages"
+          ]
+        }
+      ]
+    }
+  }
+}

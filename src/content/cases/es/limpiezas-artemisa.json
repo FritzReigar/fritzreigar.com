@@ -1,0 +1,110 @@
+{
+  "section": "work",
+  "order": 2,
+  "kicker": "Cliente · Web nueva · Entregada en septiembre de 2026 · En mantenimiento",
+  "title": "Limpiezas Artemisa",
+  "lede": "Empresa de limpieza de Valencia —hogares, oficinas, comunidades, cristales, garajes y fin de obra— con buenas reseñas en Google y sin web propia. Web nueva, a medida, y su ficha de Google puesta a punto.",
+  "primary": { "text": "Ver la web ↗", "href": "https://www.limpiezasartemisa.com/" },
+  "secondary": {
+    "text": "El caso contado para negocios, en estudioreigar.com ↗",
+    "href": "https://estudioreigar.com/casos/limpiezas-artemisa"
+  },
+  "card": {
+    "label": "Cliente · Web nueva · Entregada en septiembre de 2026 · En mantenimiento",
+    "summary": "Web a medida para una empresa de limpieza de Valencia: estática, sin una cookie y con una página por servicio para la búsqueda local. Lighthouse en el móvil: 95-96 en rendimiento y 100 en lo demás. Y su ficha de Google, al día cada mes.",
+    "shots": ["limpiezas-artemisa-desktop"]
+  },
+  "showcase": { "desktop": "limpiezas-artemisa-desktop", "phone": "limpiezas-artemisa-mobile" },
+  "meta": {
+    "title": "Limpiezas Artemisa · Trabajo · Fritz Reigar",
+    "description": "Web estática a medida para una empresa de limpieza de Valencia: SEO local, sin cookies, CSP estricta y Lighthouse móvil de 95-96 en rendimiento y 100 en lo demás.",
+    "og": {
+      "title": "Limpiezas Artemisa: web nueva y ficha de Google",
+      "description": "Una página por servicio, sin una cookie y con la nota de Lighthouse medida."
+    }
+  },
+  "body": {
+    "prose": {
+      "title": "De dónde se partía",
+      "intro": "Sin web propia, varios dominios comprados y ninguno enseñando nada, y la ficha de Google sin fotos ordenadas ni categorías bien puestas."
+    },
+    "featureRows": {
+      "title": "Qué se hizo",
+      "items": [
+        {
+          "title": "Una web estática, sin framework ni dependencias",
+          "text": "En Cloudflare Pages y desplegada desde GitHub en cada push: portada, una página por servicio (seis), blog y las páginas legales, más una página de error propia."
+        },
+        {
+          "title": "SEO local",
+          "text": "Una página por servicio para que Google enseñe la que toca a quien busca «limpieza de comunidades» y no la portada; datos estructurados (LocalBusiness, Service, BreadcrumbList, BlogPosting); sitemap y alta en Search Console."
+        },
+        {
+          "title": "El formulario, sin terceros en el navegador",
+          "text": "Una Pages Function que envía con Resend y que solo confirma el envío si responde el servidor, con validación y filtros contra el spam en el servidor y sin captcha. Al lado, WhatsApp y una barra fija de llamar y escribir en el móvil."
+        },
+        {
+          "title": "CSP estricta y ni una cookie",
+          "text": [
+            "Cabeceras de seguridad (CSP, HSTS, ",
+            { "code": "X-Frame-Options" },
+            ") y analítica sin cookies, así que tampoco banner: pedir permiso para algo que no ocurre sería incorrecto además de molesto."
+          ]
+        },
+        {
+          "title": "Los dominios, ordenados",
+          "text": "Uno principal y el resto llevando a él con su certificado, sin mover el dominio ni el correo de su proveedor."
+        },
+        {
+          "title": "Google Business Profile",
+          "text": "Auditoría inicial, descripción reescrita, catálogo de servicios completo, zonas de servicio ampliadas y publicaciones que enlazan a la web."
+        },
+        {
+          "title": "Después",
+          "text": "Mantenimiento mensual de la ficha, un artículo al mes en el blog, actualizaciones y copias."
+        }
+      ]
+    },
+    "figureList": {
+      "title": "Medido",
+      "note": [
+        "Lighthouse en el móvil, en la portada y en dos páginas de servicio: ",
+        { "strong": "rendimiento 95-96, y 100 en accesibilidad, buenas prácticas y SEO" },
+        "."
+      ],
+      "items": [
+        { "num": "95-96", "text": "rendimiento" },
+        { "num": "100", "text": "accesibilidad" },
+        { "num": "100", "text": "buenas prácticas" },
+        { "num": "100", "text": "SEO" }
+      ]
+    },
+    "caseClosing": {
+      "columns": [
+        {
+          "title": "De quién es cada cosa",
+          "text": "Del cliente: los dominios, el alojamiento y el correo, la ficha de Google y Search Console. Yo soy el gestor técnico, no el dueño."
+        },
+        {
+          "title": "Con qué",
+          "stack": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Cloudflare Pages",
+            "Pages Functions",
+            "Resend",
+            "JSON-LD",
+            "Cloudflare Web Analytics",
+            "Search Console",
+            "Google Business Profile"
+          ]
+        },
+        {
+          "title": "Lo que no se enseña",
+          "text": "Lo que costó, y los números de su ficha de Google: vistas, llamadas y búsquedas son datos de su negocio. Lo que se mide aquí es la web."
+        }
+      ]
+    }
+  }
+}

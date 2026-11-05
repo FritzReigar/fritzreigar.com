@@ -100,6 +100,17 @@ const byKey = (key: RouteKey): Route => {
   return route;
 };
 
+/**
+ * Las fichas: las páginas de Trabajo y de Proyectos. Cada una tiene su JSON en la colección
+ * `cases` con el slug de su ruta española (src/content.config.ts; lo prueba e2e/datos.spec.ts).
+ */
+export const caseRoutes: readonly Route[] = routes.filter((route) =>
+  /^\/(trabajo|proyectos)\//.test(route.es.path),
+);
+
+/** El slug de una ficha: el último trozo de su ruta española (/trabajo/missphone → missphone). */
+export const caseSlugOf = (route: Route): string => route.es.path.split('/').pop() ?? '';
+
 /** La ruta de una página en un idioma; si la inglesa aún no está viva, la española. */
 export const pathFor = (key: RouteKey, lang: Lang): string => {
   const route = byKey(key);

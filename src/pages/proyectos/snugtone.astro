@@ -1,125 +1,37 @@
 ---
-// La ficha de Snugtone (plan/contenido.md § 4), sin estilo. Las capturas entran en la fase 2
-// (CaseShowcase y FeatureRows, plan/spec-visual.md).
-import BaseLayout from '../../layouts/BaseLayout.astro';
+// La ficha de Snugtone (plan/contenido.md § 4), sin estilo: el texto sale de
+// src/content/cases/es/snugtone.json. La tanda 2.6 la pinta con CaseHero, CaseShowcase (con sus
+// capturas) y CaseBody (plan/spec-visual.md § 2.2).
+import CaseBody from '../../components/case/CaseBody.astro';
+import { getCase } from '../../data/cases';
 import { sectionHref } from '../../data/routes';
+import { ui } from '../../data/ui';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const features = [
-  {
-    title: 'Suena.',
-    text: 'FLAC, MP3, Opus, WAV, AAC, ALAC, Vorbis y AIFF, sin cortes entre pistas. Todos los discos al mismo volumen: mide la sonoridad él mismo (EBU R128, por disco, a 0,04 LU de ffmpeg). Ecualizador de diez bandas que, apagado, no toca ni un bit. Y si los auriculares se apagan a media canción, pasa a otra salida y sigue desde el mismo milisegundo.',
-  },
-  {
-    title: 'Va rápido con una biblioteca grande.',
-    text: 'Rescaneo en 0,48 s, la lista en menos de un segundo, carpetas vigiladas y un buscador que acota (formato:flac, duracion:>3:30, año:2016…).',
-  },
-  {
-    title: 'Arregla sin tocar tus archivos.',
-    text: 'Comprueba FLAC y ALAC muestra a muestra con su MD5, corrige etiquetas en la biblioteca y no en el archivo, y trae etiquetas de MusicBrainz enseñando la comparación campo a campo antes de cambiar nada.',
-  },
-  {
-    title: 'Se configura.',
-    text: 'Tema, densidad, columnas, salida de audio y todos los atajos desde dentro, con efecto al momento; debajo, tres archivos TOML legibles. En español y en inglés.',
-  },
-];
-
-const stack = ['Rust', 'Tauri 2', 'cpal', 'HTML/CSS/JS vanilla', 'TOML', 'MusicBrainz'];
+const { data } = await getCase('project-snugtone', 'es');
 ---
 <BaseLayout
-  title="Snugtone · Proyecto · Fritz Reigar"
-  description="Reproductor de música de escritorio en Rust y Tauri, gratis y de código abierto: sin cortes, mismo volumen en todos los discos y rescaneo en 0,48 s."
-  og={{
-    title: 'Snugtone, un reproductor de música en Rust',
-    description: 'Para tu propia biblioteca: rápido, sin tocar tus archivos y con licencia MIT.',
-  }}
+  title={data.meta.title}
+  description={data.meta.description}
+  og={data.meta.og}
   current="projects"
 >
   <article>
     <header>
-      <p><a href={sectionHref('projects', 'es')}>Proyecto</a> · App propia · Código abierto (MIT) · 1.0.1 para Windows</p>
-      <h1>Snugtone</h1>
+      <p><a href={sectionHref('projects', 'es')}>{ui.es.caseSection.projects}</a> · {data.kicker}</p>
+      <h1>{data.title}</h1>
+      <p>{data.lede}</p>
       <p>
-        Reproductor de música de escritorio para tu propia biblioteca, escrito en Rust con Tauri.
-        Gratis y de código abierto.
-      </p>
-      <p>
-        <a href="https://github.com/FritzReigar/snugtone/releases">Descargar para Windows ↗</a>
-        ·
-        <a href="https://github.com/FritzReigar/snugtone">Código en GitHub ↗</a>
+        <a href={data.primary.href}>{data.primary.text}</a>
+        {data.secondary && (
+          <>
+            · <a href={data.secondary.href}>{data.secondary.text}</a>
+          </>
+        )}
       </p>
     </header>
+    {data.showcase.caption && <p><small>{data.showcase.caption}</small></p>}
 
-    <section aria-labelledby="por-que">
-      <h2 id="por-que">Por qué</h2>
-      <blockquote>
-        <p>
-          foobar2000 se me hacía muy anticuado y con demasiadas cosas. Quería algo más simple y
-          rápido, pero que leyera lo que usa todo el mundo. Y, de paso, aprender Rust.
-        </p>
-      </blockquote>
-    </section>
-
-    <section aria-labelledby="que-hace">
-      <h2 id="que-hace">Qué hace</h2>
-      <ul>
-        {features.map((feature) => (
-          <li>
-            <h3>{feature.title}</h3>
-            <p>{feature.text}</p>
-          </li>
-        ))}
-      </ul>
-    </section>
-
-    <section aria-labelledby="medido">
-      <h2 id="medido">Medido</h2>
-      <ul>
-        <li>
-          Biblioteca real de <strong>9503 archivos y 161 GB</strong>: rescaneo en
-          <strong>0,48 s</strong>, unos <strong>230 MB</strong> de memoria
-        </li>
-        <li>
-          <strong>609 pruebas</strong> del núcleo y <strong>31</strong> de la cáscara;
-          <code>cargo clippy</code> <strong>sin un aviso</strong>
-        </li>
-        <li>
-          Importar y exportar M3U: <strong>9503 rutas de ida y 9503 de vuelta</strong>, sin perder
-          una
-        </li>
-      </ul>
-    </section>
-
-    <section aria-labelledby="como-esta-hecho">
-      <h2 id="como-esta-hecho">Cómo está hecho</h2>
-      <p>
-        El núcleo es Rust puro —motor de audio, cola, biblioteca, configuración— y no sabe que Tauri
-        existe, así que se prueba sin abrir una ventana. La cáscara de Tauri pone la ventana y la
-        salida de audio real (cpal). La interfaz es HTML, CSS y JavaScript sin framework ni paso de
-        compilación.
-      </p>
-    </section>
-
-    <section aria-labelledby="con-que">
-      <h2 id="con-que">Con qué</h2>
-      <ul>
-        {stack.map((item) => <li>{item}</li>)}
-      </ul>
-    </section>
-
-    <section aria-labelledby="descargar">
-      <h2 id="descargar">Descargar</h2>
-      <p>
-        El instalador para Windows está en GitHub. No está firmado: Windows avisará con «Windows
-        protegió su PC»; se pulsa «Más información» y «Ejecutar de todas formas». El código está
-        pensado también para Linux, que va después; macOS y móvil, más adelante. Licencia MIT.
-      </p>
-      <p><a href="https://github.com/FritzReigar/snugtone/releases">Descargar para Windows ↗</a></p>
-      <p>
-        <small>
-          Todo lo que sale en las capturas es libre: la música, CC0 y de dominio público; las
-          portadas, CC0 y cuadros de dominio público. La interfaz de las capturas está en inglés.
-        </small>
-      </p>
-    </section>
+    <CaseBody body={data.body} lang="es" />
   </article>
 </BaseLayout>

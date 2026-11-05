@@ -1,0 +1,56 @@
+---
+// Una captura (plan/spec-visual.md § 2.2 y § 6.1): <Picture> en AVIF y WebP, con su marco de 1 px
+// y fondo --color-surface. Se nombra por su clave de src/data/shots.ts, que da la imagen (y con
+// ella `width` y `height`) y el `alt` del idioma. `sizes` es el de spec § 6.2 para su componente.
+// Por defecto lleva loading="lazy" y decoding="async"; `eager` es para la vitrina de una ficha,
+// que asoma en la primera pantalla (sin fetchpriority: el LCP es el título). `decorative` pone
+// alt="" (las bandas de la portada) y `phone` la oculta a 35rem o menos.
+import { Picture } from 'astro:assets';
+import { type ShotData, type ShotKey, shots } from '../../data/shots';
+import type { Lang } from '../../data/ui';
+
+interface Props {
+  shot: ShotKey;
+  lang: Lang;
+  sizes: string;
+  widths?: number[];
+  eager?: boolean;
+  decorative?: boolean;
+  phone?: boolean;
+  class?: string;
+}
+
+const {
+  shot,
+  lang,
+  sizes,
+  widths,
+  eager = false,
+  decorative = false,
+  phone = false,
+  class: className,
+} = Astro.props;
+const { image, alt }: ShotData = shots[shot];
+
+// Los anchos del `srcset` de spec § 6.2: 400 a 1600 las de escritorio y 200 a 600 las del móvil
+// (las más altas que anchas), y nunca por encima del origen, que entra siempre como el último.
+const DESKTOP_WIDTHS = [400, 800, 1200, 1600];
+const PHONE_WIDTHS = [200, 400, 600];
+const candidates = widths ?? (image.height > image.width ? PHONE_WIDTHS : DESKTOP_WIDTHS);
+const srcsetWidths = [...candidates.filter((width) => width < image.width), image.width];
+---
+<Picture class:list={['shot', { 'shot--phone': phone }, className]} src={image} formats={['avif', 'webp']} fallbackFormat="webp" widths={srcsetWidths} sizes={sizes} alt={decorative ? '' : (alt[lang] ?? alt.es)} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+
+<style>
+  .shot {
+    width: 100%;
+    border: var(--rule) solid var(--color-line);
+    background: var(--color-surface);
+  }
+
+  @media (max-width: 35rem) {
+    .shot--phone {
+      display: none;
+    }
+  }
+</style>

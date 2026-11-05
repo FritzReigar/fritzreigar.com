@@ -1,0 +1,13 @@
+---
+// Pinta un texto de src/data/rich.ts: un string tal cual, o sus trozos seguidos (texto, `code`,
+// negrita o enlace). Va en una sola línea para no meter espacios entre los trozos.
+import type { Rich } from '../../data/rich';
+
+interface Props {
+  text: Rich;
+}
+
+const { text } = Astro.props;
+const parts = typeof text === 'string' ? [text] : text;
+---
+{parts.map((part) => typeof part === 'string' ? part : 'code' in part ? <code>{part.code}</code> : 'strong' in part ? <strong>{part.strong}</strong> : <a href={part.href}>{part.link}</a>)}
