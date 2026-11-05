@@ -3,50 +3,38 @@ Fecha: 2026-11-05
 Proyecto: portfolio
 
 ## 1. De qué va la siguiente
-La planificación de la fase 2 (implementación y corte): partir en tandas `plan/fase-2.md` con `plan/spec-visual.md`, sobre el andamio de Astro que ya está en la rama `astro` y con su previa en `fritzreigar-com.pages.dev`.
-Es la fase que pinta la web (marco y tokens, portada, fichas, la pieza diferenciadora, el inglés, las imágenes OG), la pone en el dominio (v1.0.0) y pone de acuerdo los CV y LinkedIn.
+La tanda 2.1 de `plan/fase-2.md`: tokens, Archivo autoalojada y recortada, el marco de todas las páginas (cabecera, menú del móvil, idioma, pie) y el 404 pintado con la spec.
+Estrena además el lint de tokens en `npm run red` y las pruebas de vistas (capturas en reposo, solo en local) y de desbordes, que las tandas siguientes van llenando.
 
 ## 2. El prompt
 ```
-Planificación de la fase 2 del portfolio: implementación y corte.
+Tanda 2.1 del portfolio: tokens, la fuente y el marco.
 
-Lee ENTEROS plan/README.md, plan/fase-1.md (con todos sus «Desvíos», sobre
-todo los cinco añadidos de arquitectura y los de la tanda 1.5) y
-plan/spec-visual.md; y plan/contenido.md y plan/capturas.md. Antes de
-planificar nada, revisa el código de la rama astro (src/, e2e/, scripts/,
-public/_headers, la CI): es el patrón que la fase 2 va a copiar. Trabaja en
-la rama astro.
-
-Parte la fase en tandas en plan/fase-2.md con la plantilla de
-plan/README.md, apunta la tanda en curso en el CLAUDE.md y deja dicho qué
-tanda lleva clase (decisión 12: solo la que estrene un concepto que el
-estudio no tiene). El corte (v1.0.0) mueve el dominio de portfolio-v1 a
-fritzreigar-com: déjalo como una tanda con su lista de pasos y su vuelta
-atrás. Regla 13: el repo es público. Sin código en esta sesión; commit
-local del plan, y el push solo con mi OK.
+Lee ENTEROS plan/README.md y, de plan/fase-2.md, «Punto de partida»,
+«Decisiones de la fase», «Reglas de la fase» y la tanda 2.1, y lo que la
+tanda manda leer. Trabaja en la rama astro. Hazla, compruébala con
+npm run red (sin verde no hay commit; un test nuevo se ve en rojo antes de
+creerse el verde), marca la casilla, apunta la 2.2 como tanda en curso en
+el CLAUDE.md y commit con «(v0.2.1)». El push, solo con mi OK.
 ```
 
 ## 3. Modelo y esfuerzo
-Opus 5.5 en alto: es planificación de fase. No hace falta extra alto: el framework ya está estrenado (la 1.5) y la spec está cerrada.
+Opus 5.5 en medio: es una tanda de ejecución con la spec cerrada.
 
 ## 4. Cómo abrirla
-Sesión nueva en `~/Projects/propios/portfolio`, en modo plan, con la rama `astro` sacada (`git switch astro`).
+Sesión nueva en `~/Projects/propios/portfolio`, sin modo plan, con la rama `astro` sacada (`git switch astro`).
 
 ## 5. Qué traer
-- Tu OK para subir a `astro` los dos commits del cierre de la 1.5 (`3af5776` y el de este `siguiente.md`), si no los has subido ya.
-- Qué haces con el texto inglés (ver la decisión de abajo).
-- Nada más: la foto de busto y las capturas nuevas pueden llegar durante la fase.
+- El OK para bajar `Archivo[wdth,wght].ttf` y `OFL.txt` de `github.com/google/fonts/tree/main/ofl/archivo` (o bajarlos tú a `src/assets/fonts/`).
+- El teléfono, para la QA del marco y del 404 sobre la previa (`fritzreigar-com.pages.dev`).
 
 ## 6. Qué te llevas
-- `plan/fase-2.md` con todas las tandas de la fase, cada una con su objetivo, archivos, aceptación y verificación, en orden y con su modelo.
-- El `CLAUDE.md` apuntando a la tanda 2.1, y el temario de la clase si alguna tanda la lleva.
-- La tanda de corte escrita paso a paso: dominio de `portfolio-v1` a `fritzreigar-com`, producción a `main`, la caché del HTML, las previas de los dos proyectos y la semana de vuelta atrás.
+- `tokens.css` y `global.css` con los tokens de la spec, y Archivo servida desde `/fonts/` en un solo woff2 de 95 KB o menos.
+- La cabecera, el menú del móvil (que se cierra con un enlace, pulsando fuera y con Escape), el pie y el 404 con su aspecto final, en claro y en oscuro.
+- La red con el lint de tokens, las pruebas del marco, las de desbordes y las cuatro vistas del 404.
 
 ## 7. Decisiones que tomar
-- **Subir los commits del cierre de la 1.5 a `astro`.** Recomendada: sí; ese push hace además el primer build con `NODE_VERSION` = `22` fijado, y así queda comprobado.
-- **Quién escribe el texto inglés.** Recomendada: Claude lo traduce de `plan/contenido.md` en una tanda propia y tú lo revisas (tienes C1); nada en inglés sale sin tu OK.
-- **La foto de busto para Contacto** (4:5, 704 × 880 px o más). Recomendada: traerla cuando la tengas; la spec ya la prevé y sin ella la página se ve bien.
-- **Las capturas con la Navidad** (la vitrina y los «después» 1 y 2 de Missphone). Recomendada: rehacerlas si la web sale pasado Reyes.
-- **Las previas de `fritzreigar-com`**, que hoy construyen todas las ramas. Recomendada: dejarlas hasta el corte y resolverlas en esa tanda; antes del corte no se empuja nada a `main`.
-- **El despliegue de previa `1483e40d` de `portfolio-v1`** (la raíz del repo, con `noindex`). Recomendada: borrarlo tú desde *Implementaciones* cuando quieras; no corre prisa.
-- **El caso Missphone de estudioreigar.com también lo cuenta a la baja.** Recomendada: rehacerlo en una sesión del proyecto del estudio, copiando de `plan/contenido.md` § 2.
+- **Bajar Archivo de Google Fonts.** Recomendada: sí; es OFL y el repo lleva su licencia.
+- **`www.fritzreigar.com` no existe hoy**, y el enlace de tu LinkedIn apunta ahí. El corte (2.13) lo arregla; si no quieres esperar, añade ya `www.fritzreigar.com` como dominio personalizado de `portfolio-v1` en el panel. Recomendada: hacerlo ya, son dos minutos.
+- **El despliegue de previa `1483e40d` de `portfolio-v1`.** Recomendada: borrarlo cuando quieras, o en la limpieza del corte.
+- **La 2.8 (el texto inglés) puede adelantarse** a cualquier momento tras la 2.2. Recomendada: en su orden, salvo que te sobre una tarde para revisarlo antes.
