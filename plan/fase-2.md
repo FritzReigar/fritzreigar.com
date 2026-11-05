@@ -339,7 +339,7 @@ datos de la 2.2.
 
 ---
 
-### Tanda 2.4 — La portada II: Cómo trabajo, Trayectoria y Contacto, con el formulario   [ ] pendiente
+### Tanda 2.4 — La portada II: Cómo trabajo, Trayectoria y Contacto, con el formulario   [x] hecha (2026-11-05, v0.2.4)
 **Objetivo**: la portada está entera y el formulario de Contacto envía por `fetch` con sus tres
 estados, sin dejar de funcionar sin JS.
 
@@ -938,3 +938,21 @@ Analytics, tocar el correo de la zona.
   (`tokens.css` desde la 2.1; la tabla de spec § 6.2 da 245): el `sizes` de las bandas sale de ese
   token. El avatar se copió de `avatar-ligero.svgfrag` a `Avatar.astro` tal cual (63,5 KB, sin
   colores ni `style`): el `.svgfrag` vive en `docs/`, que no sube.
+- **2026-11-05, tanda 2.4: los textos de los estados van en el HTML, no en `main.ts`.** Salen de
+  `formText` (`src/data/ui.ts`), pero `ContactForm` los pinta: «Enviando…» en `data-sending` y las
+  líneas de «enviado» y «error» en dos `<template>`. `main.ts` copia el que toca en una de las dos
+  líneas vivas (`role="status"` y `role="alert"`), que están en la página desde el principio y
+  vacías, para que el lector de pantalla anuncie el cambio. Así `main.ts` no lleva texto en ningún
+  idioma y la 2.9 solo pasa `lang` a `ContactForm` (hoy no lo recibe). Pesa 719 B en gzip.
+- **2026-11-05, tanda 2.4: los `name` son los de la web de hoy, no los del lienzo.** El lienzo
+  escribe `nombre` y `mensaje`; el formulario sigue con `name`, `email` y `message`, como manda
+  el encargo (llegan así al correo de Formspree).
+- **2026-11-05, tanda 2.4: props que no estaban en la spec.** `ContactSection` recibe además
+  `id`, `title`, `lede`, `direct` y `cv` (el texto, de `home.ts`), y `photo` es
+  `{ image, alt }`; esa rama (spec § 2.5, `srcset` de 176, 352 y 528) compila pero no la pinta
+  ninguna página hasta que exista la foto: quien la ponga mira las vistas a 390 y a 1440.
+  `CareerExtra` recibe el CV como `Link` (texto y `href`), no `cvHref`.
+- **2026-11-05, tanda 2.4: el documento de la portada pesa 113,1 KB brutos** (tope 120; 111,4 en la
+  2.3): el estilo de las tres secciones sumó 1,7. Aún sin tocar las bandas.
+- **2026-11-05, tanda 2.4: Playwright no pulsa un botón con `aria-disabled`.** La prueba de que un
+  segundo clic mientras envía no repite la petición lo pulsa con `force: true`.

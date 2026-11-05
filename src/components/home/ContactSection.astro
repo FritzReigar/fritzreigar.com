@@ -1,0 +1,110 @@
+---
+// Contacto (plan/spec-visual.md § 2.2 y § 2.5): el cartel, y en la rejilla de 12 la entradilla
+// (con «estudioreigar.com» enlazado), el correo y el CV en gris (1-6), y el formulario (8-12).
+// `photo` es la foto de busto, que aún no existe: sin ella no se pinta nada en su lugar; con ella,
+// las columnas 1-6 se parten en la foto (176 px, 4:5) y el texto al lado, y a 35rem o menos la
+// foto va encima, a 128 px. Su `alt` lo escribe Fritz con la foto delante.
+import type { ImageMetadata } from 'astro';
+import { Picture } from 'astro:assets';
+import type { Link } from '../../data/home';
+import type { Rich as RichText } from '../../data/rich';
+import { EMAIL, FORM_ACTION } from '../../data/ui';
+import Rich from '../ui/Rich.astro';
+import SectionTitle from '../ui/SectionTitle.astro';
+import ContactForm from './ContactForm.astro';
+
+interface Props {
+  id: string;
+  title: string;
+  lede: RichText;
+  direct: string;
+  cv: Link;
+  photo?: { image: ImageMetadata; alt: string };
+}
+
+const { id, title, lede, direct, cv, photo } = Astro.props;
+---
+<section class="section section--last" id={id} aria-labelledby={`${id}-titulo`}>
+  <div class="wrap">
+    <SectionTitle id={`${id}-titulo`} text={title} />
+    <div class="grid contact">
+      <div class:list={['contact__copy', { 'contact__copy--photo': photo }]}>
+        {photo && (
+          <Picture class="contact__photo" src={photo.image} formats={['avif', 'webp']} fallbackFormat="webp" widths={[176, 352, 528]} sizes="(max-width: 35rem) 128px, 176px" alt={photo.alt} loading="lazy" decoding="async" />
+        )}
+        <div class="contact__text">
+          <p class="lede"><Rich text={lede} /></p>
+          <p>{direct}<a href={`mailto:${EMAIL}`}>{EMAIL}</a></p>
+          <p><a class="contact__cv" href={cv.href}>{cv.text}</a></p>
+        </div>
+      </div>
+      <ContactForm action={FORM_ACTION} class="contact__form" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    row-gap: var(--space-6);
+    align-items: start;
+  }
+
+  .contact__copy {
+    grid-column: 1 / span 6;
+  }
+
+  .contact__copy--photo {
+    display: grid;
+    grid-template-columns: var(--width-photo) minmax(0, 1fr);
+    column-gap: var(--space-5);
+    align-items: start;
+  }
+
+  .contact__text {
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .contact__text p {
+    margin: 0;
+  }
+
+  .contact__copy :global(.contact__photo) {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border: var(--rule) solid var(--color-line-strong);
+    background: var(--color-sky);
+  }
+
+  .contact__cv {
+    color: var(--color-text-muted);
+    font-size: var(--text-s);
+  }
+
+  .contact__cv:hover {
+    color: var(--color-accent-hover);
+  }
+
+  .contact :global(.contact__form) {
+    grid-column: 8 / span 5;
+  }
+
+  @media (max-width: 60rem) {
+    .contact__copy,
+    .contact :global(.contact__form) {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 35rem) {
+    .contact__copy--photo {
+      grid-template-columns: minmax(0, 1fr);
+      row-gap: var(--space-4);
+    }
+
+    .contact__copy :global(.contact__photo) {
+      width: var(--width-photo-s);
+    }
+  }
+</style>

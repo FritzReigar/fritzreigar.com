@@ -1,0 +1,123 @@
+---
+// El formulario de Contacto (plan/spec-visual.md § 2.2, «Portada»; decisión 10 de plan/README.md):
+// nombre, email y mensaje con la etiqueta encima, campos de 48 px con borde fuerte, el asunto y
+// la trampa de bots ocultos, y «Enviar». Sin JS, POST normal a Formspree; los `name`, `_subject` y
+// `_gotcha` son los de la web de hoy. Con JS, main.ts lo manda por fetch y pinta sus estados
+// (enviando, enviado, error): busca el formulario por [data-contact-form], toma «Enviando…» de
+// data-sending y copia en las dos líneas vivas, vacías hasta entonces, el contenido de su
+// <template>. La validación es la del navegador. El inglés, con lang, en la 2.9.
+import { EMAIL, formText } from '../../data/ui';
+import Button from '../ui/Button.astro';
+
+interface Props {
+  action: string;
+  class?: string;
+}
+
+const { action, class: className } = Astro.props;
+const text = formText;
+const [failedBefore, failedAfter] = text.failed.split(EMAIL);
+---
+<form class:list={['contact-form', className]} action={action} method="POST" data-contact-form data-sending={text.sending}>
+  <input type="hidden" name="_subject" value={text.subject}>
+  <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" hidden>
+  <div class="contact-form__field">
+    <label for="contacto-nombre">{text.name}</label>
+    <input id="contacto-nombre" type="text" name="name" autocomplete="name" placeholder={text.namePlaceholder} required>
+  </div>
+  <div class="contact-form__field">
+    <label for="contacto-email">{text.email}</label>
+    <input id="contacto-email" type="email" name="email" autocomplete="email" placeholder={text.emailPlaceholder} required>
+  </div>
+  <div class="contact-form__field">
+    <label for="contacto-mensaje">{text.message}</label>
+    <textarea id="contacto-mensaje" name="message" rows="5" placeholder={text.messagePlaceholder} required></textarea>
+  </div>
+  <Button variant="primary" type="submit" class="contact-form__submit">{text.submit}</Button>
+  <div class="contact-form__status">
+    <p class="form-status" role="status" data-form-sent></p>
+    <p class="form-status form-status--error" role="alert" data-form-failed></p>
+  </div>
+  <template data-form-sent><span>{text.sent}</span></template>
+  <template data-form-failed><span>{failedBefore}<a href={`mailto:${EMAIL}`}>{EMAIL}</a>{failedAfter}</span></template>
+</form>
+
+<style>
+  .contact-form {
+    display: grid;
+    gap: var(--space-3);
+    align-content: start;
+  }
+
+  .contact-form__field {
+    display: grid;
+    gap: var(--space-1);
+  }
+
+  label {
+    font-size: var(--text-s);
+    font-weight: var(--weight-bold);
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    min-height: var(--height-button);
+    padding: var(--space-2) var(--space-3);
+    border: var(--rule) solid var(--color-line-strong);
+    border-radius: 0;
+    background: var(--color-surface);
+    color: var(--color-text);
+    font: var(--weight-body) var(--text-m) / var(--leading-lede) var(--font);
+  }
+
+  textarea {
+    min-height: 140px;
+    resize: vertical;
+  }
+
+  ::placeholder {
+    color: var(--color-text-muted);
+    opacity: 1;
+  }
+
+  .contact-form :global(.contact-form__submit) {
+    justify-self: start;
+  }
+
+  .contact-form :global(.contact-form__submit[aria-disabled="true"]) {
+    border-color: var(--color-accent-hover);
+    background: var(--color-accent-hover);
+    cursor: progress;
+  }
+
+  .form-status {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    margin: 0;
+    font-size: var(--text-s);
+    font-weight: var(--weight-semibold);
+  }
+
+  .form-status:not(:empty)::before {
+    content: "";
+    flex: none;
+    width: var(--size-status);
+    height: var(--size-status);
+    margin-top: 0.45em;
+    background: var(--color-accent);
+  }
+
+  .form-status--error {
+    color: var(--color-error);
+  }
+
+  .form-status--error:not(:empty)::before {
+    background: var(--color-error);
+  }
+
+  .form-status--error :global(a) {
+    color: inherit;
+  }
+</style>

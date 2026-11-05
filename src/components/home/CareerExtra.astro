@@ -1,0 +1,61 @@
+---
+// Formación e idiomas bajo la trayectoria (plan/spec-visual.md § 2.2, «Portada»): dos columnas
+// con --gap-wide, cada una con su subtítulo en caja alta, y debajo el CV discreto (ArrowLink).
+// Una columna por debajo de 60rem. La formación va sin fechas ni estado (CLAUDE.md, «El CV»).
+import type { Link } from '../../data/home';
+import ArrowLink from '../ui/ArrowLink.astro';
+
+interface Props {
+  education: { title: string; items: readonly string[] };
+  languages: { title: string; text: string };
+  cv: Link;
+}
+
+const { education, languages, cv } = Astro.props;
+---
+<div class="career-extra">
+  <div class="career-extra__columns">
+    <div>
+      <h3>{education.title}</h3>
+      {education.items.map((item) => <p>{item}</p>)}
+    </div>
+    <div>
+      <h3>{languages.title}</h3>
+      <p>{languages.text}</p>
+    </div>
+  </div>
+  <p class="career-extra__cv"><ArrowLink href={cv.href}>{cv.text}</ArrowLink></p>
+</div>
+
+<style>
+  .career-extra {
+    margin-top: var(--space-6);
+  }
+
+  .career-extra__columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4) var(--gap-wide);
+  }
+
+  h3 {
+    margin-bottom: var(--space-1);
+    font-size: var(--text-s);
+    font-weight: var(--weight-poster);
+    text-transform: uppercase;
+  }
+
+  .career-extra__columns p {
+    margin-bottom: var(--space-1);
+  }
+
+  .career-extra__cv {
+    margin-top: var(--space-5);
+  }
+
+  @media (max-width: 60rem) {
+    .career-extra__columns {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

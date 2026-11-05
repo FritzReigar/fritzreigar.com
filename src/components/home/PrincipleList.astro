@@ -1,0 +1,54 @@
+---
+// Los principios de «Cómo trabajo» (plan/spec-visual.md § 2.2, «Portada»): dos columnas con
+// --gap-wide, cada principio con el filete fuerte de 2 px arriba, el título en caja alta a
+// --text-principle (Archivo 75 %) y su texto en gris. Una columna por debajo de 60rem. El texto
+// puede llevar un `code` dentro (Rich).
+import type { Rich as RichText } from '../../data/rich';
+import Rich from '../ui/Rich.astro';
+
+interface Props {
+  items: readonly { title: string; text: RichText }[];
+}
+
+const { items } = Astro.props;
+---
+<ul class="principle-list">
+  {items.map((item) => (
+    <li>
+      <h3>{item.title}</h3>
+      <p><Rich text={item.text} /></p>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .principle-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--gap-wide);
+  }
+
+  li {
+    padding-block: var(--space-3) var(--space-5);
+    border-top: var(--rule-mid) solid var(--color-line-strong);
+  }
+
+  h3 {
+    margin-bottom: var(--space-2);
+    font-size: var(--text-principle);
+    font-weight: var(--weight-poster);
+    font-stretch: var(--stretch-narrow);
+    line-height: var(--leading-tight);
+    text-transform: uppercase;
+  }
+
+  p {
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 60rem) {
+    .principle-list {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

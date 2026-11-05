@@ -1,9 +1,12 @@
 ---
 // La portada (plan/contenido.md § 1; plan/spec-visual.md § 2.3 y § 3.4): el texto sale de
 // src/data/home.ts y las tarjetas de Trabajo y Proyectos, de la colección `cases` (la primera de
-// cada sección es la grande). Pintada hasta «Todo el código público» (tanda 2.3); Cómo trabajo,
-// Trayectoria y Contacto siguen sin estilo hasta la 2.4.
+// cada sección es la grande). Entera desde la tanda 2.4.
 import HomeHero from '../components/heroes/HomeHero.astro';
+import CareerExtra from '../components/home/CareerExtra.astro';
+import CareerTable from '../components/home/CareerTable.astro';
+import ContactSection from '../components/home/ContactSection.astro';
+import PrincipleList from '../components/home/PrincipleList.astro';
 import ProjectCard from '../components/home/ProjectCard.astro';
 import ProjectFeature from '../components/home/ProjectFeature.astro';
 import ProjectMini from '../components/home/ProjectMini.astro';
@@ -12,11 +15,10 @@ import StudioBand from '../components/home/StudioBand.astro';
 import WorkCard from '../components/home/WorkCard.astro';
 import WorkFeature from '../components/home/WorkFeature.astro';
 import ArrowLink from '../components/ui/ArrowLink.astro';
-import Rich from '../components/ui/Rich.astro';
 import SectionTitle from '../components/ui/SectionTitle.astro';
 import { getCases } from '../data/cases';
 import { home } from '../data/home';
-import { EMAIL, FORM_ACTION, formText, ui } from '../data/ui';
+import { ui } from '../data/ui';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const lang = 'es';
@@ -75,76 +77,32 @@ const { mini } = text.projects;
     </div>
   </section>
 
-  <section class="section" aria-labelledby={ids.how}>
+  <section class="section" id={ids.how} aria-labelledby={`${ids.how}-titulo`}>
     <div class="wrap">
-    <h2 id={ids.how}>{text.how.title}</h2>
-    <ol>
-      {text.how.items.map((item) => (
-        <li>
-          <h3>{item.title}</h3>
-          <p><Rich text={item.text} /></p>
-        </li>
-      ))}
-    </ol>
+      <SectionTitle id={`${ids.how}-titulo`} text={text.how.title} />
+      <PrincipleList items={text.how.items} />
     </div>
   </section>
 
-  <section class="section" aria-labelledby={ids.career}>
+  <section class="section" id={ids.career} aria-labelledby={`${ids.career}-titulo`}>
     <div class="wrap">
-    <h2 id={ids.career}>{text.career.title}</h2>
-    <table>
-      <thead>
-        <tr>
-          <th scope="col">{text.career.headers.dates}</th>
-          <th scope="col">{text.career.headers.role}</th>
-          <th scope="col">{text.career.headers.place}</th>
-        </tr>
-      </thead>
-      <tbody>
-        {text.career.rows.map((row) => (
-          <tr>
-            <td>{row.dates}</td>
-            <td>{row.role}</td>
-            <td>{row.place}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-    <h3>{text.career.education.title}</h3>
-    <ul>
-      {text.career.education.items.map((item) => <li>{item}</li>)}
-    </ul>
-    <h3>{text.career.languages.title}</h3>
-    <p>{text.career.languages.text}</p>
-    <p><a href={ui.es.cvHref}>{text.career.cv}</a></p>
+      <SectionTitle id={`${ids.career}-titulo`} text={text.career.title} />
+      <CareerTable headers={text.career.headers} rows={text.career.rows} />
+      <CareerExtra
+        education={text.career.education}
+        languages={text.career.languages}
+        cv={{ text: text.career.cv, href: ui[lang].cvHref }}
+      />
     </div>
   </section>
 
-  <section class="section section--last" aria-labelledby={ids.contact}>
-    <div class="wrap">
-    <h2 id={ids.contact}>{text.contact.title}</h2>
-    <p><Rich text={text.contact.lede} /></p>
-    <p>{text.contact.direct}<a href={`mailto:${EMAIL}`}>{EMAIL}</a></p>
-    <form action={FORM_ACTION} method="POST">
-      <input type="hidden" name="_subject" value={formText.subject}>
-      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" hidden>
-      <p>
-        <label for="contacto-nombre">{formText.name}</label>
-        <input id="contacto-nombre" type="text" name="name" autocomplete="name" placeholder={formText.namePlaceholder} required>
-      </p>
-      <p>
-        <label for="contacto-email">{formText.email}</label>
-        <input id="contacto-email" type="email" name="email" autocomplete="email" placeholder={formText.emailPlaceholder} required>
-      </p>
-      <p>
-        <label for="contacto-mensaje">{formText.message}</label>
-        <textarea id="contacto-mensaje" name="message" rows="5" placeholder={formText.messagePlaceholder} required></textarea>
-      </p>
-      <p><button type="submit">{formText.submit}</button></p>
-    </form>
-    <p><a href={ui.es.cvHref}>{text.contact.cv}</a></p>
-    </div>
-  </section>
+  <ContactSection
+    id={ids.contact}
+    title={text.contact.title}
+    lede={text.contact.lede}
+    direct={text.contact.direct}
+    cv={{ text: text.contact.cv, href: ui[lang].cvHref }}
+  />
 </BaseLayout>
 
 <style>
