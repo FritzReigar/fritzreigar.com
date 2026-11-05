@@ -285,7 +285,7 @@ tandas siguientes.
 
 ---
 
-### Tanda 2.3 — La portada I: el hero, el estudio, Trabajo, las bandas y Proyectos   [ ] pendiente
+### Tanda 2.3 — La portada I: el hero, el estudio, Trabajo, las bandas y Proyectos   [x] hecha (2026-11-05, v0.2.3)
 **Objetivo**: la mitad de arriba de la portada está pintada como la spec, con el avatar
 vectorizado, hasta «Todo el código público».
 
@@ -909,3 +909,32 @@ Analytics, tocar el correo de la zona.
   (`layers`, opcional) no están en `contenido.md`, solo en el lienzo; y los cuatro puntos de
   Snugport van como `FeatureRows` sin título, que es lo que hay en el texto. Las capturas pesan
   1,6 MB entre las 23 (tope 3).
+- **2026-11-05, tanda 2.3: el documento de la portada pasa el tope bruto de Lighthouse.** Pesa
+  111,4 KB brutos y 28,7 en gzip (tope de la spec, 32 en gzip): las bandas repiten cada serie en
+  `<picture>` con AVIF y WebP y comprimen a 4:1, no a los 3,3:1 del lienzo con que se pasó a bruto
+  (63,5 KB son el avatar). `document` sube de 100 a 120 KB brutos, con su porqué en la cabecera de
+  `scripts/lighthouse.mjs`. La 2.4 añade el estilo de tres secciones: si se acerca a 120, se mira
+  quitar el origen del `srcset` de las bandas (no hace falta: el mayor que piden es el doble de
+  250 px de alto) antes de volver a subir.
+- **2026-11-05, tanda 2.3: piezas y pruebas que no estaban en la lista.** `e2e/portada.spec.ts`:
+  la primera pantalla de spec § 7 a 390 × 844 y a 1440 × 900 (margen de 24 px), el avatar al lado
+  de «Fritz», todas las imágenes con `loading="lazy"` y las tarjetas pulsables enteras con un solo
+  enlace. En `global.css`, lo que cruzan varios componentes: `.section` y `.section--last` (spec
+  § 3.4), `.tap-card` (el `::after` del `ArrowLink` y el marco cobalto encima), `.card-text` y
+  `.card-title`. `StackList` existe pero no lo usa nadie hasta los cierres de la 2.5.
+- **2026-11-05, tanda 2.3: el `id` de la sección va en la `<section>`.** `#trabajo` y
+  `#proyectos` llevan a la sección (con su `--space-section` encima, como el lienzo) y el `h2`
+  lleva `<id>-titulo` para el `aria-labelledby`. La 2.4 hace lo mismo con las tres que quedan, que
+  hoy van con el `id` en el `h2` y sin estilo (solo dentro de `.section` y `.wrap`).
+- **2026-11-05, tanda 2.3: la tinta del estado va fuera del `<p>`.** `StatusBadge` es un `div` con
+  el texto en un `<p>` y la `Ink` al lado: dentro del `<p>`, el óvalo (que sobresale a propósito)
+  contaba como desborde en `e2e/desbordes.spec.ts`.
+- **2026-11-05, tanda 2.3: las vistas cargan las capturas antes de la foto.** Con `lazy`, una
+  captura de página entera salía con unas imágenes sí y otras no según el momento;
+  `e2e/vistas.spec.ts` las pide todas y espera a que se pinten. Capturas nuevas, buscadas: las
+  cuatro de la portada (la mitad de abajo sigue sin estilo: la 2.4 las regenera).
+- **2026-11-05, tanda 2.3: lo que difiere del lienzo, por la spec.** «Todo el código público» es un
+  `ArrowLink` (spec § 2.3), no el enlace cobalto suelto del lienzo. `--height-band` es 120–250 px
+  (`tokens.css` desde la 2.1; la tabla de spec § 6.2 da 245): el `sizes` de las bandas sale de ese
+  token. El avatar se copió de `avatar-ligero.svgfrag` a `Avatar.astro` tal cual (63,5 KB, sin
+  colores ni `style`): el `.svgfrag` vive en `docs/`, que no sube.

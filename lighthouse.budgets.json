@@ -13,7 +13,7 @@
     "script": 8192,
     "stylesheet": 56320,
     "font": 97280,
-    "document": 102400,
+    "document": 122880,
     "image": 122880,
     "total": 389120
   }

@@ -5,7 +5,7 @@ import { sitePages } from './support/pages';
 // Ningún texto se sale de su caja ni de la ventana (plan/spec-visual.md § 3.2), sobre dist/ y a
 // los anchos de los cortes. La lógica es la de docs/lienzo/herramientas/comprobar-desbordes.mjs.
 // Cada tanda que pinta una página la añade a PAINTED (Reglas de la fase 2).
-const PAINTED: RouteKey[] = ['not-found'];
+const PAINTED: RouteKey[] = ['home', 'not-found'];
 const WIDTHS = [360, 768, 1024, 1440];
 
 const pages = sitePages.filter((sitePage) => PAINTED.includes(sitePage.key));
@@ -58,6 +58,22 @@ test.describe('desbordes', () => {
         expect(await overflowsOf(page)).toEqual([]);
       });
     }
+  }
+
+  // Las bandas de capturas de la portada (ShotBands) cubren la ventana de borde a borde también
+  // en pantallas anchas: cada serie va dos veces (plan/spec-visual.md § 2.2).
+  for (const width of [1920, 2560]) {
+    test(`/ a ${width}: cada banda cubre el ancho de la ventana`, async ({ page }) => {
+      await load(page, '/', width);
+      const rows = page.locator('.shot-bands__row');
+      await expect(rows).toHaveCount(2);
+      for (const row of await rows.all()) {
+        const box = await row.boundingBox();
+        if (!box) throw new Error('una banda no se pinta');
+        expect(box.x).toBeLessThanOrEqual(0);
+        expect(box.x + box.width).toBeGreaterThanOrEqual(width);
+      }
+    });
   }
 
   // La prueba de la prueba: con un ancho fijo provocado, lo caza.

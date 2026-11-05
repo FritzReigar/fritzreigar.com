@@ -1,0 +1,47 @@
+---
+// El cartel de cada sección (plan/spec-visual.md § 2.2): el h2 en Archivo 62 % a --text-poster,
+// en caja alta, con la regla cobalto de 6 px y el 22 % del ancho debajo. En `accent` (la banda del
+// estudio), texto y regla en --color-on-accent. El texto y la regla van en trozos sueltos para
+// que la 2.7 los haga entrar con el scroll; hasta entonces, quietos.
+interface Props {
+  id: string;
+  text: string;
+  tone?: 'plain' | 'accent';
+}
+
+const { id, text, tone = 'plain' } = Astro.props;
+---
+<h2 class:list={['section-title', `section-title--${tone}`]} id={id}><span class="section-title__text">{text}</span><span class="section-title__rule"></span></h2>
+
+<style>
+  .section-title {
+    margin-bottom: var(--space-block);
+    font-size: var(--text-poster);
+    font-weight: var(--weight-poster);
+    font-stretch: var(--stretch-poster);
+    letter-spacing: var(--tracking-poster);
+    line-height: var(--leading-poster);
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+  }
+
+  .section-title__text {
+    display: inline-block;
+  }
+
+  .section-title__rule {
+    display: block;
+    width: var(--rule-poster);
+    height: var(--rule-thick);
+    margin-top: var(--space-3);
+    background: var(--color-accent);
+  }
+
+  .section-title--accent {
+    color: var(--color-on-accent);
+  }
+
+  .section-title--accent .section-title__rule {
+    background: var(--color-on-accent);
+  }
+</style>

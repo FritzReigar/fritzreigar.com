@@ -1,0 +1,49 @@
+---
+// La tarjeta de proyecto (plan/spec-visual.md § 2.2, «Portada»): la captura y el texto en 5fr 3fr;
+// quien la pone le da las columnas (1-8, al lado de ProjectMini). A 35rem o menos, apilada. Se
+// pulsa entera (.tap-card). Hoy, Snugport.
+import { type CaseEntry, casePath } from '../../data/cases';
+import type { Lang } from '../../data/ui';
+import ArrowLink from '../ui/ArrowLink.astro';
+import Label from '../ui/Label.astro';
+import Shot from '../ui/Shot.astro';
+
+interface Props {
+  entry: CaseEntry;
+  lang: Lang;
+  linkText: string;
+  class?: string;
+}
+
+const { entry, lang, linkText, class: className } = Astro.props;
+const { title, card } = entry.data;
+---
+<article class:list={['project-card', 'tap-card', className]}>
+  <Shot shot={card.shots[0]} lang={lang} sizes="(max-width: 35rem) 92vw, (max-width: 60rem) 56vw, 512px" />
+  <div class="project-card__text card-text">
+    <Label>{card.label}</Label>
+    <h3 class="card-title">{title}</h3>
+    <p>{card.summary}</p>
+    <p><ArrowLink href={casePath(entry, lang)}>{linkText}</ArrowLink></p>
+  </div>
+</article>
+
+<style>
+  .project-card {
+    display: grid;
+    grid-template-columns: 5fr 3fr;
+    gap: var(--space-4);
+    align-items: start;
+  }
+
+  .project-card__text {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  @media (max-width: 35rem) {
+    .project-card {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

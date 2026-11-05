@@ -1,0 +1,145 @@
+---
+// El héroe de la portada (plan/spec-visual.md § 2.2, «Héroes», y § 7): el nombre en dos líneas a
+// --text-hero, «Fritz» a la izquierda y «Reigar» a la derecha, con el avatar arriba a la derecha
+// (columnas 9-12) al lado de «Fritz» en todos los anchos. El avatar mide lo que una línea del
+// nombre y el nombre, por encima, le pisa solo la camiseta. Bajo la regla cobalto, la entradilla
+// (1-6), el estado (7-9) y los dos botones apilados (10-12). Por debajo de 60rem la fila bajo la
+// regla se apila (botones en dos columnas; en una a 35rem o menos); el avatar no se mueve.
+import Avatar from '../ui/Avatar.astro';
+import Button from '../ui/Button.astro';
+import StatusBadge from '../ui/StatusBadge.astro';
+
+interface Action {
+  href: string;
+  label: string;
+  external?: boolean;
+}
+
+interface Props {
+  name: string;
+  avatarAlt: string;
+  lede: string;
+  status: string;
+  // El primero es el principal.
+  actions: readonly [Action, Action];
+}
+
+const { name, avatarAlt, lede, status, actions } = Astro.props;
+const [first, ...rest] = name.split(' ');
+---
+<section class="home-hero" aria-labelledby="nombre">
+  <div class="wrap">
+    <div class="home-hero__head">
+      <h1 id="nombre"><span class="first">{first}</span> <span class="second">{rest.join(' ')}</span></h1>
+      <Avatar alt={avatarAlt} class="home-hero__avatar" />
+    </div>
+    <div class="home-hero__copy">
+      <p class="lede">{lede}</p>
+      <StatusBadge text={status} class="home-hero__status" />
+      <div class="home-hero__actions">
+        {actions.map((action, index) => (
+          <Button href={action.href} variant={index === 0 ? 'primary' : 'secondary'} external={action.external}>{action.label}</Button>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .home-hero {
+    padding-top: var(--space-hero-top);
+    overflow: clip;
+  }
+
+  .home-hero__head {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap-col);
+    align-items: end;
+  }
+
+  h1 {
+    position: relative;
+    z-index: 1;
+    grid-row: 1;
+    grid-column: 1 / -1;
+    font-size: var(--text-hero);
+    font-weight: var(--weight-poster);
+    font-stretch: var(--stretch-poster);
+    letter-spacing: var(--tracking-hero);
+    line-height: var(--leading-hero);
+    text-transform: uppercase;
+  }
+
+  h1 span {
+    display: block;
+  }
+
+  h1 .second {
+    margin-top: -0.02em;
+    text-align: right;
+  }
+
+  .home-hero__head > :global(.home-hero__avatar) {
+    grid-row: 1;
+    grid-column: 9 / span 4;
+    align-self: start;
+    justify-self: end;
+    width: min(100%, var(--width-avatar), calc(var(--text-hero) * var(--leading-hero)));
+    margin-top: calc(var(--text-hero) * 0.06);
+  }
+
+  .home-hero__copy {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap-col);
+    row-gap: var(--space-4);
+    margin-top: var(--space-4);
+    padding-top: var(--space-4);
+    border-top: var(--rule-thick) solid var(--color-accent);
+  }
+
+  .lede {
+    grid-column: 1 / span 6;
+    margin: 0;
+  }
+
+  .home-hero__copy > :global(.home-hero__status) {
+    grid-column: 7 / span 3;
+    align-self: start;
+    justify-self: start;
+  }
+
+  .home-hero__actions {
+    grid-column: 10 / span 3;
+    display: grid;
+    gap: var(--space-2);
+    align-content: start;
+  }
+
+  .home-hero__actions > :global(.button) {
+    width: 100%;
+  }
+
+  @media (max-width: 60rem) {
+    .lede,
+    .home-hero__copy > :global(.home-hero__status),
+    .home-hero__actions {
+      grid-column: 1 / -1;
+    }
+
+    .home-hero__copy > :global(.home-hero__status) {
+      margin-left: var(--space-1);
+    }
+
+    .home-hero__actions {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 35rem) {
+    .home-hero__actions {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

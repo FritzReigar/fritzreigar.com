@@ -113,6 +113,58 @@ code {
   white-space: nowrap;
 }
 
+/* Una sección: --space-section encima y nada debajo (spec § 3.4). La última de cada página
+   cierra con --space-end. */
+.section {
+  padding-top: var(--space-section);
+  overflow-x: clip;
+}
+
+.section--last {
+  padding-bottom: var(--space-end);
+}
+
+/* Las tarjetas de la portada se pulsan enteras (spec § 2.2, «Portada»): el único enlace de cada
+   una (un ArrowLink) estira su ::after sobre la tarjeta. Con el ratón encima, el marco de las
+   capturas y el enlace pasan a cobalto. */
+.tap-card {
+  position: relative;
+}
+
+.tap-card .arrow-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.tap-card .shot {
+  transition: border-color var(--duration-hover) var(--ease-out);
+}
+
+.tap-card:hover .shot {
+  border-color: var(--color-accent);
+}
+
+.tap-card:hover .arrow-link {
+  color: var(--color-accent);
+}
+
+/* El texto de una tarjeta: rótulo, título, resumen y enlace, sin márgenes propios. */
+.card-text p {
+  margin: 0;
+}
+
+/* El título de tarjeta (Missphone, Artemisa, Snugtone, Snugport). */
+.card-title {
+  font-size: var(--text-card);
+  font-weight: var(--weight-poster);
+  font-stretch: var(--stretch-poster);
+  letter-spacing: -0.01em;
+  line-height: var(--leading-card);
+  text-transform: uppercase;
+}
+
 /* La entradilla bajo un cartel (hero, ficha, 404, contacto). */
 .lede {
   font-size: var(--text-lede);

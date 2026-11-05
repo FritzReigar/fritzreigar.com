@@ -1,0 +1,47 @@
+---
+// La disponibilidad (plan/spec-visual.md § 2.2): el cuadrado cobalto y «Acepto proyectos»,
+// rodeados por el óvalo de tinta, que sobresale 6 × 14 px de la caja (spec § 1.3). La tinta se
+// pinta trazada hasta la 2.7 (decisión F6). La tinta va fuera del <p>: es decoración y se sale
+// de la caja a propósito (e2e/desbordes.spec.ts no la cuenta).
+import Ink from './Ink.astro';
+
+interface Props {
+  text: string;
+  class?: string;
+}
+
+const { text, class: className } = Astro.props;
+---
+<div class:list={['status-badge', className]}><p class="status-badge__text">{text}</p><Ink shape="oval" class="status-badge__ink" /></div>
+
+<style>
+  .status-badge {
+    position: relative;
+    width: max-content;
+    padding: var(--space-1) var(--space-3);
+  }
+
+  .status-badge__text {
+    display: flex;
+    margin: 0;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-s);
+    font-weight: var(--weight-bold);
+  }
+
+  .status-badge__text::before {
+    content: "";
+    flex: none;
+    width: var(--size-status);
+    height: var(--size-status);
+    background: var(--color-accent);
+  }
+
+  .status-badge :global(.status-badge__ink) {
+    position: absolute;
+    inset: -6px -14px;
+    width: calc(100% + 28px);
+    height: calc(100% + 12px);
+  }
+</style>

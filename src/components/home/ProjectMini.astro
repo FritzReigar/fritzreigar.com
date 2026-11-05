@@ -1,0 +1,61 @@
+---
+// El proyecto pequeño, sin ficha (plan/spec-visual.md § 2.2, «Portada»): la captura, el rótulo,
+// el título a --text-h3, dos líneas y el enlace a su repositorio, con un filete a la izquierda;
+// quien lo pone le da las columnas (9-12). Por debajo de 60rem, el filete va arriba. Se pulsa
+// entero (.tap-card). Hoy, Galaxian.
+import type { Link } from '../../data/home';
+import type { ShotKey } from '../../data/shots';
+import type { Lang } from '../../data/ui';
+import ArrowLink from '../ui/ArrowLink.astro';
+import Label from '../ui/Label.astro';
+import Shot from '../ui/Shot.astro';
+
+interface Props {
+  title: string;
+  label: string;
+  text: string;
+  link: Link;
+  shot: ShotKey;
+  lang: Lang;
+  class?: string;
+}
+
+const { title, label, text, link, shot, lang, class: className } = Astro.props;
+---
+<article class:list={['project-mini', 'tap-card', 'card-text', className]}>
+  <Shot shot={shot} lang={lang} sizes="(max-width: 60rem) 92vw, 373px" />
+  <Label>{label}</Label>
+  <h3>{title}</h3>
+  <p>{text}</p>
+  <p><ArrowLink href={link.href} external>{link.text}</ArrowLink></p>
+</article>
+
+<style>
+  .project-mini {
+    display: grid;
+    gap: var(--space-2);
+    padding-left: var(--gap-col);
+    border-left: var(--rule) solid var(--color-line);
+  }
+
+  h3 {
+    font-size: var(--text-h3);
+    font-weight: var(--weight-poster);
+    font-stretch: var(--stretch-poster);
+    line-height: var(--leading-tight);
+    text-transform: uppercase;
+  }
+
+  p {
+    font-size: var(--text-s);
+  }
+
+  @media (max-width: 60rem) {
+    .project-mini {
+      padding-top: var(--space-4);
+      padding-left: 0;
+      border-top: var(--rule) solid var(--color-line);
+      border-left: 0;
+    }
+  }
+</style>

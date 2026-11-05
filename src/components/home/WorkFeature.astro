@@ -1,0 +1,65 @@
+---
+// La tarjeta grande de Trabajo (plan/spec-visual.md § 2.2, «Portada»): el bloque celeste con
+// relleno --space-inset; el texto (1-4: rótulo, título a --text-card, resumen y el enlace abajo) y
+// la captura de escritorio (5-12). Se pulsa entera (.tap-card). Solo Missphone.
+import { type CaseEntry, casePath } from '../../data/cases';
+import type { Lang } from '../../data/ui';
+import ArrowLink from '../ui/ArrowLink.astro';
+import Label from '../ui/Label.astro';
+import Shot from '../ui/Shot.astro';
+
+interface Props {
+  entry: CaseEntry;
+  lang: Lang;
+  linkText: string;
+}
+
+const { entry, lang, linkText } = Astro.props;
+const { title, card } = entry.data;
+---
+<article class="work-feature tap-card">
+  <div class="work-feature__text card-text">
+    <div>
+      <Label>{card.label}</Label>
+      <h3 class="card-title">{title}</h3>
+    </div>
+    <p>{card.summary}</p>
+    <p><ArrowLink href={casePath(entry, lang)}>{linkText}</ArrowLink></p>
+  </div>
+  <div class="work-feature__media">
+    <Shot shot={card.shots[0]} lang={lang} sizes="(max-width: 60rem) 88vw, 790px" />
+  </div>
+</article>
+
+<style>
+  .work-feature {
+    --label-color: var(--color-on-sky-muted);
+    --arrow-link-color: var(--color-on-sky);
+
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap-col);
+    row-gap: var(--space-4);
+    padding: var(--space-inset);
+    background: var(--color-sky);
+    color: var(--color-on-sky);
+  }
+
+  .work-feature__text {
+    grid-column: 1 / span 4;
+    display: grid;
+    gap: var(--space-3);
+    align-content: space-between;
+  }
+
+  .work-feature__media {
+    grid-column: 5 / span 8;
+  }
+
+  @media (max-width: 60rem) {
+    .work-feature__text,
+    .work-feature__media {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

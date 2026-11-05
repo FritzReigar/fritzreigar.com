@@ -25,10 +25,15 @@
 //   script ≤ 8 KB        main.ts: 3 KB en gzip
 //   stylesheet ≤ 55 KB   la hoja única: 10 KB en gzip (el lienzo, 35,3 KB brutos y 6,5 en gzip)
 //   font ≤ 95 KB         un solo woff2 de Archivo (ya va comprimido)
-//   document ≤ 100 KB    la portada: 32 KB en gzip (el lienzo, 78,2 brutos y 23,6 en gzip)
+//   document ≤ 120 KB    la portada: 32 KB en gzip (el lienzo, 78,2 brutos y 23,6 en gzip)
 //   image ≤ 120 KB       la vitrina de la ficha en AVIF a 1440
 //   total ≤ 380 KB       la suma, por página
-// La fase 2 los ajusta con lo medido, como el estudio, cada subida con su porqué.
+// La fase 2 los ajusta con lo medido, como el estudio, cada subida con su porqué:
+//   document 100 → 120 KB (tanda 2.3, 2026-11-05). La portada pintada pesa 111,4 KB brutos y
+//     28,7 en gzip: cumple el tope de verdad (32 KB en gzip, spec § 8), pero comprime a 4:1 y no
+//     a los 3,3:1 del lienzo con que se pasó a bruto, porque las bandas repiten cada serie dos
+//     veces en <picture> con AVIF y WebP (63,5 KB son el avatar). 120 KB a 4:1 son 30 en gzip.
+//     El tope en gzip se mide aparte (`gzip -c dist/index.html | wc -c`).
 import { spawn, execFileSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';

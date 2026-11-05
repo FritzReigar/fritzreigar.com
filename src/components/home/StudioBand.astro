@@ -1,0 +1,95 @@
+---
+// La banda del estudio (plan/spec-visual.md § 2.2, «Portada», y § 3.3): cobalto a todo el
+// ancho, una sola vez en la web. El cartel en `accent`, el texto (1-6) con su enlace, y las dos
+// capturas del estudio (7-12: escritorio y móvil en 3fr 1fr, alineadas abajo y con el borde en
+// --color-on-accent). Dentro de la banda, el foco y la selección van en --color-on-accent.
+import type { Link } from '../../data/home';
+import type { ShotKey } from '../../data/shots';
+import type { Lang } from '../../data/ui';
+import ArrowLink from '../ui/ArrowLink.astro';
+import SectionTitle from '../ui/SectionTitle.astro';
+import Shot from '../ui/Shot.astro';
+
+interface Props {
+  id: string;
+  title: string;
+  text: string;
+  link: Link;
+  shots: { desktop: ShotKey; mobile: ShotKey };
+  lang: Lang;
+}
+
+const { id, title, text, link, shots, lang } = Astro.props;
+---
+<section class="studio-band" aria-labelledby={id}>
+  <div class="wrap grid">
+    <div class="studio-band__title">
+      <SectionTitle id={id} text={title} tone="accent" />
+    </div>
+    <div class="studio-band__text">
+      <p>{text}</p>
+      <p><ArrowLink href={link.href} external>{link.text}</ArrowLink></p>
+    </div>
+    <div class="studio-band__shots">
+      <Shot shot={shots.desktop} lang={lang} sizes="(max-width: 60rem) 70vw, 460px" />
+      <Shot shot={shots.mobile} lang={lang} sizes="(max-width: 60rem) 23vw, 152px" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .studio-band {
+    --arrow-link-color: var(--color-on-accent);
+    --arrow-link-rule: var(--color-on-accent);
+    --arrow-link-hover: var(--color-on-accent);
+
+    margin-top: var(--space-section);
+    padding-block: var(--space-band);
+    overflow-x: clip;
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+  }
+
+  .studio-band :global(::selection) {
+    background: var(--color-on-accent);
+    color: var(--color-accent);
+  }
+
+  .studio-band :global(:focus-visible) {
+    outline-color: var(--color-on-accent);
+  }
+
+  .grid {
+    row-gap: var(--space-5);
+    align-items: start;
+  }
+
+  .studio-band__title {
+    grid-column: 1 / -1;
+  }
+
+  .studio-band__text {
+    grid-column: 1 / span 6;
+    font-size: var(--text-l);
+    line-height: var(--leading-lede);
+  }
+
+  .studio-band__shots {
+    grid-column: 7 / span 6;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: var(--space-3);
+    align-items: end;
+  }
+
+  .studio-band__shots :global(.shot) {
+    border-color: var(--color-on-accent);
+  }
+
+  @media (max-width: 60rem) {
+    .studio-band__text,
+    .studio-band__shots {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

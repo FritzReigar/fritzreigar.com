@@ -1,0 +1,69 @@
+---
+// Las dos bandas de capturas (plan/spec-visual.md § 2.2, «Portada», y § 6.2): seis capturas por
+// fila a --height-band de alto, entre filetes fuertes y sin fondo. Cada serie va dos veces
+// seguida con las mismas URL (no se descarga nada más), así la banda cubre de borde a borde
+// hasta 2560 px y más. Son decoración: la banda entera va con aria-hidden y cada captura con
+// alt="". Quietas: el viaje con el scroll es de la 2.7 (decisión F6).
+import { type ShotKey, shots } from '../../data/shots';
+import type { Lang } from '../../data/ui';
+import Shot from '../ui/Shot.astro';
+
+interface Props {
+  rows: readonly [readonly ShotKey[], readonly ShotKey[]];
+  lang: Lang;
+}
+
+const { rows, lang } = Astro.props;
+
+// Se piden por alto: el ancho pintado es el alto por la proporción. --height-band va de 120 px
+// (hasta 44rem) a 250 px (desde 92rem), y entre medias es el 17vw (tokens.css). El srcset, a 1× y
+// 2× del alto mayor.
+const MIN_HEIGHT = 120;
+const MAX_HEIGHT = 250;
+const FLUID_VW = 17;
+const sizing = (key: ShotKey) => {
+  const { width, height } = shots[key].image;
+  const ratio = width / height;
+  const px = (h: number) => Math.round(h * ratio);
+  return {
+    sizes: `(max-width: 44rem) ${px(MIN_HEIGHT)}px, (max-width: 92rem) ${(FLUID_VW * ratio).toFixed(1)}vw, ${px(MAX_HEIGHT)}px`,
+    widths: [px(MAX_HEIGHT), px(MAX_HEIGHT * 2)],
+  };
+};
+---
+<div class="shot-bands" aria-hidden="true">
+  {rows.map((row, index) => (
+    <div class:list={['shot-bands__row', `shot-bands__row--${index + 1}`]}>
+      {[...row, ...row].map((key) => (
+        <Shot shot={key} lang={lang} decorative {...sizing(key)} />
+      ))}
+    </div>
+  ))}
+</div>
+
+<style>
+  .shot-bands {
+    display: grid;
+    gap: var(--gap-band);
+    margin-top: var(--space-section);
+    padding-block: var(--gap-band);
+    overflow: clip;
+    border-block: var(--rule) solid var(--color-line-strong);
+  }
+
+  .shot-bands__row {
+    display: flex;
+    gap: var(--gap-band);
+    width: max-content;
+  }
+
+  .shot-bands__row :global(picture) {
+    flex: none;
+  }
+
+  .shot-bands__row :global(.shot) {
+    width: auto;
+    max-width: none;
+    height: var(--height-band);
+  }
+</style>
