@@ -74,7 +74,7 @@ Recomendadas en la planificación (valen mientras Fritz no diga otra cosa):
 | Fase | Qué | Archivo |
 |---|---|---|
 | 1 | **Contenido, capturas, lienzo y andamio**: el texto entero verificado, las capturas que faltan, tres conceptos de diseño y la spec, y Astro montado con su red de pruebas en la rama `astro` | [`fase-1.md`](fase-1.md) |
-| 2 | **Implementación y corte** (provisional; la planifica su propia sesión cuando exista `plan/spec-visual.md`): marco y tokens, portada, fichas de Trabajo, fichas de Proyectos, la pieza diferenciadora, el inglés entero, imágenes OG con Satori (copiadas del estudio), QA y corte (v1.0.0), y la coherencia: los dos CV (dos páginas A4 justas, reexportados) y la lista de cambios de LinkedIn, que aplica Fritz | `fase-2.md`, cuando se planifique |
+| 2 | **Implementación y corte**: marco y tokens, las capturas y las fichas como datos, la portada, las fichas de Trabajo y de Proyectos, la pieza diferenciadora, el inglés entero, imágenes OG con Satori, QA, la coherencia (los dos CV y la lista de LinkedIn) y el corte (v1.0.0). Trece tandas, planificadas el 2026-11-05 | [`fase-2.md`](fase-2.md) |
 
 Fuera del plan: el caso Missphone de estudioreigar.com, que también lo cuenta a la baja, es trabajo
 del proyecto del estudio. Y X: aquí no se publica nada.
