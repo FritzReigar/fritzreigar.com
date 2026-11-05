@@ -3,38 +3,38 @@ Fecha: 2026-11-05
 Proyecto: portfolio
 
 ## 1. De qué va la siguiente
-La tanda 2.1 de `plan/fase-2.md`: tokens, Archivo autoalojada y recortada, el marco de todas las páginas (cabecera, menú del móvil, idioma, pie) y el 404 pintado con la spec.
-Estrena además el lint de tokens en `npm run red` y las pruebas de vistas (capturas en reposo, solo en local) y de desbordes, que las tandas siguientes van llenando.
+La tanda 2.2 de `plan/fase-2.md`: las capturas entran al repo como WebP maestras tipadas y con su `alt`, y el texto en español de la portada y de las cuatro fichas pasa a datos (`home.ts` y la colección `cases`).
+No pinta nada nuevo: las páginas tienen que decir exactamente lo mismo que antes, ahora leído de los datos, listo para la 2.3.
 
 ## 2. El prompt
 ```
-Tanda 2.1 del portfolio: tokens, la fuente y el marco.
+Tanda 2.2 del portfolio: las capturas y las fichas como datos.
 
 Lee ENTEROS plan/README.md y, de plan/fase-2.md, «Punto de partida»,
-«Decisiones de la fase», «Reglas de la fase» y la tanda 2.1, y lo que la
-tanda manda leer. Trabaja en la rama astro. Hazla, compruébala con
-npm run red (sin verde no hay commit; un test nuevo se ve en rojo antes de
-creerse el verde), marca la casilla, apunta la 2.2 como tanda en curso en
-el CLAUDE.md y commit con «(v0.2.1)». El push, solo con mi OK.
+«Decisiones de la fase», «Reglas de la fase», los «Desvíos» y la tanda 2.2,
+y lo que la tanda manda leer. Trabaja en la rama astro. Hazla, compruébala
+con npm run red (sin verde no hay commit; un test nuevo se ve en rojo antes
+de creerse el verde), marca la casilla, apunta la 2.3 como tanda en curso en
+el CLAUDE.md y commit con «(v0.2.2)». El push, solo con mi OK.
 ```
 
 ## 3. Modelo y esfuerzo
-Opus 5.5 en medio: es una tanda de ejecución con la spec cerrada.
+Opus 5.5 en medio: es una tanda de ejecución con el esquema decidido (F1 y F2).
 
 ## 4. Cómo abrirla
 Sesión nueva en `~/Projects/propios/portfolio`, sin modo plan, con la rama `astro` sacada (`git switch astro`).
 
 ## 5. Qué traer
-- El OK para bajar `Archivo[wdth,wght].ttf` y `OFL.txt` de `github.com/google/fonts/tree/main/ofl/archivo` (o bajarlos tú a `src/assets/fonts/`).
-- El teléfono, para la QA del marco y del 404 sobre la previa (`fritzreigar-com.pages.dev`).
+- Nada para la tanda: las capturas de origen ya están en `docs/capturas/` (sin subir).
+- Antes, la QA de la 2.1 en el teléfono sobre la previa (`fritzreigar-com.pages.dev/no-existe`): el 404, el menú (abrir, cerrar con un enlace y pulsando fuera) y el modo oscuro.
 
 ## 6. Qué te llevas
-- `tokens.css` y `global.css` con los tokens de la spec, y Archivo servida desde `/fonts/` en un solo woff2 de 95 KB o menos.
-- La cabecera, el menú del móvil (que se cierra con un enlace, pulsando fuera y con Escape), el pie y el 404 con su aspecto final, en claro y en oscuro.
-- La red con el lint de tokens, las pruebas del marco, las de desbordes y las cuatro vistas del 404.
+- `src/assets/shots/` con las capturas reducidas (3 MB como mucho) y `src/data/shots.ts` con su `alt`.
+- `src/data/home.ts` y los cuatro JSON de `src/content/cases/es/`, con el esquema Zod que valida las claves de captura.
+- `Shot.astro` (AVIF y WebP con `<Picture>`) y `e2e/datos.spec.ts`; las páginas, con el mismo texto que hoy.
 
 ## 7. Decisiones que tomar
-- **Bajar Archivo de Google Fonts.** Recomendada: sí; es OFL y el repo lleva su licencia.
-- **`www.fritzreigar.com` no existe hoy**, y el enlace de tu LinkedIn apunta ahí. El corte (2.13) lo arregla; si no quieres esperar, añade ya `www.fritzreigar.com` como dominio personalizado de `portfolio-v1` en el panel. Recomendada: hacerlo ya, son dos minutos.
+- **La QA de la 2.1 en el teléfono.** Si algo del marco o del 404 no te cuadra, se dice al abrir la 2.2 y va a «Desvíos» antes de seguir. Recomendada: hacerla antes de abrir la 2.2.
+- **`www.fritzreigar.com` sigue sin existir**, y el enlace de tu LinkedIn apunta ahí. El corte (2.13) lo arregla; si no quieres esperar, añade `www.fritzreigar.com` como dominio personalizado de `portfolio-v1` en el panel de Cloudflare. Recomendada: hacerlo ya, son dos minutos.
 - **El despliegue de previa `1483e40d` de `portfolio-v1`.** Recomendada: borrarlo cuando quieras, o en la limpieza del corte.
 - **La 2.8 (el texto inglés) puede adelantarse** a cualquier momento tras la 2.2. Recomendada: en su orden, salvo que te sobre una tarde para revisarlo antes.
