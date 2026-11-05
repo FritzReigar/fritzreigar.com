@@ -1,8 +1,9 @@
 ---
-// La ficha de Limpiezas Artemisa (plan/contenido.md § 3), sin estilo: el texto sale de
-// src/content/cases/es/limpiezas-artemisa.json. La tanda 2.5 la pinta con CaseHero, CaseShowcase (con sus
-// capturas) y CaseBody (plan/spec-visual.md § 2.2).
+// La ficha de Limpiezas Artemisa (plan/contenido.md § 3), pintada con plan/spec-visual.md § 2.2: CaseHero,
+// CaseShowcase y CaseBody. El texto y las capturas salen de src/content/cases/es/limpiezas-artemisa.json.
 import CaseBody from '../../components/case/CaseBody.astro';
+import CaseShowcase from '../../components/case/CaseShowcase.astro';
+import CaseHero from '../../components/heroes/CaseHero.astro';
 import { getCase } from '../../data/cases';
 import { sectionHref } from '../../data/routes';
 import { ui } from '../../data/ui';
@@ -17,21 +18,16 @@ const { data } = await getCase('work-artemisa', 'es');
   current="work"
 >
   <article>
-    <header>
-      <p><a href={sectionHref('work', 'es')}>{ui.es.caseSection.work}</a> · {data.kicker}</p>
-      <h1>{data.title}</h1>
-      <p>{data.lede}</p>
-      <p>
-        <a href={data.primary.href}>{data.primary.text}</a>
-        {data.secondary && (
-          <>
-            · <a href={data.secondary.href}>{data.secondary.text}</a>
-          </>
-        )}
-      </p>
-    </header>
-    {data.showcase.caption && <p><small>{data.showcase.caption}</small></p>}
-
+    <CaseHero
+      section={ui.es.caseSection.work}
+      sectionHref={sectionHref('work', 'es')}
+      kicker={data.kicker}
+      title={data.title}
+      lede={data.lede}
+      primary={data.primary}
+      secondary={data.secondary}
+    />
+    <CaseShowcase desktop={data.showcase.desktop} phone={data.showcase.phone} lang="es" />
     <CaseBody body={data.body} lang="es" />
   </article>
 </BaseLayout>

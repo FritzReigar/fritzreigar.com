@@ -3,9 +3,10 @@
 // para que la 2.7 la trace con stroke-dashoffset; hasta entonces se pinta trazada y quieta
 // (decisión F6). El tamaño y el sitio los pone quien la usa (con class): el trazo se estira
 // (preserveAspectRatio="none") y puede salirse de su caja (max-width: none, overflow visible).
-// Los trazos son los del lienzo final.
+// Los trazos son los del lienzo final. Las parejas de «Antes y después» alternan la flecha que sube
+// y baja (`arrow-up`, línea 978 de docs/lienzo/final.html) y la que baja y sube (`arrow-down`).
 interface Props {
-  shape: 'oval' | 'arrow' | 'arrow-down';
+  shape: 'oval' | 'arrow' | 'arrow-up' | 'arrow-down';
   trigger?: 'load' | 'scroll';
   class?: string;
 }
@@ -19,6 +20,10 @@ const SHAPES = {
     viewBox: '0 0 92 56',
     d: 'M3.7 40.1 C 20.2 47.6, 51.5 41.9, 82.8 24.3 M 66.2 13.1 C 73.6 17.8, 80 21.5, 84.6 23.3 C 81.9 29.9, 77.3 36.4, 73.6 43.9',
   },
+  'arrow-up': {
+    viewBox: '0 0 92 56',
+    d: 'M3.7 31.7 C 20.2 16.8, 47.8 13.1, 82.8 26.1 M 68.1 13.1 C 75.4 18.7, 81 23.3, 84.6 27.1 C 79.1 31.7, 73.6 36.4, 68.1 42.9',
+  },
   'arrow-down': {
     viewBox: '0 0 92 56',
     d: 'M3.7 28 C 23.9 41.1, 51.5 39.2, 82.8 26.1 M 66.2 16.8 C 73.6 20.5, 80 24.3, 84.6 26.1 C 81 31.7, 75.4 37.3, 70.8 42.9',
@@ -28,7 +33,7 @@ const SHAPES = {
 const { shape, trigger = 'load', class: className } = Astro.props;
 const { viewBox, d } = SHAPES[shape];
 ---
-<svg class:list={['ink', `ink--${trigger}`, className]} viewBox={viewBox} preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d={d} /></svg>
+<svg class:list={['ink', `ink--${shape}`, `ink--${trigger}`, className]} viewBox={viewBox} preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d={d} /></svg>
 
 <style>
   .ink {

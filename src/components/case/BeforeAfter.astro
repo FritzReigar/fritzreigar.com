@@ -1,0 +1,135 @@
+---
+// Las parejas de antes y después (plan/spec-visual.md § 2.2, «Fichas»): la nota y una pareja por
+// fila, con el filete fuerte arriba, el título en caja alta (1-3) y las dos capturas (4-12) con su
+// pie: «Antes» en tinta y «Después» en cobalto. Entre las dos, la flecha de tinta, alternando su
+// forma (la que sube y baja, la que baja y sube); la pareja del móvil (`tall`) va en dos columnas
+// de 260 px y sin flecha, y a 35rem o menos ninguna lleva flecha. Los `sizes` son los de spec § 6.2.
+import type { ShotKey } from '../../data/shots';
+import { type Lang, ui } from '../../data/ui';
+import Ink from '../ui/Ink.astro';
+import Shot from '../ui/Shot.astro';
+
+interface Side {
+  text: string;
+  shot: ShotKey;
+}
+
+interface Props {
+  note: string;
+  pairs: readonly { title: string; before: Side; after: Side; tall?: boolean }[];
+  lang: Lang;
+}
+
+const { note, pairs, lang } = Astro.props;
+const labels = ui[lang].beforeAfter;
+
+// La flecha de cada pareja ancha, alternando: la primera sube y baja, como en el lienzo.
+let wide = 0;
+const arrows = pairs.map((pair) => (pair.tall ? null : wide++ % 2 === 0 ? 'arrow-up' : 'arrow-down'));
+const sizesOf = (tall?: boolean) => (tall ? '(max-width: 35rem) 45vw, 260px' : '(max-width: 60rem) 45vw, 440px');
+---
+<p class="before-after__note">{note}</p>
+{pairs.map((pair, index) => (
+  <article class:list={['pair', { 'pair--tall': pair.tall }]}>
+    <h3>{pair.title}</h3>
+    <div class="pair__figures">
+      <figure>
+        <Shot shot={pair.before.shot} lang={lang} sizes={sizesOf(pair.tall)} />
+        <figcaption><strong>{labels.before}</strong> {pair.before.text}</figcaption>
+      </figure>
+      {arrows[index] && <Ink shape={arrows[index]} trigger="scroll" class="pair__ink" />}
+      <figure class="pair__after">
+        <Shot shot={pair.after.shot} lang={lang} sizes={sizesOf(pair.tall)} />
+        <figcaption><strong>{labels.after}</strong> {pair.after.text}</figcaption>
+      </figure>
+    </div>
+  </article>
+))}
+
+<style>
+  .before-after__note {
+    max-width: 62ch;
+    color: var(--color-text-muted);
+  }
+
+  .pair {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap-col);
+    row-gap: var(--space-3);
+    margin-top: var(--space-block);
+    padding-top: var(--space-3);
+    border-top: var(--rule) solid var(--color-line-strong);
+  }
+
+  h3 {
+    grid-column: 1 / span 3;
+    font-size: var(--text-h3);
+    font-weight: var(--weight-poster);
+    font-stretch: var(--stretch-narrow);
+    line-height: 1.05;
+    text-transform: uppercase;
+  }
+
+  .pair__figures {
+    position: relative;
+    grid-column: 4 / span 9;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--gap-pair);
+  }
+
+  .pair--tall .pair__figures {
+    grid-template-columns: repeat(2, minmax(0, var(--width-pair-tall)));
+  }
+
+  figure {
+    margin: 0;
+  }
+
+  figcaption {
+    margin-top: var(--space-2);
+    font-size: var(--text-s);
+  }
+
+  figcaption strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: var(--text-h3);
+    font-weight: var(--weight-poster);
+    font-stretch: var(--stretch-poster);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .pair__after strong {
+    color: var(--color-accent);
+  }
+
+  .pair__figures > :global(.pair__ink) {
+    position: absolute;
+    top: 30%;
+    left: calc(50% - 28px);
+    width: 56px;
+    height: 34px;
+  }
+
+  @media (max-width: 60rem) {
+    h3,
+    .pair__figures {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 35rem) {
+    .pair__figures,
+    .pair--tall .pair__figures {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: var(--space-2);
+    }
+
+    .pair__figures > :global(.pair__ink) {
+      display: none;
+    }
+  }
+</style>

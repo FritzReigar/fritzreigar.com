@@ -75,6 +75,7 @@
   --gap-col: clamp(16px, 2.2vw, 32px);
   --gap-wide: clamp(24px, 4vw, 64px);
   --gap-band: clamp(10px, 1.4vw, 20px);
+  --gap-pair: clamp(16px, 5vw, 72px);
   --gutter: clamp(16px, 4vw, 48px);
 
   --width-page: 1280px;

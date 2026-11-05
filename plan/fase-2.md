@@ -393,7 +393,7 @@ llega a su correo).
 
 ---
 
-### Tanda 2.5 — Las fichas de Trabajo: Missphone y Limpiezas Artemisa   [ ] pendiente
+### Tanda 2.5 — Las fichas de Trabajo: Missphone y Limpiezas Artemisa   [x] hecha (2026-11-05, v0.2.5)
 **Objetivo**: las dos fichas de Trabajo están pintadas como la spec, con la plantilla común de
 ficha.
 
@@ -956,3 +956,41 @@ Analytics, tocar el correo de la zona.
   2.3): el estilo de las tres secciones sumó 1,7. Aún sin tocar las bandas.
 - **2026-11-05, tanda 2.4: Playwright no pulsa un botón con `aria-disabled`.** La prueba de que un
   segundo clic mientras envía no repite la petición lo pulsa con `force: true`.
+- **2026-11-05, tanda 2.5: el título de ficha sangra hacia el margen.** «MISSPHONE» mide 1332 px
+  a 1440 (en una caja de 1280) y llega a 1412: se come el margen derecho sin partirse ni salir de
+  la ventana, como en el lienzo, cuya herramienta de desbordes solo cazaba lo que salía de la
+  ventana. `e2e/desbordes.spec.ts` exime a `.case-hero h1` de la comprobación de caja, no de la de
+  ventana. Sin `overflow-wrap: anywhere`, que lo partía en «MISSPHON / E».
+- **2026-11-05, tanda 2.5: `Ink` tiene una cuarta forma, `arrow-up`.** La que sube y baja (línea
+  978 de `docs/lienzo/final.html`); las parejas anchas alternan `arrow-up` y `arrow-down`
+  empezando por la primera, como el lienzo. Resuelve el Desvío de la 2.1. La `<svg>` lleva además
+  la clase `ink--<forma>`, que usa la prueba.
+- **2026-11-05, tanda 2.5: la captura del móvil de la vitrina va con `lazy`.** El encargo dice la
+  vitrina sin `lazy`; la de escritorio va así, pero la del móvil está oculta a 35rem o menos y con
+  `eager` el móvil la descargaría igual. En escritorio asoma en la primera pantalla y carga sin
+  esperar. Oculta, se quita también su `<picture>` (`:has`), que si no dejaba una fila vacía con
+  su hueco.
+- **2026-11-05, tanda 2.5: el JSON de Missphone, a la forma de sus piezas.** Los títulos de las
+  parejas y de las fases van sin el punto final (son títulos en caja alta, como en el lienzo), y
+  los pies de las parejas, con mayúscula: «Antes» y «Después» ya no van delante en la misma frase.
+  En «Las cifras», la unidad es la pieza pequeña a 0,45 em junto a la cifra (la «s» y los «MB» de
+  Snugtone): «páginas», «productos»… vuelven a su frase y el 268 lleva «→ 8», como el lienzo. El
+  texto de `contenido.md` no cambia.
+- **2026-11-05, tanda 2.5: quién pone qué en el cuerpo.** `CaseBody` pone cada sección con su
+  cartel (`SectionTitle`); `Prose`, `BeforeAfter`, `FeatureRows`, `FigureList` y `PhaseList` pintan
+  solo su contenido. `PullQuote` lleva su rótulo como `h2` con aspecto de rótulo, y cada columna de
+  `CaseClosing` es una `<section>` con su `h2`; el cierre es la última sección (`--space-end`). Su
+  acción (la descarga de Snugtone) ya sale como `Button` primario; la 2.6 la coloca. Un token
+  nuevo, `--gap-pair` (16 → 72 px, el hueco entre las dos capturas de una pareja en el lienzo).
+  `FigureList` reparte cuatro cifras en 2 + 2 y, a 60rem o menos, solo pone entera la última si
+  queda sola.
+- **2026-11-05, tanda 2.5: Snugtone y Snugport, a medio pintar.** Pasan ya por el `CaseBody` nuevo
+  (secciones, carteles y cierre con estilo) con su cabecera aún sin estilo y sin vitrina; `LayerStack`
+  sigue sin estilo. La 2.6 las acaba.
+- **2026-11-05, tanda 2.5: lo medido.** Documento de Missphone, 7,0 KB en gzip (30,9 brutos); de
+  Artemisa, 3,8 (12,8): tope 10. La vitrina de Missphone en AVIF: 33,0 KB la de 1200 (la que pide
+  1440) y 50,3 la de 1600: tope 120. Largo de Missphone, 8.681 px a 1440 y 8.354 a 390 (lienzo,
+  8.690 y 8.367). A 390 la vitrina va de 641 a 877, no a 835 como dice spec § 7: ese número es de
+  antes de ocultar la captura del móvil (nota al pie de spec § 6.2), cuando la de escritorio medía
+  258 px y no 326; la captura del lienzo da lo mismo que la web, píxel a píxel. Prueba nueva, `e2e/fichas.spec.ts`: la primera pantalla de Missphone (spec § 7),
+  la vitrina como única imagen sin `lazy`, las flechas de las parejas y las piezas de Artemisa.

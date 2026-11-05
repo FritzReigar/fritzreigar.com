@@ -1,0 +1,85 @@
+---
+// Las cifras de una ficha (plan/spec-visual.md § 2.2, «Fichas»): cada una en Archivo 62 % a
+// --text-figure, con la regla cobalto de 6 px encima, su unidad a 0,45 em y su frase debajo. Cinco
+// cifras van en 3 + 2 (Missphone, Snugtone); cuatro, en 2 + 2 (Artemisa, spec § 2.4). A 60rem o
+// menos, en dos columnas, y la última entera si queda sola; a 35rem o menos, a --text-step. La
+// nota, si la hay, va encima.
+import type { Rich as RichText } from '../../data/rich';
+import Rich from '../ui/Rich.astro';
+
+interface Props {
+  note?: RichText;
+  items: readonly { num: string; unit?: string; text: RichText }[];
+}
+
+const { note, items } = Astro.props;
+---
+{note && <p class="figure-list__note"><Rich text={note} /></p>}
+<ul class:list={['figure-list', { 'figure-list--even': items.length % 2 === 0 }]}>
+  {items.map((item) => (
+    <li>
+      <span class="figure-list__num">{item.num}{item.unit && <span class="figure-list__unit"> {item.unit}</span>}</span> <Rich text={item.text} />
+    </li>
+  ))}
+</ul>
+
+<style>
+  .figure-list__note {
+    margin-bottom: var(--space-block);
+    color: var(--color-text-muted);
+  }
+
+  .figure-list {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    column-gap: var(--gap-col);
+  }
+
+  li {
+    grid-column: span 2;
+    padding-block: var(--space-3) var(--space-4);
+    border-top: var(--rule-thick) solid var(--color-accent);
+  }
+
+  li:nth-child(n + 4),
+  .figure-list--even li {
+    grid-column: span 3;
+  }
+
+  .figure-list__num {
+    display: block;
+    margin-bottom: var(--space-2);
+    font-size: var(--text-figure);
+    font-weight: var(--weight-poster);
+    font-stretch: var(--stretch-poster);
+    letter-spacing: var(--tracking-poster);
+    line-height: 0.85;
+    white-space: nowrap;
+  }
+
+  .figure-list__unit {
+    font-size: 0.45em;
+  }
+
+  @media (max-width: 60rem) {
+    .figure-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    li,
+    li:nth-child(n + 4),
+    .figure-list--even li {
+      grid-column: auto;
+    }
+
+    li:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 35rem) {
+    .figure-list__num {
+      font-size: var(--text-step);
+    }
+  }
+</style>

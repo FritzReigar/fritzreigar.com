@@ -8,6 +8,7 @@ import { expect, test } from '@playwright/test';
 // Cada tanda que pinta una de las cuatro páginas de la spec la añade a VIEWS.
 const VIEWS = [
   { name: 'portada', path: '/' },
+  { name: 'missphone', path: '/trabajo/missphone' },
   { name: '404', path: '/404' },
 ];
 

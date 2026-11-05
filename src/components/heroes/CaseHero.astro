@@ -1,0 +1,112 @@
+---
+// La cabecera de una ficha (plan/spec-visual.md § 2.2, «Héroes»): el rótulo con la sección
+// enlazada («Trabajo» o «Proyecto») y el título a --text-case; bajo la regla cobalto, la
+// entradilla (1-7) y los enlaces (9-12): un Button primario y, si lo hay, un ArrowLink. Por debajo
+// de 60rem la fila bajo la regla se apila. El título va en su propio trozo para la recomposición
+// de la 2.7. Los dos enlaces salen de la web: llevan el «↗» en el texto (plan/contenido.md).
+import ArrowLink from '../ui/ArrowLink.astro';
+import Button from '../ui/Button.astro';
+import Label from '../ui/Label.astro';
+
+interface Link {
+  text: string;
+  href: string;
+}
+
+interface Props {
+  section: string;
+  sectionHref: string;
+  kicker: string;
+  title: string;
+  lede: string;
+  primary: Link;
+  secondary?: Link;
+}
+
+const { section, sectionHref, kicker, title, lede, primary, secondary } = Astro.props;
+---
+<header class="case-hero">
+  <div class="wrap">
+    <Label class="case-hero__kicker"><a href={sectionHref}>{section}</a> · {kicker}</Label>
+    <h1><span class="first">{title}</span></h1>
+    <div class="case-hero__copy">
+      <p class="lede">{lede}</p>
+      <div class="case-hero__links">
+        <Button href={primary.href} variant="primary" external>{primary.text}</Button>
+        {secondary && <ArrowLink href={secondary.href} external>{secondary.text}</ArrowLink>}
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  .case-hero {
+    padding-top: var(--space-hero-top);
+    overflow: clip;
+  }
+
+  /* El rótulo de un héroe va a --text-s, con la sección en tinta y negrita. */
+  .case-hero :global(.case-hero__kicker) {
+    max-width: none;
+    margin-bottom: var(--space-2);
+    font-size: var(--text-s);
+  }
+
+  .case-hero :global(.case-hero__kicker a) {
+    color: var(--color-text);
+    font-weight: var(--weight-bold);
+  }
+
+  .case-hero :global(.case-hero__kicker a:hover) {
+    color: var(--color-accent);
+  }
+
+  h1 {
+    font-size: var(--text-case);
+    font-weight: var(--weight-poster);
+    font-stretch: var(--stretch-poster);
+    letter-spacing: var(--tracking-poster);
+    line-height: var(--leading-poster);
+    text-transform: uppercase;
+  }
+
+  /* Una palabra más ancha que la caja (MISSPHONE a 1440) sangra hacia el margen derecho, sin
+     partirse ni salir de la ventana: es el cartel del lienzo. */
+  h1 span {
+    display: inline-block;
+  }
+
+  .case-hero__copy {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap-col);
+    row-gap: var(--space-4);
+    margin-top: var(--space-4);
+    padding-top: var(--space-4);
+    border-top: var(--rule-thick) solid var(--color-accent);
+  }
+
+  .lede {
+    grid-column: 1 / span 7;
+    margin: 0;
+  }
+
+  .case-hero__links {
+    grid-column: 9 / span 4;
+    display: grid;
+    gap: var(--space-2);
+    align-content: start;
+    justify-items: start;
+  }
+
+  .case-hero__links > :global(.button) {
+    width: 100%;
+  }
+
+  @media (max-width: 60rem) {
+    .lede,
+    .case-hero__links {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

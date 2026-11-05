@@ -1,0 +1,53 @@
+---
+// El texto corrido de una ficha (plan/spec-visual.md § 2.2, «Fichas»), en las columnas 5-12: la
+// entrada, la lista si la hay y el cierre. «Cómo me la encontré» (Missphone) y «De dónde se
+// partía» (Artemisa). El cartel de la sección lo pone CaseBody.
+import type { Rich as RichText } from '../../data/rich';
+import Rich from '../ui/Rich.astro';
+
+interface Props {
+  intro: RichText;
+  items?: readonly RichText[];
+  outro?: RichText;
+}
+
+const { intro, items, outro } = Astro.props;
+---
+<div class="prose">
+  <p><Rich text={intro} /></p>
+  {items && (
+    <ul>
+      {items.map((item) => <li><Rich text={item} /></li>)}
+    </ul>
+  )}
+  {outro && <p><Rich text={outro} /></p>}
+</div>
+
+<style>
+  .prose {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap-col);
+  }
+
+  .prose > * {
+    grid-column: 5 / span 8;
+  }
+
+  ul {
+    max-width: var(--width-text);
+    margin-bottom: 1em;
+    padding-left: 1.1em;
+    list-style: disc;
+  }
+
+  li {
+    margin-bottom: var(--space-1);
+  }
+
+  @media (max-width: 60rem) {
+    .prose > * {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

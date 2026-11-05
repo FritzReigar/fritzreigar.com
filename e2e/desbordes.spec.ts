@@ -5,7 +5,7 @@ import { sitePages } from './support/pages';
 // Ningún texto se sale de su caja ni de la ventana (plan/spec-visual.md § 3.2), sobre dist/ y a
 // los anchos de los cortes. La lógica es la de docs/lienzo/herramientas/comprobar-desbordes.mjs.
 // Cada tanda que pinta una página la añade a PAINTED (Reglas de la fase 2).
-const PAINTED: RouteKey[] = ['home', 'not-found'];
+const PAINTED: RouteKey[] = ['home', 'work-missphone', 'work-artemisa', 'not-found'];
 const WIDTHS = [360, 768, 1024, 1440];
 
 const pages = sitePages.filter((sitePage) => PAINTED.includes(sitePage.key));
@@ -27,7 +27,10 @@ const overflowsOf = (page: Page): Promise<string[]> =>
       // Lo que no se ve (el menú cerrado) y lo que es solo para lectores (.sr-only).
       if (box.width <= 1) continue;
       const style = getComputedStyle(el);
-      if (style.display !== 'inline' && el.scrollWidth > el.clientWidth + 1) {
+      // El título de ficha puede sangrar hacia el margen, como en el lienzo (la herramienta del
+      // lienzo solo cazaba lo que se salía de la ventana): para él vale la segunda comprobación.
+      const bleeds = el.matches('.case-hero h1, .case-hero h1 span');
+      if (!bleeds && style.display !== 'inline' && el.scrollWidth > el.clientWidth + 1) {
         out.push(`se sale de su caja: ${name(el)} (${el.scrollWidth} en ${el.clientWidth})`);
       }
       if (box.right > innerWidth + 1 || box.left < -1) {

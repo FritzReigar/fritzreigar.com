@@ -45,58 +45,58 @@
       "note": "El «antes» es del 31 de agosto de 2026, guardado antes de tocar nada. El «después» se captura con el mismo ancho y el mismo encuadre, o no se compara.",
       "pairs": [
         {
-          "title": "La portada, en escritorio.",
+          "title": "La portada, en escritorio",
           "before": {
-            "text": "una sola imagen con el botón dibujado dentro, que no llevaba a ninguna parte.",
+            "text": "Una sola imagen con el botón dibujado dentro, que no llevaba a ninguna parte.",
             "shot": "missphone-before-home-desktop"
           },
           "after": {
-            "text": "una cabecera de verdad, que dice qué es la tienda y dónde está, con dos botones (diseñar tu funda y ver los accesorios) y la nota de Google.",
+            "text": "Una cabecera de verdad, que dice qué es la tienda y dónde está, con dos botones (diseñar tu funda y ver los accesorios) y la nota de Google.",
             "shot": "missphone-after-home-desktop"
           }
         },
         {
-          "title": "La portada, en el móvil.",
+          "title": "La portada, en el móvil",
           "before": {
-            "text": "la misma imagen, encogida a 380 px hasta no poder leerse.",
+            "text": "La misma imagen, encogida a 380 px hasta no poder leerse.",
             "shot": "missphone-before-home-mobile"
           },
           "after": {
-            "text": "la foto arriba y, debajo, el titular, los dos botones y la nota, a tamaño de móvil.",
+            "text": "La foto arriba y, debajo, el titular, los dos botones y la nota, a tamaño de móvil.",
             "shot": "missphone-after-home-mobile"
           },
           "tall": true
         },
         {
-          "title": "Las categorías de la portada.",
+          "title": "Las categorías de la portada",
           "before": {
-            "text": "el nombre de cada categoría montado sobre su foto, a veces encima del propio producto.",
+            "text": "El nombre de cada categoría montado sobre su foto, a veces encima del propio producto.",
             "shot": "missphone-before-categories"
           },
           "after": {
-            "text": "tarjetas con la foto a un lado y, al otro, el nombre y el precio desde el que empieza.",
+            "text": "Tarjetas con la foto a un lado y, al otro, el nombre y el precio desde el que empieza.",
             "shot": "missphone-after-categories"
           }
         },
         {
-          "title": "Una categoría, la de fundas.",
+          "title": "Una categoría, la de fundas",
           "before": {
-            "text": "cuatro párrafos en gris sobre una foto de fundas, que no se leían.",
+            "text": "Cuatro párrafos en gris sobre una foto de fundas, que no se leían.",
             "shot": "missphone-before-cases-page"
           },
           "after": {
-            "text": "la cabecera de color, con un titular que se lee, un botón para hacerla con tu foto y la foto enmarcada; la misma cabecera en todas las páginas.",
+            "text": "La cabecera de color, con un titular que se lee, un botón para hacerla con tu foto y la foto enmarcada; la misma cabecera en todas las páginas.",
             "shot": "missphone-after-cases-page"
           }
         },
         {
-          "title": "Más abajo, en la portada.",
+          "title": "Más abajo, en la portada",
           "before": {
-            "text": "un bloque de accesorios con el texto en gris sobre una foto oscura, casi invisible.",
+            "text": "Un bloque de accesorios con el texto en gris sobre una foto oscura, casi invisible.",
             "shot": "missphone-before-home-lower"
           },
           "after": {
-            "text": "en ese sitio, la tienda de la calle con su propio bloque, «La tienda, en Benetússer»: la dirección, la foto del local y botones para llamar y para llegar.",
+            "text": "En ese sitio, la tienda de la calle con su propio bloque, «La tienda, en Benetússer»: la dirección, la foto del local y botones para llamar y para llegar.",
             "shot": "missphone-after-home-lower"
           }
         }
@@ -105,42 +105,42 @@
     "figureList": {
       "title": "Las cifras",
       "items": [
-        { "num": "39", "unit": "páginas", "text": "puestas al nivel de la portada: 37 rehechas y 2 nuevas" },
-        { "num": "8", "unit": "productos", "text": "que se diseñan y se compran en la web" },
+        { "num": "39", "text": "páginas puestas al nivel de la portada: 37 rehechas y 2 nuevas" },
+        { "num": "8", "text": "productos que se diseñan y se compran en la web" },
         {
           "num": "268",
-          "unit": "fichas",
-          "text": "repetidas por modelo, fundidas en 8 productos con desplegable (252 modelos)"
+          "unit": "→ 8",
+          "text": "fichas repetidas por modelo, fundidas en 8 productos con desplegable (252 modelos)"
         },
-        { "num": "15", "unit": "extensiones", "text": "propias en PHP (mu-plugins)" },
-        { "num": "14", "unit": "parejas", "text": "de antes y después, con el mismo lienzo" }
+        { "num": "15", "text": "extensiones propias en PHP (mu-plugins)" },
+        { "num": "14", "text": "parejas de antes y después, con el mismo lienzo" }
       ]
     },
     "phaseList": {
       "title": "Qué hice, por fases",
       "items": [
         {
-          "title": "El rescate.",
+          "title": "El rescate",
           "text": "Primero, recuperar el control: la administración y los avisos, a nombre de la casa; una copia de seguridad comprobada antes de tocar nada; los pagos con tarjeta y Bizum y los gastos de envío, revisados con pedidos de prueba. Y el catálogo: 268 fichas que repetían el mismo producto por cada modelo de móvil, fundidas en 8 productos con un desplegable de modelo, con cada dirección vieja redirigida (301) a su producto con el modelo ya elegido."
         },
         {
-          "title": "Los regalos que se diseñan en la web.",
+          "title": "Los regalos que se diseñan en la web",
           "text": "Taza, camiseta, cojín y marco, y después alfombrillas y puzles: 8 productos con el diseñador en la propia ficha, y una extensión que impide comprarlos sin su diseño. Las 8 páginas de regalo, con foto, texto y un botón que lleva a diseñar o a comprar."
         },
         {
-          "title": "Las páginas, al nivel de la portada.",
+          "title": "Las páginas, al nivel de la portada",
           "text": "37 páginas rehechas —regalo, ocasión, accesorios y las 14 marcas— y 2 nuevas, con las piezas de la portada: cabecera de color con la foto enmarcada, bandas, tarjetas y fotos. El CSS compartido, escrito una vez en bloques con nombre y no página a página. Y la portada, con una cabecera propia."
         },
         {
-          "title": "Los flecos.",
+          "title": "Los flecos",
           "text": "Un solo H1 y texto alternativo en cada página, los textos que prometían lo que la tienda no tenía, la tienda y las fichas maquetadas, la imagen al compartir la portada y una limpieza a fondo antes de la copia final."
         },
         {
-          "title": "La entrega.",
+          "title": "La entrega",
           "text": "La web recorrida entera, de la portada al carrito, en escritorio y en móvil; una copia final verificada archivo a archivo; y la entrega en persona, en la tienda, con un documento de todo lo que decidí en su nombre para que lo revisen."
         },
         {
-          "title": "El lanzamiento.",
+          "title": "El lanzamiento",
           "text": "La entrada de estreno en el blog y la ficha de Google al día; una página de reparación de iPhone con sus ocho averías y sus datos estructurados; la tienda convertida en escaparate, con las categorías y los productos que se diseñan; y la temporada (Navidad, San Valentín, el Día de la Madre…) que se enciende y se apaga desde el menú, sin tocar código."
         }
       ],

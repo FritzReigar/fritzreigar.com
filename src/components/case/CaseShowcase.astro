@@ -1,0 +1,49 @@
+---
+// La vitrina de una ficha (plan/spec-visual.md § 2.2, «Fichas»): el bloque celeste con sus
+// capturas. Hoy, la variante `pair`: escritorio y móvil en 5fr 1fr, alineadas abajo (Missphone,
+// Artemisa, Snugport); a 35rem o menos, solo la de escritorio. La `single` (Snugtone, con el pie)
+// llega en la 2.6. La de escritorio asoma en la primera pantalla y va sin `lazy` y sin
+// fetchpriority (el LCP es el título, spec § 6.1). La del móvil sí va con `lazy`: a 35rem o menos
+// está oculta, y así el móvil no la descarga (Desvíos de la 2.5).
+import type { ShotKey } from '../../data/shots';
+import type { Lang } from '../../data/ui';
+import Shot from '../ui/Shot.astro';
+
+interface Props {
+  desktop: ShotKey;
+  phone?: ShotKey;
+  lang: Lang;
+}
+
+const { desktop, phone, lang } = Astro.props;
+---
+<div class="wrap">
+  <div class="case-showcase">
+    <Shot shot={desktop} lang={lang} sizes="(max-width: 35rem) 84vw, 987px" eager class="case-showcase__desktop" />
+    {phone && <Shot shot={phone} lang={lang} sizes="197px" phone />}
+  </div>
+</div>
+
+<style>
+  .case-showcase {
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    gap: var(--space-3);
+    align-items: end;
+    margin-top: var(--space-block);
+    padding: var(--space-inset);
+    background: var(--color-sky);
+  }
+
+  @media (max-width: 35rem) {
+    .case-showcase {
+      grid-template-columns: minmax(0, 1fr);
+      padding: var(--space-3);
+    }
+
+    /* Sin el <picture> de la del móvil, que si no ocuparía una fila vacía con su hueco. */
+    .case-showcase > :global(picture:has(.shot--phone)) {
+      display: none;
+    }
+  }
+</style>

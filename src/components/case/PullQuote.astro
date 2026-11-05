@@ -1,0 +1,67 @@
+---
+// La cita de una ficha (plan/spec-visual.md § 2.2, «Fichas»): el rótulo (1-2) y la cita en caja
+// normal, Archivo 75 % negrita a --text-quote, hasta 32ch (3-12). «Lo mejor» en Missphone y «Por
+// qué» en Snugtone. El rótulo es el h2 de su sección, con aspecto de rótulo pequeño. Por debajo de
+// 60rem, el rótulo encima.
+interface Props {
+  id: string;
+  label: string;
+  text: string;
+}
+
+const { id, label, text } = Astro.props;
+---
+<section class="pull-quote" aria-labelledby={id}>
+  <div class="wrap pull-quote__grid">
+    <h2 id={id}>{label}</h2>
+    <blockquote>
+      <p>{text}</p>
+    </blockquote>
+  </div>
+</section>
+
+<style>
+  .pull-quote {
+    padding-top: var(--space-section);
+  }
+
+  .pull-quote__grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap-col);
+    row-gap: var(--space-2);
+  }
+
+  h2 {
+    grid-column: 1 / span 2;
+    padding-top: var(--space-2);
+    color: var(--color-text-muted);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+  }
+
+  blockquote {
+    grid-column: 3 / span 10;
+    margin: 0;
+    font-size: var(--text-quote);
+    font-weight: var(--weight-bold);
+    font-stretch: var(--stretch-narrow);
+    letter-spacing: -0.01em;
+    line-height: var(--leading-tight);
+  }
+
+  blockquote p {
+    max-width: 32ch;
+  }
+
+  @media (max-width: 60rem) {
+    h2,
+    blockquote {
+      grid-column: 1 / -1;
+    }
+
+    h2 {
+      padding-top: 0;
+    }
+  }
+</style>
