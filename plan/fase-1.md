@@ -305,7 +305,7 @@ Solo puede salir dentro de `:root` y de su bloque de tema oscuro. Más las captu
 
 ---
 
-### Tanda 1.5 — El andamio de Astro   [x] hecha en local (2026-11-05, v0.1.5); el push de `astro` y la previa, pendientes del OK de Fritz
+### Tanda 1.5 — El andamio de Astro   [x] hecha (2026-11-05, v0.1.5; previa en `fritzreigar-com.pages.dev`)
 **Objetivo**: en la rama `astro` hay un proyecto Astro en la raíz del repo, con las seis rutas por
 idioma, el texto de `contenido.md` sin estilo, la CSP estricta, las pruebas y la CI en verde, y una
 previa en Pages con `noindex`.
@@ -568,3 +568,15 @@ fase 2 se planifica y se pinta con ella, y el lienzo queda solo como imagen de r
 - **2026-11-05, tanda 1.5: npm 11 no corre los `postinstall` de `esbuild` y `workerd`** (pide
   `npm approve-scripts`). No hacen falta: los binarios llegan por sus dependencias opcionales y
   funcionan. La CI usa el npm de Node 22, que sí los corre.
+- **2026-11-05, tanda 1.5: los proyectos de Pages.** El que sirve fritzreigar.com es
+  **`portfolio-v1`** (producción `main`, sin build, raíz del repo). La previa es **`fritzreigar-com`**
+  (`fritzreigar-com.pages.dev`): producción `astro`, preset Astro, `npm run build`, salida `dist` y
+  `NODE_VERSION` = `22` en producción. Su primer build salió con el Node 22.23 por defecto, antes de
+  fijar la variable; la portada responde 200 con `X-Robots-Tag: noindex`, la CSP, HSTS y `DENY`, el
+  404 es real y `/package.json` da 404. La CI de `astro` salió en verde (run 42014644918).
+- **2026-11-05, tanda 1.5: el push de `astro` desplegó una previa en `portfolio-v1`.** Sin build,
+  publicó la raíz del repo (portada 404 y el código fuente a la vista, con `noindex`). Se cortaron las
+  previas de `portfolio-v1` (*Control de rama* → vista previa «Ninguno»; producción sigue en `main`
+  con despliegue automático). El despliegue `1483e40d` sigue ahí: borrarlo es cosa de Fritz. En el
+  corte hay que mirar también las previas de `fritzreigar-com`, que hoy construyen todas las ramas:
+  un push a `main` antes del corte daría un build fallido allí (sin `package.json`).
