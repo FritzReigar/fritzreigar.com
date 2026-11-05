@@ -1,0 +1,16 @@
+---
+// El 404 (plan/contenido.md § 6.1), sin estilo. Pages lo sirve con estado 404 para cualquier ruta
+// que no exista fuera de /en/ (allí, src/pages/en/404.astro). El ErrorHero es de la fase 2.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { pathFor, sectionHref } from '../data/routes';
+---
+<BaseLayout title="Página no encontrada · Fritz Reigar" noindex>
+  <p>Error 404</p>
+  <h1>Esta página no existe</h1>
+  <p>O ha cambiado de sitio. Lo que buscabas seguramente está en la portada.</p>
+  <p>
+    <a href={pathFor('home', 'es')}>Volver al inicio</a>
+    · <a href={sectionHref('work', 'es')}>Ver el trabajo</a>
+    · <a href={sectionHref('projects', 'es')}>Ver los proyectos</a>
+  </p>
+</BaseLayout>

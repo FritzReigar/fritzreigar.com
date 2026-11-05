@@ -305,7 +305,7 @@ Solo puede salir dentro de `:root` y de su bloque de tema oscuro. Más las captu
 
 ---
 
-### Tanda 1.5 — El andamio de Astro   [ ] pendiente
+### Tanda 1.5 — El andamio de Astro   [x] hecha en local (2026-11-05, v0.1.5); el push de `astro` y la previa, pendientes del OK de Fritz
 **Objetivo**: en la rama `astro` hay un proyecto Astro en la raíz del repo, con las seis rutas por
 idioma, el texto de `contenido.md` sin estilo, la CSP estricta, las pruebas y la CI en verde, y una
 previa en Pages con `noindex`.
@@ -532,3 +532,39 @@ fase 2 se planifica y se pinta con ella, y el lienzo queda solo como imagen de r
   cookies. Y una línea que mirar al planificar: Cloudflare empuja los proyectos nuevos de Pages hacia
   Workers con archivos estáticos; el estudio y Artemisa siguen en Pages con `_headers` y middleware,
   así que lo coherente es quedarse en Pages salvo que algo lo impida.
+- **2026-11-05, tanda 1.5: los enlaces del marco van en línea, no en lista.** Sin CSS, una `<ul>`
+  de enlaces apila cajas de 18 px y axe da `target-size` (WCAG 2.2, 2.5.8) en las doce páginas. La
+  cabecera, el pie y las acciones del 404 van en un párrafo con « · », como los escribe
+  `contenido.md` § 0; la fase 2 los pasa a lista con su tamaño de toque.
+- **2026-11-05, tanda 1.5: las gemelas inglesas sin texto llevan `noindex`, y la prueba de hreflang
+  cubre el caso.** Con `en.live` en `false`, cada una sale con su `title`, el aviso (en inglés,
+  `notYetText` de `ui.ts`) y el enlace a la española, sin canonical ni hreflang y fuera del sitemap
+  y de Lighthouse. Probado el camino vivo poniendo Snugport en `live: true`: con la gemela aún en
+  `noindex`, la española anunciaba un hreflang que la inglesa no devolvía (rojo); sin el `noindex`,
+  recíproco (verde). Al encender cada gemela en la fase 2 hay que quitarle el `noindex`.
+- **2026-11-05, tanda 1.5: la ruta borrada del fallo provocado es la del 404.** Borrar una ficha de
+  `routes.ts` ya tumba el build (`pathFor` lanza «no hay ninguna ruta»), antes de llegar a las
+  pruebas. La del 404 no la pide nadie por clave, así que el build pasa y la prueba sale en rojo con
+  `/404` y `/en/404` construidas sin ruta; deshecho, verde. La prueba compara los `.html` de `dist/`
+  con `routes.ts` en los dos sentidos.
+- **2026-11-05, tanda 1.5: lo que la tanda no decía y se resolvió por lo mínimo.**
+  - El avatar del JSON-LD (`contenido.md` § 6.3) se sirve en `/assets/img/fritz-reigar-avatar.png`:
+    copia de `x/contenido/marca/avatar-nariz-85.png` (400 × 400, 79 KB). Ninguna página lo carga.
+  - Sin `og:image` hasta las imágenes de Satori (fase 2), y `twitter:card` en `summary`.
+    `og-preview.png` sigue en su URL, pero es la del diseño viejo.
+  - El `name` del manifest pasa a «Fritz Reigar · Desarrollador web freelance en Valencia» (decía
+    «Desarrollador backend y QA de IA»). Sus colores, con los estilos.
+  - El formulario conserva los `name` de hoy (`name`, `email`, `message`) y el `_gotcha`, oculto con
+    `hidden` porque la CSP no deja `style=""`.
+  - Las cuatro capturas de `assets/img/proyectos/` se quedan en la raíz, fuera de `public/`: no se
+    sirven y la fase 2 decide (`plan/capturas.md` ya tiene sus copias).
+  - Los cuatro puntos de Snugport van sin título de sección: `contenido.md` no les da uno.
+  - El 404 inglés dice solo «This page does not exist» y lleva a la portada; su texto es de la
+    fase 2.
+  - Los presupuestos de bytes de `lighthouse.budgets.json` salen de los topes en gzip de
+    `spec-visual.md` § 8, pasados a bruto con la proporción del lienzo (el porqué, en la cabecera de
+    `scripts/lighthouse.mjs`). Hoy: 100 en las cinco páginas, documento máximo 11,7 KB.
+  - Sin Web Analytics en la CSP: no está activo. Si se activa, `_headers` dice qué añadir.
+- **2026-11-05, tanda 1.5: npm 11 no corre los `postinstall` de `esbuild` y `workerd`** (pide
+  `npm approve-scripts`). No hacen falta: los binarios llegan por sus dependencias opcionales y
+  funcionan. La CI usa el npm de Node 22, que sí los corre.

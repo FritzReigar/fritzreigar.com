@@ -1,0 +1,69 @@
+---
+// La ficha de Snugport (plan/contenido.md § 5), sin estilo. Las cifras, recontadas el 2026-11-04
+// en snugport-app (CLAUDE.md § «Proyecto principal: Snugport»).
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { sectionHref } from '../../data/routes';
+
+const stack = [
+  'JavaScript vanilla',
+  'React',
+  'TypeScript',
+  'Tailwind',
+  'Supabase',
+  'Postgres RLS',
+  'Stripe',
+  'PWA',
+  'Cloudflare Pages',
+];
+---
+<BaseLayout
+  title="Snugport · Proyecto · Fritz Reigar"
+  description="Centro de operaciones para freelancers: PWA en JavaScript vanilla en producción y panel en migración a React y TypeScript, con más de 1.200 pruebas."
+  og={{
+    title: 'Snugport, el centro de operaciones del freelancer',
+    description: 'Horas, proyectos, clientes y finanzas en un panel: gratis, con plan de pago.',
+  }}
+  current="projects"
+>
+  <article>
+    <header>
+      <p><a href={sectionHref('projects', 'es')}>Proyecto</a> · Producto propio · Gratis, con plan de pago</p>
+      <h1>Snugport</h1>
+      <p>
+        Centro de operaciones para freelancers: tracker de horas con tarifa, proyectos, pipeline de
+        clientes, finanzas, vencimientos y checklists.
+      </p>
+      <p><a href="https://snugport.app/">Probar la app ↗</a></p>
+    </header>
+
+    <section>
+      <ul>
+        <li>
+          La versión en producción, en JavaScript vanilla sin dependencias, es una PWA instalable
+          que funciona offline.
+        </li>
+        <li>
+          Migración en curso del panel a React 19 + TypeScript + Tailwind 4, en paralelo a
+          producción: más de 1.200 pruebas unitarias (Vitest), más de 300 E2E (Playwright) en móvil
+          y escritorio, y mutation testing.
+        </li>
+        <li>
+          Gratis, sin cuenta y sin límite; el plan de pago, por suscripción con Stripe, lleva tus
+          datos entre dispositivos. Backend sobre Supabase (Postgres, Auth y Edge Functions en
+          TypeScript): el muro de pago vive en las políticas RLS de Postgres, no en el cliente.
+        </li>
+        <li>
+          Accesibilidad auditada (contraste AA, trampa de foco, <code>prefers-reduced-motion</code>),
+          temas a elegir, interfaz bilingüe ES/EN y 80 divisas.
+        </li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="con-que">
+      <h2 id="con-que">Con qué</h2>
+      <ul>
+        {stack.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+  </article>
+</BaseLayout>

@@ -1,0 +1,48 @@
+# La web en CI (tanda 1.5 de plan/fase-1.md): cada push a astro o a main pasa la red entera, la
+# misma de `npm run red` con los umbrales de CI en Lighthouse. No publica nada: publica Pages, que
+# construye por su cuenta cada rama con su webhook. El repo es público: los minutos no cuentan.
+# Copia recortada de ~/Projects/propios/estudio-reigar/.github/workflows/web.yml (su job «red»).
+name: web
+
+on:
+  push:
+    branches: [astro, main]
+  workflow_dispatch:
+
+concurrency:
+  group: web-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CI: true
+  WRANGLER_SEND_METRICS: 'false'
+
+jobs:
+  red:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      # Ubuntu 24.04 no deja a Chromium crear su sandbox (AppArmor); Playwright lo lanza con
+      # --no-sandbox, Lighthouse no (Desvío 16 de la fase 4 del estudio).
+      - run: sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+      - run: npm run check
+      - run: npm run build
+      - run: npm run comentarios
+      - run: npm run e2e
+      - run: npm run lighthouse -- --ci --pasadas 3
+      - if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: red-${{ github.sha }}
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore
+          retention-days: 7

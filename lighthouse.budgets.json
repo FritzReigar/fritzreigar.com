@@ -1,0 +1,20 @@
+{
+  "scores": {
+    "performance": 95,
+    "accessibility": 100,
+    "best-practices": 100,
+    "seo": 100
+  },
+  "ciScores": {
+    "performance": 90
+  },
+  "cls": 0.01,
+  "bytes": {
+    "script": 8192,
+    "stylesheet": 56320,
+    "font": 97280,
+    "document": 102400,
+    "image": 122880,
+    "total": 389120
+  }
+}

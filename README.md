@@ -1,50 +1,45 @@
-# Portfolio — fritzreigar.com
+# fritzreigar.com
 
-Portfolio personal de Fritz Reigar: desarrollador backend, QA de modelos de IA y
-servicios web para negocios.
+La web personal de Fritz Reigar: la persona detrás de [Estudio Reigar](https://estudioreigar.com/).
+Enseña su trabajo para clientes, sus proyectos y quién es.
 
-Sitio estático de una sola página, escrito a mano en HTML, CSS y JavaScript
-vanilla: sin frameworks, sin build y sin dependencias de terceros.
+> **Estado:** la rama `astro` es la web nueva, en construcción (plan en [`plan/`](plan/README.md)).
+> `main` sigue publicando la web de una sola página hasta el corte de la fase 2.
 
-## Características
+## Cómo está hecha
 
-- **Bilingüe ES/EN** — español por defecto en el HTML, inglés en el diccionario
-  de `js/i18n.js`. El idioma se puede forzar con `?lang=en` para compartir el
-  enlace ya traducido; si no, manda la preferencia guardada y después el idioma
-  del navegador.
-- **Tema claro/oscuro** — claro por defecto, respeta `prefers-color-scheme` y
-  persiste la elección. Sin parpadeo al cargar: el tema se aplica desde un
-  script inline en el `<head>`, antes del primer pintado.
-- **Accesible** — skip link, foco visible, menú de móvil operable por teclado,
-  `prefers-reduced-motion` respetado y hoja de estilos de impresión. Las
-  animaciones de scroll solo se activan con JS disponible, de modo que el
-  contenido siempre es visible.
-- **SEO y social** — meta tags, Open Graph, Twitter Card y datos estructurados
-  JSON-LD (`ProfilePage` + `Person`).
-- **Ligero** — cinco scripts pequeños, ninguna librería.
-
-## Estructura
+[Astro](https://astro.build/) estático, sin framework de interfaz y con un solo script
+(`src/scripts/main.ts`), servido por Cloudflare Pages. Español en la raíz e inglés en `/en/`, con
+HTML servido en cada idioma y cero JS para el idioma.
 
 ```
-index.html        página única (contenido en español)
-404.html          página de error
-css/styles.css    estilos y temas (variables en :root y html.dark)
-js/theme.js       toggle de tema
-js/i18n.js        diccionario EN y toggle de idioma
-js/form.js        envío del formulario de contacto (Formspree, sin recarga)
-js/nav.js         menú de móvil y sección activa en el nav
-js/reveal.js      aparición de bloques al hacer scroll
-assets/img/       favicons, imagen Open Graph y retrato
-assets/cv/        CV en PDF
+src/data/routes.ts     la única lista de páginas: sitemap, hreflang, enlaces y pruebas salen de aquí
+src/data/ui.ts         las cadenas del marco y del formulario
+src/layouts/           BaseLayout: el <head>, la cabecera, el pie y el script
+src/pages/             las páginas (las inglesas, en src/pages/en/)
+src/scripts/main.ts    el único script
+public/_headers        CSP estricta, HSTS y caché de Pages
+functions/             el middleware que pone noindex en *.pages.dev
+e2e/                   Playwright y axe contra el build servido por wrangler
+scripts/               Lighthouse con presupuestos y el arnés de comentarios de dist/
 ```
 
 ## Desarrollo
 
-No hay build ni dependencias que instalar. Basta con abrir `index.html` en el
-navegador, o servir la carpeta:
+Node 22.12 o posterior.
 
 ```
-python -m http.server
+npm install
+npm run dev        # servidor de desarrollo
+npm run red        # la red entera: check, build, comentarios, e2e y lighthouse
 ```
 
-El deploy se hace al pushear a `main`.
+`npm run red` es lo que corre la CI en cada push a `astro` y a `main`, y sin verde no hay commit.
+Las pruebas miden el build servido como en producción (`wrangler pages dev dist`), con las
+cabeceras de `_headers`; la primera vez, `npx playwright install chromium`.
+
+## Despliegue
+
+Lo hace Cloudflare Pages desde GitHub: cada rama se construye con `npm run build` y se publica
+`dist/`. La previa de la rama `astro` sale de un segundo proyecto de Pages, con `noindex` en
+`*.pages.dev`.

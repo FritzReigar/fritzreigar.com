@@ -2,3 +2,16 @@ docs/
 
 # Prototipos del rediseño (referencia local, no desplegar)
 rediseno-*.html
+
+# Astro: dependencias, el build y los tipos generados
+node_modules/
+dist/
+.astro/
+
+# Wrangler (estado local de pages dev)
+.wrangler/
+.dev.vars
+
+# Playwright: resultados y trazas de cada corrida
+test-results/
+playwright-report/

@@ -1,0 +1,14 @@
+---
+// La gemela inglesa de project-snugport. Mientras su texto no exista (en.live en false, src/data/routes.ts),
+// solo lleva su title y el aviso, sin indexar. El texto inglés es de la fase 2.
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { pathFor } from '../../../data/routes';
+import { notYetText } from '../../../data/ui';
+---
+<BaseLayout title="Snugport · Project · Fritz Reigar" noindex>
+  <h1>Snugport</h1>
+  <p>
+    {notYetText.text}
+    <a href={pathFor('project-snugport', 'es')} lang="es" hreflang="es">{notYetText.link}</a>
+  </p>
+</BaseLayout>

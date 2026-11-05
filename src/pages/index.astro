@@ -1,0 +1,261 @@
+---
+// La portada (plan/contenido.md § 1), sin estilo: el texto y su orden. Los componentes que la
+// pintan (HomeHero, StudioBand, WorkFeature…) son de la fase 2 (plan/spec-visual.md § 2.3).
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { pathFor } from '../data/routes';
+import { EMAIL, FORM_ACTION, formText, profiles, ui } from '../data/ui';
+
+const ids = ui.es.sectionIds;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'ProfilePage',
+      '@id': 'https://fritzreigar.com/#page',
+      url: 'https://fritzreigar.com/',
+      name: 'Fritz Reigar · Desarrollador web freelance en Valencia',
+      inLanguage: 'es-ES',
+      mainEntity: { '@id': 'https://fritzreigar.com/#fritz' },
+    },
+    {
+      '@type': 'Person',
+      '@id': 'https://fritzreigar.com/#fritz',
+      name: 'Fritz Reigar',
+      url: 'https://fritzreigar.com/',
+      image: 'https://fritzreigar.com/assets/img/fritz-reigar-avatar.png',
+      jobTitle: 'Desarrollador web',
+      description:
+        'Desarrollador web freelance en Valencia. Hace webs para negocios con Estudio Reigar y apps propias como Snugtone.',
+      email: `mailto:${EMAIL}`,
+      address: { '@type': 'PostalAddress', addressLocality: 'Valencia', addressCountry: 'ES' },
+      worksFor: { '@id': 'https://estudioreigar.com/#estudio' },
+      alumniOf: [
+        { '@type': 'EducationalOrganization', name: 'IES El Grao', address: 'Valencia, España' },
+        {
+          '@type': 'EducationalOrganization',
+          name: 'ESAT — Escuela Superior de Arte y Tecnología',
+          address: 'Valencia, España',
+        },
+      ],
+      knowsLanguage: [
+        { '@type': 'Language', name: 'Español', alternateName: 'es' },
+        { '@type': 'Language', name: 'Valenciano', alternateName: 'ca' },
+        { '@type': 'Language', name: 'Inglés', alternateName: 'en' },
+        { '@type': 'Language', name: 'Alemán', alternateName: 'de' },
+      ],
+      knowsAbout: [
+        'Desarrollo web', 'TypeScript', 'JavaScript', 'Astro', 'React', 'Tailwind CSS',
+        'Rust', 'Tauri', 'Accesibilidad web (WCAG AA)', 'Playwright', 'Vitest',
+        'Cloudflare Pages', 'Supabase', 'PostgreSQL', 'Stripe', 'WordPress', 'WooCommerce',
+        'SEO local', 'Google Business Profile', 'Evaluación de modelos de IA',
+      ],
+      sameAs: [profiles.github, profiles.linkedin, profiles.x],
+    },
+    {
+      '@type': 'ProfessionalService',
+      '@id': 'https://estudioreigar.com/#estudio',
+      name: 'Estudio Reigar',
+      url: 'https://estudioreigar.com/',
+      founder: { '@id': 'https://fritzreigar.com/#fritz' },
+    },
+  ],
+};
+
+const career = [
+  ['Abr 2026 — hoy', 'Desarrollador web freelance', 'Estudio Reigar · Autónomo, Valencia'],
+  ['Ene 2026 — hoy', 'AI Red-Teaming & Prompt Engineer', 'DataAnnotation Tech · Autónomo, remoto'],
+  ['Jul 2025 — hoy', 'AI QA Analyst / Project Tester', 'Lionbridge Technologies · Autónomo, remoto'],
+  ['Dic 2024 — Oct 2025', 'Energy Consultant & Account Manager', 'Selectra Sur SL · Valencia'],
+  [
+    'Sep 2018 — Jun 2026',
+    'Profesor particular de matemáticas, física y programación',
+    'Autónomo · Valencia',
+  ],
+  ['2019', 'Asistente técnico informático · Prácticas', 'Ayuntamiento de Valencia — Policía Local'],
+];
+---
+<BaseLayout
+  title="Fritz Reigar · Desarrollador web freelance en Valencia"
+  description="Soy Fritz Reigar, desarrollador web freelance en Valencia. Hago webs para negocios con Estudio Reigar y, en mis ratos, apps propias como Snugtone."
+  og={{
+    title: 'Fritz Reigar',
+    description:
+      'Desarrollador web freelance en Valencia: webs para negocios con Estudio Reigar y apps propias en abierto.',
+  }}
+  jsonLd={jsonLd}
+>
+  <section aria-labelledby="nombre">
+    <h1 id="nombre">Fritz Reigar</h1>
+    <p>
+      Desarrollador web freelance en Valencia. Me encanta la tecnología y vivo de ella: hago webs
+      para negocios con Estudio Reigar y, en mis ratos, apps propias que publico en abierto.
+    </p>
+    <p>Acepto proyectos</p>
+    <p>
+      <a href="https://estudioreigar.com/">Estudio Reigar ↗</a>
+      ·
+      <a href={`#${ids.contact}`}>Escríbeme</a>
+    </p>
+  </section>
+
+  <section aria-labelledby="estudio">
+    <h2 id="estudio">Estudio Reigar</h2>
+    <p>
+      Estudio Reigar es mi taller: webs, tiendas online y fichas de Google para negocios pequeños.
+      Detrás no hay un equipo: quien te contesta y quien escribe la web soy yo. Las webs las
+      escribo a mano, sin plantillas y a la medida de cada negocio, y las entrego con su nota de
+      velocidad medida y todo a nombre del cliente. En persona en Valencia y l'Horta; al resto de
+      España, a distancia.
+    </p>
+    <p><a href="https://estudioreigar.com/">Ver estudioreigar.com ↗</a></p>
+  </section>
+
+  <section aria-labelledby={ids.work}>
+    <h2 id={ids.work}>Trabajo</h2>
+    <article>
+      <h3>Missphone</h3>
+      <p>Cliente · Tienda online heredada · En mantenimiento</p>
+      <p>
+        Tienda de móviles de Benetússer con fundas personalizadas, accesorios, reparaciones y
+        regalos con foto. Heredé su tienda WooCommerce: recuperé el control, la puse página a
+        página al nivel de la portada, le añadí los regalos que se diseñan en la web y la lancé.
+      </p>
+      <p><a href={pathFor('work-missphone', 'es')}>Ver el caso →</a></p>
+    </article>
+    <article>
+      <h3>Limpiezas Artemisa</h3>
+      <p>Cliente · Web nueva · Entregada en septiembre de 2026 · En mantenimiento</p>
+      <p>
+        Web a medida para una empresa de limpieza de Valencia: estática, sin una cookie y con una
+        página por servicio para la búsqueda local. Lighthouse en el móvil: 95-96 en rendimiento y
+        100 en lo demás. Y su ficha de Google, al día cada mes.
+      </p>
+      <p><a href={pathFor('work-artemisa', 'es')}>Ver el caso →</a></p>
+    </article>
+  </section>
+
+  <section aria-labelledby={ids.projects}>
+    <h2 id={ids.projects}>Proyectos</h2>
+    <article>
+      <h3>Snugtone</h3>
+      <p>App propia · Código abierto (MIT) · 1.0.1 para Windows</p>
+      <p>
+        Reproductor de música de escritorio para tu propia biblioteca, en Rust con Tauri. Sin
+        cortes entre pistas, todos los discos al mismo volumen y una biblioteca de 9503 archivos
+        que se reescanea en 0,48 s.
+      </p>
+      <p><a href={pathFor('project-snugtone', 'es')}>Ver el proyecto →</a></p>
+    </article>
+    <article>
+      <h3>Snugport</h3>
+      <p>Producto propio · Gratis, con plan de pago</p>
+      <p>
+        Centro de operaciones para freelancers: horas con tarifa, proyectos, clientes, finanzas y
+        vencimientos. En producción como PWA en JavaScript vanilla, y con el panel migrando a React
+        y TypeScript con más de 1.200 pruebas unitarias.
+      </p>
+      <p><a href={pathFor('project-snugport', 'es')}>Ver el proyecto →</a></p>
+    </article>
+    <article>
+      <h3>CPP-Galaxian-Engine</h3>
+      <p>C++ · 2023</p>
+      <p>
+        Un arcade en C++ sin motor comercial: game loop propio, entidades en arrays estáticos, una
+        máquina de estados para la IA enemiga y colisiones AABB escritas a mano.
+      </p>
+      <p><a href="https://github.com/FritzReigar/CPP-Galaxian-Engine">Ver el repositorio ↗</a></p>
+    </article>
+    <p><a href={profiles.github}>Todo el código público, en GitHub ↗</a></p>
+  </section>
+
+  <section aria-labelledby={ids.how}>
+    <h2 id={ids.how}>Cómo trabajo</h2>
+    <ol>
+      <li>
+        <h3>A mano y sin plantillas.</h3>
+        <p>
+          HTML, CSS y TypeScript escritos para cada caso, y Astro cuando la web tiene varias
+          páginas. Poco JavaScript y nada que no se use.
+        </p>
+      </li>
+      <li>
+        <h3>Pruebas y CI que frenan el despliegue.</h3>
+        <p>
+          En la web del estudio, Playwright, axe y Lighthouse pasan antes de publicar; en Snugport,
+          Vitest, Playwright y mutantes; en Snugtone, 640 pruebas y <code>cargo clippy</code> sin
+          un aviso.
+        </p>
+      </li>
+      <li>
+        <h3>Lighthouse medido, no prometido.</h3>
+        <p>Cada entrega sale con su nota en el móvil, medida y enseñada.</p>
+      </li>
+      <li>
+        <h3>Con IA, y con red.</h3>
+        <p>
+          Desarrollo asistido por IA (Claude Code), con la regla de ver cada prueba nueva en rojo
+          antes de creerse el verde.
+        </p>
+      </li>
+    </ol>
+  </section>
+
+  <section aria-labelledby={ids.career}>
+    <h2 id={ids.career}>Trayectoria</h2>
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Fechas</th>
+          <th scope="col">Puesto</th>
+          <th scope="col">Dónde</th>
+        </tr>
+      </thead>
+      <tbody>
+        {career.map(([dates, role, place]) => (
+          <tr>
+            <td>{dates}</td>
+            <td>{role}</td>
+            <td>{place}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+    <h3>Formación</h3>
+    <ul>
+      <li>Técnico Superior en Desarrollo de Aplicaciones Multiplataforma (DAM) — IES El Grao, Valencia</li>
+      <li>Especialización en Diseño y Desarrollo de Videojuegos — ESAT, Valencia</li>
+    </ul>
+    <h3>Idiomas</h3>
+    <p>Español (nativo) · Valenciano (C1) · Inglés (C1) · Alemán (A2)</p>
+    <p><a href={ui.es.cvHref}>CV en PDF ↓</a></p>
+  </section>
+
+  <section aria-labelledby={ids.contact}>
+    <h2 id={ids.contact}>Contacto</h2>
+    <p>
+      ¿Un proyecto, una web que has heredado o una pregunta técnica? Escríbeme: te contesto yo,
+      normalmente en menos de 24 horas. Si es para la web de tu negocio, en
+      <a href="https://estudioreigar.com/">estudioreigar.com</a> tienes cómo trabajo y qué cuesta.
+    </p>
+    <p>O directamente a <a href={`mailto:${EMAIL}`}>{EMAIL}</a></p>
+    <form action={FORM_ACTION} method="POST">
+      <input type="hidden" name="_subject" value={formText.subject}>
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" hidden>
+      <p>
+        <label for="contacto-nombre">{formText.name}</label>
+        <input id="contacto-nombre" type="text" name="name" autocomplete="name" placeholder={formText.namePlaceholder} required>
+      </p>
+      <p>
+        <label for="contacto-email">{formText.email}</label>
+        <input id="contacto-email" type="email" name="email" autocomplete="email" placeholder={formText.emailPlaceholder} required>
+      </p>
+      <p>
+        <label for="contacto-mensaje">{formText.message}</label>
+        <textarea id="contacto-mensaje" name="message" rows="5" placeholder={formText.messagePlaceholder} required></textarea>
+      </p>
+      <p><button type="submit">{formText.submit}</button></p>
+    </form>
+    <p><a href={ui.es.cvHref}>CV en PDF ↓</a></p>
+  </section>
+</BaseLayout>

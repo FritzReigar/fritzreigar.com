@@ -11,7 +11,7 @@ La web personal de Fritz (fritzreigar.com): **la persona detrás de Estudio Reig
 ## Replanteamiento en curso
 
 La web pasa a Astro con un rediseño y deja de ser para reclutadores (planificado el 2026-11-04).
-**Tanda en curso: la 1.5, el andamio de Astro** ([`plan/fase-1.md`](plan/fase-1.md)). El diseño de la web nueva está en [`plan/spec-visual.md`](plan/spec-visual.md), que manda sobre el lienzo. Las decisiones y el
+**Tanda en curso: la 1.5, el andamio de Astro, hecha en local** en la rama `astro` ([`plan/fase-1.md`](plan/fase-1.md)): falta el push con el OK de Fritz, la CI en verde y la previa de Pages con `noindex`; después, la planificación de la fase 2. El diseño de la web nueva está en [`plan/spec-visual.md`](plan/spec-visual.md), que manda sobre el lienzo. Las decisiones y el
 ciclo están en [`plan/README.md`](plan/README.md), que se lee al arrancar cualquier sesión del plan;
 el texto entero de la web nueva, con la fuente de cada afirmación, en
 [`plan/contenido.md`](plan/contenido.md); y las imágenes que enseña, con su origen y su `alt`, en
@@ -23,6 +23,7 @@ web; el posicionamiento ya es el nuevo. El push solo va con el OK de Fritz.
 ## Desarrollo y deploy
 
 - No hay comandos de build ni lint. Para ver cambios en local basta abrir `index.html` en el navegador, o servirlo con `python -m http.server`.
+- **En la rama `astro`** (la web nueva) sí: `npm run red` (check, build, comentarios de `dist/`, e2e y Lighthouse) en verde antes de cada commit, y la CI la corre en cada push. Cómo está montada, en el `README.md` de esa rama.
 - Remote: `https://github.com/FritzReigar/fritzreigar.com.git`, rama `main`. El deploy sale de pushear a `main` (la configuración de hosting no vive en este repo).
 - **Ojo con la caché**: tras un push, `fritzreigar.com` puede seguir sirviendo el HTML anterior durante horas — el edge de Cloudflare lo cachea (`cf-cache-status: HIT`) pese al `Cache-Control: max-age=0, must-revalidate`. No es un deploy fallido: se comprueba con `curl -sI https://fritzreigar.com` frente a la misma URL con `?nocache=1`. Se arregla purgando la caché desde el panel de Cloudflare.
 

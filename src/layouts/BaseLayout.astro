@@ -1,0 +1,104 @@
+---
+// El molde de todas las páginas: el <head>, el enlace de salto, la cabecera, el pie y el único
+// script. Cada página pone su contenido, que entra por <slot /> dentro de <main>. Sin estilos:
+// el marco con su aspecto (SkipLink, SiteHeader, LangLink, MobileMenu, SiteFooter) es de la fase 2
+// (plan/spec-visual.md § 2.2).
+// El idioma no es una prop: lo da la carpeta (src/pages/en/ es inglés). Si la página tiene gemela
+// viva en el otro idioma (src/data/routes.ts), lleva el hreflang de las dos y el enlace de idioma.
+import { routeOf, sectionHref, pathFor, switchHrefOf, twinsOf } from '../data/routes';
+import { EMAIL, langOf, navSections, profiles, ui, type NavSection } from '../data/ui';
+
+interface Props {
+  title: string;
+  description?: string;
+  noindex?: boolean;
+  og?: { title: string; description: string };
+  jsonLd?: unknown;
+  current?: NavSection;
+}
+
+const { title, description, noindex = false, og, jsonLd, current: section } = Astro.props;
+
+const lang = langOf(Astro.currentLocale);
+const text = ui[lang];
+
+// La URL pública sin .html (con format: 'preserve' el pathname la lleva).
+const canonical = new URL(Astro.url.pathname.replace(/\.html$/, ''), Astro.site).href;
+
+// hreflang recíproco solo entre indexables con gemela viva; x-default, al español (decisión 2).
+const current = routeOf(Astro.url.pathname);
+const twins = !noindex && current ? twinsOf(current.route) : undefined;
+const hreflang = twins && [
+  { hreflang: 'es', href: new URL(twins.es, Astro.site).href },
+  { hreflang: 'en', href: new URL(twins.en, Astro.site).href },
+  { hreflang: 'x-default', href: new URL(twins.es, Astro.site).href },
+];
+const switchHref = switchHrefOf(Astro.url.pathname);
+const otherLang = lang === 'es' ? 'en' : 'es';
+---
+<!DOCTYPE html>
+<html lang={lang}>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  {description && <meta name="description" content={description}>}
+  {noindex && <meta name="robots" content="noindex">}
+  {!noindex && <link rel="canonical" href={canonical}>}
+  {hreflang && hreflang.map((link) => <link rel="alternate" hreflang={link.hreflang} href={link.href}>)}
+  <link rel="icon" href="/assets/img/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+  <link rel="manifest" href="/assets/img/site.webmanifest">
+  {!noindex && og && (
+    <>
+      <meta property="og:title" content={og.title}>
+      <meta property="og:description" content={og.description}>
+      <meta property="og:type" content="website">
+      <meta property="og:url" content={canonical}>
+      <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'es_ES'}>
+      <meta name="twitter:card" content="summary">
+    </>
+  )}
+  {jsonLd !== undefined && (
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
+  )}
+</head>
+<body>
+  <a href="#contenido">{text.skipLink}</a>
+
+  <header>
+    <p><a href={pathFor('home', lang)}>{text.homeLabel}</a></p>
+    {/* Sin CSS, una lista de enlaces apilados no llega al tamaño de 2.5.8 (WCAG 2.2): hasta los
+        estilos de la fase 2, los enlaces van en línea y separados por « · », como en contenido.md. */}
+    <nav aria-label={text.navLabel}>
+      <p>
+        {navSections.map((item, index) => (
+          <>{index > 0 && ' · '}<a href={sectionHref(item, lang)} aria-current={item === section ? 'page' : undefined}>{text.nav[item]}</a></>
+        ))}
+        {switchHref && (
+          <> · <a href={switchHref} lang={otherLang} hreflang={otherLang}>{ui[otherLang].langName}</a></>
+        )}
+      </p>
+    </nav>
+  </header>
+
+  <main id="contenido">
+    <slot />
+  </main>
+
+  <footer>
+    <p>{text.footer.copyright}</p>
+    <p>
+      <a href={text.cvHref}>{text.footer.cv}</a>
+      · <a href={profiles.github}>GitHub</a>
+      · <a href={profiles.linkedin}>LinkedIn</a>
+      · <a href={profiles.x}>X</a>
+      · <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+    </p>
+  </footer>
+
+  {/* El único script de la web (decisión 9): Astro lo empaqueta en /_astro/ y lo carga como módulo
+      externo. Ningún componente lleva <script>. */}
+  <script>import '../scripts/main.ts';</script>
+</body>
+</html>

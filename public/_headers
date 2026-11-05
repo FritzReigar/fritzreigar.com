@@ -1,0 +1,25 @@
+# Caché y seguridad para Cloudflare Pages (copia del estudio, tanda 1.5 de plan/fase-1.md).
+# El HTML no se cachea: cualquier cambio se ve al instante.
+# Los comentarios van fuera de los bloques: dentro, Pages los leería como cabecera.
+
+# Seguridad, en todo el sitio. Cloudflare añade de serie nosniff y Referrer-Policy.
+# HSTS sin preload a propósito. CSP: solo mismo origen, más Formspree en form-action y
+# connect-src (el formulario envía por POST sin JS y por fetch con main.ts, decisión 10).
+# img-src admite data: por si alguna máscara del CSS lo necesita.
+# Si se activa Web Analytics: añadir https://static.cloudflareinsights.com a script-src y
+# https://cloudflareinsights.com a connect-src. Probar cualquier cambio de cabeceras en la
+# previa de Pages antes de main.
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Frame-Options: DENY
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://formspree.io; form-action 'self' https://formspree.io; frame-ancestors 'none'; base-uri 'self'; object-src 'none'
+
+# Tipografía: un año, inmutable.
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Lo que empaqueta Astro (la hoja y main.ts) lleva hash en el nombre: cambia de nombre si
+# cambia, así que un año.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
