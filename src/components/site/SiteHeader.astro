@@ -1,0 +1,113 @@
+---
+// La cabecera de todas las páginas (plan/spec-visual.md § 2.2 y § 5): la marca a la portada, los
+// cinco enlaces a las secciones y el idioma; pegada arriba, con el filete fuerte debajo. La nav
+// entera desde 56rem (750 px en español, medidos en el lienzo); por debajo, la marca y MobileMenu.
+// La ficha marca su sección con aria-current="page" y el subrayado cobalto.
+import LangLink from './LangLink.astro';
+import MobileMenu from './MobileMenu.astro';
+import { pathFor, sectionHref, switchHrefOf } from '../../data/routes';
+import { langOf, navSections, type NavSection, ui } from '../../data/ui';
+
+interface Props {
+  current?: NavSection;
+}
+
+const { current } = Astro.props;
+const lang = langOf(Astro.currentLocale);
+const text = ui[lang];
+const switchHref = switchHrefOf(Astro.url.pathname);
+---
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="site-header__brand" href={pathFor('home', lang)}>{text.homeLabel}</a>
+    <nav class="site-nav" aria-label={text.navLabel}>
+      <ul>
+        {navSections.map((section) => (
+          <li>
+            <a href={sectionHref(section, lang)} aria-current={section === current ? 'page' : undefined}>{text.nav[section]}</a>
+          </li>
+        ))}
+        {switchHref && (
+          <li class="site-nav__lang"><LangLink href={switchHref} lang={lang === 'es' ? 'en' : 'es'} /></li>
+        )}
+      </ul>
+    </nav>
+    <MobileMenu current={current} />
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--color-header-bg);
+    backdrop-filter: blur(10px);
+    border-bottom: var(--rule) solid var(--color-line-strong);
+  }
+
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    height: var(--height-header);
+  }
+
+  .site-header__brand {
+    display: flex;
+    align-items: center;
+    min-height: var(--size-touch);
+    color: var(--color-text);
+    font-size: var(--text-m);
+    font-weight: var(--weight-poster);
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .site-header__brand:hover {
+    color: var(--color-accent);
+  }
+
+  .site-nav ul {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+  }
+
+  /* :global: el de idioma es de LangLink y no lleva el ámbito de este componente. */
+  .site-nav :global(a) {
+    display: flex;
+    align-items: center;
+    min-height: var(--size-touch);
+    color: var(--color-text);
+    font-size: var(--text-s);
+    font-weight: var(--weight-semibold);
+    text-decoration: none;
+    white-space: nowrap;
+    border-bottom: var(--rule-mid) solid transparent;
+    transition: border-color var(--duration-hover) var(--ease-out);
+  }
+
+  .site-nav a:hover,
+  .site-nav a[aria-current="page"] {
+    color: var(--color-text);
+    border-bottom-color: var(--color-accent);
+  }
+
+  .site-nav__lang {
+    padding-left: var(--space-4);
+    border-left: var(--rule) solid var(--color-line);
+  }
+
+  .site-nav__lang :global(a:hover) {
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 56rem) {
+    .site-nav {
+      display: none;
+    }
+  }
+</style>

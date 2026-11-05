@@ -1,0 +1,62 @@
+---
+// El pie de todas las páginas (plan/spec-visual.md § 2.2): «© 2026 Fritz Reigar · Valencia» y
+// el CV, GitHub, LinkedIn, X y el correo. En el móvil, dos líneas.
+import { EMAIL, langOf, profiles, ui } from '../../data/ui';
+
+const text = ui[langOf(Astro.currentLocale)];
+
+const links = [
+  { href: text.cvHref, label: text.footer.cv },
+  { href: profiles.github, label: 'GitHub' },
+  { href: profiles.linkedin, label: 'LinkedIn' },
+  { href: profiles.x, label: 'X' },
+  { href: `mailto:${EMAIL}`, label: EMAIL },
+];
+---
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <p>{text.footer.copyright}</p>
+    <ul>
+      {links.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
+    </ul>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: var(--rule) solid var(--color-line-strong);
+    padding-block: var(--space-4) var(--space-5);
+  }
+
+  .site-footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0 var(--space-5);
+    font-size: var(--text-s);
+  }
+
+  p {
+    margin: 0;
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 var(--space-4);
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    min-height: var(--size-touch);
+    color: var(--color-text);
+    font-weight: var(--weight-semibold);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--color-accent);
+  }
+</style>

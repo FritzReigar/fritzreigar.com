@@ -33,9 +33,12 @@ jobs:
       # --no-sandbox, Lighthouse no (Desvío 16 de la fase 4 del estudio).
       - run: sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
       - run: npm run check
+      - run: npm run tokens
       - run: npm run build
       - run: npm run comentarios
-      - run: npm run e2e
+      # Las vistas (@vista, toHaveScreenshot) solo en local: Linux pinta la fuente distinta
+      # (decisión F5 de plan/fase-2.md).
+      - run: npm run e2e -- --grep-invert @vista
       - run: npm run lighthouse -- --ci --pasadas 3
       - if: failure()
         uses: actions/upload-artifact@v7

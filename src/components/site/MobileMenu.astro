@@ -1,0 +1,96 @@
+---
+// El menú por debajo de 56rem (plan/spec-visual.md § 2.2 y § 5): un <details> «Menú» con el panel
+// de 320 px colgado del botón, una fila de 44 px por enlace y el idioma al final. Abre y cierra de
+// golpe. main.ts lo cierra al pulsar un enlace, al pulsar fuera y con Escape (que devuelve el foco
+// a «Menú»); sin JS se queda abierto hasta que se vuelve a pulsar «Menú».
+import LangLink from './LangLink.astro';
+import { sectionHref, switchHrefOf } from '../../data/routes';
+import { langOf, navSections, type NavSection, ui } from '../../data/ui';
+
+interface Props {
+  current?: NavSection;
+}
+
+const { current } = Astro.props;
+const lang = langOf(Astro.currentLocale);
+const text = ui[lang];
+const switchHref = switchHrefOf(Astro.url.pathname);
+---
+<details class="mobile-menu" data-menu>
+  <summary>{text.menuLabel}</summary>
+  <nav class="mobile-menu__panel" aria-label={text.navLabel}>
+    <ul>
+      {navSections.map((section) => (
+        <li>
+          <a href={sectionHref(section, lang)} aria-current={section === current ? 'page' : undefined}>{text.nav[section]}</a>
+        </li>
+      ))}
+      {switchHref && (
+        <li><LangLink href={switchHref} lang={lang === 'es' ? 'en' : 'es'} /></li>
+      )}
+    </ul>
+  </nav>
+</details>
+
+<style>
+  .mobile-menu {
+    display: none;
+    position: relative;
+  }
+
+  @media (max-width: 56rem) {
+    .mobile-menu {
+      display: block;
+    }
+  }
+
+  summary {
+    display: flex;
+    align-items: center;
+    min-height: var(--size-touch);
+    padding: var(--space-1) var(--space-3);
+    border: var(--rule) solid var(--color-line-strong);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-s);
+    list-style: none;
+    cursor: pointer;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .mobile-menu[open] summary {
+    background: var(--color-text);
+    color: var(--color-bg);
+  }
+
+  .mobile-menu__panel {
+    position: absolute;
+    right: 0;
+    top: calc(100% + var(--space-2) - var(--rule));
+    width: min(86vw, var(--width-menu));
+    background: var(--color-bg);
+    border: var(--rule) solid var(--color-line-strong);
+  }
+
+  li + li {
+    border-top: var(--rule) solid var(--color-line);
+  }
+
+  /* :global: el de idioma es de LangLink y no lleva el ámbito de este componente. */
+  .mobile-menu__panel :global(a) {
+    display: flex;
+    align-items: center;
+    min-height: var(--size-touch);
+    padding: var(--space-2) var(--space-3);
+    color: var(--color-text);
+    font-weight: var(--weight-bold);
+    text-decoration: none;
+  }
+
+  .mobile-menu__panel :global(a:hover),
+  .mobile-menu__panel :global(a[aria-current="page"]) {
+    color: var(--color-accent);
+  }
+</style>

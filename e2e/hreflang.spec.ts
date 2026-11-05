@@ -43,7 +43,9 @@ for (const sitePage of sitePages) {
       'x-default': `${SITE}${twins.es}`,
     });
     const other = sitePage.lang === 'es' ? twins.en : twins.es;
-    await expect(switchLink).toHaveAttribute('href', other);
+    // Dos: el de la cabecera entera y el del menú del móvil.
+    await expect(switchLink).toHaveCount(2);
+    for (const link of await switchLink.all()) await expect(link).toHaveAttribute('href', other);
     await page.goto(other);
     expect(await alternatesOf(page)).toEqual(own);
   });

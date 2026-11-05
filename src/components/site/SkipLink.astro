@@ -1,0 +1,36 @@
+---
+// «Saltar al contenido»: fuera de pantalla hasta recibir el foco (plan/spec-visual.md § 2.2).
+import { langOf, ui } from '../../data/ui';
+
+interface Props {
+  target: string;
+}
+
+const { target } = Astro.props;
+const text = ui[langOf(Astro.currentLocale)];
+---
+<a class="skip-link" href={`#${target}`}>{text.skipLink}</a>
+
+<style>
+  .skip-link {
+    position: absolute;
+    left: var(--space-2);
+    top: calc(-1 * var(--space-7));
+    z-index: 30;
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--size-touch);
+    padding: var(--space-1) var(--space-3);
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+    font-weight: var(--weight-bold);
+    text-decoration: none;
+  }
+
+  .skip-link:focus {
+    top: var(--space-2);
+    color: var(--color-on-accent);
+    outline-color: var(--color-on-accent);
+    outline-offset: calc(-1 * var(--space-1));
+  }
+</style>

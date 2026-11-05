@@ -146,7 +146,7 @@ Recomendadas (valen mientras Fritz no diga otra cosa):
 
 ---
 
-### Tanda 2.1 — Tokens, la fuente y el marco   [ ] pendiente
+### Tanda 2.1 — Tokens, la fuente y el marco   [x] hecha (2026-11-05, v0.2.1)
 **Objetivo**: existen los tokens, la hoja global, Archivo autoalojada y el marco de todas las
 páginas (cabecera, menú del móvil, idioma, pie) con el aspecto de la spec, el 404 está pintado
 entero, y la red tiene el lint de tokens y las pruebas de vistas y de desbordes.
@@ -867,3 +867,17 @@ Analytics, tocar el correo de la zona.
 ## Desvíos
 
 (Lo que aparezca a mitad de una tanda y no estaba, con su fecha y su tanda.)
+
+- **2026-11-05, tanda 2.1: «↗» no está en Archivo.** «→» (U+2192) sí, y entra en el subconjunto;
+  «↗» (U+2197) sale de la fuente del sistema, como en el lienzo. `public/fonts/archivo.woff2` pesa
+  61,6 KB (tope 95) con `wdth` 62–100 y `wght` 400–800.
+- **2026-11-05, tanda 2.1: las parejas alternan dos flechas y `Ink` solo tiene `arrow-down`.** La
+  spec da tres formas (`oval`, `arrow`, `arrow-down`); el lienzo pinta las parejas de Missphone
+  alternando la que baja y sube (`arrow-down`, línea 995 de `docs/lienzo/final.html`) y la que sube
+  y baja (línea 978). La 2.5 decide si añade una cuarta forma o voltea la que hay.
+- **2026-11-05, tanda 2.1: el pie mide 44 px por enlace.** El encargo pide todo lo pulsable del
+  marco a 44 px; en el lienzo los enlaces del pie eran de una línea. El pie crece unos 10 px a 1440
+  y una fila a 390; el resto del marco cuadra con las capturas del lienzo.
+- **2026-11-05, tanda 2.1: dos `LangLink` por página.** El de la cabecera entera y el del menú
+  del móvil, como en el lienzo. `e2e/hreflang.spec.ts` ya espera los dos para cuando el inglés se
+  encienda (2.9).

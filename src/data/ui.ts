@@ -1,4 +1,4 @@
-// Las cadenas fijas de la web en los dos idiomas: las del marco (cabecera, pie, enlace de salto),
+// Las cadenas fijas de la web en los dos idiomas: las del marco (cabecera, menú, pie, salto),
 // las del formulario y el aviso de las páginas inglesas que aún no tienen texto. El texto de cada
 // página lo escribe la página (plan/contenido.md). El idioma lo da la carpeta: src/pages/en/ es
 // inglés (i18n de astro.config.mjs), y se lee con langOf(Astro.currentLocale).
@@ -19,6 +19,8 @@ export interface UiText {
   skipLink: string;
   homeLabel: string;
   navLabel: string;
+  // El botón del menú del móvil (MobileMenu).
+  menuLabel: string;
   nav: Record<NavSection, string>;
   // El id de cada sección en la portada de ese idioma: el fragmento de la URL, que se ve.
   sectionIds: Record<NavSection, string>;
@@ -45,6 +47,7 @@ export const ui: Record<Lang, UiText> = {
     skipLink: 'Saltar al contenido',
     homeLabel: 'Fritz Reigar',
     navLabel: 'Principal',
+    menuLabel: 'Menú',
     nav: {
       work: 'Trabajo',
       projects: 'Proyectos',
@@ -70,6 +73,7 @@ export const ui: Record<Lang, UiText> = {
     skipLink: 'Skip to content',
     homeLabel: 'Fritz Reigar',
     navLabel: 'Main',
+    menuLabel: 'Menu',
     nav: {
       work: 'Work',
       projects: 'Projects',

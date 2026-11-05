@@ -1,0 +1,143 @@
+---
+// El 404 (plan/spec-visual.md § 2.2, «Héroes»): «Error 404», el número a --text-hero (columnas
+// 1-5) y el título a --text-display (6-12), asentados en la misma línea base; bajo la regla
+// cobalto, la entradilla (1-6) y los botones apilados (10-12), con la flecha de tinta apuntando al
+// primero solo por encima de 60rem. Entre 35 y 60rem, los botones en una fila; a 35rem o menos,
+// en columna. El número va en dos trozos («40» y «4») para la recomposición de la 2.7.
+import Button from '../ui/Button.astro';
+import Ink from '../ui/Ink.astro';
+import Label from '../ui/Label.astro';
+
+interface Props {
+  code: string;
+  title: string;
+  lede?: string;
+  // El primero es el principal.
+  actions: { href: string; label: string }[];
+}
+
+const { code, title, lede, actions } = Astro.props;
+---
+<section class="error-hero">
+  <div class="wrap">
+    <Label class="error-hero__kicker">Error {code}</Label>
+    <div class="error-hero__head">
+      <p class="error-hero__code" aria-hidden="true"><span class="first">{code.slice(0, -1)}</span><span class="second">{code.slice(-1)}</span></p>
+      <h1>{title}</h1>
+    </div>
+    <div class="error-hero__copy">
+      {lede && <p class="lede">{lede}</p>}
+      <div class="error-hero__actions">
+        <Ink shape="arrow" class="error-hero__ink" />
+        {actions.map((action, index) => (
+          <Button href={action.href} variant={index === 0 ? 'primary' : 'secondary'}>{action.label}</Button>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .error-hero {
+    padding-block: var(--space-hero-top) var(--space-end);
+    overflow: clip;
+  }
+
+  /* El rótulo de un héroe va a --text-s (el .case-kicker del lienzo). */
+  .error-hero :global(.error-hero__kicker) {
+    margin-bottom: var(--space-2);
+    font-size: var(--text-s);
+  }
+
+  .error-hero__head {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap-col);
+    row-gap: var(--space-3);
+    align-items: end;
+  }
+
+  .error-hero__code {
+    grid-column: 1 / span 5;
+    max-width: none;
+    margin: 0;
+    font-size: var(--text-hero);
+    font-weight: var(--weight-poster);
+    font-stretch: var(--stretch-poster);
+    letter-spacing: var(--tracking-hero);
+    line-height: var(--leading-hero);
+  }
+
+  .error-hero__code span {
+    display: inline-block;
+  }
+
+  h1 {
+    grid-column: 6 / span 7;
+    margin-bottom: 0.1em;
+    font-size: var(--text-display);
+    font-weight: var(--weight-poster);
+    font-stretch: var(--stretch-poster);
+    letter-spacing: var(--tracking-poster);
+    line-height: var(--leading-poster);
+    text-transform: uppercase;
+  }
+
+  .error-hero__copy {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap-col);
+    row-gap: var(--space-4);
+    margin-top: var(--space-4);
+    padding-top: var(--space-4);
+    border-top: var(--rule-thick) solid var(--color-accent);
+  }
+
+  .error-hero__copy .lede {
+    grid-column: 1 / span 6;
+    margin: 0;
+  }
+
+  .error-hero__actions {
+    position: relative;
+    grid-column: 10 / span 3;
+    display: grid;
+    gap: var(--space-2);
+    align-content: start;
+  }
+
+  .error-hero__actions > :global(.button) {
+    width: 100%;
+  }
+
+  .error-hero__actions > :global(.error-hero__ink) {
+    position: absolute;
+    right: calc(100% + var(--space-1));
+    top: 2px;
+    width: 84px;
+    height: 46px;
+  }
+
+  @media (max-width: 60rem) {
+    .error-hero__code,
+    h1,
+    .error-hero__copy .lede,
+    .error-hero__actions {
+      grid-column: 1 / -1;
+    }
+
+    .error-hero__actions {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .error-hero__actions > :global(.error-hero__ink) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 35rem) {
+    .error-hero__actions {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

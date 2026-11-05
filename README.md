@@ -15,13 +15,17 @@ HTML servido en cada idioma y cero JS para el idioma.
 ```
 src/data/routes.ts     la única lista de páginas: sitemap, hreflang, enlaces y pruebas salen de aquí
 src/data/ui.ts         las cadenas del marco y del formulario
+src/styles/            tokens.css (los únicos colores literales) y global.css (la base)
+src/components/        el marco (site/), los controles (ui/) y los héroes (heroes/)
+src/assets/fonts/      Archivo variable de origen, con su licencia OFL
 src/layouts/           BaseLayout: el <head>, la cabecera, el pie y el script
 src/pages/             las páginas (las inglesas, en src/pages/en/)
 src/scripts/main.ts    el único script
 public/_headers        CSP estricta, HSTS y caché de Pages
 functions/             el middleware que pone noindex en *.pages.dev
 e2e/                   Playwright y axe contra el build servido por wrangler
-scripts/               Lighthouse con presupuestos y el arnés de comentarios de dist/
+scripts/               Lighthouse con presupuestos, los arneses de comentarios y de tokens, y
+                       fuente.py, que saca public/fonts/archivo.woff2
 ```
 
 ## Desarrollo
@@ -31,12 +35,15 @@ Node 22.12 o posterior.
 ```
 npm install
 npm run dev        # servidor de desarrollo
-npm run red        # la red entera: check, build, comentarios, e2e y lighthouse
+npm run red        # la red entera: check, tokens, build, comentarios, e2e y lighthouse
+python scripts/fuente.py   # rehace la fuente (fontTools) desde src/assets/fonts/
 ```
 
 `npm run red` es lo que corre la CI en cada push a `astro` y a `main`, y sin verde no hay commit.
 Las pruebas miden el build servido como en producción (`wrangler pages dev dist`), con las
-cabeceras de `_headers`; la primera vez, `npx playwright install chromium`.
+cabeceras de `_headers`; la primera vez, `npx playwright install chromium`. Las vistas
+(`e2e/vistas.spec.ts`, etiqueta `@vista`) comparan capturas guardadas en Windows y la CI las salta;
+se regeneran solo con un cambio buscado: `npx playwright test --grep @vista --update-snapshots`.
 
 ## Despliegue
 

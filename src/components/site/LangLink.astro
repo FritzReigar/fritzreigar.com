@@ -1,0 +1,16 @@
+---
+// El enlace a la gemela en el otro idioma (plan/spec-visual.md § 5): «English» en español y
+// «Español» en inglés. Solo lo pinta quien tiene gemela viva (switchHrefOf de routes.ts); hasta
+// entonces, ni enlace ni hueco.
+import { type Lang, ui } from '../../data/ui';
+
+interface Props {
+  href: string;
+  // El idioma de la gemela, el del texto del enlace.
+  lang: Lang;
+  class?: string;
+}
+
+const { href, lang, class: className } = Astro.props;
+---
+<a class:list={['lang-link', className]} href={href} hreflang={lang} lang={lang}>{ui[lang].langName}</a>

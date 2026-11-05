@@ -1,0 +1,47 @@
+---
+// La tinta: un trazo a mano en SVG, decorativo (plan/spec-visual.md § 2.2). Lleva pathLength="1"
+// para que la 2.7 la trace con stroke-dashoffset; hasta entonces se pinta trazada y quieta
+// (decisión F6). El tamaño y el sitio los pone quien la usa (con class): el trazo se estira
+// (preserveAspectRatio="none") y puede salirse de su caja (max-width: none, overflow visible).
+// Los trazos son los del lienzo final.
+interface Props {
+  shape: 'oval' | 'arrow' | 'arrow-down';
+  trigger?: 'load' | 'scroll';
+  class?: string;
+}
+
+const SHAPES = {
+  oval: {
+    viewBox: '0 0 218 54',
+    d: 'M21.8 12.2 C 74.1 1.4, 174.4 1.4, 207.1 16.2 C 224.5 29.7, 191.8 48.6, 113.4 50 C 43.6 51.3, 2.2 40.5, 8.7 24.3 C 13.1 13.5, 39.2 6.8, 65.4 5.4',
+  },
+  arrow: {
+    viewBox: '0 0 92 56',
+    d: 'M3.7 40.1 C 20.2 47.6, 51.5 41.9, 82.8 24.3 M 66.2 13.1 C 73.6 17.8, 80 21.5, 84.6 23.3 C 81.9 29.9, 77.3 36.4, 73.6 43.9',
+  },
+  'arrow-down': {
+    viewBox: '0 0 92 56',
+    d: 'M3.7 28 C 23.9 41.1, 51.5 39.2, 82.8 26.1 M 66.2 16.8 C 73.6 20.5, 80 24.3, 84.6 26.1 C 81 31.7, 75.4 37.3, 70.8 42.9',
+  },
+} as const;
+
+const { shape, trigger = 'load', class: className } = Astro.props;
+const { viewBox, d } = SHAPES[shape];
+---
+<svg class:list={['ink', `ink--${trigger}`, className]} viewBox={viewBox} preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d={d} /></svg>
+
+<style>
+  .ink {
+    overflow: visible;
+    max-width: none;
+    pointer-events: none;
+  }
+
+  .ink path {
+    fill: none;
+    stroke: var(--color-accent);
+    stroke-width: var(--ink-stroke);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+</style>

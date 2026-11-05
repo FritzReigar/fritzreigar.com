@@ -1,0 +1,20 @@
+Tipografía de fritzreigar.com
+=============================
+
+Una sola familia: Archivo, de Omnibus-Type, con licencia libre (SIL Open Font License
+1.1), que permite autoalojarla y recortarla. El texto de la licencia va con la fuente
+de origen, en src/assets/fonts/OFL.txt.
+
+  archivo.woff2   Archivo variable · todo el texto de la web
+                  ejes wdth 62-100 (los carteles van al 62 %) y wght 400-800
+
+Sale de src/assets/fonts/Archivo[wdth,wght].ttf (github.com/google/fonts, carpeta
+ofl/archivo) con scripts/fuente.py: recorta los ejes a lo que usa la web y los
+caracteres al subconjunto latino de Google Fonts más «→» (U+2192). «↗» (U+2197) no
+está en Archivo: sale de la fuente del sistema.
+
+Se precarga en todas las páginas, con font-display: swap.
+
+Para regenerarla:
+
+  python scripts/fuente.py

@@ -1,6 +1,6 @@
 {
   "name": "fritzreigar-web",
-  "version": "0.1.5",
+  "version": "0.2.1",
   "private": true,
   "type": "module",
   "engines": {
@@ -12,10 +12,11 @@
     "preview": "astro preview",
     "check": "astro check && biome check --error-on-warnings .",
     "lint": "biome check --error-on-warnings .",
+    "tokens": "node scripts/tokens.mjs",
     "comentarios": "node scripts/comments.mjs",
     "e2e": "playwright test",
     "lighthouse": "node scripts/lighthouse.mjs",
-    "red": "npm run check && npm run build && npm run comentarios && npm run e2e && npm run lighthouse"
+    "red": "npm run check && npm run tokens && npm run build && npm run comentarios && npm run e2e && npm run lighthouse"
   },
   "dependencies": {
     "astro": "^7.3.5"

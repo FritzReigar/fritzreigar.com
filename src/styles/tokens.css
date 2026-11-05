@@ -1,0 +1,142 @@
+/* Los tokens de la web, tal cual plan/spec-visual.md § 1.2 (los del lienzo final).
+   Es el único archivo de src/ con colores literales: scripts/tokens.mjs lo vigila en
+   `npm run red`. El oscuro entra solo por prefers-color-scheme (decisión 9): sin botón. */
+
+:root {
+  color-scheme: light dark;
+
+  --color-bg: #fafbfc;
+  --color-surface: #ffffff;
+  --color-text: #121417;
+  --color-text-muted: #545a66;
+  --color-line: #d6dbe3;
+  --color-line-strong: #121417;
+  --color-accent: #1f4fa3;
+  --color-accent-hover: #163c80;
+  --color-on-accent: #ffffff;
+  --color-sky: #d6e2f4;
+  --color-on-sky: #121417;
+  --color-on-sky-muted: #3d4757;
+  --color-avatar-sky: #d6e2f4;
+  --color-avatar-skin: #f8f6f0;
+  --color-avatar-shirt: #1f4fa3;
+  --color-avatar-ink: #141414;
+  --color-header-bg: rgb(250 251 252 / 0.92);
+  --color-focus: #1f4fa3;
+  --color-error: #b3261e;
+
+  --font: "Archivo", system-ui, sans-serif;
+  --stretch-poster: 62%;
+  --stretch-narrow: 75%;
+  --weight-body: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-poster: 800;
+  --text-xs: 0.85rem;
+  --text-s: 0.95rem;
+  --text-m: 1.0625rem;
+  --text-l: 1.15rem;
+  --text-lede: clamp(1.15rem, 1.6vw, 1.35rem);
+  --text-h4: 1.2rem;
+  --text-h3: 1.5rem;
+  --text-principle: clamp(1.5rem, 2.4vw, 2rem);
+  --text-quote: clamp(1.6rem, 3.4vw, 3rem);
+  --text-card: clamp(2.6rem, 5vw, 4.6rem);
+  --text-display: clamp(2.6rem, 8vw, 8rem);
+  --text-step: 4.4rem;
+  --text-figure: clamp(4.6rem, 11vw, 10rem);
+  --text-poster: clamp(3.6rem, 15vw, 14rem);
+  --text-case: clamp(4rem, 22.4vw, 21rem);
+  --text-hero: clamp(7rem, 27vw, 25rem);
+  --leading-body: 1.6;
+  --leading-lede: 1.5;
+  --leading-tight: 1.1;
+  --leading-card: 0.9;
+  --leading-poster: 0.8;
+  --leading-hero: 0.78;
+  --tracking-poster: -0.02em;
+  --tracking-hero: -0.025em;
+
+  --space-1: 8px;
+  --space-2: 12px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+  --space-7: 64px;
+  --space-section: clamp(72px, 10vw, 136px);
+  --space-band: clamp(48px, 7vw, 96px);
+  --space-block: clamp(32px, 4vw, 56px);
+  --space-block-l: clamp(56px, 7vw, 96px);
+  --space-end: clamp(64px, 9vw, 120px);
+  --space-inset: clamp(20px, 3vw, 40px);
+  --space-hero-top: clamp(24px, 3vw, 44px);
+  --gap-col: clamp(16px, 2.2vw, 32px);
+  --gap-wide: clamp(24px, 4vw, 64px);
+  --gap-band: clamp(10px, 1.4vw, 20px);
+  --gutter: clamp(16px, 4vw, 48px);
+
+  --width-page: 1280px;
+  --width-text: 64ch;
+  --width-avatar: 300px;
+  --width-photo: 176px;
+  --width-photo-s: 128px;
+  --width-pair-tall: 260px;
+  --width-menu: 320px;
+  --height-header: 64px;
+  --height-button: 48px;
+  --size-touch: 44px;
+  --size-status: 10px;
+  --height-band: clamp(120px, 17vw, 250px);
+  --rule: 1px;
+  --rule-mid: 2px;
+  --rule-thick: 6px;
+  --rule-poster: 22%;
+  --ink-stroke: 2.2;
+  --hatch-opacity: 0.5;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-draw: cubic-bezier(0.45, 0, 0.2, 1);
+  --duration-hover: 160ms;
+  --duration-recompose: 1.1s;
+  --duration-rise: 0.8s;
+  --duration-trace: 1.9s;
+  --duration-fill: 0.7s;
+  --duration-ink-fill: 0.6s;
+  --duration-ink: 0.9s;
+  --delay-recompose: 0.05s;
+  --delay-rise: 0.55s;
+  --delay-trace: 0.35s;
+  --delay-ink-fill: 1.95s;
+  --delay-fill: 2.1s;
+  --delay-ink: 2.5s;
+  --stagger: 0.1s;
+  --shift-recompose: 18%;
+  --shift-figure: 30%;
+  --distance-rise: 28px;
+  --band-1-from: 0%;
+  --band-1-to: -15%;
+  --band-2-from: -15%;
+  --band-2-to: 0%;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #13161c;
+    --color-surface: #1a1e26;
+    --color-text: #e8ebf0;
+    --color-text-muted: #a5acb8;
+    --color-line: #2d333e;
+    --color-line-strong: #e8ebf0;
+    --color-accent: #8fb0f0;
+    --color-accent-hover: #b6cbf6;
+    --color-on-accent: #0d1424;
+    --color-sky: #1c2a44;
+    --color-on-sky: #e8ebf0;
+    --color-on-sky-muted: #b4c0d6;
+    --color-header-bg: rgb(19 22 28 / 0.92);
+    --color-focus: #8fb0f0;
+    --color-error: #ff8f85;
+  }
+}

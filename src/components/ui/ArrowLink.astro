@@ -1,0 +1,27 @@
+---
+// El enlace en negrita con el subrayado cobalto de 2 px (plan/spec-visual.md § 2.2). Encima, el
+// texto pasa a cobalto. Sobre celeste y sobre cobalto toma el color de su banda: lo pone la banda
+// con --arrow-link-color y --arrow-link-rule.
+interface Props {
+  href: string;
+  external?: boolean;
+  class?: string;
+}
+
+const { href, external = false, class: className } = Astro.props;
+---
+<a class:list={['arrow-link', className]} href={href} rel={external ? 'external' : undefined}><slot /></a>
+
+<style>
+  .arrow-link {
+    padding-bottom: 2px;
+    border-bottom: var(--rule-mid) solid var(--arrow-link-rule, var(--color-accent));
+    color: var(--arrow-link-color, var(--color-text));
+    font-weight: var(--weight-bold);
+    text-decoration: none;
+  }
+
+  .arrow-link:hover {
+    color: var(--arrow-link-hover, var(--color-accent));
+  }
+</style>
