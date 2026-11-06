@@ -232,7 +232,8 @@ const es: HomeText = {
   career: {
     title: 'Trayectoria',
     headers: { dates: 'Fechas', role: 'Puesto', place: 'Dónde' },
-    // docs/cv/cv-es.html § «Experiencia profesional», en su orden: web y CV no se contradicen.
+    // docs/cv/cv-es.html § «Experiencia profesional», en su orden: web y CV no se contradicen. Sin
+    // las clases particulares, que el CV sí lleva (Fritz, 2026-11-06).
     rows: [
       {
         dates: 'Abr 2026 — hoy',
@@ -253,11 +254,6 @@ const es: HomeText = {
         dates: 'Dic 2024 — Oct 2025',
         role: 'Energy Consultant & Account Manager',
         place: 'Selectra Sur SL · Valencia',
-      },
-      {
-        dates: 'Sep 2018 — Jun 2026',
-        role: 'Profesor particular de matemáticas, física y programación',
-        place: 'Autónomo · Valencia',
       },
       {
         dates: '2019',

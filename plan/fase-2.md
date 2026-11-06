@@ -1039,3 +1039,8 @@ Analytics, tocar el correo de la zona.
   el documento de la portada, 29,2 KB en gzip (tope 32). La escena de carga acaba a
   los 3,4 s (el óvalo). Las bandas cubren 1920 px en el principio y en el final de su viaje (prueba
   nueva, a cover 0 % y 100 %).
+- **2026-11-06, después de la 2.7: fuera las clases particulares.** Fritz quitó de Trayectoria la
+  fila «Profesor particular de matemáticas, física y programación» (Sep 2018 — Jun 2026): «no creo
+  que añada mucho». Sale de `src/data/home.ts` y de `plan/contenido.md` § 1.6; el CV la conserva
+  (la web no lo contradice, solo cuenta menos), y la 2.12 decide si también sale de allí y de
+  LinkedIn. Vistas nuevas, buscadas: las cuatro de la portada (una fila menos).

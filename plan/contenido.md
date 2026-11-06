@@ -164,7 +164,6 @@ el verde»: `plan/README.md` § El ciclo, paso 3.
 | Ene 2026 — hoy | AI Red-Teaming & Prompt Engineer | DataAnnotation Tech · Autónomo, remoto |
 | Jul 2025 — hoy | AI QA Analyst / Project Tester | Lionbridge Technologies · Autónomo, remoto |
 | Dic 2024 — Oct 2025 | Energy Consultant & Account Manager | Selectra Sur SL · Valencia |
-| Sep 2018 — Jun 2026 | Profesor particular de matemáticas, física y programación | Autónomo · Valencia |
 | 2019 | Asistente técnico informático · Prácticas | Ayuntamiento de Valencia — Policía Local |
 
 **Formación:** Técnico Superior en Desarrollo de Aplicaciones Multiplataforma (DAM) — IES El Grao,
@@ -180,7 +179,9 @@ formación sin fechas ni estado; idiomas fijados por Fritz: todo de `CLAUDE.md` 
 DataAnnotation sin clientes ni modelos (memoria «Confidencialidad de DataAnnotation»). ⚠️ La
 línea del estudio lleva «Abr 2026», la fecha del CV, aunque la regla del estudio pide no delatar
 lo reciente en lo que hable de él. Fritz la dio por buena el 2026-11-04: la web y el CV no se
-contradicen.
+contradicen. Las clases particulares (Sep 2018 — Jun 2026) salen de la web por decisión de Fritz
+el 2026-11-06 («no creo que añada mucho»); el CV puede seguir llevándolas: callar no es
+contradecir.
 
 ### 1.7 Contacto
 
