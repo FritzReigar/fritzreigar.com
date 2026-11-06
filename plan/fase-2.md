@@ -544,7 +544,7 @@ del sistema).
 
 ---
 
-### Tanda 2.8 — El texto inglés   [ ] pendiente
+### Tanda 2.8 — El texto inglés   [x] hecha (2026-11-06, sin versión)
 **Objetivo**: existe `plan/contenido-en.md` con todo el texto visible de la web en inglés, con el
 OK de Fritz, listo para que la 2.9 lo monte sin escribir una línea.
 
@@ -1044,3 +1044,16 @@ Analytics, tocar el correo de la zona.
   que añada mucho». Sale de `src/data/home.ts` y de `plan/contenido.md` § 1.6; el CV la conserva
   (la web no lo contradice, solo cuenta menos), y la 2.12 decide si también sale de allí y de
   LinkedIn. Vistas nuevas, buscadas: las cuatro de la portada (una fila menos).
+- **2026-11-06, tanda 2.8: el texto inglés, con el OK de Fritz y cinco vueltas.** `plan/contenido-en.md`
+  sigue el índice de `contenido.md` y añade, donde los datos parten el texto de otra forma, esa
+  forma (las cifras con `num` y `unit`, los títulos sin punto), más los `alt` de las 23 capturas.
+  Fritz pidió repasos hasta que dejaran de salir calcos y una vuelta contra el significado del
+  español: salieron tres frases que decían otra cosa, ya arregladas. La nav inglesa es la medida en
+  spec § 5: no cambia. Cosas que la 2.9 monta y no son solo texto: los enlaces al estudio van a su
+  inglés (`https://estudioreigar.com/en/` y `/en/case-studies/…`), el asunto del formulario lleva
+  «(English)» y la nota de las capturas de Snugtone pierde la frase de que la interfaz está en inglés.
+- **2026-11-06, tanda 2.8: para la 2.12.** `cv-en.html` llama al DAM «Higher National Diploma in…»,
+  que en inglés se lee como título obtenido (la web dice «Spain's two-year higher vocational program
+  in software», sin estado), y va en inglés británico («Specialisation») mientras la web va en
+  americano. Y la web, en los dos idiomas, dice «al resto de España, a distancia», mientras el estudio
+  en inglés dice «in Spain or abroad»: si Fritz quiere ampliarlo, cambian los dos textos.
