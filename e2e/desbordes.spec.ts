@@ -5,7 +5,14 @@ import { sitePages } from './support/pages';
 // Ningún texto se sale de su caja ni de la ventana (plan/spec-visual.md § 3.2), sobre dist/ y a
 // los anchos de los cortes. La lógica es la de docs/lienzo/herramientas/comprobar-desbordes.mjs.
 // Cada tanda que pinta una página la añade a PAINTED (Reglas de la fase 2).
-const PAINTED: RouteKey[] = ['home', 'work-missphone', 'work-artemisa', 'not-found'];
+const PAINTED: RouteKey[] = [
+  'home',
+  'work-missphone',
+  'work-artemisa',
+  'project-snugtone',
+  'project-snugport',
+  'not-found',
+];
 const WIDTHS = [360, 768, 1024, 1440];
 
 const pages = sitePages.filter((sitePage) => PAINTED.includes(sitePage.key));

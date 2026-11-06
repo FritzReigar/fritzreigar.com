@@ -1,9 +1,9 @@
 import { expect, type Page, test } from '@playwright/test';
 
-// Las fichas de Trabajo (tanda 2.5). La primera pantalla de Missphone enseña lo de
-// plan/spec-visual.md § 7, medido en el lienzo, con el mismo margen de 24 px que la portada; la
-// vitrina es la única imagen que no espera al scroll (spec § 6.1); y las parejas de «Antes y
-// después» llevan la flecha de tinta alternando su forma, salvo la del móvil (spec § 2.2).
+// Las fichas de Trabajo (tanda 2.5) y, al final, las de Proyectos (2.6). La primera pantalla de
+// Missphone enseña lo de plan/spec-visual.md § 7, medido en el lienzo, con el mismo margen de 24 px
+// que la portada; la vitrina es la única imagen que no espera al scroll (spec § 6.1); y las parejas
+// de «Antes y después» llevan la flecha de tinta alternando su forma, salvo la del móvil (§ 2.2).
 const MARGIN = 24;
 
 type Edges = [top: number, bottom: number];
@@ -113,4 +113,104 @@ test('Limpiezas Artemisa: «Qué se hizo» en siete filas sin capturas y cuatro 
   await expect(page.locator('.feature-rows img')).toHaveCount(0);
   await expect(page.locator('.figure-list > li')).toHaveCount(4);
   await expect(page.locator('.case-closing h2')).toHaveCount(3);
+});
+
+// Las fichas de Proyectos (tanda 2.6). La primera pantalla de Snugtone, de spec § 7: a 390, la
+// descarga (380-428), el enlace al código y casi toda la vitrina (504-868); a 1440, el título
+// (145-403), la entradilla y los enlaces (457-548) y la vitrina desde 604.
+test('Snugtone: la primera pantalla enseña la descarga, el código y la vitrina', async ({
+  page,
+}, info) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/proyectos/snugtone');
+  await page.evaluate(() => document.fonts.ready);
+
+  const showcase = await edgesOf(page, '.case-showcase');
+  const viewport = page.viewportSize()?.height ?? 0;
+
+  if (info.project.name === 'movil') {
+    const download = await edgesOf(page, '.case-hero__links .button');
+    near(download[0], 380, 'la descarga, arriba');
+    near(download[1], 428, 'la descarga, abajo');
+    near(showcase[0], 504, 'la vitrina, arriba');
+    near(showcase[1], 868, 'la vitrina, abajo');
+  } else {
+    const title = await edgesOf(page, '.case-hero h1');
+    const lede = await edgesOf(page, '.case-hero .lede');
+    const links = await edgesOf(page, '.case-hero__links');
+    near(title[0], 145, 'el título, arriba');
+    near(title[1], 403, 'el título, abajo');
+    near(lede[0], 457, 'la entradilla, arriba');
+    near(links[0], 457, 'los enlaces, arriba');
+    expect(Math.max(lede[1], links[1])).toBeLessThanOrEqual(548 + MARGIN);
+    near(showcase[0], 604, 'la vitrina, arriba');
+  }
+  expect(showcase[0], 'la vitrina asoma en la primera pantalla').toBeLessThan(viewport);
+});
+
+test('Snugtone: la vitrina lleva una sola captura y la nota de las capturas de pie', async ({
+  page,
+}) => {
+  await page.goto('/proyectos/snugtone');
+  const showcase = page.locator('.case-showcase');
+  await expect(showcase).toHaveClass(/case-showcase--single/);
+  await expect(showcase.locator('img')).toHaveCount(1);
+  await expect(showcase.locator('figcaption')).toContainText('Todo lo que sale en las capturas');
+});
+
+for (const path of ['/proyectos/snugtone', '/proyectos/snugport']) {
+  test(`${path}: solo la vitrina va sin loading="lazy"`, async ({ page }) => {
+    await page.goto(path);
+    const notLazy = await page
+      .locator('main img')
+      .evaluateAll((imgs) =>
+        imgs
+          .filter((img) => img.getAttribute('loading') !== 'lazy')
+          .map((img) =>
+            img.closest('.case-showcase__desktop') ? 'vitrina' : img.getAttribute('src'),
+          ),
+      );
+    expect(notLazy).toEqual(['vitrina']);
+    await expect(page.locator('.case-showcase img[fetchpriority]')).toHaveCount(0);
+  });
+}
+
+test('Snugtone: cuatro filas (tres con captura), cinco cifras, tres capas y dos columnas de cierre', async ({
+  page,
+}) => {
+  await page.goto('/proyectos/snugtone');
+  const rows = page.locator('.feature-rows > li');
+  await expect(rows).toHaveCount(4);
+  const withShot = await rows.evaluateAll((items) =>
+    items.map((row) => !!row.querySelector('img')),
+  );
+  expect(withShot).toEqual([true, true, true, false]);
+
+  const figures = page.locator('.figure-list > li .figure-list__num');
+  await expect(figures).toHaveText(['0,48 s', '230 MB', '609', '0', '9503']);
+
+  const layers = page.locator('.layer-stack__layers > li');
+  await expect(layers).toHaveCount(3);
+  await expect(layers.locator('strong')).toHaveText(['Interfaz', 'Cáscara', 'Núcleo']);
+  await expect(page.locator('.layer-stack__layers > li.layer-stack__core')).toHaveCount(1);
+  await expect(page.locator('.layer-stack__layers > li').last()).toHaveClass(/layer-stack__core/);
+
+  await expect(page.locator('.case-closing h2')).toHaveText(['Con qué', 'Descargar']);
+  await expect(page.locator('.case-closing a.button')).toHaveAttribute(
+    'href',
+    'https://github.com/FritzReigar/snugtone/releases',
+  );
+});
+
+test('Snugport: vitrina con escritorio y móvil, cuatro puntos sin capturas, sin cifras y un cierre', async ({
+  page,
+}) => {
+  await page.goto('/proyectos/snugport');
+  await expect(page.locator('.case-hero h1')).toHaveText('Snugport');
+  await expect(page.locator('.case-hero__links .button')).toHaveText('Probar la app ↗');
+  await expect(page.locator('.case-showcase img')).toHaveCount(2);
+  await expect(page.locator('.feature-rows > li')).toHaveCount(4);
+  await expect(page.locator('.feature-rows img')).toHaveCount(0);
+  await expect(page.locator('.figure-list')).toHaveCount(0);
+  await expect(page.locator('.case-closing h2')).toHaveText(['Con qué']);
 });

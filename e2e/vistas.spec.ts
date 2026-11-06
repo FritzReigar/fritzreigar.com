@@ -9,6 +9,7 @@ import { expect, test } from '@playwright/test';
 const VIEWS = [
   { name: 'portada', path: '/' },
   { name: 'missphone', path: '/trabajo/missphone' },
+  { name: 'snugtone', path: '/proyectos/snugtone' },
   { name: '404', path: '/404' },
 ];
 

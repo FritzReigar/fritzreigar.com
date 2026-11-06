@@ -3,7 +3,7 @@
 // este orden fijo, sea cual sea el del JSON: PullQuote → Prose → BeforeAfter → FeatureRows →
 // FigureList → PhaseList → LayerStack → CaseClosing (plan/spec-visual.md § 2.2, «Fichas», y
 // § 3.4). Cada pieza con título es una sección con su cartel (SectionTitle); la cita y el cierre
-// llevan el suyo propio. LayerStack (Snugtone) llega en la 2.6: hasta entonces, sin estilo.
+// llevan el suyo propio.
 import type { CaseEntry } from '../../data/cases';
 import type { Lang } from '../../data/ui';
 import SectionTitle from '../ui/SectionTitle.astro';
@@ -11,6 +11,7 @@ import BeforeAfter from './BeforeAfter.astro';
 import CaseClosing from './CaseClosing.astro';
 import FeatureRows from './FeatureRows.astro';
 import FigureList from './FigureList.astro';
+import LayerStack from './LayerStack.astro';
 import PhaseList from './PhaseList.astro';
 import Prose from './Prose.astro';
 import PullQuote from './PullQuote.astro';
@@ -57,7 +58,7 @@ const idOf = (title: string): string =>
   <section class="section" aria-labelledby={featureRows.title && idOf(featureRows.title)}>
     <div class="wrap">
       {featureRows.title && <SectionTitle id={idOf(featureRows.title)} text={featureRows.title} />}
-      <FeatureRows items={featureRows.items} />
+      <FeatureRows items={featureRows.items} lang={lang} />
     </div>
   </section>
 )}
@@ -84,12 +85,7 @@ const idOf = (title: string): string =>
   <section class="section" aria-labelledby={idOf(layerStack.title)}>
     <div class="wrap">
       <SectionTitle id={idOf(layerStack.title)} text={layerStack.title} />
-      <p class="lede">{layerStack.lede}</p>
-      {layerStack.layers && (
-        <ol>
-          {layerStack.layers.map((layer) => <li><strong>{layer.name}</strong> {layer.text}</li>)}
-        </ol>
-      )}
+      <LayerStack lede={layerStack.lede} layers={layerStack.layers} />
     </div>
   </section>
 )}

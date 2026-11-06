@@ -1,0 +1,93 @@
+---
+// Cómo está hecho un proyecto (plan/spec-visual.md § 2.2, «Fichas»): la entradilla (1-5) y las
+// capas apiladas, de arriba abajo, dentro de un marco fuerte (7-12), cada una con su nombre en
+// cartel y una línea; el núcleo, en celeste con la regla cobalto encima. Por debajo de 60rem, una
+// debajo de otra; a 35rem o menos, el nombre encima de su línea. «Cómo está hecho» de Snugtone. El
+// cartel de la sección lo pone CaseBody.
+interface Props {
+  lede: string;
+  layers?: readonly { name: string; text: string; core?: boolean }[];
+}
+
+const { lede, layers } = Astro.props;
+---
+<div class="layer-stack">
+  <p class="lede">{lede}</p>
+  {layers && (
+    <ol class="layer-stack__layers">
+      {layers.map((layer) => (
+        <li class:list={{ 'layer-stack__core': layer.core }}>
+          <strong>{layer.name}</strong>
+          <span>{layer.text}</span>
+        </li>
+      ))}
+    </ol>
+  )}
+</div>
+
+<style>
+  .layer-stack {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap-col);
+    row-gap: var(--space-5);
+    align-items: start;
+  }
+
+  .lede {
+    grid-column: 1 / span 5;
+    margin: 0;
+  }
+
+  .layer-stack__layers {
+    grid-column: 7 / span 6;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border: var(--rule) solid var(--color-line-strong);
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    border-top: var(--rule) solid var(--color-line-strong);
+  }
+
+  li:first-child {
+    border-top: 0;
+  }
+
+  strong {
+    font-size: var(--text-h3);
+    font-weight: var(--weight-poster);
+    font-stretch: var(--stretch-poster);
+    line-height: var(--leading-tight);
+    text-transform: uppercase;
+  }
+
+  span {
+    font-size: var(--text-s);
+  }
+
+  .layer-stack__core {
+    border-top: var(--rule-thick) solid var(--color-accent);
+    background: var(--color-sky);
+    color: var(--color-on-sky);
+  }
+
+  @media (max-width: 60rem) {
+    .lede,
+    .layer-stack__layers {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 35rem) {
+    li {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-1);
+    }
+  }
+</style>

@@ -1,10 +1,13 @@
 ---
 // La vitrina de una ficha (plan/spec-visual.md § 2.2, «Fichas»): el bloque celeste con sus
-// capturas. Hoy, la variante `pair`: escritorio y móvil en 5fr 1fr, alineadas abajo (Missphone,
-// Artemisa, Snugport); a 35rem o menos, solo la de escritorio. La `single` (Snugtone, con el pie)
-// llega en la 2.6. La de escritorio asoma en la primera pantalla y va sin `lazy` y sin
-// fetchpriority (el LCP es el título, spec § 6.1). La del móvil sí va con `lazy`: a 35rem o menos
-// está oculta, y así el móvil no la descarga (Desvíos de la 2.5).
+// capturas, en una de dos variantes según lo que traiga su JSON.
+// - `pair`, con captura del móvil: escritorio y móvil en 5fr 1fr, alineadas abajo (Missphone,
+//   Artemisa, Snugport); a 35rem o menos, solo la de escritorio. La del móvil va con `lazy`: a
+//   35rem o menos está oculta, y así el móvil no la descarga (Desvíos de la 2.5).
+// - `single`, sin ella: la de escritorio en 1-9 y el pie en 10-12, abajo (Snugtone, con la nota de
+//   sus capturas); por debajo de 60rem, el pie debajo.
+// La de escritorio asoma en la primera pantalla y va sin `lazy` y sin fetchpriority (el LCP es el
+// título, spec § 6.1). Los `sizes` son los de spec § 6.2.
 import type { ShotKey } from '../../data/shots';
 import type { Lang } from '../../data/ui';
 import Shot from '../ui/Shot.astro';
@@ -12,37 +15,74 @@ import Shot from '../ui/Shot.astro';
 interface Props {
   desktop: ShotKey;
   phone?: ShotKey;
+  caption?: string;
   lang: Lang;
 }
 
-const { desktop, phone, lang } = Astro.props;
+const { desktop, phone, caption, lang } = Astro.props;
 ---
 <div class="wrap">
-  <div class="case-showcase">
-    <Shot shot={desktop} lang={lang} sizes="(max-width: 35rem) 84vw, 987px" eager class="case-showcase__desktop" />
-    {phone && <Shot shot={phone} lang={lang} sizes="197px" phone />}
-  </div>
+  {phone ? (
+    <div class="case-showcase case-showcase--pair">
+      <Shot shot={desktop} lang={lang} sizes="(max-width: 35rem) 84vw, 987px" eager class="case-showcase__desktop" />
+      <Shot shot={phone} lang={lang} sizes="197px" phone />
+    </div>
+  ) : (
+    <figure class="case-showcase case-showcase--single">
+      <Shot shot={desktop} lang={lang} sizes="(max-width: 60rem) 86vw, 892px" eager class="case-showcase__desktop" />
+      {caption && <figcaption>{caption}</figcaption>}
+    </figure>
+  )}
 </div>
 
 <style>
   .case-showcase {
     display: grid;
-    grid-template-columns: 5fr 1fr;
     gap: var(--space-3);
     align-items: end;
-    margin-top: var(--space-block);
+    margin: var(--space-block) 0 0;
     padding: var(--space-inset);
     background: var(--color-sky);
+    color: var(--color-on-sky);
+  }
+
+  .case-showcase--pair {
+    grid-template-columns: 5fr 1fr;
+  }
+
+  .case-showcase--single {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap-col);
+  }
+
+  .case-showcase--single > :global(picture) {
+    grid-column: 1 / span 9;
+  }
+
+  figcaption {
+    grid-column: 10 / span 3;
+    color: var(--color-on-sky-muted);
+    font-size: var(--text-s);
+  }
+
+  @media (max-width: 60rem) {
+    .case-showcase--single > :global(picture),
+    figcaption {
+      grid-column: 1 / -1;
+    }
   }
 
   @media (max-width: 35rem) {
     .case-showcase {
-      grid-template-columns: minmax(0, 1fr);
       padding: var(--space-3);
     }
 
+    .case-showcase--pair {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
     /* Sin el <picture> de la del móvil, que si no ocuparía una fila vacía con su hueco. */
-    .case-showcase > :global(picture:has(.shot--phone)) {
+    .case-showcase--pair > :global(picture:has(.shot--phone)) {
       display: none;
     }
   }

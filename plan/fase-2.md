@@ -439,7 +439,7 @@ mejor»), el movimiento, el inglés.
 
 ---
 
-### Tanda 2.6 — Las fichas de Proyectos: Snugtone y Snugport   [ ] pendiente
+### Tanda 2.6 — Las fichas de Proyectos: Snugtone y Snugport   [x] hecha (2026-11-06, v0.2.6)
 **Objetivo**: las dos fichas de Proyectos están pintadas y las 16 vistas de la spec existen como
 pruebas.
 
@@ -994,3 +994,20 @@ Analytics, tocar el correo de la zona.
   antes de ocultar la captura del móvil (nota al pie de spec § 6.2), cuando la de escritorio medía
   258 px y no 326; la captura del lienzo da lo mismo que la web, píxel a píxel. Prueba nueva, `e2e/fichas.spec.ts`: la primera pantalla de Missphone (spec § 7),
   la vitrina como única imagen sin `lazy`, las flechas de las parejas y las piezas de Artemisa.
+- **2026-11-06, tanda 2.6: las tres capas de Snugtone, del lienzo a `contenido.md`.** El Desvío de
+  la 2.2 las dejaba pendientes: van ahora en `contenido.md` § 4 («Las tres capas, de arriba
+  abajo»), con el texto del lienzo, que repite la entradilla, y en el JSON (`layers`, el núcleo con
+  `core`). Sin el `aria-label` del lienzo en la lista: lo nombra el cartel «Cómo está hecho» y,
+  si no, sería texto suelto en el componente.
+- **2026-11-06, tanda 2.6: la variante de la vitrina sale de los datos.** `CaseShowcase` no tiene
+  prop `variant`: con captura del móvil es `pair` y sin ella, `single` (un `<figure>` con la nota de
+  `caption` como `figcaption`, en 10-12 y debajo por debajo de 60rem).
+- **2026-11-06, tanda 2.6: las filas sin título y el cierre de una columna.** Los cuatro puntos de
+  Snugport no tienen título (Desvío de la 2.2): con el texto en 4-7, las columnas 1-3 quedaban como
+  un hueco, así que una fila sin título lleva el texto en 1-7. `CaseClosing` con dos columnas o
+  menos usa la rejilla de dos: Snugport pinta solo «Con qué», en la primera mitad. Ninguna de las
+  dos cosas está dibujada en el lienzo.
+- **2026-11-06, tanda 2.6: lo medido.** Documento de Snugtone, 4,3 KB en gzip (15,8 brutos); de
+  Snugport, 2,8 (9,0): tope 10. La primera pantalla de Snugtone cuadra con spec § 7 en los dos
+  anchos (margen de 24 px), y entra como prueba en `e2e/fichas.spec.ts` con las piezas de las dos
+  fichas. Vistas nuevas, buscadas: las cuatro de Snugtone; con ellas, las 16 de la spec.

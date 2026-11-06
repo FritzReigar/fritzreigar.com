@@ -512,6 +512,11 @@ Código en GitHub ↗ (`https://github.com/FritzReigar/snugtone`)
 > existe, así que se prueba sin abrir una ventana. La cáscara de Tauri pone la ventana y la salida de
 > audio real (cpal). La interfaz es HTML, CSS y JavaScript sin framework ni paso de compilación.
 
+**Las tres capas, de arriba abajo** (las del lienzo, con el mismo texto que la entradilla):
+- **Interfaz:** HTML, CSS y JavaScript sin framework ni paso de compilación
+- **Cáscara:** Tauri 2: la ventana y la salida de audio real (cpal)
+- **Núcleo:** Rust puro: motor de audio, cola, biblioteca y configuración. No sabe que Tauri existe
+
 **Con qué:** Rust · Tauri 2 · cpal · HTML/CSS/JS vanilla · TOML · MusicBrainz
 
 ### Descargar

@@ -1,22 +1,29 @@
 ---
 // Una fila por función o por punto (plan/spec-visual.md § 2.2, «Fichas»): el filete fuerte de 2 px
-// arriba, el título en caja alta a --text-principle (1-3) y el texto (4-7). Apiladas por debajo de
-// 60rem. Hoy, sin capturas: «Qué se hizo» de Artemisa (spec § 2.4) y los puntos de Snugport. La
-// captura de cada fila (8-12, Snugtone) llega en la 2.6.
+// arriba, el título en caja alta a --text-principle (1-3), el texto (4-7) y, si la lleva, su
+// captura (8-12). Apiladas por debajo de 60rem. Con capturas, «Qué hace» de Snugtone (la última
+// fila va sin ella); sin capturas, «Qué se hizo» de Artemisa (spec § 2.4) y los puntos de Snugport.
+// Una fila sin título (los puntos de Snugport) lleva el texto en 1-7, sin dejar el hueco del título.
+// El `sizes` es el de spec § 6.2.
 import type { Rich as RichText } from '../../data/rich';
+import type { ShotKey } from '../../data/shots';
+import type { Lang } from '../../data/ui';
 import Rich from '../ui/Rich.astro';
+import Shot from '../ui/Shot.astro';
 
 interface Props {
-  items: readonly { title?: string; text: RichText }[];
+  items: readonly { title?: string; text: RichText; shot?: ShotKey }[];
+  lang: Lang;
 }
 
-const { items } = Astro.props;
+const { items, lang } = Astro.props;
 ---
 <ul class="feature-rows">
   {items.map((item) => (
-    <li>
+    <li class:list={{ 'feature-rows__untitled': !item.title }}>
       {item.title && <h3>{item.title}</h3>}
       <p><Rich text={item.text} /></p>
+      {item.shot && <Shot shot={item.shot} lang={lang} sizes="(max-width: 60rem) 92vw, 515px" />}
     </li>
   ))}
 </ul>
@@ -45,9 +52,19 @@ const { items } = Astro.props;
     margin: 0;
   }
 
+  .feature-rows__untitled p {
+    grid-column: 1 / span 7;
+  }
+
+  li > :global(picture) {
+    grid-column: 8 / span 5;
+  }
+
   @media (max-width: 60rem) {
     h3,
-    p {
+    p,
+    .feature-rows__untitled p,
+    li > :global(picture) {
       grid-column: 1 / -1;
     }
   }

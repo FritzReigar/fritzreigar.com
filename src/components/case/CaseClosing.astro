@@ -1,9 +1,10 @@
 ---
 // El cierre de una ficha (plan/spec-visual.md § 2.2, «Fichas»): columnas con su título en caja
 // alta bajo la regla cobalto de 6 px, y en cada una su texto, sus etiquetas de tecnología
-// (StackList) o su acción. Tres columnas en las de Trabajo; 1 columna por debajo de 60rem. Es la
-// última sección de la página: cierra con --space-end. Las dos columnas de Snugtone y su Button
-// de descarga, en la 2.6.
+// (StackList) o su acción, un Button primario debajo. Tres columnas en las de Trabajo; con dos o
+// menos, la rejilla es de dos (Snugtone: Con qué y Descargar; Snugport, solo Con qué, en la
+// primera mitad). 1 columna por debajo de 60rem. Es la última sección de la página: cierra con
+// --space-end.
 import type { Rich as RichText } from '../../data/rich';
 import Button from '../ui/Button.astro';
 import Rich from '../ui/Rich.astro';
@@ -21,7 +22,7 @@ interface Props {
 const { columns } = Astro.props;
 ---
 <div class="section section--last">
-  <div class="wrap case-closing">
+  <div class:list={['wrap', 'case-closing', { 'case-closing--two': columns.length <= 2 }]}>
     {columns.map((column) => (
       <section>
         <h2>{column.title}</h2>
@@ -40,6 +41,10 @@ const { columns } = Astro.props;
     gap: var(--space-5) var(--gap-wide);
   }
 
+  .case-closing--two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   h2 {
     margin-bottom: var(--space-3);
     padding-top: var(--space-3);
@@ -55,7 +60,8 @@ const { columns } = Astro.props;
   }
 
   @media (max-width: 60rem) {
-    .case-closing {
+    .case-closing,
+    .case-closing--two {
       grid-template-columns: minmax(0, 1fr);
     }
   }

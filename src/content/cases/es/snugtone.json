@@ -79,7 +79,19 @@
     },
     "layerStack": {
       "title": "Cómo está hecho",
-      "lede": "El núcleo es Rust puro —motor de audio, cola, biblioteca, configuración— y no sabe que Tauri existe, así que se prueba sin abrir una ventana. La cáscara de Tauri pone la ventana y la salida de audio real (cpal). La interfaz es HTML, CSS y JavaScript sin framework ni paso de compilación."
+      "lede": "El núcleo es Rust puro —motor de audio, cola, biblioteca, configuración— y no sabe que Tauri existe, así que se prueba sin abrir una ventana. La cáscara de Tauri pone la ventana y la salida de audio real (cpal). La interfaz es HTML, CSS y JavaScript sin framework ni paso de compilación.",
+      "layers": [
+        {
+          "name": "Interfaz",
+          "text": "HTML, CSS y JavaScript sin framework ni paso de compilación"
+        },
+        { "name": "Cáscara", "text": "Tauri 2: la ventana y la salida de audio real (cpal)" },
+        {
+          "name": "Núcleo",
+          "text": "Rust puro: motor de audio, cola, biblioteca y configuración. No sabe que Tauri existe",
+          "core": true
+        }
+      ]
     },
     "caseClosing": {
       "columns": [
