@@ -136,8 +136,9 @@ Recomendadas (valen mientras Fritz no diga otra cosa):
 - **El grep de la regla 13** en cada tanda que toca texto (`plan/fase-1.md`, tanda 1.1,
   «Verificación»), más el de los nombres de la gente de Missphone, escrito solo en la línea de
   comandos.
-- **La QA en el teléfono es de Fritz**, sobre la previa, al cerrar cada tanda que pinta (2.1 y
-  2.3 a 2.7, 2.9 y 2.10).
+- **La QA en el teléfono es de Fritz**, sobre la previa, **de una vez cuando todo esté hecho**
+  (antes del corte), no al cerrar cada tanda que pinta: lo decidió Fritz el 2026-11-06. El «Qué
+  trae Fritz: la QA en el teléfono» de cada tanda queda en suspenso; lo que salga va a «Desvíos».
 - **Movimiento** (ya en la spec, se repite porque se olvida): `translate`/`scale`/`opacity`, nunca
   `transform`; todo dentro de `@media (prefers-reduced-motion: no-preference)`; lo del scroll,
   además, dentro de `@supports (animation-timeline: view())` y con propiedades sueltas.

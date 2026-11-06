@@ -101,7 +101,8 @@ del proyecto del estudio. Y X: aquí no se publica nada.
       la web vieja: a `main` no va nada que cambie lo que se ve en el dominio.
    7. **El bloque de cierre**, cuando Fritz dice «cierre»: los siete rótulos de §7.5 en
       `siguiente.md` (sobrescribiendo el anterior) y en el chat.
-3. La QA en el teléfono es de Fritz y va al cerrar cada tanda que pinte algo.
+3. La QA en el teléfono es de Fritz y va **de una vez, cuando todo esté hecho** (antes del corte),
+   no al cerrar cada tanda (Fritz, 2026-11-06).
 
 ## Reglas del ciclo
 
