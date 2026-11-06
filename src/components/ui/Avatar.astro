@@ -1,10 +1,10 @@
 ---
 // El avatar (plan/spec-visual.md § 2.2 y § 6.4): el dibujo vectorizado y aligerado de
-// docs/lienzo/herramientas/avatar-ligero.svgfrag, en línea para que la 2.7 lo trace con el CSS
+// docs/lienzo/herramientas/avatar-ligero.svgfrag, en línea para que se trace con el CSS
 // de la página (un <img> no deja). Cuatro capas: piel, camiseta, rayado de la barba y los 26
 // trazos de línea, cada una con su clase y su token --color-avatar-* (el dibujo no cambia con
-// el tema). Se pinta dibujado (decisión F6): los trazos van rellenos y nada se mueve. Los
-// trazos llevan pathLength="1" para la 2.7.
+// el tema). El reposo es el dibujo acabado: los trazos, rellenos y sin línea. Llevan
+// pathLength="1" y stroke-dasharray: 1 para que src/styles/motion.css los trace al cargar.
 interface Props {
   alt: string;
   class?: string;
@@ -79,5 +79,6 @@ const { alt, class: className } = Astro.props;
     fill-rule: evenodd;
     stroke: var(--color-avatar-ink);
     stroke-width: 0;
+    stroke-dasharray: 1;
   }
 </style>

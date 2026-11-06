@@ -1,0 +1,247 @@
+/* El movimiento entero de la web (plan/spec-visual.md § 4), en un solo sitio y solo en CSS: una
+   escena al cargar (el nombre o el título se recompone, la fila bajo la regla sube, el avatar se
+   dibuja y la tinta se traza) y, al bajar, lo que cuenta algo (los carteles, las bandas, la flecha
+   de cada antes y después y las cifras).
+
+   El reposo vive fuera, en cada componente: la página entera, el avatar dibujado y la tinta
+   trazada (stroke-dasharray: 1 con el offset en 0, en Ink.astro). Aquí solo se dice de dónde
+   sale cada cosa: los @keyframes de carga dan el «from» y dejan el «to» implícito, que es el
+   valor de reposo, y van con fill-mode backwards. Así, al acabar, la animación deja de existir y
+   queda el reposo tal cual: con movimiento reducido, sin soporte o antes de empezar, la página es
+   la de las vistas. Lo que se desplaza va con translate, scale y opacity, nunca con transform; lo
+   del scroll, además, dentro de @supports y con propiedades sueltas (animation-timeline nunca en
+   el atajo animation: el atajo la reinicia a auto). */
+
+@media (prefers-reduced-motion: no-preference) {
+  /* El nombre de la portada, el título de ficha y el número del 404 se recomponen: la primera
+     pieza desde la derecha y la segunda desde la izquierda, --stagger después. Solo se desplazan:
+     el LCP se pinta en el primer fotograma. */
+  .home-hero h1 .first,
+  .case-hero h1 .first,
+  .error-hero__code .first {
+    animation-name: from-right;
+    animation-duration: var(--duration-recompose);
+    animation-delay: var(--delay-recompose);
+    animation-timing-function: var(--ease-out);
+    animation-fill-mode: backwards;
+  }
+
+  .home-hero h1 .second,
+  .error-hero__code .second {
+    animation-name: from-left;
+    animation-duration: var(--duration-recompose);
+    animation-delay: calc(var(--delay-recompose) + var(--stagger));
+    animation-timing-function: var(--ease-out);
+    animation-fill-mode: backwards;
+  }
+
+  /* La fila bajo la regla sube (en el 404, el título). */
+  .home-hero__copy,
+  .case-hero__copy,
+  .error-hero h1 {
+    animation-name: rise;
+    animation-duration: var(--duration-rise);
+    animation-delay: var(--delay-rise);
+    animation-timing-function: var(--ease-out);
+    animation-fill-mode: backwards;
+  }
+
+  /* El avatar se dibuja: los 26 trazos, en tres grupos separados por --stagger, se trazan como
+     línea fina (1,1 unidades del viewBox de 800, spec § 1.3) y después pasan a relleno; a los
+     2,1 s entran la piel, la camiseta y el rayado. */
+  .avatar-line {
+    animation-name: trace, ink-fill;
+    animation-duration: var(--duration-trace), var(--duration-ink-fill);
+    animation-delay: var(--delay-trace), var(--delay-ink-fill);
+    animation-timing-function: var(--ease-draw), var(--ease-out);
+    animation-fill-mode: backwards, backwards;
+  }
+
+  .avatar-line:nth-child(3n + 1) {
+    animation-delay:
+      calc(var(--delay-trace) + var(--stagger) * 1.5),
+      calc(var(--delay-ink-fill) + var(--stagger));
+  }
+
+  .avatar-line:nth-child(3n + 2) {
+    animation-delay:
+      calc(var(--delay-trace) + var(--stagger) * 3),
+      calc(var(--delay-ink-fill) + var(--stagger) * 2);
+  }
+
+  .avatar-skin,
+  .avatar-shirt,
+  .avatar-hatch {
+    animation-name: fade-in;
+    animation-duration: var(--duration-fill);
+    animation-delay: var(--delay-fill);
+    animation-timing-function: var(--ease-out);
+    animation-fill-mode: backwards;
+  }
+
+  /* La tinta de la carga: el óvalo de «Acepto proyectos» a los 2,5 s y la flecha del 404 al
+     acabar la subida. */
+  .ink--load path {
+    animation-name: trace;
+    animation-duration: var(--duration-ink);
+    animation-delay: var(--delay-ink);
+    animation-timing-function: var(--ease-draw);
+    animation-fill-mode: backwards;
+  }
+
+  .error-hero__ink path {
+    animation-delay: calc(var(--delay-rise) + var(--duration-rise));
+  }
+
+  /* Lo que cuenta el scroll. Con fill-mode both: antes de su tramo, en el punto de salida; después,
+     en el de llegada, que es el reposo. */
+  @supports (animation-timeline: view()) {
+    /* Los carteles: el texto entra desde la derecha mientras el título asoma, y la regla crece
+       desde la izquierda en la segunda mitad. Acaban justo cuando el título termina de asomar. */
+    .section-title__text {
+      animation-name: from-right;
+      animation-duration: auto;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 100%;
+    }
+
+    .section-title__rule {
+      transform-origin: left;
+      animation-name: grow;
+      animation-duration: auto;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-timeline: view();
+      animation-range: entry 50% entry 100%;
+    }
+
+    /* Las bandas viajan en sentidos contrarios mientras cruzan la pantalla; con la serie doble,
+       ningún borde entra. */
+    .shot-bands {
+      view-timeline-name: --bands;
+    }
+
+    .shot-bands__row {
+      animation-duration: auto;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-timeline: --bands;
+      animation-range: cover 0% cover 100%;
+    }
+
+    .shot-bands__row--1 {
+      animation-name: band-1;
+    }
+
+    .shot-bands__row--2 {
+      animation-name: band-2;
+    }
+
+    /* La flecha entre antes y después se traza al pasar. */
+    .ink--scroll {
+      view-timeline-name: --ink;
+    }
+
+    .ink--scroll path {
+      animation-name: trace;
+      animation-duration: auto;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-timeline: --ink;
+      animation-range: entry 30% cover 55%;
+    }
+
+    /* Las cifras entran, las impares desde la izquierda y las pares desde la derecha. */
+    .figure-list__num {
+      animation-name: figure-from-left;
+      animation-duration: auto;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 40%;
+    }
+
+    .figure-list li:nth-child(even) .figure-list__num {
+      animation-name: figure-from-right;
+    }
+  }
+}
+
+@keyframes from-right {
+  from {
+    translate: var(--shift-recompose) 0;
+  }
+}
+
+@keyframes from-left {
+  from {
+    translate: calc(-1 * var(--shift-recompose)) 0;
+  }
+}
+
+@keyframes rise {
+  from {
+    translate: 0 var(--distance-rise);
+  }
+}
+
+@keyframes trace {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+@keyframes ink-fill {
+  from {
+    fill-opacity: 0;
+    stroke-width: 1.1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes grow {
+  from {
+    scale: 0 1;
+  }
+}
+
+@keyframes band-1 {
+  from {
+    translate: var(--band-1-from) 0;
+  }
+
+  to {
+    translate: var(--band-1-to) 0;
+  }
+}
+
+@keyframes band-2 {
+  from {
+    translate: var(--band-2-from) 0;
+  }
+
+  to {
+    translate: var(--band-2-to) 0;
+  }
+}
+
+@keyframes figure-from-left {
+  from {
+    translate: calc(-1 * var(--shift-figure)) 0;
+    opacity: 0;
+  }
+}
+
+@keyframes figure-from-right {
+  from {
+    translate: var(--shift-figure) 0;
+    opacity: 0;
+  }
+}

@@ -1,7 +1,8 @@
 ---
-// La tinta: un trazo a mano en SVG, decorativo (plan/spec-visual.md § 2.2). Lleva pathLength="1"
-// para que la 2.7 la trace con stroke-dashoffset; hasta entonces se pinta trazada y quieta
-// (decisión F6). El tamaño y el sitio los pone quien la usa (con class): el trazo se estira
+// La tinta: un trazo a mano en SVG, decorativo (plan/spec-visual.md § 2.2). Con pathLength="1" el
+// camino mide 1 y con stroke-dasharray: 1 el trazo es un solo guion de su largo: el reposo (offset
+// 0) es el trazo entero, y src/styles/motion.css lo traza llevando el offset de 1 a 0, al cargar
+// (`load`) o con el scroll (`scroll`). El tamaño y el sitio los pone quien la usa (con class): el trazo se estira
 // (preserveAspectRatio="none") y puede salirse de su caja (max-width: none, overflow visible).
 // Los trazos son los del lienzo final. Las parejas de «Antes y después» alternan la flecha que sube
 // y baja (`arrow-up`, línea 978 de docs/lienzo/final.html) y la que baja y sube (`arrow-down`).
@@ -48,5 +49,6 @@ const { viewBox, d } = SHAPES[shape];
     stroke-width: var(--ink-stroke);
     stroke-linecap: round;
     stroke-linejoin: round;
+    stroke-dasharray: 1;
   }
 </style>

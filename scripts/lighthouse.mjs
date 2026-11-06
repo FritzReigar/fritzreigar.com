@@ -9,7 +9,7 @@
 //   --ci           umbrales de CI (rendimiento ≥ 90; el resto, igual)
 //   --pasadas N    N pasadas en todas las páginas (por defecto, 5 en la portada y 3 en el resto)
 //   --solo /ruta   una sola página
-//   --detalle      por pasada: TBT, la tarea larga de main.ts y qué se movió (CLS)
+//   --detalle      por pasada: el elemento del LCP, TBT, la tarea larga de main.ts y qué se movió (CLS)
 //   --idioma xx-XX el idioma del navegador (por defecto es-ES)
 //
 // Versiones fijadas (Lighthouse 13.5.0 exacta y el Chromium de Playwright): la nota cambia de una
@@ -187,6 +187,21 @@ function score(lhr, category) {
   return Math.round((lhr.categories[category]?.score ?? 0) * 100);
 }
 
+// El nodo del LCP, de la insight del desglose (Lighthouse 13 ya no tiene la auditoría suelta).
+function lcpNode(lhr) {
+  const find = (value) => {
+    if (!value || typeof value !== 'object') return undefined;
+    if (value.type === 'node') return value;
+    for (const child of Object.values(value)) {
+      const node = find(child);
+      if (node) return node;
+    }
+    return undefined;
+  };
+  const node = find(lhr.audits['lcp-breakdown-insight']?.details);
+  return node ? (node.selector ?? node.snippet ?? '?') : '?';
+}
+
 function detail(lhr) {
   const tbt = Math.round(lhr.audits['total-blocking-time']?.numericValue ?? 0);
   const tasks = lhr.audits['long-tasks']?.details?.items ?? [];
@@ -200,7 +215,7 @@ function detail(lhr) {
   const reflow = (lhr.audits['forced-reflow-insight']?.details?.items ?? [])
     .flatMap((table) => table.items ?? [])
     .reduce((total, item) => total + (item.reflowTime ?? 0), 0);
-  return `TBT ${tbt} ms · tarea de main.ts ${Math.round(mainTask)} ms · reflow forzado ${Math.round(
+  return `LCP ${lcpNode(lhr)} · TBT ${tbt} ms · tarea de main.ts ${Math.round(mainTask)} ms · reflow forzado ${Math.round(
     reflow,
   )} ms · desplazamientos: ${shifts.length ? shifts.join(', ') : 'ninguno'}`;
 }

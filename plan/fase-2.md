@@ -141,7 +141,10 @@ Recomendadas (valen mientras Fritz no diga otra cosa):
   trae Fritz: la QA en el teléfono» de cada tanda queda en suspenso; lo que salga va a «Desvíos».
 - **Movimiento** (ya en la spec, se repite porque se olvida): `translate`/`scale`/`opacity`, nunca
   `transform`; todo dentro de `@media (prefers-reduced-motion: no-preference)`; lo del scroll,
-  además, dentro de `@supports (animation-timeline: view())` y con propiedades sueltas.
+  además, dentro de `@supports (animation-timeline: view())` y con propiedades sueltas. Todo vive
+  en `src/styles/motion.css`: lo de la carga da solo el `from` y va con `animation-fill-mode:
+  backwards` (el `to` implícito es el reposo y, al acabar, la animación desaparece); lo del scroll,
+  con `both`. El reposo (la tinta con `stroke-dasharray: 1` y el offset en 0) va en el componente.
 - **Cero `style=""` y cero `<script>` en línea**: la CSP los bloquea. El JSON-LD es la única
   excepción (`type="application/ld+json"`, que no se ejecuta).
 
@@ -480,7 +483,7 @@ pruebas.
 
 ---
 
-### Tanda 2.7 — El movimiento: la pieza diferenciadora   [ ] pendiente
+### Tanda 2.7 — El movimiento: la pieza diferenciadora   [x] hecha (2026-11-06, v0.2.7)
 **Objetivo**: la web se mueve como dice spec § 4 (una escena al cargar y lo que cuenta el scroll),
 todo en CSS, y con movimiento reducido o sin soporte se ve exactamente el reposo de hoy.
 
@@ -1012,3 +1015,27 @@ Analytics, tocar el correo de la zona.
   Snugport, 2,8 (9,0): tope 10. La primera pantalla de Snugtone cuadra con spec § 7 en los dos
   anchos (margen de 24 px), y entra como prueba en `e2e/fichas.spec.ts` con las piezas de las dos
   fichas. Vistas nuevas, buscadas: las cuatro de Snugtone; con ellas, las 16 de la spec.
+- **2026-11-06, tanda 2.7: sin clase.** Fritz la saltó («Sin clase jefe»): no hubo «Tócalo tú» ni
+  tres preguntas, y ese punto de la aceptación queda fuera por decisión suya.
+- **2026-11-06, tanda 2.7: el reposo, sin `forwards`.** Los `@keyframes` de la carga dan solo el
+  `from` y van con `backwards`: el `to` implícito es el valor del componente, así que un mismo
+  `fade-in` sirve para la piel (opacidad 1) y para el rayado (0,5), y al acabar la animación deja
+  de existir (`getAnimations()` vuelve a cero salvo las del scroll, que es lo que mira
+  `e2e/movimiento.spec.ts`). `stroke-dasharray: 1` va fuera, en `Ink` y en `Avatar`: con el offset
+  en 0 es el trazo entero, y las 16 vistas pasan sin regenerarlas. Las cifras usan
+  `figure-from-left` y `figure-from-right` (el `from-left-short` del lienzo). Lightning CSS acorta
+  los rangos (`entry 0% entry 100%` sale como `entry`): es lo mismo.
+- **2026-11-06, tanda 2.7: el LCP no siempre es el cartel, y no por el movimiento.** Lighthouse
+  (móvil) da la entradilla en la portada, la vitrina en Missphone, Snugtone y Snugport, y el título
+  solo en Artemisa; a 1440 es el nombre, el título o el «404». `e2e/movimiento.spec.ts` comprueba
+  que el elemento del LCP es el mismo con movimiento y con movimiento reducido, en la portada,
+  Missphone y el 404: la recomposición no lo cambia ni lo retrasa (rendimiento 99-100, CLS 0 en
+  las cinco). Spec § 4 («el LCP es texto: el nombre, el título de ficha o el 404») no se cumple al
+  pie de la letra en móvil desde antes de la 2.7: una entradilla de cuatro líneas mide más que una
+  palabra del cartel, y la vitrina, más que el título. Lo decide la 2.11 (QA) o la planificación
+  del corte; el presupuesto de la vitrina (spec § 8) ya cuenta con ella. `npm run lighthouse --
+  --detalle` imprime ahora el elemento del LCP (de `lcp-breakdown-insight`).
+- **2026-11-06, tanda 2.7: lo medido.** La hoja única pesa 40,9 KB brutos y 7,4 en gzip (tope 10);
+  el documento de la portada, 29,2 KB en gzip (tope 32). La escena de carga acaba a
+  los 3,4 s (el óvalo). Las bandas cubren 1920 px en el principio y en el final de su viaje (prueba
+  nueva, a cover 0 % y 100 %).

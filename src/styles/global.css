@@ -1,6 +1,9 @@
 /* La hoja global: la fuente, la base y las utilidades que cruzan componentes. Cada
    componente lleva su <style>. Sin colores ni medidas literales: todo sale de tokens.css
-   (plan/spec-visual.md § 1; lo literal que se admite, § 1.3). */
+   (plan/spec-visual.md § 1; lo literal que se admite, § 1.3). El movimiento entero, en
+   motion.css: es el último import y no pisa nada del reposo. */
+
+@import "./motion.css";
 
 /* Archivo variable, autoalojada y recortada (scripts/fuente.py, public/fonts/LEEME.txt).
    Se precarga en BaseLayout; swap mientras la 2.11 no mida otra cosa (spec § 8). */
