@@ -679,7 +679,7 @@ los enlaces ya compartidos; ninguna página lo enlaza).
 
 ---
 
-### Tanda 2.11 — QA, las fuentes lentas y las cifras   [x] hecha (2026-11-07, v0.2.11; la QA en el teléfono, pendiente de Fritz)
+### Tanda 2.11 — QA, las fuentes lentas y las cifras   [x] hecha (2026-11-07, v0.2.11; la QA en el móvil, emulada, por encargo de Fritz)
 **Objetivo**: la web aguanta una fuente lenta sin saltos, se ha recorrido como visitante, los
 presupuestos son los medidos y cada cifra está recontada en su fuente: lista para el corte.
 
@@ -1185,3 +1185,27 @@ Analytics, tocar el correo de la zona.
   (las de la web vieja) salen de la rama; `git ls-files assets/` da vacío. La de Galaxian vive en
   `docs/capturas/galaxian/`, y las de Artemisa y Snugport tienen capturas nuevas. `main` las sigue
   sirviendo hasta el corte.
+- **2026-11-07, tanda 2.11: la QA en el móvil la hace Claude, emulada.** Fritz la pasó («Haz tú la
+  QA en móvil también»). Va sobre el build de la tanda servido con `wrangler pages dev` (la previa
+  aún no lo tiene: falta el push), en Chromium con el perfil del Pixel 7 (táctil y agente de
+  Android) a 412 × 915, el ancho de su Nothing, y a 360: no es un teléfono de verdad, y ni WebKit
+  (iPhone) ni la reserva de la fuente en Android se han probado. Recorridas las doce páginas en
+  reposo, de arriba abajo, en claro y en oscuro (las seis españolas a 412; las cuatro de la spec en
+  oscuro; la portada, Missphone y Snugtone inglesas a 360), y la portada y Missphone con el
+  movimiento encendido, bajando a saltos: nada tenue ni a medias en mitad de la pantalla. El menú,
+  en las doce: seis enlaces, lleva a su sitio y se cierra al pulsar. Los 31 enlaces distintos
+  responden 200 (LinkedIn da 999, su respuesta a los robots). Salieron dos zonas de toque pequeñas,
+  arregladas sin mover un píxel (las 16 vistas pasan sin regenerarlas):
+  - **El pie**: «X» medía 10 px de ancho y «CV», 21. Cada enlace se come la mitad del hueco de
+    24 px a cada lado (`padding-inline` en el enlace, y la lista sale 12 px por cada borde con
+    `margin-inline` en negativo para que el texto no se mueva; con el negativo en cada enlace,
+    `e2e/desbordes.spec.ts` lo daba como texto que se sale del `li`): «X» pasa a 34 y «CV» a 45,
+    sin solaparse.
+  - **«Código en GitHub ↗» en la cabecera de Snugtone** (y «Code on GitHub ↗»): 31 px de alto. Un
+    `::before` lo alarga hacia arriba hasta el botón, 43 px, sin pisarlo; hacia abajo no se puede,
+    porque la cabecera lleva `overflow: clip` (el título que sangra) y lo recorta. Los de dos
+    líneas (Missphone y Artemisa) ya medían 49.
+  Lo visto y que se queda, por ser diseño y no fallo: en el móvil las parejas de antes y después de
+  Missphone son dos capturas de 180 px que no se leen (el pie de cada una cuenta lo que hay), y
+  «QUÉ HICE, / POR FASES» lleva la coma de la primera línea casi tocando la segunda, por el
+  interlineado apretado del cartel.

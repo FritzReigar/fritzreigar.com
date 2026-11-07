@@ -41,16 +41,20 @@ const links = [
     margin: 0;
   }
 
+  /* «X» medía 10 px de ancho (QA de la 2.11): el hueco de 24 px entre enlaces pasa a ser zona de
+     toque, la mitad a cada lado, y la lista sale esa mitad por cada borde para que el texto quede
+     donde estaba. */
   ul {
     display: flex;
     flex-wrap: wrap;
-    gap: 0 var(--space-4);
+    margin-inline: calc(var(--space-4) / -2);
   }
 
   a {
     display: flex;
     align-items: center;
     min-height: var(--size-touch);
+    padding-inline: calc(var(--space-4) / 2);
     color: var(--color-text);
     font-weight: var(--weight-semibold);
     text-decoration: none;

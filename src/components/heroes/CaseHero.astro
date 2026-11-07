@@ -104,6 +104,21 @@ const { section, sectionHref, kicker, title, lede, primary, secondary } = Astro.
     width: 100%;
   }
 
+  /* El enlace de una línea mide 31 px de alto: la zona de toque crece hacia arriba hasta el botón,
+     sin mover nada y sin pisarlo (la cabecera recorta por abajo). QA de la 2.11. */
+  .case-hero__links > :global(.arrow-link) {
+    position: relative;
+  }
+
+  .case-hero__links > :global(.arrow-link)::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: calc(100% + var(--space-2));
+  }
+
   @media (max-width: 60rem) {
     .lede,
     .case-hero__links {
