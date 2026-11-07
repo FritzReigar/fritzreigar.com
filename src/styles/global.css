@@ -6,7 +6,7 @@
 @import "./motion.css";
 
 /* Archivo variable, autoalojada y recortada (scripts/fuente.py, public/fonts/LEEME.txt).
-   Se precarga en BaseLayout; swap mientras la 2.11 no mida otra cosa (spec § 8). */
+   Se precarga en BaseLayout, con swap. */
 @font-face {
   font-family: "Archivo";
   font-style: normal;
@@ -14,6 +14,94 @@
   font-stretch: 62% 100%;
   font-display: swap;
   src: url("/fonts/archivo.woff2") format("woff2");
+}
+
+/* La reserva mientras llega la woff2 (tanda 2.11, spec § 8): la Arial local con el ancho y la
+   altura de línea de Archivo, una cara por cada font-stretch y peso que pinta la web, para que al
+   cambiar de letra nada salte (e2e/fuentes.spec.ts). Sale de scripts/metricas-fuente.py: no se
+   retoca a mano. */
+@font-face {
+  font-family: "Archivo Fallback";
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  src: local("Arial"), local("ArialMT"), local("Liberation Sans");
+  size-adjust: 98.09%;
+  ascent-override: 89.51%;
+  descent-override: 21.41%;
+  line-gap-override: 0.00%;
+}
+
+@font-face {
+  font-family: "Archivo Fallback";
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  src: local("Arial"), local("ArialMT"), local("Liberation Sans");
+  size-adjust: 99.85%;
+  ascent-override: 87.93%;
+  descent-override: 21.03%;
+  line-gap-override: 0.00%;
+}
+
+@font-face {
+  font-family: "Archivo Fallback";
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  src: local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold");
+  size-adjust: 95.83%;
+  ascent-override: 91.62%;
+  descent-override: 21.91%;
+  line-gap-override: 0.00%;
+}
+
+@font-face {
+  font-family: "Archivo Fallback";
+  font-style: normal;
+  font-weight: 700 800;
+  font-stretch: 100%;
+  src: local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold");
+  size-adjust: 98.04%;
+  ascent-override: 89.56%;
+  descent-override: 21.42%;
+  line-gap-override: 0.00%;
+}
+
+@font-face {
+  font-family: "Archivo Fallback";
+  font-style: normal;
+  font-weight: 400 700;
+  font-stretch: 75%;
+  src: local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold");
+  size-adjust: 77.42%;
+  ascent-override: 113.40%;
+  descent-override: 27.12%;
+  line-gap-override: 0.00%;
+}
+
+@font-face {
+  font-family: "Archivo Fallback";
+  font-style: normal;
+  font-weight: 800;
+  font-stretch: 75%;
+  src: local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold");
+  size-adjust: 80.24%;
+  ascent-override: 109.42%;
+  descent-override: 26.17%;
+  line-gap-override: 0.00%;
+}
+
+@font-face {
+  font-family: "Archivo Fallback";
+  font-style: normal;
+  font-weight: 400 800;
+  font-stretch: 62%;
+  src: local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold");
+  size-adjust: 68.91%;
+  ascent-override: 127.41%;
+  descent-override: 30.47%;
+  line-gap-override: 0.00%;
 }
 
 *,

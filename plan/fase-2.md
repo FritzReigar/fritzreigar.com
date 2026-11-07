@@ -679,7 +679,7 @@ los enlaces ya compartidos; ninguna página lo enlaza).
 
 ---
 
-### Tanda 2.11 — QA, las fuentes lentas y las cifras   [ ] pendiente
+### Tanda 2.11 — QA, las fuentes lentas y las cifras   [x] hecha (2026-11-07, v0.2.11; la QA en el teléfono, pendiente de Fritz)
 **Objetivo**: la web aguanta una fuente lenta sin saltos, se ha recorrido como visitante, los
 presupuestos son los medidos y cada cifra está recontada en su fuente: lista para el corte.
 
@@ -1131,3 +1131,57 @@ Analytics, tocar el correo de la zona.
   363 pruebas y 57 saltadas (las que solo corren en un proyecto: desbordes y bandas en el de
   escritorio, el menú del móvil en el de móvil), Lighthouse móvil
   99-100 en las diez y CLS 0.
+- **2026-11-07, tanda 2.11: la fuente lenta, con la segunda salida de spec § 8.** Con la woff2
+  retrasada 800 ms y system-ui de reserva, la portada saltaba 0,147 a 1024 y 0,145 a 1440 (la línea
+  «Reigar», que va a la derecha, se corría 280 px, y todo el texto bajaba unos píxeles al cambiar la
+  altura de línea), el 404 0,16 y 0,15, y las fichas 0,011; a 412, la portada y el 404, 0,03. Ni la
+  precarga sola (ya estaba) ni `font-display: optional` (si la woff2 no llega a tiempo, los carteles
+  se quedan en la reserva toda la visita, y con system-ui no caben). Sale la `@font-face` de
+  reserva: «Archivo Fallback», siete caras sobre la Arial local (`local("Arial")`, `ArialMT` y
+  `Liberation Sans`, o sus negritas), una por cada `font-stretch` (62, 75 y 100 %) y peso que pinta
+  la web, con el `size-adjust` del ancho medio de Archivo en esa instancia sobre texto de la web y
+  las métricas verticales de su `hhea`; el navegador elige la cara por el mismo `font-stretch` que
+  pide el CSS. Las escribe `scripts/metricas-fuente.py` (el método del estudio, con `instancer`) y
+  van detrás de "Archivo" en `--font`. La primera vuelta medía el 400 y el 500 con la misma cara, y
+  la entradilla (500) partía en cuatro líneas en vez de cinco a 412 (0,016): el 500 lleva la suya.
+  Con la fuente buena no cambia nada (las 16 vistas pasan sin regenerarlas): la única letra que
+  no está en Archivo, «↗», tampoco está en la Arial y sigue saliendo de system-ui. En Android no hay
+  Arial ni Liberation: allí la reserva sigue siendo system-ui, sin probar en el teléfono.
+- **2026-11-07, tanda 2.11: `e2e/fuentes.spec.ts`, en las seis páginas.** El encargo pedía las
+  cuatro de la spec; entran también Artemisa y Snugport, y los dos idiomas: 36 pruebas en el
+  proyecto de escritorio (los anchos los pone cada una), visto el rojo antes del verde (12 de 24 en
+  rojo con system-ui). El peor caso queda en 0,0061 (Missphone a 1024); la portada, 0,0048, y el
+  404, 0,0022. El observador de `layout-shift` entra con `addInitScript`, que va por el protocolo
+  del navegador y la CSP no ve.
+- **2026-11-07, tanda 2.11: la revisión como visitante, sin nada que arreglar.** A 360, 768, 900,
+  1024, 1280, 1920 y 2560, en las doce páginas: ningún desborde ni scroll horizontal (el título de
+  ficha sigue comiéndose el margen derecho a propósito, Desvío de la 2.5); por encima de 1440 todo
+  se queda en la caja de 1280, centrada. El teclado: 30 paradas en la portada y de 10 a 17 en el
+  resto, todas con su contorno de 2 px visible y en pantalla, también «Ver estudioreigar.com» en la
+  banda cobalto (blanco sobre cobalto). El menú del móvil, en los dos idiomas, se cierra con
+  Escape. Con las imágenes retenidas hasta después de pintar, la portada, Missphone y Snugtone no
+  se mueven al llegar (CLS 0, el alto de la página igual ±1 px): todas llevan `width` y `height`.
+- **2026-11-07, tanda 2.11: el LCP de móvil, aceptado.** El Desvío de la 2.7 lo dejaba para aquí:
+  en el móvil el LCP es la entradilla en la portada y la vitrina en las fichas que la llevan, no el
+  cartel. Con rendimiento 99-100 en las diez no hay nada que ganar moviéndolo; spec § 8 lo dice ya
+  así.
+- **2026-11-07, tanda 2.11: los presupuestos no cambian.** Medido (móvil, mediana): las diez a
+  99-100 de rendimiento, 100 en lo demás, CLS 0 y TBT 0. Todo cabe en los topes de spec § 8, con lo
+  medido en la cabecera de `scripts/lighthouse.mjs`. La hoja sube de 40,9 a 41,6 KB brutos (7,6 en
+  gzip, tope 10) por las siete caras de reserva. `npm run red` en verde: 399 pruebas y 93 saltadas
+  (las 36 nuevas de la fuente lenta no corren en el proyecto del móvil), las 16 vistas sin tocar.
+- **2026-11-07, tanda 2.11: las cifras.** Snugport, recontado en `snugport-app` (panel v0.5.9):
+  1.264 unitarias y 319 E2E distintas (eran 1.246 y 315); «más de 1.200» y «más de 300» siguen
+  valiendo, y 80 divisas. Snugtone: la publicada sigue siendo la 1.0.1, con 609 + 31 pruebas que
+  corren (contadas en el commit de la publicación, sin las ignoradas; en `main` sin publicar ya son
+  616 + 40). Missphone: las cinco cifras, recontadas en la carpeta del cliente, iguales. Artemisa
+  se queda con el Lighthouse del 2026-11-04 (repetirlo pide la VPN y el bloqueo de Analytics del
+  cliente: si la planificación del corte lo quiere fresco, va allí). Nada cambia en la web ni en los
+  datos: solo las fechas de recuento en `contenido.md` y `contenido-en.md`.
+- **2026-11-07, tanda 2.11: las capturas con Navidad se quedan.** El corte va dos tandas detrás y
+  cae antes del 6 de enero de 2027. Si se retrasara más allá, la 2.13 rehace la vitrina de
+  Missphone y los «después» 1 y 2 antes de publicar (`plan/capturas.md`).
+- **2026-11-07, tanda 2.11: `assets/` fuera de git.** Las cuatro WebP de `assets/img/proyectos/`
+  (las de la web vieja) salen de la rama; `git ls-files assets/` da vacío. La de Galaxian vive en
+  `docs/capturas/galaxian/`, y las de Artemisa y Snugport tienen capturas nuevas. `main` las sigue
+  sirviendo hasta el corte.

@@ -553,7 +553,7 @@ Medido sobre el lienzo; el tope es lo que la fase 2 no puede pasar (gzip, por p�
 
 **Lighthouse** (móvil, como el estudio): rendimiento ≥ 95 y el resto a 100; **CLS ≤ 0,01**.
 
-Lo que el diseño ya hace por el rendimiento: el LCP es texto; ninguna imagen por encima del pliegue
+Lo que el diseño ya hace por el rendimiento: el LCP es texto (en el móvil, la entradilla en la portada y la vitrina en las fichas que la llevan: medido en la 2.7 y la 2.11, con rendimiento 99-100); ninguna imagen por encima del pliegue
 en la portada; cero JS de movimiento; un solo archivo de fuente; imágenes con medidas.
 
 **Riesgo conocido: la fuente estrecha y el CLS.** Los carteles usan Archivo al 62 % de ancho; la
@@ -563,6 +563,16 @@ partirse en más líneas con la reserva y empujar lo de abajo. La fase 2 lo mide
 woff2 retrasada 800 ms, a 412, 1024 y 1440) y elige: precarga sola, una `@font-face` de reserva
 ajustada (`size-adjust` sobre una fuente estrecha local) o `font-display: optional` en los
 carteles.
+
+**Resuelto en la 2.11 (2026-11-07) con la segunda salida.** Medido con `e2e/fuentes.spec.ts`: con
+system-ui de reserva, la portada y el 404 saltaban 0,15 a 1024 y a 1440 (la línea «Reigar», que va
+a la derecha, se corría 280 px, y todo el texto bajaba al cambiar la altura de línea) y las fichas,
+0,011. La reserva es ahora «Archivo Fallback» (`global.css`, de `scripts/metricas-fuente.py`): la
+Arial local con `size-adjust` y las métricas verticales de Archivo, una cara por cada `font-stretch`
+(62, 75 y 100 %) y peso que pinta la web, y el navegador elige la cara por el mismo `font-stretch`
+que pide el CSS. Con ella, ninguna página pasa de 0,007 en los tres anchos. La precarga se queda;
+`font-display: optional` se descartó porque, si la woff2 no llega a tiempo, deja los carteles en la
+reserva toda la visita.
 
 **Las flechas.** «→» (U+2192) y «↗» (U+2197) no están en el subconjunto latino de Google Fonts
 («↓», U+2193, sí): en el lienzo salen de la fuente del sistema. Al autoalojar, la fase 2 mira si

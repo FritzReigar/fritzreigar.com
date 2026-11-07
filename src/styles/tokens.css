@@ -25,7 +25,7 @@
   --color-focus: #1f4fa3;
   --color-error: #b3261e;
 
-  --font: "Archivo", system-ui, sans-serif;
+  --font: "Archivo", "Archivo Fallback", system-ui, sans-serif;
   --stretch-poster: 62%;
   --stretch-narrow: 75%;
   --weight-body: 400;

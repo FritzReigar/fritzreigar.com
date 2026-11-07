@@ -36,6 +36,12 @@
 //     a los 3,3:1 del lienzo con que se pasó a bruto, porque las bandas repiten cada serie dos
 //     veces en <picture> con AVIF y WebP (63,5 KB son el avatar). 120 KB a 4:1 son 30 en gzip.
 //     El tope en gzip se mide aparte (`gzip -c dist/index.html | wc -c`).
+// Medido en la tanda 2.11 (2026-11-07), mediana en móvil: las diez a 99-100 de rendimiento y 100 en
+// lo demás, CLS 0. Lo más pesado de cada tipo, contra su tope: documento de la portada inglesa
+// 114,1 KB (120), hoja 41,6 (55), script 1,3 (8), fuente 61,6 (95), imágenes de la portada 103,7
+// (120) y total 324,7 (380). En gzip, contra spec § 8: portada 28,8 KB (32), fichas 7,2 como mucho
+// (10), 404 1,6 (5), hoja 7,6 (10) y script 0,7 (3). Ningún presupuesto cambia: todo cabe en el
+// tope de la spec, que es lo que no se puede pasar.
 import { spawn, execFileSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';

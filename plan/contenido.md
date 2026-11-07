@@ -149,7 +149,8 @@ ficha y sin presentar a Fritz como programador de videojuegos (decisión 11).
 (2) Web del estudio: ficha de hoy en `index.html` y `docs/cv/cv-es.html`. Snugport:
 `snugport-app/panel/package.json` (`vitest`, `@playwright/test`) y `snugport-app/panel/CLAUDE.md`
 (los mutantes de `tests/red/mutants.ts`, `npm run red`). Snugtone: 609 del núcleo + 31 de la
-cáscara = 640, y clippy sin avisos, `snugtone/README.es.md` § «Compilarlo». (3)
+cáscara = 640, y clippy sin avisos, `snugtone/README.es.md` § «Compilarlo» (recontadas el
+2026-11-07: ver §4). (3)
 `estudio/como-trabajo.astro` («Nota de Google en móvil por encima de 90, medida y enseñada»).
 (4) Claude Code: `docs/cv/cv-es.html`, habilidades; «un test nuevo se ve en rojo antes de creerse
 el verde»: `plan/README.md` § El ciclo, paso 3.
@@ -365,6 +366,10 @@ de la fase 4 no se cuentan (regla 13). **Mantenimiento:** `missphone/plan/fase-3
 «NO TOCAR» más el de la ficha, contados allí (aquí no se listan: algunos nombres hablan de cómo
 está protegida la tienda, regla 13), sin contar el de un solo uso que se borró
 (`missphone/bitacora/2026-09-29-3.md`, U10); 14 parejas (`missphone/docs/portfolio/README.md`).
+**Recontadas el 2026-11-07** (tanda 2.11) en la carpeta del cliente: los mismos 15 mu-plugins (15
+nombres distintos en su `CLAUDE.md`; el de un solo uso solo sale en la bitácora), las ocho fichas
+de la lista de design-required, 268 → 8 y 252 modelos, y «14 de 14» en el README de las parejas. El
+39 es de la fase 1B, ya cerrada: no cambia.
 **Antes y después:** cinco de las 14 parejas de `missphone/docs/portfolio/` (la tanda 1.2 rehace
 sus «después»), con los pies escritos el 2026-11-04 mirando las capturas: 1, la `home-1440-01-hero`
 (pareja 1 del README); 2, la `home-390-01-hero-ilegible` de `antes/recortes-movil/` (pareja 12);
@@ -530,7 +535,14 @@ Código en GitHub ↗ (`https://github.com/FritzReigar/snugtone`)
 > Todo lo que sale en las capturas es libre: la música, CC0 y de dominio público; las portadas, CC0
 > y cuadros de dominio público. La interfaz de las capturas está en inglés.
 
-↳ Todo de `snugtone/README.es.md` (versión publicada 1.0.1, solo Windows): estado, «Qué hace»
+↳ **Recontado el 2026-11-07** (tanda 2.11): la publicada sigue siendo la 1.0.1 (`gh release list`:
+«Latest», del 2026-10-16), y el README no ha cambiado. Las pruebas de la 1.0.1 (`34c4b4a`, «La 1.0.1, pública», en el repo de trabajo)
+son 626 `#[test]` en `nucleo/` con 17 ignoradas y 39 en `src-tauri/` con 8: 609 + 31 que corren,
+las del README. En `main`, sin publicar, ya son 633 y 48 (`cargo test --workspace -- --list`): la
+web habla de la publicada y se queda con 609 + 31 hasta que salga otra. Las cifras de «Va rápido»
+(9503, 161 GB, 0,48 s, < 1 s, 230 MB, M3U) son medidas del README y no se repiten aquí.
+
+Todo de `snugtone/README.es.md` (versión publicada 1.0.1, solo Windows): estado, «Qué hace»
 (las cuatro partes), «Va rápido» (9503 archivos, 161 GB, 0,48 s, < 1 s, 230 MB, M3U 9503),
 «Compilarlo» (609 + 31, clippy, `nucleo/`, `src-tauri/` con cpal, `ui/` sin framework, Tauri CLI
 `^2`), «Descargar» (instalador sin firmar) y la nota `<sub>` de las capturas. **El porqué:**
@@ -569,17 +581,18 @@ lo que usa todo el mundo» para que se entienda sin contexto: **Fritz lo confirm
 PWA · Cloudflare Pages
 
 ↳ Los cuatro bullets de hoy (`index.html`, `docs/cv/cv-es.html`) con las cifras **recontadas el
-2026-11-04** en `snugport-app/` (último commit `e8a9a62`, panel v0.5.8): `npx vitest list` en
-`panel/` = **1.246** pruebas unitarias; `npx playwright test --list --grep-invert @estres` = 613
-ejecuciones en 30 archivos, que son **315 pruebas distintas** (298 en móvil y escritorio + 17 del
-proyecto `artefacto`). React `^19.3.0` y Tailwind `^4.3.3` en `panel/package.json`. Mutation
+2026-11-07** (tanda 2.11) en `snugport-app/` (último commit `45e9e67`, panel v0.5.9, con cambios sin
+commit en dos archivos de pruebas): `npx vitest list` en `panel/` = **1.264** pruebas unitarias;
+`npx playwright test --list --grep-invert @estres` = 620 ejecuciones en 31 archivos, que son **319
+pruebas distintas** (301 en móvil y escritorio + 18 del proyecto `artefacto`). El 2026-11-04 eran
+1.246 y 315 (commit `e8a9a62`, panel v0.5.8): «más de 1.200» y «más de 300» siguen valiendo. React `^19.3.0` y Tailwind `^4.3.3` en `panel/package.json`. Mutation
 testing: los mutantes de `panel/tests/red/mutants.ts` (`npm run red`, `panel/CLAUDE.md`). **Temas,
 sin cifra:** la landing dice «uno de los siete temas»
 (`~/Projects/propios/snugport/snugport-web/public/es/index.html`, línea 525), que es la versión en
 producción; el panel en React lleva cinco en `panel/src/styles/themes.css` (nightwatch, daybreak,
 cuaderno, caoba y tinta); y Fritz dice que en React son cuatro (2026-11-04). Las tres cuentas no
 cuadran y cambian con la migración, así que no se da número. **80 divisas:** 80 entradas `{ code: … }` en
-`snugport-app/js/dominio.js`. Stripe, RLS, Edge Functions, accesibilidad, bilingüe: verificados en
+`snugport-app/js/dominio.js` (recontadas el 2026-11-07). Stripe, RLS, Edge Functions, accesibilidad, bilingüe: verificados en
 agosto de 2026 (`CLAUDE.md` § «Proyecto principal: Snugport»). Sin usuarios, suscriptores ni
 ingresos. No se destaca por encima de Snugtone (tanda 1.1). **Gratis, con plan de pago:** lo
 decidió Fritz el 2026-11-04 (Desvíos de la 1.2), porque la landing dice «el panel es gratis. Lo
@@ -692,7 +705,7 @@ el CV lleve lo mismo, pero sí que no diga lo contrario.
 |---|---|---|---|---|
 | 1 | Titular | «Desarrollador web y de producto · Fundador de Snugport · Webs para negocios · QA de modelos de IA» | «Desarrollador web freelance en Valencia» | Decidir si el CV sigue siendo de producto o pasa a freelance; no se contradicen, pero no suenan a la misma persona |
 | 2 | Disponibilidad | «Disponible en híbrido en Valencia o en remoto» (perfil) | «Acepto proyectos»; fuera «Abierto a ofertas» | Quitar o cambiar la frase del perfil |
-| 3 | Snugport, pruebas unitarias | «más de 600 tests unitarios (Vitest)» | «más de 1.200» (1.246 contadas el 2026-11-04) | Subir la cifra (las dos lenguas) |
+| 3 | Snugport, pruebas unitarias | «más de 600 tests unitarios (Vitest)» | «más de 1.200» (1.264 contadas el 2026-11-07) | Subir la cifra (las dos lenguas) |
 | 4 | Snugport, temas | «4 temas» | «temas a elegir», sin cifra (producción tiene siete según su landing; el panel en React, cinco en el código y cuatro según Fritz) | Quitar la cifra o recontarla con Fritz en ese momento |
 | 5 | Snugport, peso | Primer proyecto y el más largo | Detrás de Snugtone, sin destacar | Reordenar si el CV quiere el mismo orden; no es contradicción |
 | 6 | Snugtone | No está | Primer proyecto, con ficha | Añadirlo como proyecto |

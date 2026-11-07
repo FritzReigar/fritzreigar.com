@@ -508,7 +508,7 @@ las de la 1.1, sin recontar (eso es de la 2.11).
 Stripe · PWA · Cloudflare Pages
 
 ↳ Gemelo de § 5. La entradilla, como el primer bullet de `docs/cv/cv-en.html`; las cifras, las
-mismas (1.246 y 315 contadas el 2026-11-04, dichas «more than»). Temas sin cifra, y sin usuarios,
+mismas (1.264 y 319 recontadas el 2026-11-07, dichas «more than»). Temas sin cifra, y sin usuarios,
 suscriptores ni ingresos. `https://snugport.app/` ya sirve la landing en inglés.
 
 ---
