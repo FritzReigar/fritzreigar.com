@@ -1118,7 +1118,11 @@ Analytics, tocar el correo de la zona.
   añadirlo (Desvío 36, `OG_IMAGE_VERSION`) cuando cambió el dibujo de una imagen ya compartida,
   porque el borde de Cloudflare y WhatsApp la guardan por su URL. Si una imagen cambia después de
   publicarse, se hace lo mismo. `/og/*` sale con la caché por defecto de Pages (`_headers` no estaba
-  en la tanda); la 2.13 decide si le pone la de una semana del estudio.
+  en la tanda); la 2.13 decide si le pone la de una semana del estudio. Y la `og:image` es absoluta
+  al dominio: en la previa las diez responden 200 (`image/png`, 1200 × 630, comprobado en
+  `fritzreigar-com.pages.dev` tras el push), pero `https://fritzreigar.com/og/…` da 404 hasta el
+  corte, así que compartir la previa sale sin imagen. La prueba de WhatsApp desde el móvil va en la
+  2.13, con el dominio ya en Astro.
 - **2026-11-07, tanda 2.10: lo medido.** Diez PNG de 1200 × 630, de 43 a 56 KB (tope 150).
   Prueba nueva en `e2e/rutas.spec.ts`: la `og:image` de cada indexable (absoluta, con medidas, `alt`,
   título y línea de `routes.ts`) y su 200 con `image/png`, el 404 sin Open Graph, y los diez PNG de
