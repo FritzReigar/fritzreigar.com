@@ -1,0 +1,47 @@
+---
+// Una ficha en un idioma (plan/spec-visual.md § 2.2): CaseHero, CaseShowcase y CaseBody. El texto y
+// las capturas salen de src/content/cases/<idioma>/<slug>.json; la sección del rótulo y la que
+// marca la cabecera, de su `section`. La pintan las ocho páginas de src/pages/trabajo/,
+// src/pages/proyectos/ y src/pages/en/, que solo dicen la ficha y el idioma.
+import { getCase } from '../../data/cases';
+import type { RouteKey } from '../../data/routes';
+import { sectionHref } from '../../data/routes';
+import { type Lang, ui } from '../../data/ui';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CaseBody from '../case/CaseBody.astro';
+import CaseShowcase from '../case/CaseShowcase.astro';
+import CaseHero from '../heroes/CaseHero.astro';
+
+interface Props {
+  page: RouteKey;
+  lang: Lang;
+}
+
+const { page, lang } = Astro.props;
+const { data } = await getCase(page, lang);
+---
+<BaseLayout
+  title={data.meta.title}
+  description={data.meta.description}
+  og={data.meta.og}
+  current={data.section}
+>
+  <article>
+    <CaseHero
+      section={ui[lang].caseSection[data.section]}
+      sectionHref={sectionHref(data.section, lang)}
+      kicker={data.kicker}
+      title={data.title}
+      lede={data.lede}
+      primary={data.primary}
+      secondary={data.secondary}
+    />
+    <CaseShowcase
+      desktop={data.showcase.desktop}
+      phone={data.showcase.phone}
+      caption={data.showcase.caption}
+      lang={lang}
+    />
+    <CaseBody body={data.body} lang={lang} />
+  </article>
+</BaseLayout>

@@ -38,9 +38,10 @@ test('la cabecera: la nav entera desde 56rem y «Menú» por debajo, todo de 44 
   for (const target of await targets.all()) {
     expect((await target.boundingBox())?.height).toBeGreaterThanOrEqual(44);
   }
-  // Los enlaces van en listas (el marco ya tiene estilos: Desvío de la 1.5).
-  await expect(page.locator('.site-nav ul > li > a')).toHaveCount(navSections.length);
-  await expect(page.locator(`${MENU} nav ul > li > a`)).toHaveCount(navSections.length);
+  // Los enlaces van en listas (el marco ya tiene estilos: Desvío de la 1.5): las secciones y, al
+  // final, el idioma.
+  await expect(page.locator('.site-nav ul > li > a')).toHaveCount(navSections.length + 1);
+  await expect(page.locator(`${MENU} nav ul > li > a`)).toHaveCount(navSections.length + 1);
   await expect(page.locator('footer ul > li > a')).toHaveCount(5);
 });
 
@@ -52,9 +53,14 @@ test.describe('el menú del móvil', () => {
     await expect(page.locator(MENU)).toHaveAttribute('open', '');
   });
 
-  test('abre con filas de 44 px y la sección en el orden de la cabecera', async ({ page }) => {
+  test('abre con filas de 44 px, las secciones en el orden de la cabecera y el idioma al final', async ({
+    page,
+  }) => {
     const links = page.locator(`${MENU} nav a`);
-    await expect(links).toHaveText(navSections.map((section) => ui.es.nav[section]));
+    await expect(links).toHaveText([
+      ...navSections.map((section) => ui.es.nav[section]),
+      ui.en.langName,
+    ]);
     for (const link of await links.all()) {
       await expect(link).toBeVisible();
       expect((await link.boundingBox())?.height).toBeGreaterThanOrEqual(44);
@@ -100,19 +106,43 @@ test.describe('sin JS', () => {
   });
 });
 
-// La ficha marca su sección: «Trabajo» en las de Trabajo y «Proyectos» en las de Proyectos, en la
-// cabecera entera y en el menú.
-for (const [path, section] of [
-  ['/trabajo/missphone', 'work'],
-  ['/trabajo/limpiezas-artemisa', 'work'],
-  ['/proyectos/snugtone', 'projects'],
-  ['/proyectos/snugport', 'projects'],
+// La nav inglesa (plan/spec-visual.md § 5: 668 px con «Español») cabe entera en una fila en el
+// primer ancho que la pinta: la cabecera pasa al menú hasta 56rem (896 px) incluidos.
+test('/en/: la nav inglesa entera, en una fila, justo por encima de 56rem', async ({ page }) => {
+  await page.setViewportSize({ width: 897, height: 800 });
+  await page.goto('/en/');
+  await expect(page.locator(`${MENU} summary`)).toBeHidden();
+  const links = page.locator('.site-nav a');
+  await expect(links).toHaveText([...navSections.map((section) => ui.en.nav[section]), 'Español']);
+  const boxes = await Promise.all((await links.all()).map((link) => link.boundingBox()));
+  const tops = new Set(boxes.map((box) => Math.round(box?.y ?? -1)));
+  expect(tops.size).toBe(1);
+  const header = await page.locator('header').evaluate((el) => ({
+    scroll: el.scrollWidth,
+    client: el.clientWidth,
+    right: Math.max(...[...el.querySelectorAll('a')].map((a) => a.getBoundingClientRect().right)),
+  }));
+  expect(header.scroll).toBeLessThanOrEqual(header.client);
+  expect(header.right).toBeLessThanOrEqual(897);
+});
+
+// La ficha marca su sección: «Trabajo» en las de Trabajo y «Proyectos» en las de Proyectos (y
+// «Work» y «Projects» en las inglesas), en la cabecera entera y en el menú.
+for (const [path, lang, section] of [
+  ['/trabajo/missphone', 'es', 'work'],
+  ['/trabajo/limpiezas-artemisa', 'es', 'work'],
+  ['/proyectos/snugtone', 'es', 'projects'],
+  ['/proyectos/snugport', 'es', 'projects'],
+  ['/en/work/missphone', 'en', 'work'],
+  ['/en/work/limpiezas-artemisa', 'en', 'work'],
+  ['/en/projects/snugtone', 'en', 'projects'],
+  ['/en/projects/snugport', 'en', 'projects'],
 ] as const) {
-  test(`${path} marca «${ui.es.nav[section]}» con aria-current`, async ({ page }) => {
+  test(`${path} marca «${ui[lang].nav[section]}» con aria-current`, async ({ page }) => {
     await page.goto(path);
     const current = page.locator('header a[aria-current="page"]');
     await expect(current).toHaveCount(2);
-    for (const link of await current.all()) await expect(link).toHaveText(ui.es.nav[section]);
+    for (const link of await current.all()) await expect(link).toHaveText(ui[lang].nav[section]);
   });
 }
 

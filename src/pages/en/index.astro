@@ -1,14 +1,5 @@
 ---
-// La gemela inglesa de home. Mientras su texto no exista (en.live en false, src/data/routes.ts),
-// solo lleva su title y el aviso, sin indexar. El texto inglés es de la fase 2.
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import { pathFor } from '../../data/routes';
-import { notYetText } from '../../data/ui';
+// La portada en inglés: el contenido entero es de HomePage.
+import HomePage from '../../components/pages/HomePage.astro';
 ---
-<BaseLayout title="Fritz Reigar · Freelance web developer in Valencia" noindex>
-  <h1>Fritz Reigar</h1>
-  <p>
-    {notYetText.text}
-    <a href={pathFor('home', 'es')} lang="es" hreflang="es">{notYetText.link}</a>
-  </p>
-</BaseLayout>
+<HomePage lang="en" />

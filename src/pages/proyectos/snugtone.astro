@@ -1,38 +1,6 @@
 ---
-// La ficha de Snugtone (plan/contenido.md § 4), pintada con plan/spec-visual.md § 2.2: CaseHero,
-// CaseShowcase y CaseBody. El texto y las capturas salen de src/content/cases/es/snugtone.json.
-import CaseBody from '../../components/case/CaseBody.astro';
-import CaseShowcase from '../../components/case/CaseShowcase.astro';
-import CaseHero from '../../components/heroes/CaseHero.astro';
-import { getCase } from '../../data/cases';
-import { sectionHref } from '../../data/routes';
-import { ui } from '../../data/ui';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-
-const { data } = await getCase('project-snugtone', 'es');
+// La ficha de Snugtone en español: el contenido entero es de CasePage, con el texto de
+// src/content/cases/es/snugtone.json.
+import CasePage from '../../components/pages/CasePage.astro';
 ---
-<BaseLayout
-  title={data.meta.title}
-  description={data.meta.description}
-  og={data.meta.og}
-  current="projects"
->
-  <article>
-    <CaseHero
-      section={ui.es.caseSection.projects}
-      sectionHref={sectionHref('projects', 'es')}
-      kicker={data.kicker}
-      title={data.title}
-      lede={data.lede}
-      primary={data.primary}
-      secondary={data.secondary}
-    />
-    <CaseShowcase
-      desktop={data.showcase.desktop}
-      phone={data.showcase.phone}
-      caption={data.showcase.caption}
-      lang="es"
-    />
-    <CaseBody body={data.body} lang="es" />
-  </article>
-</BaseLayout>
+<CasePage page="project-snugtone" lang="es" />

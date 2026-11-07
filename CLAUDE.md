@@ -11,7 +11,7 @@ La web personal de Fritz (fritzreigar.com): **la persona detrás de Estudio Reig
 ## Replanteamiento en curso
 
 La web pasa a Astro con un rediseño y deja de ser para reclutadores (planificado el 2026-11-04).
-**La fase 1 está cerrada** (la 1.5, el andamio de Astro, el 2026-11-05: [`plan/fase-1.md`](plan/fase-1.md)) y la fase 2 está planificada en trece tandas hasta el corte ([`plan/fase-2.md`](plan/fase-2.md)): **tanda en curso, la 2.9 — El inglés, en la web** (la 2.8, el texto inglés, cerrada el 2026-11-06). La web nueva vive en la rama `astro` y su previa en `fritzreigar-com.pages.dev`; el dominio lo sirve el proyecto de Pages `portfolio-v1` desde `main`. El diseño de la web nueva está en [`plan/spec-visual.md`](plan/spec-visual.md), que manda sobre el lienzo. Las decisiones y el
+**La fase 1 está cerrada** (la 1.5, el andamio de Astro, el 2026-11-05: [`plan/fase-1.md`](plan/fase-1.md)) y la fase 2 está planificada en trece tandas hasta el corte ([`plan/fase-2.md`](plan/fase-2.md)): **tanda en curso, la 2.10 — Las imágenes OG con Satori** (la 2.9, el inglés en la web, cerrada el 2026-11-07). La web nueva vive en la rama `astro` y su previa en `fritzreigar-com.pages.dev`; el dominio lo sirve el proyecto de Pages `portfolio-v1` desde `main`. El diseño de la web nueva está en [`plan/spec-visual.md`](plan/spec-visual.md), que manda sobre el lienzo. Las decisiones y el
 ciclo están en [`plan/README.md`](plan/README.md), que se lee al arrancar cualquier sesión del plan;
 el texto entero de la web nueva, con la fuente de cada afirmación, en
 [`plan/contenido.md`](plan/contenido.md); y las imágenes que enseña, con su origen y su `alt`, en

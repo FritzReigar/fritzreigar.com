@@ -1,9 +1,9 @@
 // El texto de la portada (plan/contenido.md § 1 y § 6), en datos (decisión F1 de plan/fase-2.md):
 // la página lo pinta y no escribe nada. Las tarjetas de Missphone, Artemisa, Snugtone y Snugport
 // no están aquí: salen de la colección `cases` (src/content.config.ts). Galaxian sí, porque no
-// tiene ficha. Las capturas se nombran por su clave de src/data/shots.ts. El inglés entra en la
-// 2.9, con el texto de plan/contenido-en.md.
-import { EMAIL, profiles } from './ui';
+// tiene ficha. Las capturas se nombran por su clave de src/data/shots.ts. El inglés es el de
+// plan/contenido-en.md, tal cual.
+import { EMAIL, type Lang, profiles } from './ui';
 import type { Rich } from './rich';
 import type { ShotKey } from './shots';
 
@@ -286,4 +286,204 @@ const es: HomeText = {
   },
 };
 
-export const home: { es: HomeText; en?: HomeText } = { es };
+// plan/contenido-en.md § 1 y § 6. Los enlaces al estudio van a su inglés.
+const en: HomeText = {
+  meta: {
+    title: 'Fritz Reigar · Freelance web developer in Valencia, Spain',
+    description:
+      "I'm Fritz Reigar, a freelance web developer in Valencia, Spain. I build websites for businesses with Estudio Reigar and, in my spare time, my own apps, like Snugtone.",
+    og: {
+      title: 'Fritz Reigar',
+      description:
+        'Freelance web developer in Valencia, Spain: websites for businesses with Estudio Reigar and my own apps, shared publicly.',
+    },
+  },
+  // plan/contenido-en.md § 6.3: cambian la página y los textos; los @id de la persona y del
+  // estudio son los mismos en los dos idiomas.
+  jsonLd: {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'ProfilePage',
+        '@id': 'https://fritzreigar.com/en/#page',
+        url: 'https://fritzreigar.com/en/',
+        name: 'Fritz Reigar · Freelance web developer in Valencia, Spain',
+        inLanguage: 'en',
+        mainEntity: { '@id': 'https://fritzreigar.com/#fritz' },
+      },
+      {
+        '@type': 'Person',
+        '@id': 'https://fritzreigar.com/#fritz',
+        name: 'Fritz Reigar',
+        url: 'https://fritzreigar.com/',
+        image: 'https://fritzreigar.com/assets/img/fritz-reigar-avatar.png',
+        jobTitle: 'Web developer',
+        description:
+          'Freelance web developer in Valencia, Spain. He builds websites for businesses with Estudio Reigar and his own apps, like Snugtone.',
+        email: `mailto:${EMAIL}`,
+        address: { '@type': 'PostalAddress', addressLocality: 'Valencia', addressCountry: 'ES' },
+        worksFor: { '@id': 'https://estudioreigar.com/#estudio' },
+        alumniOf: [
+          { '@type': 'EducationalOrganization', name: 'IES El Grao', address: 'Valencia, Spain' },
+          {
+            '@type': 'EducationalOrganization',
+            name: 'ESAT — Escuela Superior de Arte y Tecnología',
+            address: 'Valencia, Spain',
+          },
+        ],
+        knowsLanguage: [
+          { '@type': 'Language', name: 'Spanish', alternateName: 'es' },
+          { '@type': 'Language', name: 'Valencian', alternateName: 'ca' },
+          { '@type': 'Language', name: 'English', alternateName: 'en' },
+          { '@type': 'Language', name: 'German', alternateName: 'de' },
+        ],
+        knowsAbout: [
+          'Web development',
+          'TypeScript',
+          'JavaScript',
+          'Astro',
+          'React',
+          'Tailwind CSS',
+          'Rust',
+          'Tauri',
+          'Web accessibility (WCAG AA)',
+          'Playwright',
+          'Vitest',
+          'Cloudflare Pages',
+          'Supabase',
+          'PostgreSQL',
+          'Stripe',
+          'WordPress',
+          'WooCommerce',
+          'Local SEO',
+          'Google Business Profile',
+          'AI model evaluation',
+        ],
+        sameAs: [profiles.github, profiles.linkedin, profiles.x],
+      },
+      {
+        '@type': 'ProfessionalService',
+        '@id': 'https://estudioreigar.com/#estudio',
+        name: 'Estudio Reigar',
+        url: 'https://estudioreigar.com/',
+        founder: { '@id': 'https://fritzreigar.com/#fritz' },
+      },
+    ],
+  },
+  hero: {
+    name: 'Fritz Reigar',
+    avatarAlt:
+      'Line drawing of Fritz Reigar, with a beard and a blue T-shirt, on a light blue background.',
+    lede: 'Freelance web developer in Valencia, Spain. I love technology and make a living from it: I build websites for businesses with Estudio Reigar and, in my spare time, my own apps, which I share publicly.',
+    status: 'Taking on projects',
+    studio: { text: 'Estudio Reigar ↗', href: 'https://estudioreigar.com/en/' },
+    contact: 'Get in touch',
+  },
+  studio: {
+    title: 'Estudio Reigar',
+    text: "Estudio Reigar is my workshop: websites, online stores and Google Business Profiles for small businesses. There's no team behind it: I answer the messages and I write the websites, by hand, with no templates and tailored to each business. I deliver them with their speed score measured and everything in the client's name. In person in Valencia and the towns around it (l'Horta); anywhere else in Spain, remotely.",
+    link: { text: 'Visit estudioreigar.com ↗', href: 'https://estudioreigar.com/en/' },
+    shots: es.studio.shots,
+  },
+  work: {
+    title: 'Work',
+    cardLink: 'See the case study →',
+  },
+  bands: es.bands,
+  projects: {
+    title: 'Projects',
+    cardLink: 'See the project →',
+    mini: {
+      title: 'CPP-Galaxian-Engine',
+      label: 'C++ · 2023',
+      text: 'An arcade game in C++ with no commercial engine: its own game loop, entities in static arrays, a state machine for the enemy AI and hand-written AABB collisions.',
+      link: {
+        text: 'See the repository ↗',
+        href: 'https://github.com/FritzReigar/CPP-Galaxian-Engine',
+      },
+      shot: 'galaxian',
+    },
+    more: { text: 'All my public code, on GitHub ↗', href: profiles.github },
+  },
+  how: {
+    title: 'How I work',
+    items: [
+      {
+        title: 'By hand, with no templates.',
+        text: 'HTML, CSS and TypeScript written for each project, and Astro when the website has several pages. Minimal JavaScript, and nothing that goes unused.',
+      },
+      {
+        title: 'Tests and CI that gate every deploy.',
+        text: [
+          'On the Estudio Reigar website, Playwright, axe and Lighthouse have to pass before anything goes live; in Snugport, Vitest, Playwright and mutation testing; in Snugtone, 640 tests and ',
+          { code: 'cargo clippy' },
+          ' without a single warning.',
+        ],
+      },
+      {
+        title: 'Lighthouse measured, not promised.',
+        text: 'Every project I deliver comes with its mobile score, measured and shared.',
+      },
+      {
+        title: 'With AI, and with a safety net.',
+        text: 'AI-assisted development (Claude Code), with one rule: watch every new test fail before trusting a pass.',
+      },
+    ],
+  },
+  career: {
+    title: 'Career',
+    headers: { dates: 'Dates', role: 'Role', place: 'Where' },
+    // Puestos, fechas y organizaciones de docs/cv/cv-en.html, como en español.
+    rows: [
+      {
+        dates: 'Apr 2026 — Present',
+        role: 'Freelance web developer',
+        place: 'Estudio Reigar · Self-employed, Valencia',
+      },
+      {
+        dates: 'Jan 2026 — Present',
+        role: 'AI Red-Teaming & Prompt Engineer',
+        place: 'DataAnnotation Tech · Self-employed, remote',
+      },
+      {
+        dates: 'Jul 2025 — Present',
+        role: 'AI QA Analyst / Project Tester',
+        place: 'Lionbridge Technologies · Self-employed, remote',
+      },
+      {
+        dates: 'Dec 2024 — Oct 2025',
+        role: 'Energy Consultant & Account Manager',
+        place: 'Selectra Sur SL · Valencia',
+      },
+      {
+        dates: '2019',
+        role: 'IT Support Technician · Internship',
+        place: 'Valencia City Council — Local Police',
+      },
+    ],
+    education: {
+      title: 'Education',
+      items: [
+        "Multiplatform Application Development (DAM), Spain's two-year higher vocational program in software — IES El Grao, Valencia",
+        'Specialization in Video Game Design and Development — ESAT, Valencia',
+      ],
+    },
+    languages: {
+      title: 'Languages',
+      text: 'Spanish (native) · Valencian (C1) · English (C1) · German (A2)',
+    },
+    cv: 'CV (PDF) ↓',
+  },
+  contact: {
+    title: 'Contact',
+    lede: [
+      "A project, a website you've inherited, or a technical question? Write to me: I answer personally, usually within 24 hours. If it's about your business's website, ",
+      { link: 'estudioreigar.com', href: 'https://estudioreigar.com/en/' },
+      ' explains how I work and what it costs.',
+    ],
+    direct: 'Or email me directly at ',
+    cv: 'CV (PDF) ↓',
+  },
+};
+
+export const home: Record<Lang, HomeText> = { es, en };

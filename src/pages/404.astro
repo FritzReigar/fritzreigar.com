@@ -1,19 +1,5 @@
 ---
-// El 404 (plan/contenido.md § 6.1), pintado con ErrorHero. Pages lo sirve con estado 404 para
-// cualquier ruta que no exista fuera de /en/ (allí, src/pages/en/404.astro).
-import ErrorHero from '../components/heroes/ErrorHero.astro';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { pathFor, sectionHref } from '../data/routes';
+// El 404 en español, para cualquier ruta que no exista fuera de /en/: el contenido entero es de NotFoundPage.
+import NotFoundPage from '../components/pages/NotFoundPage.astro';
 ---
-<BaseLayout title="Página no encontrada · Fritz Reigar" noindex>
-  <ErrorHero
-    code="404"
-    title="Esta página no existe"
-    lede="O ha cambiado de sitio. Lo que buscabas seguramente está en la portada."
-    actions={[
-      { href: pathFor('home', 'es'), label: 'Volver al inicio' },
-      { href: sectionHref('work', 'es'), label: 'Ver el trabajo' },
-      { href: sectionHref('projects', 'es'), label: 'Ver los proyectos' },
-    ]}
-  />
-</BaseLayout>
+<NotFoundPage lang="es" />

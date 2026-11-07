@@ -1,0 +1,110 @@
+{
+  "section": "work",
+  "order": 2,
+  "kicker": "Client · New website · Delivered in September 2026 · Ongoing maintenance",
+  "title": "Limpiezas Artemisa",
+  "lede": "A cleaning company in Valencia (homes, offices, apartment buildings, windows, garages and post-construction cleaning) well reviewed on Google and with no website of its own. A new, custom website, and its Google Business Profile set up properly.",
+  "primary": { "text": "See the website ↗", "href": "https://www.limpiezasartemisa.com/" },
+  "secondary": {
+    "text": "The case study for business owners, on estudioreigar.com ↗",
+    "href": "https://estudioreigar.com/en/case-studies/limpiezas-artemisa"
+  },
+  "card": {
+    "label": "Client · New website · Delivered in September 2026 · Ongoing maintenance",
+    "summary": "A custom website for a cleaning company in Valencia: static, without a single cookie and with one page per service for local search. Mobile Lighthouse: 95–96 for performance and 100 for everything else. Plus its Google Business Profile, kept up to date every month.",
+    "shots": ["limpiezas-artemisa-desktop"]
+  },
+  "showcase": { "desktop": "limpiezas-artemisa-desktop", "phone": "limpiezas-artemisa-mobile" },
+  "meta": {
+    "title": "Limpiezas Artemisa · Work · Fritz Reigar",
+    "description": "A custom static website for a cleaning company in Valencia: local SEO, no cookies, strict CSP and a mobile Lighthouse score of 95–96 for performance and 100 for the rest.",
+    "og": {
+      "title": "Limpiezas Artemisa: a new website and its Google profile",
+      "description": "One page per service, not a single cookie, and a measured Lighthouse score."
+    }
+  },
+  "body": {
+    "prose": {
+      "title": "The starting point",
+      "intro": "No website of its own, several domains bought and none of them showing anything, and the Google Business Profile without organized photos or the right categories."
+    },
+    "featureRows": {
+      "title": "What was done",
+      "items": [
+        {
+          "title": "A static website, with no framework and no dependencies",
+          "text": "On Cloudflare Pages and deployed from GitHub on every push: home page, one page per service (six), a blog and the legal pages, plus a custom error page."
+        },
+        {
+          "title": "Local SEO",
+          "text": "One page per service, so Google shows the right one to someone searching for «limpieza de comunidades» (apartment-building cleaning) instead of the home page; structured data (LocalBusiness, Service, BreadcrumbList, BlogPosting); a sitemap and the site registered in Search Console."
+        },
+        {
+          "title": "The form, with no third parties in the browser",
+          "text": "A Pages Function that sends through Resend and only reports success once the server confirms it, with validation and spam filters on the server and no captcha. Next to it, WhatsApp and a sticky call-and-message bar on mobile."
+        },
+        {
+          "title": "Strict CSP and not a single cookie",
+          "text": [
+            "Security headers (CSP, HSTS, ",
+            { "code": "X-Frame-Options" },
+            ") and cookie-free analytics, so no banner either: asking permission for something that doesn't happen would be wrong as well as annoying."
+          ]
+        },
+        {
+          "title": "The domains, sorted out",
+          "text": "One main domain and the rest redirecting to it, each with its certificate, without moving the domain or the email away from their provider."
+        },
+        {
+          "title": "Google Business Profile",
+          "text": "An initial audit, a rewritten description, a complete service catalog, wider service areas and posts that link to the website."
+        },
+        {
+          "title": "After delivery",
+          "text": "Monthly upkeep of the profile, one blog article a month, updates and backups."
+        }
+      ]
+    },
+    "figureList": {
+      "title": "Measured",
+      "note": [
+        "Lighthouse on mobile, on the home page and two service pages: ",
+        { "strong": "performance 95–96, and 100 for accessibility, best practices and SEO" },
+        "."
+      ],
+      "items": [
+        { "num": "95–96", "text": "performance" },
+        { "num": "100", "text": "accessibility" },
+        { "num": "100", "text": "best practices" },
+        { "num": "100", "text": "SEO" }
+      ]
+    },
+    "caseClosing": {
+      "columns": [
+        {
+          "title": "Who owns what",
+          "text": "The client owns the domains, the hosting and the email, the Google Business Profile and Search Console. I'm the technical manager, not the owner."
+        },
+        {
+          "title": "Built with",
+          "stack": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Cloudflare Pages",
+            "Pages Functions",
+            "Resend",
+            "JSON-LD",
+            "Cloudflare Web Analytics",
+            "Search Console",
+            "Google Business Profile"
+          ]
+        },
+        {
+          "title": "What isn't shown",
+          "text": "What it cost, and the numbers from its Google Business Profile: views, calls and searches are its business data. What's measured here is the website."
+        }
+      ]
+    }
+  }
+}

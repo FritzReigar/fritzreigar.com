@@ -1,33 +1,6 @@
 ---
-// La ficha de Limpiezas Artemisa (plan/contenido.md § 3), pintada con plan/spec-visual.md § 2.2: CaseHero,
-// CaseShowcase y CaseBody. El texto y las capturas salen de src/content/cases/es/limpiezas-artemisa.json.
-import CaseBody from '../../components/case/CaseBody.astro';
-import CaseShowcase from '../../components/case/CaseShowcase.astro';
-import CaseHero from '../../components/heroes/CaseHero.astro';
-import { getCase } from '../../data/cases';
-import { sectionHref } from '../../data/routes';
-import { ui } from '../../data/ui';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-
-const { data } = await getCase('work-artemisa', 'es');
+// La ficha de Limpiezas Artemisa en español: el contenido entero es de CasePage, con el texto de
+// src/content/cases/es/limpiezas-artemisa.json.
+import CasePage from '../../components/pages/CasePage.astro';
 ---
-<BaseLayout
-  title={data.meta.title}
-  description={data.meta.description}
-  og={data.meta.og}
-  current="work"
->
-  <article>
-    <CaseHero
-      section={ui.es.caseSection.work}
-      sectionHref={sectionHref('work', 'es')}
-      kicker={data.kicker}
-      title={data.title}
-      lede={data.lede}
-      primary={data.primary}
-      secondary={data.secondary}
-    />
-    <CaseShowcase desktop={data.showcase.desktop} phone={data.showcase.phone} lang="es" />
-    <CaseBody body={data.body} lang="es" />
-  </article>
-</BaseLayout>
+<CasePage page="work-artemisa" lang="es" />

@@ -39,7 +39,7 @@ const PHONE_WIDTHS = [200, 400, 600];
 const candidates = widths ?? (image.height > image.width ? PHONE_WIDTHS : DESKTOP_WIDTHS);
 const srcsetWidths = [...candidates.filter((width) => width < image.width), image.width];
 ---
-<Picture class:list={['shot', { 'shot--phone': phone }, className]} src={image} formats={['avif', 'webp']} fallbackFormat="webp" widths={srcsetWidths} sizes={sizes} alt={decorative ? '' : (alt[lang] ?? alt.es)} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+<Picture class:list={['shot', { 'shot--phone': phone }, className]} src={image} formats={['avif', 'webp']} fallbackFormat="webp" widths={srcsetWidths} sizes={sizes} alt={decorative ? '' : alt[lang]} loading={eager ? 'eager' : 'lazy'} decoding="async" />
 
 <style>
   .shot {

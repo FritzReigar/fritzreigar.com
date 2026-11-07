@@ -1,0 +1,175 @@
+{
+  "section": "work",
+  "order": 1,
+  "kicker": "Client · Inherited online store · Ongoing maintenance",
+  "title": "Missphone",
+  "lede": "A phone shop in Benetússer, a town just south of Valencia: custom phone cases, accessories, repairs and photo gifts, in its physical shop and in its online store. I didn't build the online store: I inherited it up and running, and this is what I've done with it.",
+  "primary": { "text": "See the store ↗", "href": "https://missphone.es/" },
+  "secondary": {
+    "text": "The case study for business owners, on estudioreigar.com ↗",
+    "href": "https://estudioreigar.com/en/case-studies/missphone"
+  },
+  "card": {
+    "label": "Client · Inherited online store · Ongoing maintenance",
+    "summary": "A phone shop in Benetússer, near Valencia, with custom phone cases, accessories, repairs and photo gifts. I inherited its WooCommerce store: I took back control, brought every page up to the standard of its home page, added gifts that customers design right on the site, and relaunched it.",
+    "shots": ["missphone-desktop"]
+  },
+  "showcase": { "desktop": "missphone-desktop", "phone": "missphone-mobile" },
+  "meta": {
+    "title": "Missphone · Work · Fritz Reigar",
+    "description": "An inherited WooCommerce store: taking back control, gifts customers design on the site, 39 pages brought up to the home page's standard, the handover and the launch.",
+    "og": {
+      "title": "Missphone: an inherited store, brought up to date",
+      "description": "Rescuing and relaunching an online store near Valencia, phase by phase, with its before and after."
+    }
+  },
+  "body": {
+    "pullQuote": {
+      "label": "The best part",
+      "text": "That the website finally looks like the shop: pink, charming and built around personalization, the same from the home page to the very last brand page. And that the products shine: each one with its photo, its price up front and, if it can be personalized, the designer right on the product page."
+    },
+    "prose": {
+      "title": "The state I found it in",
+      "intro": "I inherited it up and running, with orders coming in, on WordPress, WooCommerce and a commercial theme, but in a state that called for a thorough overhaul rather than a touch-up:",
+      "items": [
+        "The home page header was a single image with the «Click aquí» (click here) button drawn into it, so it led nowhere.",
+        "Much of the text was gray on top of photos and couldn't be read.",
+        "The gift pages didn't link to any product.",
+        "The catalog repeated the same product page for every phone model.",
+        "Admin access was scattered among several people."
+      ],
+      "outro": "That's what happens to a website that runs for years with no one looking after it. I won't comment on whoever built it: I don't know what budget they had or what they were asked for."
+    },
+    "beforeAfter": {
+      "title": "Before and after",
+      "note": "The «before» is from August 31, 2026, saved before touching anything. The «after» is captured at the same width and with the same framing, or there's no comparison.",
+      "pairs": [
+        {
+          "title": "The home page, on desktop",
+          "before": {
+            "text": "A single image with the button drawn into it, which led nowhere.",
+            "shot": "missphone-before-home-desktop"
+          },
+          "after": {
+            "text": "A real header that says what the shop is and where it is, with two buttons (design your case and see the accessories) and the Google rating.",
+            "shot": "missphone-after-home-desktop"
+          }
+        },
+        {
+          "title": "The home page, on mobile",
+          "before": {
+            "text": "The same image, shrunk to 380 px and too small to read.",
+            "shot": "missphone-before-home-mobile"
+          },
+          "after": {
+            "text": "The photo on top and, below it, the headline, the two buttons and the rating, sized for a phone.",
+            "shot": "missphone-after-home-mobile"
+          },
+          "tall": true
+        },
+        {
+          "title": "The categories on the home page",
+          "before": {
+            "text": "Each category's name set over its photo, sometimes right on top of the product.",
+            "shot": "missphone-before-categories"
+          },
+          "after": {
+            "text": "Cards with the photo on one side and, on the other, the name and the starting price.",
+            "shot": "missphone-after-categories"
+          }
+        },
+        {
+          "title": "One category: phone cases",
+          "before": {
+            "text": "Four paragraphs in gray over a photo of cases, impossible to read.",
+            "shot": "missphone-before-cases-page"
+          },
+          "after": {
+            "text": "The colored header, with a headline you can read, a button to make one with your photo and the framed photo; the same header on every page.",
+            "shot": "missphone-after-cases-page"
+          }
+        },
+        {
+          "title": "Further down the home page",
+          "before": {
+            "text": "An accessories block with gray text over a dark photo, almost invisible.",
+            "shot": "missphone-before-home-lower"
+          },
+          "after": {
+            "text": "In that spot, the physical shop gets its own block, «La tienda, en Benetússer» (the shop, in Benetússer): the address, a photo of the shop and buttons to call and get directions.",
+            "shot": "missphone-after-home-lower"
+          }
+        }
+      ]
+    },
+    "figureList": {
+      "title": "In numbers",
+      "items": [
+        { "num": "39", "text": "pages brought up to the home page's standard: 37 redone and 2 new" },
+        { "num": "8", "text": "products customers design and buy online" },
+        {
+          "num": "268",
+          "unit": "→ 8",
+          "text": "duplicate product pages, one per phone model, merged into 8 products with a dropdown (252 models)"
+        },
+        { "num": "15", "text": "custom PHP extensions (mu-plugins)" },
+        { "num": "14", "text": "before-and-after pairs, framed identically" }
+      ]
+    },
+    "phaseList": {
+      "title": "What I did, phase by phase",
+      "items": [
+        {
+          "title": "The rescue",
+          "text": "First, taking back control: admin access and notifications, put in the business's own name; a verified backup before touching anything; payments by card and by Bizum (Spain's mobile payment app) and shipping costs, checked with test orders. And the catalog: 268 product pages that repeated the same product for every phone model, merged into 8 products with a model dropdown, with every old address redirected (301) to its product with the model already selected."
+        },
+        {
+          "title": "Gifts customers design on the site",
+          "text": "Mug, T-shirt, cushion and frame, and later mouse pads and puzzles: 8 products with the designer on the product page itself, and an extension that won't let anyone buy them without a design. The 8 gift pages, with a photo, text and a button that leads to designing or buying."
+        },
+        {
+          "title": "Every page up to the home page's standard",
+          "text": "37 pages redone (gifts, occasions, accessories and the 14 brands) and 2 new ones, built from the home page's components: a colored header with the framed photo, full-width bands, cards and photos. The shared CSS, written once in named blocks rather than page by page. And a new header for the home page itself."
+        },
+        {
+          "title": "The loose ends",
+          "text": "A single H1 and alt text on every page, the copy that promised things the shop didn't offer, the store page and product pages restyled, the social sharing image for the home page, and a thorough clean-up before the final backup."
+        },
+        {
+          "title": "The handover",
+          "text": "A full walkthrough of the website, from the home page to the cart, on desktop and on mobile; a final backup verified file by file; and the handover in person, at the shop, with a document of every decision I made on their behalf, for them to review."
+        },
+        {
+          "title": "The launch",
+          "text": "The launch post on the blog and the Google Business Profile up to date; an iPhone repair page covering eight types of fault, with structured data; the online store turned into a showcase, with the categories and the products customers design; and seasonal sections (Christmas, Valentine's Day, Mother's Day…) switched on and off from the menu, without touching code."
+        }
+      ],
+      "today": "Today I still maintain it."
+    },
+    "caseClosing": {
+      "columns": [
+        {
+          "title": "Built with",
+          "stack": [
+            "WordPress",
+            "WooCommerce",
+            "PHP (mu-plugins)",
+            "CSS",
+            "Fancy Product Designer",
+            "JSON-LD (Store, FAQPage, Service)",
+            "WordPress REST API",
+            "Python and Node for measuring and taking screenshots without touching the store"
+          ]
+        },
+        {
+          "title": "How it was done",
+          "text": "Nothing is taken for granted without measuring it on the live site, and every change is preceded by a backup and a screenshot of the «before». It's a store with orders and customer data: there's no room for improvising."
+        },
+        {
+          "title": "What isn't shown",
+          "text": "How much it sells, what it spends on advertising and what that brings in, its customers' data and the store's admin panel. Nor how it's protected. It's theirs, and I don't publish it, not even with permission."
+        }
+      ]
+    }
+  }
+}

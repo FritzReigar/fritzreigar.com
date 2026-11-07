@@ -1,6 +1,5 @@
 // Las cadenas fijas de la web en los dos idiomas: las del marco (cabecera, menú, pie, salto),
-// las de las fichas que no son de ninguna en concreto, las del formulario y el aviso de las
-// páginas inglesas que aún no tienen texto. El texto de cada página vive en datos: la portada en
+// las de las fichas que no son de ninguna en concreto, las del 404 y las del formulario. El texto de cada página vive en datos: la portada en
 // home.ts y las fichas en la colección `cases` (decisión F1 de plan/fase-2.md). El idioma lo da la
 // carpeta: src/pages/en/ es inglés (i18n de astro.config.mjs), y se lee con
 // langOf(Astro.currentLocale).
@@ -35,6 +34,15 @@ export interface UiText {
   caseSection: Record<'work' | 'projects', string>;
   // El pie de cada captura de una pareja (BeforeAfter).
   beforeAfter: { before: string; after: string };
+  // El 404 (NotFoundPage): el title, el título, la entradilla y los tres botones.
+  notFound: {
+    pageTitle: string;
+    title: string;
+    lede: string;
+    home: string;
+    work: string;
+    projects: string;
+  };
 }
 
 export const EMAIL = 'contact@fritzreigar.com';
@@ -75,6 +83,14 @@ export const ui: Record<Lang, UiText> = {
     cvHref: '/assets/cv/fritz-reigar-cv.pdf',
     caseSection: { work: 'Trabajo', projects: 'Proyecto' },
     beforeAfter: { before: 'Antes', after: 'Después' },
+    notFound: {
+      pageTitle: 'Página no encontrada · Fritz Reigar',
+      title: 'Esta página no existe',
+      lede: 'O ha cambiado de sitio. Lo que buscabas seguramente está en la portada.',
+      home: 'Volver al inicio',
+      work: 'Ver el trabajo',
+      projects: 'Ver los proyectos',
+    },
   },
   en: {
     langName: 'English',
@@ -103,29 +119,60 @@ export const ui: Record<Lang, UiText> = {
     cvHref: '/assets/cv/fritz-reigar-cv-en.pdf',
     caseSection: { work: 'Work', projects: 'Project' },
     beforeAfter: { before: 'Before', after: 'After' },
+    notFound: {
+      pageTitle: 'Page not found · Fritz Reigar',
+      title: "This page doesn't exist",
+      lede: 'Or it has moved. What you were looking for is probably on the home page.',
+      home: 'Back to home',
+      work: 'See the work',
+      projects: 'See the projects',
+    },
   },
 };
 
-// El aviso de una página en inglés cuyo texto aún no existe (en.live en false, routes.ts). Se
-// dirige a quien no lee español, así que va en inglés y el enlace lleva a la española.
-export const notYetText = {
-  text: 'This page is not available in English yet.',
-  link: 'Read it in Spanish',
-} as const;
+// El formulario de Contacto (plan/contenido.md § 1.7 y plan/contenido-en.md § 1.7). Sin JS, POST
+// normal a Formspree; con JS, main.ts pinta los tres estados (enviando, enviado, error) con estos
+// textos, que ContactForm deja en el HTML. El asunto inglés lleva «(English)» para saber, desde la
+// bandeja, en qué idioma contestar.
+export interface FormText {
+  name: string;
+  namePlaceholder: string;
+  email: string;
+  emailPlaceholder: string;
+  message: string;
+  messagePlaceholder: string;
+  submit: string;
+  subject: string;
+  sending: string;
+  sent: string;
+  failed: string;
+}
 
-// El formulario de Contacto (plan/contenido.md § 1.7). Sin JS, POST normal a Formspree; los tres
-// estados (enviando, enviado, error) los pintará main.ts en la fase 2. El inglés, con el texto
-// inglés de la fase 2.
-export const formText = {
-  name: 'Nombre',
-  namePlaceholder: 'Tu nombre o empresa',
-  email: 'Email',
-  emailPlaceholder: 'tu@email.com',
-  message: 'Mensaje',
-  messagePlaceholder: 'Cuéntame qué necesitas…',
-  submit: 'Enviar',
-  subject: 'Nuevo mensaje desde fritzreigar.com',
-  sending: 'Enviando…',
-  sent: 'Mensaje enviado. Te contesto pronto.',
-  failed: 'No se ha podido enviar. Prueba otra vez o escríbeme a contact@fritzreigar.com.',
-} as const;
+export const formText: Record<Lang, FormText> = {
+  es: {
+    name: 'Nombre',
+    namePlaceholder: 'Tu nombre o empresa',
+    email: 'Email',
+    emailPlaceholder: 'tu@email.com',
+    message: 'Mensaje',
+    messagePlaceholder: 'Cuéntame qué necesitas…',
+    submit: 'Enviar',
+    subject: 'Nuevo mensaje desde fritzreigar.com',
+    sending: 'Enviando…',
+    sent: 'Mensaje enviado. Te contesto pronto.',
+    failed: 'No se ha podido enviar. Prueba otra vez o escríbeme a contact@fritzreigar.com.',
+  },
+  en: {
+    name: 'Name',
+    namePlaceholder: 'Your name or company',
+    email: 'Email',
+    emailPlaceholder: 'you@email.com',
+    message: 'Message',
+    messagePlaceholder: 'Tell me what you need…',
+    submit: 'Send',
+    subject: 'New message from fritzreigar.com (English)',
+    sending: 'Sending…',
+    sent: "Message sent. I'll get back to you soon.",
+    failed: "Your message couldn't be sent. Try again or email me at contact@fritzreigar.com.",
+  },
+};

@@ -5,17 +5,18 @@
 // `_gotcha` son los de la web de hoy. Con JS, main.ts lo manda por fetch y pinta sus estados
 // (enviando, enviado, error): busca el formulario por [data-contact-form], toma «Enviando…» de
 // data-sending y copia en las dos líneas vivas, vacías hasta entonces, el contenido de su
-// <template>. La validación es la del navegador. El inglés, con lang, en la 2.9.
-import { EMAIL, formText } from '../../data/ui';
+// <template>. La validación es la del navegador. Los textos, de formText en el idioma de `lang`.
+import { EMAIL, formText, type Lang } from '../../data/ui';
 import Button from '../ui/Button.astro';
 
 interface Props {
   action: string;
+  lang: Lang;
   class?: string;
 }
 
-const { action, class: className } = Astro.props;
-const text = formText;
+const { action, lang, class: className } = Astro.props;
+const text = formText[lang];
 const [failedBefore, failedAfter] = text.failed.split(EMAIL);
 ---
 <form class:list={['contact-form', className]} action={action} method="POST" data-contact-form data-sending={text.sending}>

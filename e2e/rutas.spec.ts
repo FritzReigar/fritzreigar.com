@@ -1,5 +1,6 @@
 import { expect, test } from '@playwright/test';
-import { routes } from '../src/data/routes';
+import { pathFor, routes } from '../src/data/routes';
+import { ui } from '../src/data/ui';
 import { collectErrors, sitePages } from './support/pages';
 
 // Las doce páginas, servidas por wrangler con la CSP real de _headers: un script o un estilo en
@@ -38,10 +39,11 @@ for (const sitePage of sitePages) {
   });
 }
 
-for (const [lang, path, title] of [
-  ['es', '/no-existe', 'Esta página no existe'],
-  ['en', '/en/no-existe', 'This page does not exist'],
+for (const [lang, path] of [
+  ['es', '/no-existe'],
+  ['en', '/en/no-existe'],
 ] as const) {
+  const { title, home } = ui[lang].notFound;
   test(`${path} → 404 en su idioma`, async ({ page }) => {
     const errors = collectErrors(page);
     const failed: string[] = [];
@@ -52,6 +54,10 @@ for (const [lang, path, title] of [
     expect(response?.status()).toBe(404);
     await expect(page.locator('html')).toHaveAttribute('lang', lang);
     await expect(page.locator('h1')).toHaveText(title);
+    await expect(page.getByRole('link', { name: home })).toHaveAttribute(
+      'href',
+      pathFor('home', lang),
+    );
     await expect(page.locator('html')).toHaveAttribute('data-script', 'main');
     // El único 404 es el del propio documento, que Chrome apunta en la consola; nada más falla.
     expect(failed).toEqual([path]);

@@ -1,0 +1,28 @@
+---
+// El 404 en un idioma (plan/contenido.md § 6.1, plan/contenido-en.md § 6.1), pintado con
+// ErrorHero: los tres botones llevan a la portada, a Trabajo y a Proyectos de su idioma. Lo pintan
+// src/pages/404.astro y src/pages/en/404.astro; Pages sirve cada uno con estado 404 en su carpeta.
+import { pathFor, sectionHref } from '../../data/routes';
+import { type Lang, ui } from '../../data/ui';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ErrorHero from '../heroes/ErrorHero.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const text = ui[lang].notFound;
+---
+<BaseLayout title={text.pageTitle} noindex>
+  <ErrorHero
+    code="404"
+    title={text.title}
+    lede={text.lede}
+    actions={[
+      { href: pathFor('home', lang), label: text.home },
+      { href: sectionHref('work', lang), label: text.work },
+      { href: sectionHref('projects', lang), label: text.projects },
+    ]}
+  />
+</BaseLayout>

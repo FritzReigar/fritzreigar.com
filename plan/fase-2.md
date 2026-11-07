@@ -590,7 +590,7 @@ OK de Fritz, listo para que la 2.9 lo monte sin escribir una línea.
 
 ---
 
-### Tanda 2.9 — El inglés, en la web   [ ] pendiente
+### Tanda 2.9 — El inglés, en la web   [x] hecha (2026-11-07, v0.2.9)
 **Objetivo**: las doce páginas existen en los dos idiomas, con hreflang recíproco, el enlace de
 idioma visible y las inglesas en el sitemap y en Lighthouse.
 
@@ -1057,3 +1057,31 @@ Analytics, tocar el correo de la zona.
   in software», sin estado), y va en inglés británico («Specialisation») mientras la web va en
   americano. Y la web, en los dos idiomas, dice «al resto de España, a distancia», mientras el estudio
   en inglés dice «in Spain or abroad»: si Fritz quiere ampliarlo, cambian los dos textos.
+- **2026-11-07, tanda 2.9: las páginas, de dos en dos.** El encargo pedía las seis de
+  `src/pages/en/` «como las españolas»; copiarlas habría duplicado el `<style>` de la portada y el
+  marcado de las fichas. El cuerpo de cada tipo de página pasa a `src/components/pages/`
+  (`HomePage`, `CasePage` y `NotFoundPage`, con `lang` y, en las fichas, la clave de la ruta), y
+  las doce páginas se quedan en una línea. `CasePage` saca la sección del rótulo y la que marca la
+  cabecera de la `section` del JSON. El texto del 404 pasa de la página a `ui.ts` (`notFound`, por
+  idioma), como el resto del marco. En español no cambia ni un píxel a 390.
+- **2026-11-07, tanda 2.9: Lighthouse lee las páginas del sitemap del build.** Node no carga
+  `routes.ts` desde un `.mjs` (importa `./ui` sin extensión), así que `scripts/lighthouse.mjs` saca
+  las diez de `dist/sitemap.xml`, que se construye desde `routes.ts`: una página nueva entra sola
+  igual. Las dos portadas, cinco pasadas; el resto, tres.
+- **2026-11-07, tanda 2.9: con el idioma vivo, «English» se pinta.** Las ocho vistas a 1440 se
+  regeneran, buscado: la diferencia está solo en la franja de la cabecera (y 25–53, la nav corrida
+  a la izquierda para hacerle sitio, con su filete), y el largo de cada página no cambia; las ocho
+  a 390 pasan sin tocarlas (el idioma va dentro del menú). En `e2e/marco.spec.ts` las listas de la
+  cabecera y del menú cuentan el enlace de idioma. Los 404 no llevan hreflang (`noindex`) pero sí el
+  enlace de idioma, a la portada del otro (`switchHrefOf`): `e2e/hreflang.spec.ts` lo comprueba,
+  con su `hreflang` y su `lang`.
+- **2026-11-07, tanda 2.9: «a 56rem» es a 897 px.** La cabecera pasa al menú con
+  `max-width: 56rem`, así que a 896 px aún sale «Menu»: la prueba nueva de la nav inglesa entera,
+  en una fila y sin salirse, va al primer ancho que la pinta, 897 px.
+- **2026-11-07, tanda 2.9: lo demás.** El `alt` inglés es obligatorio (`Record<Lang, string>` en
+  `shots.ts`) y `Shot` ya no cae al español. Los `lastmod` españoles se quedan en el 2026-11-05: su
+  texto no cambia; los ingleses, 2026-11-07. `e2e/formulario.spec.ts` suma el formulario inglés
+  (asunto con «(English)», «Sending…», «Message sent» y el error con el correo). Documento de la
+  portada inglesa: 116,5 KB brutos y 29,3 en gzip (tope 120 y 32); la española, 116,0 y 29,2.
+  Lighthouse (móvil, mediana): las diez páginas a 99-100 de rendimiento, 100 en lo demás, CLS 0 y
+  TBT 0; cada gemela inglesa pesa lo mismo que la española (±0,5 KB de documento).

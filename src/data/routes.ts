@@ -1,8 +1,8 @@
 // Las seis páginas de la web en los dos idiomas. Es la única fuente de las rutas: de aquí salen el
 // sitemap (src/pages/sitemap.xml.ts), el hreflang y el enlace de idioma (BaseLayout), los enlaces
 // del marco y las pruebas (e2e/support/pages.ts). Una página en inglés está viva cuando su
-// `en.live` es true; mientras no lo está, se construye con su title y un aviso, sin indexar, y los
-// enlaces desde /en/ llevan a la española. El patrón es el del estudio
+// `en.live` es true (las seis desde la tanda 2.9); si alguna dejara de estarlo, los enlaces desde
+// /en/ llevarían a la española y saldría del hreflang y del sitemap. El patrón es el del estudio
 // (~/Projects/propios/estudio-reigar/web/src/data/routes.ts).
 import { type Lang, type NavSection, ui } from './ui';
 
@@ -41,7 +41,7 @@ export const routes: readonly Route[] = [
       changefreq: 'monthly',
       priority: '1.0',
     },
-    en: { path: '/en/', live: false },
+    en: { path: '/en/', live: true, lastmod: '2026-11-07' },
   },
   {
     key: 'work-missphone',
@@ -52,7 +52,7 @@ export const routes: readonly Route[] = [
       changefreq: 'monthly',
       priority: '0.8',
     },
-    en: { path: '/en/work/missphone', live: false },
+    en: { path: '/en/work/missphone', live: true, lastmod: '2026-11-07' },
   },
   {
     key: 'work-artemisa',
@@ -63,7 +63,7 @@ export const routes: readonly Route[] = [
       changefreq: 'monthly',
       priority: '0.8',
     },
-    en: { path: '/en/work/limpiezas-artemisa', live: false },
+    en: { path: '/en/work/limpiezas-artemisa', live: true, lastmod: '2026-11-07' },
   },
   {
     key: 'project-snugtone',
@@ -74,7 +74,7 @@ export const routes: readonly Route[] = [
       changefreq: 'monthly',
       priority: '0.8',
     },
-    en: { path: '/en/projects/snugtone', live: false },
+    en: { path: '/en/projects/snugtone', live: true, lastmod: '2026-11-07' },
   },
   {
     key: 'project-snugport',
@@ -85,12 +85,12 @@ export const routes: readonly Route[] = [
       changefreq: 'monthly',
       priority: '0.8',
     },
-    en: { path: '/en/projects/snugport', live: false },
+    en: { path: '/en/projects/snugport', live: true, lastmod: '2026-11-07' },
   },
   {
     key: 'not-found',
     es: { path: '/404', indexable: false },
-    en: { path: '/en/404', live: false },
+    en: { path: '/en/404', live: true },
   },
 ];
 

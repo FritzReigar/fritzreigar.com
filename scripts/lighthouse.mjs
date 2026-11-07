@@ -15,8 +15,10 @@
 // Versiones fijadas (Lighthouse 13.5.0 exacta y el Chromium de Playwright): la nota cambia de una
 // versión a otra, y así la de esta máquina y la de CI son la misma medida.
 //
-// Las páginas: las cinco indexables en español. Las gemelas inglesas y el 404 llevan noindex y
-// Lighthouse les quitaría el SEO por eso; entran cuando el inglés esté vivo.
+// Las páginas: las indexables de los dos idiomas, las diez de dist/sitemap.xml, que sale de
+// src/data/routes.ts (tanda 2.9): una página nueva entra sola. Se lee el sitemap del build y no
+// routes.ts porque Node no carga ese .ts (importa ./ui sin extensión). Los dos 404 llevan noindex
+// y Lighthouse les quitaría el SEO por eso.
 //
 // Los presupuestos (lighthouse.budgets.json) salen de plan/spec-visual.md § 8: rendimiento ≥ 95 y
 // el resto a 100, CLS ≤ 0,01; en CI, rendimiento ≥ 90 (el runner es más lento). Los bytes son
@@ -49,14 +51,16 @@ const DOMAIN_ORIGIN = 'https://fritzreigar.com';
 const CATEGORIES = ['performance', 'accessibility', 'best-practices', 'seo'];
 const BYTE_TYPES = ['document', 'script', 'stylesheet', 'font', 'image'];
 
-// La portada es la página más larga y la que más baila: 5 pasadas; el resto, 3.
+// Las portadas son las páginas más largas y las que más bailan: 5 pasadas; el resto, 3.
+const HOMES = ['/', '/en/'];
+const SITEMAP = join(WEB_DIR, 'dist', 'sitemap.xml');
 const PAGES = [
-  { path: '/', runs: 5 },
-  { path: '/trabajo/missphone', runs: 3 },
-  { path: '/trabajo/limpiezas-artemisa', runs: 3 },
-  { path: '/proyectos/snugtone', runs: 3 },
-  { path: '/proyectos/snugport', runs: 3 },
-];
+  ...readFileSync(SITEMAP, 'utf8').matchAll(/<loc>https:\/\/fritzreigar\.com([^<]*)<\/loc>/g),
+].map(([, path]) => ({ path, runs: HOMES.includes(path) ? 5 : 3 }));
+if (PAGES.length === 0) {
+  console.error(`${SITEMAP} no lista ninguna página: ¿falta npm run build?`);
+  process.exit(2);
+}
 
 const args = process.argv.slice(2);
 const flag = (name) => args.includes(name);

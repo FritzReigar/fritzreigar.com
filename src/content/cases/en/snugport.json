@@ -1,0 +1,62 @@
+{
+  "section": "projects",
+  "order": 2,
+  "kicker": "My own product · Free, with a paid plan",
+  "title": "Snugport",
+  "lede": "A control room for freelancers: hour tracker with rates, projects, client pipeline, finances, deadlines and checklists.",
+  "primary": { "text": "Try the app ↗", "href": "https://snugport.app/" },
+  "card": {
+    "label": "My own product · Free, with a paid plan",
+    "summary": "A control room for freelancers: time tracking with rates, projects, clients, finances and deadlines. In production as a vanilla JavaScript PWA, with the panel being migrated to React and TypeScript, backed by more than 1,200 unit tests.",
+    "shots": ["snugport-desktop"]
+  },
+  "showcase": { "desktop": "snugport-desktop", "phone": "snugport-mobile" },
+  "meta": {
+    "title": "Snugport · Project · Fritz Reigar",
+    "description": "A control room for freelancers: a vanilla JavaScript PWA in production and a panel migrating to React and TypeScript, with more than 1,200 tests.",
+    "og": {
+      "title": "Snugport, the freelancer's control room",
+      "description": "Hours, projects, clients and finances in one panel: free, with a paid plan."
+    }
+  },
+  "body": {
+    "featureRows": {
+      "items": [
+        {
+          "text": "The production version, in vanilla JavaScript with no dependencies, is an installable PWA that works offline."
+        },
+        {
+          "text": "An ongoing migration of the panel to React 19 + TypeScript + Tailwind 4, alongside production: more than 1,200 unit tests (Vitest), more than 300 E2E tests (Playwright) on mobile and desktop, and mutation testing."
+        },
+        {
+          "text": "Free, with no account and no limits; the paid plan, a Stripe subscription, syncs your data across devices. Backend on Supabase (Postgres, Auth and Edge Functions in TypeScript): the paywall lives in Postgres RLS policies, not in the client."
+        },
+        {
+          "text": [
+            "Accessibility audited (AA contrast, focus trap, ",
+            { "code": "prefers-reduced-motion" },
+            "), a choice of themes, a bilingual ES/EN interface and 80 currencies."
+          ]
+        }
+      ]
+    },
+    "caseClosing": {
+      "columns": [
+        {
+          "title": "Built with",
+          "stack": [
+            "vanilla JavaScript",
+            "React",
+            "TypeScript",
+            "Tailwind",
+            "Supabase",
+            "Postgres RLS",
+            "Stripe",
+            "PWA",
+            "Cloudflare Pages"
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,15 +1,5 @@
 ---
-// El 404 de /en/, pintado con ErrorHero. Mientras el inglés no exista (en.live en false,
-// src/data/routes.ts), solo dice que la página no existe y lleva a la portada española. Su texto
-// entero es de la 2.8.
-import ErrorHero from '../../components/heroes/ErrorHero.astro';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import { pathFor } from '../../data/routes';
+// El 404 en inglés, para cualquier ruta que no exista dentro de /en/: el contenido entero es de NotFoundPage.
+import NotFoundPage from '../../components/pages/NotFoundPage.astro';
 ---
-<BaseLayout title="Page not found · Fritz Reigar" noindex>
-  <ErrorHero
-    code="404"
-    title="This page does not exist"
-    actions={[{ href: pathFor('home', 'en'), label: 'Go to the home page' }]}
-  />
-</BaseLayout>
+<NotFoundPage lang="en" />

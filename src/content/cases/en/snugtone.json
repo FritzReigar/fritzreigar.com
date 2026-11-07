@@ -1,0 +1,113 @@
+{
+  "section": "projects",
+  "order": 1,
+  "kicker": "My own app · Open source (MIT) · 1.0.1 for Windows",
+  "title": "Snugtone",
+  "lede": "A desktop music player for your own library, written in Rust with Tauri. Free and open source.",
+  "primary": {
+    "text": "Download for Windows ↗",
+    "href": "https://github.com/FritzReigar/snugtone/releases"
+  },
+  "secondary": { "text": "Code on GitHub ↗", "href": "https://github.com/FritzReigar/snugtone" },
+  "card": {
+    "label": "My own app · Open source (MIT) · 1.0.1 for Windows",
+    "summary": "A desktop music player for your own library, in Rust with Tauri. Gapless between tracks, every album at the same volume, and a 9,503-file library that rescans in 0.48 s.",
+    "shots": ["snugtone-library", "snugtone-search", "snugtone-equalizer"]
+  },
+  "showcase": {
+    "desktop": "snugtone-library",
+    "caption": "Everything in the screenshots is free to use: the music is CC0 and public domain; the covers, CC0 and public-domain paintings."
+  },
+  "meta": {
+    "title": "Snugtone · Project · Fritz Reigar",
+    "description": "A desktop music player in Rust and Tauri, free and open source: gapless, every album at the same volume and a rescan in 0.48 s.",
+    "og": {
+      "title": "Snugtone, a music player in Rust",
+      "description": "For your own library: fast, MIT-licensed, and it never touches your files."
+    }
+  },
+  "body": {
+    "pullQuote": {
+      "label": "Why",
+      "text": "foobar2000 felt very dated to me, and it had too much going on. I wanted something simpler and faster that still read the formats everyone uses. And to learn Rust along the way."
+    },
+    "featureRows": {
+      "title": "What it does",
+      "items": [
+        {
+          "title": "It plays.",
+          "text": "FLAC, MP3, Opus, WAV, AAC, ALAC, Vorbis and AIFF, gapless between tracks. Every album at the same volume: it measures loudness itself (EBU R128, per album, within 0.04 LU of ffmpeg). A ten-band equalizer that, switched off, doesn't touch a single bit. And if your headphones switch off mid-song, it moves to another output and keeps playing from the same millisecond.",
+          "shot": "snugtone-equalizer"
+        },
+        {
+          "title": "It's fast with a big library.",
+          "text": [
+            "A rescan in 0.48 s, the list on screen in under a second, watched folders and a search box that narrows things down (",
+            { "code": "format:flac" },
+            ", ",
+            { "code": "duration:>3:30" },
+            ", ",
+            { "code": "year:2016" },
+            "…)."
+          ],
+          "shot": "snugtone-search"
+        },
+        {
+          "title": "It fixes things without touching your files.",
+          "text": "It checks FLAC and ALAC sample by sample against their MD5, corrects tags in the library rather than in the file, and brings tags from MusicBrainz, showing the comparison field by field before anything changes.",
+          "shot": "snugtone-musicbrainz"
+        },
+        {
+          "title": "It's yours to set up.",
+          "text": "Theme, density, columns, audio output and every shortcut, all from within the app, with changes applied instantly; underneath, three plain TOML files. In English and Spanish."
+        }
+      ]
+    },
+    "figureList": {
+      "title": "Measured",
+      "items": [
+        {
+          "num": "0.48",
+          "unit": "s",
+          "text": "to rescan a real library of 9,503 files and 161 GB"
+        },
+        { "num": "230", "unit": "MB", "text": "of memory, roughly, with that library" },
+        { "num": "609", "text": "core tests, plus 31 more for the shell" },
+        { "num": "0", "text": [{ "code": "cargo clippy" }, " warnings"] },
+        { "num": "9,503", "text": "M3U paths out and 9,503 back in, without losing one" }
+      ]
+    },
+    "layerStack": {
+      "title": "How it's built",
+      "lede": "The core is pure Rust (audio engine, queue, library, configuration) and doesn't know Tauri exists, so it's tested without opening a window. The Tauri shell provides the window and the real audio output (cpal). The interface is HTML, CSS and JavaScript with no framework and no build step.",
+      "layers": [
+        {
+          "name": "Interface",
+          "text": "HTML, CSS and JavaScript, with no framework and no build step"
+        },
+        { "name": "Shell", "text": "Tauri 2: the window and the real audio output (cpal)" },
+        {
+          "name": "Core",
+          "text": "Pure Rust: audio engine, queue, library and configuration. It doesn't know Tauri exists",
+          "core": true
+        }
+      ]
+    },
+    "caseClosing": {
+      "columns": [
+        {
+          "title": "Built with",
+          "stack": ["Rust", "Tauri 2", "cpal", "vanilla HTML/CSS/JS", "TOML", "MusicBrainz"]
+        },
+        {
+          "title": "Download",
+          "text": "The Windows installer is on GitHub. It isn't signed, so Windows will warn you with «Windows protected your PC»: click «More info» and then «Run anyway». The code is meant for Linux too, which comes next; macOS and mobile, later. MIT license.",
+          "action": {
+            "text": "Download for Windows ↗",
+            "href": "https://github.com/FritzReigar/snugtone/releases"
+          }
+        }
+      ]
+    }
+  }
+}
