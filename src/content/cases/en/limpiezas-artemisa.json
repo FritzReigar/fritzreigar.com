@@ -17,11 +17,7 @@
   "showcase": { "desktop": "limpiezas-artemisa-desktop", "phone": "limpiezas-artemisa-mobile" },
   "meta": {
     "title": "Limpiezas Artemisa · Work · Fritz Reigar",
-    "description": "A custom static website for a cleaning company in Valencia: local SEO, no cookies, strict CSP and a mobile Lighthouse score of 95–96 for performance and 100 for the rest.",
-    "og": {
-      "title": "Limpiezas Artemisa: a new website and its Google profile",
-      "description": "One page per service, not a single cookie, and a measured Lighthouse score."
-    }
+    "description": "A custom static website for a cleaning company in Valencia: local SEO, no cookies, strict CSP and a mobile Lighthouse score of 95–96 for performance and 100 for the rest."
   },
   "body": {
     "prose": {

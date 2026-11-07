@@ -13,11 +13,7 @@
   "showcase": { "desktop": "snugport-desktop", "phone": "snugport-mobile" },
   "meta": {
     "title": "Snugport · Project · Fritz Reigar",
-    "description": "A control room for freelancers: a vanilla JavaScript PWA in production and a panel migrating to React and TypeScript, with more than 1,200 tests.",
-    "og": {
-      "title": "Snugport, the freelancer's control room",
-      "description": "Hours, projects, clients and finances in one panel: free, with a paid plan."
-    }
+    "description": "A control room for freelancers: a vanilla JavaScript PWA in production and a panel migrating to React and TypeScript, with more than 1,200 tests."
   },
   "body": {
     "featureRows": {

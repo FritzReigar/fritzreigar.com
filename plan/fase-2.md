@@ -632,7 +632,7 @@ idioma visible y las inglesas en el sitemap y en Lighthouse.
 
 ---
 
-### Tanda 2.10 — Las imágenes OG con Satori   [ ] pendiente
+### Tanda 2.10 — Las imágenes OG con Satori   [x] hecha (2026-11-07, v0.2.10)
 **Objetivo**: cada página indexable tiene su imagen para compartir de 1200 × 630 en su idioma,
 hecha en el build.
 
@@ -1085,3 +1085,45 @@ Analytics, tocar el correo de la zona.
   portada inglesa: 116,5 KB brutos y 29,3 en gzip (tope 120 y 32); la española, 116,0 y 29,2.
   Lighthouse (móvil, mediana): las diez páginas a 99-100 de rendimiento, 100 en lo demás, CLS 0 y
   TBT 0; cada gemela inglesa pesa lo mismo que la española (±0,5 KB de documento).
+- **2026-11-07, tanda 2.10: Satori fijado en la 0.35.0.** La 0.35.2 (la que trae `^0.35.0`) usa
+  `__dirname` en su ESM y tumba el build (`ReferenceError` al cargar la ruta); la 0.35.0, la del
+  estudio, no. Va con versión exacta en `dependencies`, con `@resvg/resvg-js` `^2.6.2`.
+- **2026-11-07, tanda 2.10: todo centrado en un eje, por WhatsApp.** La vista compacta de WhatsApp
+  recorta el cuadrado central (de x = 285 a 915; Desvío 35 del estudio). En la portada, el nombre en
+  dos líneas como el héroe, «Fritz» con el avatar al lado (mide una línea del nombre) y «Reigar» a
+  la derecha, a 184 px: el bloque mide 528 px y entra entero en el recorte. En las fichas, el
+  título de OG entero en el cartel (Archivo a `wdth` 62 y `wght` 800, caja alta), de 112 a 76 px
+  según lo largo, en tres líneas como mucho y con `textWrap: 'balance'`; debajo, la regla cobalto de
+  264 px (el 22 % de `--rule-poster`), la línea a 30 px en `--color-text-muted` y `fritzreigar.com`
+  en cobalto. Los títulos largos pierden algo por los lados en el recorte, como en el estudio. Las
+  fichas no llevan avatar: el encargo lo pone solo en la portada.
+- **2026-11-07, tanda 2.10: el texto de OG, de los datos a `routes.ts`.** Sale de `home.ts`, de los
+  ocho JSON y del esquema de `cases` (`meta.og`); `routes.ts` lleva `og: Record<Lang, OgText>`
+  (`title` y `description`, el texto de `contenido.md` § 6.2 sin cambiar) y `ogImagePathOf`.
+  `BaseLayout` ya no recibe `og`: lo saca de la ruta que pinta. Añade `og:image` absoluta,
+  `og:image:type`, `width` (1200), `height` (630) y `alt` (el título de OG), y `twitter:card` pasa
+  a `summary_large_image`. El PNG se llama como la clave de la ruta (`/og/es/work-missphone.png`),
+  no como el slug. El 404 sigue sin Open Graph (prueba).
+- **2026-11-07, tanda 2.10: colores y avatar, leídos, no copiados.** La ruta importa
+  `tokens.css?raw` y lee los tokens del primer `:root` (el tema claro; una imagen no tiene modo
+  oscuro), y `Avatar.astro?raw`, del que saca las cuatro capas y las pinta con sus
+  `--color-avatar-*` y el `--hatch-opacity`, como el `<style>` del componente. Si el avatar deja de
+  tener 26 trazos y una piel, el build se para. `scripts/tokens.mjs` no ve ningún literal.
+- **2026-11-07, tanda 2.10: las TTF y la woff2.** `scripts/fuente.py --og` saca
+  `archivo-poster-800.ttf`, `archivo-400.ttf` y `archivo-600.ttf` (45,5-45,8 KB, con el subconjunto
+  latino de la woff2), en git y sin publicar: entran con `?inline` (`dist/_astro/` sin TTF).
+  Volver a sacar la woff2 con el script da 0,3 KB menos con el mismo fontTools (4.63.0); se queda
+  la de git, que esta tanda no toca la fuente publicada.
+- **2026-11-07, tanda 2.10: para el corte.** La `og:image` va sin `?v=`: el estudio tuvo que
+  añadirlo (Desvío 36, `OG_IMAGE_VERSION`) cuando cambió el dibujo de una imagen ya compartida,
+  porque el borde de Cloudflare y WhatsApp la guardan por su URL. Si una imagen cambia después de
+  publicarse, se hace lo mismo. `/og/*` sale con la caché por defecto de Pages (`_headers` no estaba
+  en la tanda); la 2.13 decide si le pone la de una semana del estudio.
+- **2026-11-07, tanda 2.10: lo medido.** Diez PNG de 1200 × 630, de 43 a 56 KB (tope 150).
+  Prueba nueva en `e2e/rutas.spec.ts`: la `og:image` de cada indexable (absoluta, con medidas, `alt`,
+  título y línea de `routes.ts`) y su 200 con `image/png`, el 404 sin Open Graph, y los diez PNG de
+  `dist/og/` con su cabecera IHDR y su peso. Rojo visto antes del verde: un PNG quitado de `dist/`
+  y `hmoe.png` en la `og:image` de `/en/` dan seis fallos (los dos anchos). `npm run red` en verde:
+  363 pruebas y 57 saltadas (las que solo corren en un proyecto: desbordes y bandas en el de
+  escritorio, el menú del móvil en el de móvil), Lighthouse móvil
+  99-100 en las diez y CLS 0.

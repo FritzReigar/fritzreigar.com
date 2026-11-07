@@ -127,7 +127,6 @@ const cases = defineCollection({
     meta: z.strictObject({
       title: z.string(),
       description: z.string(),
-      og: z.strictObject({ title: z.string(), description: z.string() }),
     }),
     body: z.strictObject({
       pullQuote: pullQuote.optional(),

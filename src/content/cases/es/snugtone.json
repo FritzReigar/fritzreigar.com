@@ -20,11 +20,7 @@
   },
   "meta": {
     "title": "Snugtone · Proyecto · Fritz Reigar",
-    "description": "Reproductor de música de escritorio en Rust y Tauri, gratis y de código abierto: sin cortes, mismo volumen en todos los discos y rescaneo en 0,48 s.",
-    "og": {
-      "title": "Snugtone, un reproductor de música en Rust",
-      "description": "Para tu propia biblioteca: rápido, sin tocar tus archivos y con licencia MIT."
-    }
+    "description": "Reproductor de música de escritorio en Rust y Tauri, gratis y de código abierto: sin cortes, mismo volumen en todos los discos y rescaneo en 0,48 s."
   },
   "body": {
     "pullQuote": {

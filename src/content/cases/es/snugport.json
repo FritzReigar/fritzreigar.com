@@ -13,11 +13,7 @@
   "showcase": { "desktop": "snugport-desktop", "phone": "snugport-mobile" },
   "meta": {
     "title": "Snugport · Proyecto · Fritz Reigar",
-    "description": "Centro de operaciones para freelancers: PWA en JavaScript vanilla en producción y panel en migración a React y TypeScript, con más de 1.200 pruebas.",
-    "og": {
-      "title": "Snugport, el centro de operaciones del freelancer",
-      "description": "Horas, proyectos, clientes y finanzas en un panel: gratis, con plan de pago."
-    }
+    "description": "Centro de operaciones para freelancers: PWA en JavaScript vanilla en producción y panel en migración a React y TypeScript, con más de 1.200 pruebas."
   },
   "body": {
     "featureRows": {

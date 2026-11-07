@@ -16,7 +16,6 @@ export interface HomeText {
   meta: {
     title: string;
     description: string;
-    og: { title: string; description: string };
   };
   jsonLd: Record<string, unknown>;
   hero: {
@@ -75,11 +74,6 @@ const es: HomeText = {
     title: 'Fritz Reigar · Desarrollador web freelance en Valencia',
     description:
       'Soy Fritz Reigar, desarrollador web freelance en Valencia. Hago webs para negocios con Estudio Reigar y, en mis ratos, apps propias como Snugtone.',
-    og: {
-      title: 'Fritz Reigar',
-      description:
-        'Desarrollador web freelance en Valencia: webs para negocios con Estudio Reigar y apps propias en abierto.',
-    },
   },
   // plan/contenido.md § 6.3. Los @id cruzados son los del estudio.
   jsonLd: {
@@ -292,11 +286,6 @@ const en: HomeText = {
     title: 'Fritz Reigar · Freelance web developer in Valencia, Spain',
     description:
       "I'm Fritz Reigar, a freelance web developer in Valencia, Spain. I build websites for businesses with Estudio Reigar and, in my spare time, my own apps, like Snugtone.",
-    og: {
-      title: 'Fritz Reigar',
-      description:
-        'Freelance web developer in Valencia, Spain: websites for businesses with Estudio Reigar and my own apps, shared publicly.',
-    },
   },
   // plan/contenido-en.md § 6.3: cambian la página y los textos; los @id de la persona y del
   // estudio son los mismos en los dos idiomas.

@@ -17,11 +17,7 @@
   "showcase": { "desktop": "missphone-desktop", "phone": "missphone-mobile" },
   "meta": {
     "title": "Missphone · Work · Fritz Reigar",
-    "description": "An inherited WooCommerce store: taking back control, gifts customers design on the site, 39 pages brought up to the home page's standard, the handover and the launch.",
-    "og": {
-      "title": "Missphone: an inherited store, brought up to date",
-      "description": "Rescuing and relaunching an online store near Valencia, phase by phase, with its before and after."
-    }
+    "description": "An inherited WooCommerce store: taking back control, gifts customers design on the site, 39 pages brought up to the home page's standard, the handover and the launch."
   },
   "body": {
     "pullQuote": {

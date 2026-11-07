@@ -17,11 +17,7 @@
   "showcase": { "desktop": "missphone-desktop", "phone": "missphone-mobile" },
   "meta": {
     "title": "Missphone · Trabajo · Fritz Reigar",
-    "description": "Una tienda WooCommerce heredada: recuperar el control, regalos que se diseñan en la web, 39 páginas al nivel de la portada, la entrega y el lanzamiento.",
-    "og": {
-      "title": "Missphone: una tienda heredada, puesta al día",
-      "description": "Del rescate al lanzamiento de una tienda online de Benetússer, por fases y con su antes y después."
-    }
+    "description": "Una tienda WooCommerce heredada: recuperar el control, regalos que se diseñan en la web, 39 páginas al nivel de la portada, la entrega y el lanzamiento."
   },
   "body": {
     "pullQuote": {

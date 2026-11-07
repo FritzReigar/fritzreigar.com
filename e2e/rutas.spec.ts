@@ -1,5 +1,8 @@
+import { readdirSync, readFileSync, statSync } from 'node:fs';
+import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { expect, test } from '@playwright/test';
-import { pathFor, routes } from '../src/data/routes';
+import { OG_IMAGE, pathFor, routes } from '../src/data/routes';
 import { ui } from '../src/data/ui';
 import { collectErrors, sitePages } from './support/pages';
 
@@ -38,6 +41,72 @@ for (const sitePage of sitePages) {
     }
   });
 }
+
+// La imagen para compartir (tanda 2.10): cada indexable anuncia la suya, absoluta, con medidas y
+// alt, y la imagen responde; el 404 no lleva Open Graph.
+for (const sitePage of sitePages) {
+  test(`${sitePage.path}: ${sitePage.indexable ? 'su imagen para compartir' : 'sin Open Graph'}`, async ({
+    page,
+    request,
+  }) => {
+    await page.goto(sitePage.path);
+    const image = page.locator('meta[property="og:image"]');
+    if (!sitePage.indexable) {
+      await expect(page.locator('meta[property^="og:"]')).toHaveCount(0);
+      return;
+    }
+    const og = routes.find((route) => route.key === sitePage.key)?.og?.[sitePage.lang];
+    const path = `/og/${sitePage.lang}/${sitePage.key}.png`;
+    await expect(image).toHaveAttribute('content', `https://fritzreigar.com${path}`);
+    await expect(page.locator('meta[property="og:image:width"]')).toHaveAttribute(
+      'content',
+      String(OG_IMAGE.width),
+    );
+    await expect(page.locator('meta[property="og:image:height"]')).toHaveAttribute(
+      'content',
+      String(OG_IMAGE.height),
+    );
+    await expect(page.locator('meta[property="og:image:alt"]')).toHaveAttribute(
+      'content',
+      og?.title ?? '',
+    );
+    await expect(page.locator('meta[property="og:title"]')).toHaveAttribute(
+      'content',
+      og?.title ?? '',
+    );
+    await expect(page.locator('meta[property="og:description"]')).toHaveAttribute(
+      'content',
+      og?.description ?? '',
+    );
+    await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute(
+      'content',
+      'summary_large_image',
+    );
+    const response = await request.get(path);
+    expect(response.status()).toBe(200);
+    expect(response.headers()['content-type']).toBe('image/png');
+  });
+}
+
+// Las imágenes de dist/og/: una por indexable e idioma, de 1200 × 630 (la cabecera IHDR del PNG)
+// y de 150 KB como mucho.
+test('dist/og/ tiene diez PNG de 1200 × 630 y ≤ 150 KB', () => {
+  const dir = fileURLToPath(new URL('../dist/og', import.meta.url));
+  const files = readdirSync(dir).flatMap((lang) =>
+    readdirSync(join(dir, lang)).map((name) => join(dir, lang, name)),
+  );
+  const expected = sitePages.filter((sitePage) => sitePage.indexable);
+  expect(files).toHaveLength(expected.length);
+  expect(files).toHaveLength(10);
+  for (const file of files) {
+    const png = readFileSync(file);
+    expect([png.readUInt32BE(16), png.readUInt32BE(20)], file).toEqual([
+      OG_IMAGE.width,
+      OG_IMAGE.height,
+    ]);
+    expect(statSync(file).size, file).toBeLessThanOrEqual(150 * 1024);
+  }
+});
 
 for (const [lang, path] of [
   ['es', '/no-existe'],

@@ -14,6 +14,17 @@ export type RouteKey =
   | 'project-snugport'
   | 'not-found';
 
+/**
+ * El texto de la imagen para compartir de una página (plan/contenido.md § 6.2 y
+ * plan/contenido-en.md § 6.2): el título del cartel y la línea de debajo. Son también og:title,
+ * og:description y og:image:alt. Viven aquí, y no en la página, porque la ruta que pinta la imagen
+ * (src/pages/og/[lang]/[key].png.ts) los necesita sin pintar la página.
+ */
+export interface OgText {
+  title: string;
+  description: string;
+}
+
 export interface Route {
   key: RouteKey;
   es: {
@@ -29,6 +40,8 @@ export interface Route {
     live: boolean;
     lastmod?: string;
   };
+  // Solo las indexables: sin og, la página sale sin Open Graph y sin imagen.
+  og?: Record<Lang, OgText>;
 }
 
 export const routes: readonly Route[] = [
@@ -42,6 +55,18 @@ export const routes: readonly Route[] = [
       priority: '1.0',
     },
     en: { path: '/en/', live: true, lastmod: '2026-11-07' },
+    og: {
+      es: {
+        title: 'Fritz Reigar',
+        description:
+          'Desarrollador web freelance en Valencia: webs para negocios con Estudio Reigar y apps propias en abierto.',
+      },
+      en: {
+        title: 'Fritz Reigar',
+        description:
+          'Freelance web developer in Valencia, Spain: websites for businesses with Estudio Reigar and my own apps, shared publicly.',
+      },
+    },
   },
   {
     key: 'work-missphone',
@@ -53,6 +78,18 @@ export const routes: readonly Route[] = [
       priority: '0.8',
     },
     en: { path: '/en/work/missphone', live: true, lastmod: '2026-11-07' },
+    og: {
+      es: {
+        title: 'Missphone: una tienda heredada, puesta al día',
+        description:
+          'Del rescate al lanzamiento de una tienda online de Benetússer, por fases y con su antes y después.',
+      },
+      en: {
+        title: 'Missphone: an inherited store, brought up to date',
+        description:
+          'Rescuing and relaunching an online store near Valencia, phase by phase, with its before and after.',
+      },
+    },
   },
   {
     key: 'work-artemisa',
@@ -64,6 +101,16 @@ export const routes: readonly Route[] = [
       priority: '0.8',
     },
     en: { path: '/en/work/limpiezas-artemisa', live: true, lastmod: '2026-11-07' },
+    og: {
+      es: {
+        title: 'Limpiezas Artemisa: web nueva y ficha de Google',
+        description: 'Una página por servicio, sin una cookie y con la nota de Lighthouse medida.',
+      },
+      en: {
+        title: 'Limpiezas Artemisa: a new website and its Google profile',
+        description: 'One page per service, not a single cookie, and a measured Lighthouse score.',
+      },
+    },
   },
   {
     key: 'project-snugtone',
@@ -75,6 +122,17 @@ export const routes: readonly Route[] = [
       priority: '0.8',
     },
     en: { path: '/en/projects/snugtone', live: true, lastmod: '2026-11-07' },
+    og: {
+      es: {
+        title: 'Snugtone, un reproductor de música en Rust',
+        description:
+          'Para tu propia biblioteca: rápido, sin tocar tus archivos y con licencia MIT.',
+      },
+      en: {
+        title: 'Snugtone, a music player in Rust',
+        description: 'For your own library: fast, MIT-licensed, and it never touches your files.',
+      },
+    },
   },
   {
     key: 'project-snugport',
@@ -86,6 +144,16 @@ export const routes: readonly Route[] = [
       priority: '0.8',
     },
     en: { path: '/en/projects/snugport', live: true, lastmod: '2026-11-07' },
+    og: {
+      es: {
+        title: 'Snugport, el centro de operaciones del freelancer',
+        description: 'Horas, proyectos, clientes y finanzas en un panel: gratis, con plan de pago.',
+      },
+      en: {
+        title: "Snugport, the freelancer's control room",
+        description: 'Hours, projects, clients and finances in one panel: free, with a paid plan.',
+      },
+    },
   },
   {
     key: 'not-found',
@@ -152,4 +220,16 @@ export const switchHrefOf = (pathname: string): string | undefined => {
   const other: Lang = current.lang === 'es' ? 'en' : 'es';
   if (current.route.key === 'not-found') return pathFor('home', other);
   return other === 'en' ? current.route.en.path : current.route.es.path;
+};
+
+/** Las medidas de las imágenes para compartir (las de Open Graph que piden X, LinkedIn y WhatsApp). */
+export const OG_IMAGE = { width: 1200, height: 630 } as const;
+
+/**
+ * La ruta de la imagen para compartir de una página en un idioma (/og/es/work-missphone.png), si
+ * la tiene: solo las indexables con og y vivas en ese idioma.
+ */
+export const ogImagePathOf = (route: Route, lang: Lang): string | undefined => {
+  if (!route.og || !route.es.indexable || (lang === 'en' && !route.en.live)) return undefined;
+  return `/og/${lang}/${route.key}.png`;
 };

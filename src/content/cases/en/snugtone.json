@@ -20,11 +20,7 @@
   },
   "meta": {
     "title": "Snugtone · Project · Fritz Reigar",
-    "description": "A desktop music player in Rust and Tauri, free and open source: gapless, every album at the same volume and a rescan in 0.48 s.",
-    "og": {
-      "title": "Snugtone, a music player in Rust",
-      "description": "For your own library: fast, MIT-licensed, and it never touches your files."
-    }
+    "description": "A desktop music player in Rust and Tauri, free and open source: gapless, every album at the same volume and a rescan in 0.48 s."
   },
   "body": {
     "pullQuote": {
