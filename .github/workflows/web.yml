@@ -36,9 +36,10 @@ jobs:
       - run: npm run tokens
       - run: npm run build
       - run: npm run comentarios
-      # Las vistas (@vista, toHaveScreenshot) solo en local: Linux pinta la fuente distinta
-      # (decisión F5 de plan/fase-2.md).
-      - run: npm run e2e -- --grep-invert @vista
+      # Las vistas (@vista, toHaveScreenshot) y la fuente lenta (@fuente, e2e/fuentes.spec.ts) solo
+      # en local: Linux pinta la fuente distinta (decisión F5 y Desvíos de la 2.11 en
+      # plan/fase-2.md).
+      - run: npm run e2e -- --grep-invert "@vista|@fuente"
       - run: npm run lighthouse -- --ci --pasadas 3
       - if: failure()
         uses: actions/upload-artifact@v7

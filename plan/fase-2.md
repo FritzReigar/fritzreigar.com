@@ -1209,3 +1209,13 @@ Analytics, tocar el correo de la zona.
   Missphone son dos capturas de 180 px que no se leen (el pie de cada una cuenta lo que hay), y
   «QUÉ HICE, / POR FASES» lleva la coma de la primera línea casi tocando la segunda, por el
   interlineado apretado del cartel.
+- **2026-11-07, tanda 2.11: la fuente lenta no corre en la CI.** Con el push, la CI dio rojo en 7
+  de las 36 de `e2e/fuentes.spec.ts`, todas españolas: 0,012-0,023 (la portada a los tres anchos,
+  Missphone a 412 y 1024, Artemisa y Snugport a 412). La CI sí tiene la Liberation Sans (la instala
+  `playwright install --with-deps`), pero Linux pinta sus anchos un pelo distinto que Windows la
+  Arial, y algunas entradillas parten en otra línea. Ajustar el `size-adjust` a Linux sería
+  perseguir saltos de línea concretos (el estudio lo probó y empeoraba, tanda 6.11). La prueba
+  lleva la etiqueta `@fuente` y la CI corre `e2e` con `--grep-invert "@vista|@fuente"`, como las
+  vistas (F5): las dos miden cómo pinta la fuente el sistema, y corren en local. Lo que eso deja
+  dicho: en Linux, y en Android (sin Arial ni Liberation: system-ui), el salto con la fuente lenta
+  puede ser mayor que en Windows y en macOS.

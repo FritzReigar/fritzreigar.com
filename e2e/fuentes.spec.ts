@@ -10,6 +10,10 @@ import type { Lang } from '../src/data/ui';
 // como el estudio (tanda 6.11): la woff2 retrasada 800 ms, a 412, 1024 y 1440, en cada tipo de
 // página y en los dos idiomas, sumando las entradas de `layout-shift` hasta que la fuente está
 // puesta. Tope de la spec: CLS ≤ 0,01. Si falla, dice qué se movió.
+//
+// Lleva la etiqueta @fuente y la CI la salta, como las vistas (@vista, decisión F5): mide la
+// reserva, que es la letra del sistema, y en Linux la Liberation Sans parte algunas entradillas en
+// otra línea que la Arial de Windows (0,012-0,023 en la CI del 2026-11-07). Corre en local.
 
 const PAGE_KEYS: RouteKey[] = [
   'home',
@@ -59,7 +63,7 @@ const observeShifts = (page: Page) =>
     }).observe({ type: 'layout-shift', buffered: true });
   });
 
-test.describe('la fuente lenta', () => {
+test.describe('la fuente lenta @fuente', () => {
   // Los anchos los pone cada prueba: basta con un proyecto.
   test.skip(({ isMobile }) => isMobile, 'los tres anchos van en el proyecto de escritorio');
 
