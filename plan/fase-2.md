@@ -736,7 +736,7 @@ Missphone, la VPN puesta.
 
 ---
 
-### Tanda 2.12 — La coherencia: los dos CV y LinkedIn   [ ] pendiente
+### Tanda 2.12 — La coherencia: los dos CV y LinkedIn   [x] hecha (2026-11-09, v0.2.12)
 **Objetivo**: los dos CV no contradicen la web nueva, llevan su acento y caben en dos A4 justas;
 los PDF servidos son los nuevos; y Fritz tiene la lista de lo que cambiar en LinkedIn.
 
@@ -1219,3 +1219,26 @@ Analytics, tocar el correo de la zona.
   vistas (F5): las dos miden cómo pinta la fuente el sistema, y corren en local. Lo que eso deja
   dicho: en Linux, y en Android (sin Arial ni Liberation: system-ui), el salto con la fuente lenta
   puede ser mayor que en Windows y en macOS.
+- **2026-11-09, tanda 2.12: Missphone se queda en la entrada del estudio.** La fila 10 proponía
+  sacarla; Fritz decidió lo contrario: «como Artemisa y dándole más importancia», va la primera y
+  con dos puntos, porque ya se factura con normalidad. La web no cambia: no dice que sea del
+  estudio, pero tampoco lo niega. `~/Projects/clientes/missphone/CLAUDE.md` sigue diciendo que se
+  factura por privado: se actualiza allí, no en esta tanda.
+- **2026-11-09, tanda 2.12: las clases particulares se quedan en el CV**, con «Sep 2018 — Jun 2026»,
+  la fecha que tiene LinkedIn (leída ese día). Fritz lo pidió así; sin ellas el CV tenía un hueco de
+  2019 a diciembre de 2024.
+- **2026-11-09, tanda 2.12: Snugport sigue el primero del CV** (fila 5). La web pone delante
+  Snugtone; el CV puede quedarse en lo suyo y a quien lo lee le pesa más un producto con pagos y
+  pruebas. El perfil los nombra en ese orden.
+- **2026-11-09, tanda 2.12: lo que dejó la 2.8.** El DAM en `cv-en.html` deja de llamarse «Higher
+  National Diploma» y va como en la web, y el inglés pasa a americano («Specialization», «math»).
+  Lo de «al resto de España» frente a «in Spain or abroad» del estudio no se toca: es texto de la
+  web y Fritz no ha pedido ampliarlo.
+- **2026-11-09, tanda 2.12: fuera de la lista de choques.** Lionbridge y DataAnnotation llevan ya
+  «autónomo, remoto» en el CV, como pide el `CLAUDE.md` (la fila 14 no lo vio). En la cabecera, una
+  regla mínima para que los dos enlaces del pie de la entrada del estudio no salgan azul navegador.
+- **2026-11-09, tanda 2.12: la primera página acaba en el 79 %.** La entrada del estudio, con
+  `break-inside: avoid` y ya más larga, salta con su cabecera a la segunda: la 1 es perfil y
+  proyectos, la 2, experiencia en adelante. `line-height` sigue en 1.28 y las dos páginas caben.
+  Cifras recontadas ese día: 1.264 unitarias, 620 ejecuciones de E2E (31 archivos) y 80 divisas en
+  `snugport-app` (panel v0.5.11); la publicada de Snugtone sigue siendo la 1.0.1.

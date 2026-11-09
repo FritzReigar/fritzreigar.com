@@ -719,6 +719,26 @@ el CV lleve lo mismo, pero sí que no diga lo contrario.
 | 14 | Estudio y datos personales | — | — | Sin choques en puestos, fechas, idiomas, formación ni nombres: la Trayectoria copia el CV |
 | 15 | Snugport, modelo | «producto propio, a la venta» y «A la venta por suscripción con Stripe» | «Gratis, con plan de pago»: el panel es gratis y se paga la sincronización | Decir lo mismo: gratis, con plan de pago por suscripción |
 
+**Resuelta en la tanda 2.12 (2026-11-09), fila a fila, en los dos CV:**
+
+| # | Resolución |
+|---|---|
+| 1 | Titular: «Desarrollador web freelance en Valencia · Apps propias · QA de modelos de IA» (Fritz). El perfil empieza igual |
+| 2 | Fuera «Disponible en híbrido en Valencia o en remoto» |
+| 3 | «más de 1.200 tests unitarios» (1.264, recontadas el 2026-11-09) |
+| 4 | «temas a elegir», sin cifra |
+| 5 | No se reordena: Snugport sigue el primero, sin contradicción |
+| 6 | Snugtone añadido, detrás de Snugport |
+| 7 | Rust en «Lenguajes» y Tauri en «Frontend y escritorio» |
+| 8 | DragonQuestHispano, fuera |
+| 9 | Missphone, ampliado: el rescate, 8 regalos que se diseñan en la ficha, 39 páginas, entrega y lanzamiento |
+| 10 | Missphone se queda en la entrada de Estudio Reigar, como Artemisa, la primera y con más peso (Fritz, 2026-11-09) |
+| 11 | Se queda |
+| 12 | Artemisa, sin cifra de páginas |
+| 13 | Se queda |
+| 14 | Sin choques; Lionbridge y DataAnnotation pasan a «autónomo, remoto» |
+| 15 | «gratis con plan de pago»; el bullet, como la ficha de la web |
+
 ---
 
 ## Para Fritz
