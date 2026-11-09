@@ -81,6 +81,41 @@ test('ninguna imagen se carga por encima del pliegue: todas con loading="lazy"',
   expect(eager).toEqual([]);
 });
 
+// Al pulsar en la nav (tanda 2.13): la sección anterior no asoma bajo la cabecera y el título cae
+// cerca de ella, a 32-56 px (--space-block), con 8 px de margen a cada lado.
+for (const path of ['/', '/en/']) {
+  test(`${path}: las anclas de sección caen justo bajo la cabecera`, async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto(path);
+    await page.evaluate(() => document.fonts.ready);
+
+    const landed = await page.evaluate(async () => {
+      const headerBottom = document.querySelector('header')?.getBoundingClientRect().bottom ?? 0;
+      const rows = [];
+      for (const section of document.querySelectorAll('main section.section[id]')) {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        location.hash = section.id;
+        await new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done)));
+        rows.push({
+          id: section.id,
+          headerBottom,
+          sectionTop: section.getBoundingClientRect().top,
+          titleTop: section.querySelector('h2')?.getBoundingClientRect().top ?? 0,
+        });
+      }
+      return rows;
+    });
+
+    expect(landed).toHaveLength(5);
+    for (const { id, headerBottom, sectionTop, titleTop } of landed) {
+      expect(sectionTop, `#${id}: la anterior asoma`).toBeLessThanOrEqual(headerBottom);
+      const gap = titleTop - headerBottom;
+      expect(gap, `#${id}: título a ${gap} px`).toBeGreaterThanOrEqual(24);
+      expect(gap, `#${id}: título a ${gap} px`).toBeLessThanOrEqual(64);
+    }
+  });
+}
+
 test('las tarjetas se pulsan enteras, con un solo enlace cada una', async ({ page }) => {
   await page.goto('/');
   const cards = page.locator('.tap-card');

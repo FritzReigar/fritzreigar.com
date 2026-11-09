@@ -209,6 +209,9 @@ code {
 .section {
   padding-top: var(--space-section);
   overflow-x: clip;
+  /* Al saltar a la sección, su título cae a --space-block bajo la cabecera y la anterior se queda
+     detrás de ella: se descuentan el hueco propio y el --space-3 del scroll-padding-top del html. */
+  scroll-margin-top: calc(var(--space-block) - var(--space-section) - var(--space-3));
 }
 
 .section--last {

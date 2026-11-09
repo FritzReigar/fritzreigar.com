@@ -1242,3 +1242,9 @@ Analytics, tocar el correo de la zona.
   hacia el 80 %, porque Snugport, con `break-inside: avoid`, salta entero); la 2, proyectos en
   adelante. `line-height` sigue en 1.28 y las dos páginas caben. Cifras recontadas ese día: 1.264 unitarias, 620 ejecuciones de E2E (31 archivos) y 80 divisas en
   `snugport-app` (panel v0.5.11); la publicada de Snugtone sigue siendo la 1.0.1.
+- **2026-11-09, tanda 2.13: el salto a las secciones, arreglado antes del corte.** La tanda dejaba
+  fuera cualquier cambio de la web; Fritz lo pidió al dar el OK a la previa, por ser una línea y no
+  merecer tanda. Con la nav, cada sección caía con su inicio a 80 px (la cabecera mide 64): asomaba
+  el final de la anterior y el título quedaba a 216 px a 1440 y a 152 a 390. `scroll-margin-top` en
+  `.section` lo deja a `--space-block` bajo la cabecera (120 y 96 px). Prueba nueva en
+  `e2e/portada.spec.ts`, en rojo antes del verde en los dos idiomas y los dos anchos.
