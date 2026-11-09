@@ -81,7 +81,7 @@ La formación va **sin fechas ni estado** en los dos sitios, por decisión suya 
 
 ## LinkedIn
 
-El perfil (`linkedin.com/in/fritz-reif-garcia`) se alineó con el CV en agosto de 2026 y entra en la misma regla de coherencia: si cambian web o CV, se revisa LinkedIn. Decisiones fijas de Fritz: los textos del perfil van **en inglés** (con el idioma del perfil declarado en español), el nombre visible se queda como **Fritz Reif García** (el real; la marca «Fritz Reigar» va solo en el banner), y el puesto destacado de la presentación es Founder & Developer en Snugport.
+El perfil (`linkedin.com/in/fritz-reif-garcia`) se alineó con el CV en agosto de 2026 y entra en la misma regla de coherencia: si cambian web o CV, se revisa LinkedIn. Decisiones fijas de Fritz: los textos del perfil van **en inglés** (con el idioma del perfil declarado en español), el nombre visible se queda como **Fritz Reif García** (el real; la marca «Fritz Reigar» va solo en el banner), y el puesto destacado de la presentación es Freelance Web Developer en Estudio Reigar (2026-11-09).
 
 El banner de portada (1584×396) sale de `docs/banner-linkedin.html` (gitignored), con la estética del rediseño suizo y la composición cargada a la derecha porque la foto de perfil tapa la esquina inferior izquierda. Se renderiza con Chrome headless: `chrome --headless=new --window-size=1584,396 --screenshot=banner-linkedin.png` (con `--user-data-dir` temporal si Chrome está abierto).
 
