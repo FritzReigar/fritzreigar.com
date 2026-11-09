@@ -102,7 +102,7 @@ L'Horta se explica: es la comarca alrededor de Valencia. Sin precios, sin servic
 **Título:** Projects
 
 **Snugtone** (primero y más grande)
-- Rótulo: My own app · Open source (MIT) · 1.0.1 for Windows
+- Rótulo: My own app · Open source (MIT) · 1.0.2 for Windows
 - > A desktop music player for your own library, in Rust with Tauri. Gapless between tracks, every
   > album at the same volume, and a 9,503-file library that rescans in 0.48 s.
 - Enlace: See the project →
@@ -134,7 +134,7 @@ el nombre de `docs/cv/cv-en.html`; «panel», el de la landing inglesa de Snugpo
    the website has several pages. Minimal JavaScript, and nothing that goes unused.
 2. **Tests and CI that gate every deploy.** On the Estudio Reigar website, Playwright, axe and
    Lighthouse have to pass before anything goes live; in Snugport, Vitest, Playwright and mutation
-   testing; in Snugtone, 640 tests and `cargo clippy` without a single warning.
+   testing; in Snugtone, 656 tests and `cargo clippy` without a single warning.
 3. **Lighthouse measured, not promised.** Every project I deliver comes with its mobile score,
    measured and shared.
 4. **With AI, and with a safety net.** AI-assisted development (Claude Code), with one rule: watch
@@ -403,7 +403,7 @@ búsqueda se cita en español, que es como la escribe su cliente. El caso del es
 
 ## 4. Ficha de Snugtone — `/en/projects/snugtone`
 
-**Rótulo:** Project · My own app · Open source (MIT) · 1.0.1 for Windows
+**Rótulo:** Project · My own app · Open source (MIT) · 1.0.2 for Windows
 
 **Título:** Snugtone
 

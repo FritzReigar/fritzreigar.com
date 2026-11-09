@@ -105,7 +105,7 @@ de nuevo en la 1.2 (2026-11-04): `plan/capturas.md` § «Lighthouse».
 **Título:** Proyectos
 
 **Snugtone** (primero y más grande)
-- Rótulo: App propia · Código abierto (MIT) · 1.0.1 para Windows
+- Rótulo: App propia · Código abierto (MIT) · 1.0.2 para Windows
 - > Reproductor de música de escritorio para tu propia biblioteca, en Rust con Tauri. Sin cortes
   > entre pistas, todos los discos al mismo volumen y una biblioteca de 9503 archivos que se
   > reescanea en 0,48 s.
@@ -137,7 +137,7 @@ ficha y sin presentar a Fritz como programador de videojuegos (decisión 11).
 1. **A mano y sin plantillas.** HTML, CSS y TypeScript escritos para cada caso, y Astro cuando la
    web tiene varias páginas. Poco JavaScript y nada que no se use.
 2. **Pruebas y CI que frenan el despliegue.** En la web del estudio, Playwright, axe y Lighthouse
-   pasan antes de publicar; en Snugport, Vitest, Playwright y mutantes; en Snugtone, 640 pruebas y
+   pasan antes de publicar; en Snugport, Vitest, Playwright y mutantes; en Snugtone, 656 pruebas y
    `cargo clippy` sin un aviso.
 3. **Lighthouse medido, no prometido.** Cada entrega sale con su nota en el móvil, medida y
    enseñada.
@@ -148,9 +148,9 @@ ficha y sin presentar a Fritz como programador de videojuegos (decisión 11).
 `index.html`, «Estudio Reigar»); Artemisa es estática sin framework (`artemisa/CLAUDE.md` § Stack).
 (2) Web del estudio: ficha de hoy en `index.html` y `docs/cv/cv-es.html`. Snugport:
 `snugport-app/panel/package.json` (`vitest`, `@playwright/test`) y `snugport-app/panel/CLAUDE.md`
-(los mutantes de `tests/red/mutants.ts`, `npm run red`). Snugtone: 609 del núcleo + 31 de la
-cáscara = 640, y clippy sin avisos, `snugtone/README.es.md` § «Compilarlo» (recontadas el
-2026-11-07: ver §4). (3)
+(los mutantes de `tests/red/mutants.ts`, `npm run red`). Snugtone: 616 del núcleo + 40 de la
+cáscara = 656, y clippy sin avisos, `snugtone/README.es.md` § «Compilarlo», en la etiqueta v1.0.2
+(recontadas el 2026-11-09). (3)
 `estudio/como-trabajo.astro` («Nota de Google en móvil por encima de 90, medida y enseñada»).
 (4) Claude Code: `docs/cv/cv-es.html`, habilidades; «un test nuevo se ve en rojo antes de creerse
 el verde»: `plan/README.md` § El ciclo, paso 3.
@@ -476,7 +476,7 @@ del perfil).
 
 ## 4. Ficha de Snugtone — `/proyectos/snugtone`
 
-**Rótulo:** Proyecto · App propia · Código abierto (MIT) · 1.0.1 para Windows
+**Rótulo:** Proyecto · App propia · Código abierto (MIT) · 1.0.2 para Windows
 
 **Título:** Snugtone
 
@@ -542,9 +542,11 @@ las del README. En `main`, sin publicar, ya son 633 y 48 (`cargo test --workspac
 web habla de la publicada y se queda con 609 + 31 hasta que salga otra. Las cifras de «Va rápido»
 (9503, 161 GB, 0,48 s, < 1 s, 230 MB, M3U) son medidas del README y no se repiten aquí.
 
-Todo de `snugtone/README.es.md` (versión publicada 1.0.1, solo Windows): estado, «Qué hace»
+↳ **Recontado el 2026-11-09:** la publicada es la 1.0.2 (`v1.0.2`) y su README da 616 + 40 = 656.
+
+Todo de `snugtone/README.es.md` (versión publicada 1.0.2, solo Windows): estado, «Qué hace»
 (las cuatro partes), «Va rápido» (9503 archivos, 161 GB, 0,48 s, < 1 s, 230 MB, M3U 9503),
-«Compilarlo» (609 + 31, clippy, `nucleo/`, `src-tauri/` con cpal, `ui/` sin framework, Tauri CLI
+«Compilarlo» (616 + 40, clippy, `nucleo/`, `src-tauri/` con cpal, `ui/` sin framework, Tauri CLI
 `^2`), «Descargar» (instalador sin firmar) y la nota `<sub>` de las capturas. **El porqué:**
 palabras de Fritz a `@pablogimenezz` el 03-11 («Es el porqué de Snugtone según Fritz; vale como
 material») y «Mostly to learn it», de `snugtone/vision.md`, ambas en

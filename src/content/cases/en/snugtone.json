@@ -1,7 +1,7 @@
 {
   "section": "projects",
   "order": 1,
-  "kicker": "My own app · Open source (MIT) · 1.0.1 for Windows",
+  "kicker": "My own app · Open source (MIT) · 1.0.2 for Windows",
   "title": "Snugtone",
   "lede": "A desktop music player for your own library, written in Rust with Tauri. Free and open source.",
   "primary": {
@@ -10,7 +10,7 @@
   },
   "secondary": { "text": "Code on GitHub ↗", "href": "https://github.com/FritzReigar/snugtone" },
   "card": {
-    "label": "My own app · Open source (MIT) · 1.0.1 for Windows",
+    "label": "My own app · Open source (MIT) · 1.0.2 for Windows",
     "summary": "A desktop music player for your own library, in Rust with Tauri. Gapless between tracks, every album at the same volume, and a 9,503-file library that rescans in 0.48 s.",
     "shots": ["snugtone-library", "snugtone-search", "snugtone-equalizer"]
   },

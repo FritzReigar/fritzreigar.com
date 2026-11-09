@@ -208,7 +208,7 @@ const es: HomeText = {
       {
         title: 'Pruebas y CI que frenan el despliegue.',
         text: [
-          'En la web del estudio, Playwright, axe y Lighthouse pasan antes de publicar; en Snugport, Vitest, Playwright y mutantes; en Snugtone, 640 pruebas y ',
+          'En la web del estudio, Playwright, axe y Lighthouse pasan antes de publicar; en Snugport, Vitest, Playwright y mutantes; en Snugtone, 656 pruebas y ',
           { code: 'cargo clippy' },
           ' sin un aviso.',
         ],
@@ -404,7 +404,7 @@ const en: HomeText = {
       {
         title: 'Tests and CI that gate every deploy.',
         text: [
-          'On the Estudio Reigar website, Playwright, axe and Lighthouse have to pass before anything goes live; in Snugport, Vitest, Playwright and mutation testing; in Snugtone, 640 tests and ',
+          'On the Estudio Reigar website, Playwright, axe and Lighthouse have to pass before anything goes live; in Snugport, Vitest, Playwright and mutation testing; in Snugtone, 656 tests and ',
           { code: 'cargo clippy' },
           ' without a single warning.',
         ],

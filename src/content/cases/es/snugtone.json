@@ -1,7 +1,7 @@
 {
   "section": "projects",
   "order": 1,
-  "kicker": "App propia · Código abierto (MIT) · 1.0.1 para Windows",
+  "kicker": "App propia · Código abierto (MIT) · 1.0.2 para Windows",
   "title": "Snugtone",
   "lede": "Reproductor de música de escritorio para tu propia biblioteca, escrito en Rust con Tauri. Gratis y de código abierto.",
   "primary": {
@@ -10,7 +10,7 @@
   },
   "secondary": { "text": "Código en GitHub ↗", "href": "https://github.com/FritzReigar/snugtone" },
   "card": {
-    "label": "App propia · Código abierto (MIT) · 1.0.1 para Windows",
+    "label": "App propia · Código abierto (MIT) · 1.0.2 para Windows",
     "summary": "Reproductor de música de escritorio para tu propia biblioteca, en Rust con Tauri. Sin cortes entre pistas, todos los discos al mismo volumen y una biblioteca de 9503 archivos que se reescanea en 0,48 s.",
     "shots": ["snugtone-library", "snugtone-search", "snugtone-equalizer"]
   },
