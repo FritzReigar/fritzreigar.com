@@ -3,53 +3,49 @@ Fecha: 2026-11-09
 Proyecto: portfolio
 
 ## 1. De qué va la siguiente
-La tanda 2.13 de `plan/fase-2.md`, el corte: fritzreigar.com y `www` pasan a servir la web en Astro desde el proyecto de Pages `fritzreigar-com`, con `main` como producción, y la web vieja se queda una semana lista para volver.
-Es la última de la fase (v1.0.0). Tocas tú el panel de Cloudflare y la sesión te dice qué hacer y lo comprueba con `curl`.
+La limpieza del corte, a partir del 16 de noviembre: si la semana ha ido sin incidencias, se borra la web vieja (`portfolio-v1`) y las ramas que sobran, y se quita del `CLAUDE.md` lo de la vuelta atrás.
+Es corta y no toca la web. Las fases del plan están cerradas: no hay tanda en curso después de esta.
 
 ## 2. El prompt
 ```
-Tanda 2.13 del portfolio: el corte (v1.0.0).
+Portfolio: la limpieza del corte (v1.0.0, 2026-11-09).
 
-Lee ENTEROS plan/README.md y, de plan/fase-2.md, «Punto de partida»,
-«Decisiones de la fase», «Reglas de la fase», los «Desvíos» y la tanda 2.13,
-y lo que la tanda manda leer (la decisión 7 de plan/README.md, los dos
-últimos Desvíos de plan/fase-1.md y «Ojo con la caché» del CLAUDE.md).
-Trabaja desde la rama astro. No lleva clase. Comprueba primero el «Antes de
-empezar»: si algo falta, no se corta y me lo dices. Lo del panel de
-Cloudflare lo hago yo: me dices qué tocar, un paso cada vez, y lo compruebas
-con curl antes de seguir. Sin el paso 1 (pausar portfolio-v1) no hay push a
-main. Cada push, de main o del tag, solo con mi OK en esta sesión. Al acabar,
-los puntos del paso 6 con su salida de curl en el chat, marca la casilla,
-reescribe el CLAUDE.md para la web en Astro y lleva lo cerrado a historia.md.
+Lee plan/README.md, el «Pasada la semana sin incidencias» de la tanda 2.13
+en plan/fase-2.md y «Desarrollo y deploy» del CLAUDE.md. Trabaja en main.
+Primero comprueba con curl que el dominio sigue bien (portada 200, sin
+X-Robots-Tag, cf-cache-status DYNAMIC, www con 301 a la raíz) y que hemos
+pasado del 2026-11-16; si no, paras y me lo dices. Lo del panel de Cloudflare
+lo hago yo: me dices qué tocar, un paso cada vez, y lo compruebas con curl
+antes de seguir (borrar el proyecto portfolio-v1, con su despliegue 1483e40d;
+la deshabilitada «Cache Everything», si decido borrarla). Borra las ramas
+remotas astro y cloudflare/workers-autoconfig con mi OK, y la astro local.
+Si tengo Search Console de fritzreigar.com, me guías para mandar el sitemap.
+Apunta la fecha en «Desvíos» de plan/fase-2.md y quita del CLAUDE.md el punto
+de la vuelta atrás. Cada push a main solo con mi OK en esta sesión.
 ```
 
 ## 3. Modelo y esfuerzo
-Opus 5.5 en **alto**: es dominio, DNS y caché, y un fallo se ve en la web publicada.
+Opus 5.5 en **medio**: son unos pasos conocidos y lo delicado (borrar) lo confirmas tú.
 
 ## 4. Cómo abrirla
-Sesión nueva en `~/Projects/propios/portfolio`, sin modo plan, con la rama `astro` sacada (`git switch astro`), y `/model` en Opus 5.5 alto.
+Sesión nueva en `~/Projects/propios/portfolio`, sin modo plan, en la rama `main` y a partir del 16 de noviembre.
 
 ## 5. Qué traer
-- Tu OK a la previa entera (`fritzreigar-com.pages.dev`), dado antes de empezar: el plan lo pide para cortar.
+- La semana pasada sin incidencias en el dominio.
 - El panel de Cloudflare abierto, con la sesión iniciada.
-- Una hora sin prisa, y estar para dar el OK a cada push.
+- Saber si tienes Search Console de fritzreigar.com.
 
 ## 6. Qué te llevas
-- fritzreigar.com sirviendo la web en Astro desde `fritzreigar-com`, con `main` como producción, el tag `v1.0.0` y `main` igual a `astro`.
-- `www.fritzreigar.com` redirigiendo a la raíz con un 301, así que el enlace de LinkedIn vuelve a funcionar.
-- La regla de caché del HTML revisada, para que dejes de ver la versión vieja durante horas.
-- Los CV nuevos servidos en el dominio, y `/CLAUDE.md` y `/plan/` dando 404.
-- `portfolio-v1` pausado con la web vieja, como vuelta atrás durante una semana.
-- `CLAUDE.md` reescrito para la web en Astro e `historia.md` con lo cerrado de la web vieja.
+- `portfolio-v1` borrado y la web vieja fuera de Cloudflare.
+- Solo la rama `main` en GitHub.
+- El sitemap nuevo mandado a Search Console, si la tienes.
+- El `CLAUDE.md` sin el punto de la vuelta atrás y la fecha apuntada en «Desvíos».
 
 ## 7. Decisiones que tomar
-- **La QA en el móvil sigue siendo emulada**: ni un teléfono de verdad ni Safari. Recomendada: antes del corte, cinco minutos en tu Nothing sobre la previa (la portada, una ficha y el menú, en los dos idiomas) y, si hay un iPhone a mano, lo mismo en Safari.
-- **El Lighthouse de Artemisa** es del 2026-11-04, y repetirlo pide tu VPN y bloquear su Analytics. Recomendada: dejarlo; aún no es viejo.
-- **El banner de LinkedIn** sigue en rojo y con la frase «Web & Product · Snugport · AI Model QA», que ya no es tu titular. Recomendada: pasarlo a cobalto con el texto nuevo, en una tarea aparte después del corte.
+- **El error de consola que deja Cloudflare**: `npm run lighthouse -- --dominio` da 92 en buenas prácticas, y PageSpeed, 100. Recomendada: dejarlo; si te molesta, probar `no-transform` solo en el HTML, en una rama, y comprobar antes que siga saliendo comprimido.
+- **El banner de LinkedIn** sigue en rojo y con la frase «Web & Product · Snugport · AI Model QA», que ya no es tu titular. Recomendada: pasarlo a cobalto con el texto nuevo, en una tarea aparte.
+- **La QA en un teléfono de verdad y en Safari** sigue sin hacerse. Recomendada: cinco minutos en tu Nothing, y lo mismo en un iPhone si hay uno a mano.
+- **Las capturas con Navidad** de Missphone. Recomendada: rehacerlas antes del 6 de enero de 2027 (`plan/capturas.md`).
 - **`missphone/CLAUDE.md`** sigue diciendo que se factura por privado. Recomendada: corregirlo la próxima vez que abras Missphone.
-- **«Al resto de España»**: la web lo dice así y el estudio en inglés dice «in Spain or abroad». Recomendada: dejarlo, salvo que quieras ofrecer trabajo fuera; entonces cambian los dos textos.
-- **Para el corte, no ahora:**
-  - mirar las imágenes OG en WhatsApp cuando el dominio las sirva;
-  - la caché de una semana para `/og/*`;
-  - borrar el despliegue de previa `1483e40d` de `portfolio-v1`, pasada la semana;
-  - si el corte se fuera más allá del 6 de enero, rehacer las capturas de Missphone con Navidad.
+- **El Lighthouse de Artemisa** es del 2026-11-04. Recomendada: dejarlo hasta que caduque de verdad.
+- **«Al resto de España»**: la web lo dice así y el estudio en inglés dice «in Spain or abroad». Recomendada: dejarlo, salvo que quieras ofrecer trabajo fuera.
