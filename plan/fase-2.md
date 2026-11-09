@@ -785,7 +785,7 @@ los PDF servidos son los nuevos; y Fritz tiene la lista de lo que cambiar en Lin
 
 ---
 
-### Tanda 2.13 — El corte (v1.0.0)   [ ] pendiente
+### Tanda 2.13 — El corte (v1.0.0)   [x] hecha (2026-11-09, v1.0.0)
 **Objetivo**: fritzreigar.com y www.fritzreigar.com sirven la web en Astro desde `fritzreigar-com`,
 con `main` como producción, y la web vieja se queda una semana lista para volver.
 
@@ -1248,3 +1248,21 @@ Analytics, tocar el correo de la zona.
   el final de la anterior y el título quedaba a 216 px a 1440 y a 152 a 390. `scroll-margin-top` en
   `.section` lo deja a `--space-block` bajo la cabecera (120 y 96 px). Prueba nueva en
   `e2e/portada.spec.ts`, en rojo antes del verde en los dos idiomas y los dos anchos.
+- **2026-11-09, tanda 2.13: `portfolio-v1.pages.dev` no es nuestro.** Sirve la web de otra persona;
+  el proyecto está en `portfolio-v1-6lo.pages.dev`, con la web vieja hasta borrarlo.
+- **2026-11-09, tanda 2.13: la regla de caché.** «Cache Everything», sobre todas las solicitudes, se
+  deshabilitó sin borrarla, y se purgó todo. Cada ruta sale `cf-cache-status: DYNAMIC`.
+- **2026-11-09, tanda 2.13: el punto de Lighthouse, aceptado sin cumplir.** `npm run lighthouse --
+  --dominio` dio 92 en buenas prácticas en las diez, con el resto en presupuesto: 100 en local, y
+  en el dominio Cloudflare inyectaba scripts que la CSP bloquea. Salieron Web Analytics y la
+  ofuscación de correo; también se apagó Bot Fight Mode, pero el script en línea de
+  `/cdn-cgi/challenge-platform/` sigue en cada página desde la red de Fritz, y deja un error en la
+  consola. PageSpeed da 100 en las cuatro notas (portada, móvil, 2026-11-09), y Fritz lo dio por
+  bueno: el visitante no nota nada. La vía para quitarlo, sin probar: `Cache-Control: no-transform`
+  solo en el HTML, que también apaga la compresión de Cloudflare si Pages no sirve ya comprimido.
+- **2026-11-09, tanda 2.13: HSTS.** El dominio manda el de la zona (`max-age=15552000`), no el de
+  `_headers` (un año y `includeSubDomains`), que sí sale en `*.pages.dev`. No se toca.
+- **2026-11-09, tanda 2.13: lo que dejaba para aquí la 2.10.** `/og/*` se queda con la caché por
+  defecto de Pages (`max-age=14400`): cambiarla era tocar la web. La prueba de WhatsApp desde el
+  móvil queda para Fritz. El tag `v1.0.0` va en el commit de la versión, y la documentación de esta
+  tanda, un commit después.

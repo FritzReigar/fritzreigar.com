@@ -74,7 +74,7 @@ Recomendadas en la planificación (valen mientras Fritz no diga otra cosa):
 | Fase | Qué | Archivo |
 |---|---|---|
 | 1 | **Contenido, capturas, lienzo y andamio**: el texto entero verificado, las capturas que faltan, tres conceptos de diseño y la spec, y Astro montado con su red de pruebas en la rama `astro` | [`fase-1.md`](fase-1.md) |
-| 2 | **Implementación y corte**: marco y tokens, las capturas y las fichas como datos, la portada, las fichas de Trabajo y de Proyectos, la pieza diferenciadora, el inglés entero, imágenes OG con Satori, QA, la coherencia (los dos CV y la lista de LinkedIn) y el corte (v1.0.0). Trece tandas, planificadas el 2026-11-05 | [`fase-2.md`](fase-2.md) |
+| 2 | **Implementación y corte**: marco y tokens, las capturas y las fichas como datos, la portada, las fichas de Trabajo y de Proyectos, la pieza diferenciadora, el inglés entero, imágenes OG con Satori, QA, la coherencia (los dos CV y la lista de LinkedIn) y el corte (v1.0.0). Trece tandas, planificadas el 2026-11-05. **Cerrada el 2026-11-09** | [`fase-2.md`](fase-2.md) |
 
 Fuera del plan: el caso Missphone de estudioreigar.com, que también lo cuenta a la baja, es trabajo
 del proyecto del estudio. Y X: aquí no se publica nada.
@@ -97,8 +97,9 @@ del proyecto del estudio. Y X: aquí no se publica nada.
       que hayan nacido.
    5. **Commit** en español, nombrando los archivos (nunca `git add -A`: lo sin seguimiento que ya
       estaba es de Fritz), con la versión de la tanda: «Descripción (v0.1.T)».
-   6. **El push, solo con el OK de Fritz** en esa sesión. Hasta el corte, `main` sigue publicando
-      la web vieja: a `main` no va nada que cambie lo que se ve en el dominio.
+   6. **El push, solo con el OK de Fritz** en esa sesión. Desde el corte (2026-11-09, v1.0.0),
+      empujar a `main` es publicar: el trabajo va en una rama y se mira en su previa,
+      `<rama>.fritzreigar-com.pages.dev`.
    7. **El bloque de cierre**, cuando Fritz dice «cierre»: los siete rótulos de §7.5 en
       `siguiente.md` (sobrescribiendo el anterior) y en el chat.
 3. La QA en el teléfono es de Fritz y va **de una vez, cuando todo esté hecho** (antes del corte),

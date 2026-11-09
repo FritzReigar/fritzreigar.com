@@ -3,8 +3,8 @@
 La web personal de Fritz Reigar: la persona detrás de [Estudio Reigar](https://estudioreigar.com/).
 Enseña su trabajo para clientes, sus proyectos y quién es.
 
-> **Estado:** la rama `astro` es la web nueva, en construcción (plan en [`plan/`](plan/README.md)).
-> `main` sigue publicando la web de una sola página hasta el corte de la fase 2.
+> **Estado:** v1.0.0, publicada en [fritzreigar.com](https://fritzreigar.com/) desde `main`. El plan
+> que la construyó está en [`plan/`](plan/README.md) y lo cerrado, en [`historia.md`](historia.md).
 
 ## Cómo está hecha
 
@@ -53,6 +53,6 @@ se regeneran solo con un cambio buscado: `npx playwright test --grep @vista --up
 
 ## Despliegue
 
-Lo hace Cloudflare Pages desde GitHub: cada rama se construye con `npm run build` y se publica
-`dist/`. La previa de la rama `astro` sale de un segundo proyecto de Pages, con `noindex` en
-`*.pages.dev`.
+Lo hace Cloudflare Pages desde GitHub, en el proyecto `fritzreigar-com`: `main` es producción y
+cada una de las demás ramas sale en `<rama>.fritzreigar-com.pages.dev`, con `noindex`. Se construye
+con `npm run build` y se publica `dist/`. Empujar a `main` es publicar.
