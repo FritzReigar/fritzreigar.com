@@ -1237,8 +1237,8 @@ Analytics, tocar el correo de la zona.
 - **2026-11-09, tanda 2.12: fuera de la lista de choques.** Lionbridge y DataAnnotation llevan ya
   «autónomo, remoto» en el CV, como pide el `CLAUDE.md` (la fila 14 no lo vio). En la cabecera, una
   regla mínima para que los dos enlaces del pie de la entrada del estudio no salgan azul navegador.
-- **2026-11-09, tanda 2.12: la primera página acaba en el 79 %.** La entrada del estudio, con
-  `break-inside: avoid` y ya más larga, salta con su cabecera a la segunda: la 1 es perfil y
-  proyectos, la 2, experiencia en adelante. `line-height` sigue en 1.28 y las dos páginas caben.
-  Cifras recontadas ese día: 1.264 unitarias, 620 ejecuciones de E2E (31 archivos) y 80 divisas en
+- **2026-11-09, tanda 2.12: la Experiencia va antes que los Proyectos.** Lo pidió Fritz al ver los
+  PDF: quien lee un CV busca primero dónde ha trabajado. La página 1 es perfil y experiencia (acaba
+  hacia el 80 %, porque Snugport, con `break-inside: avoid`, salta entero); la 2, proyectos en
+  adelante. `line-height` sigue en 1.28 y las dos páginas caben. Cifras recontadas ese día: 1.264 unitarias, 620 ejecuciones de E2E (31 archivos) y 80 divisas en
   `snugport-app` (panel v0.5.11); la publicada de Snugtone sigue siendo la 1.0.1.
