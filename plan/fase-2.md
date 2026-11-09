@@ -1264,5 +1264,5 @@ Analytics, tocar el correo de la zona.
   `_headers` (un año y `includeSubDomains`), que sí sale en `*.pages.dev`. No se toca.
 - **2026-11-09, tanda 2.13: lo que dejaba para aquí la 2.10.** `/og/*` se queda con la caché por
   defecto de Pages (`max-age=14400`): cambiarla era tocar la web. La prueba de WhatsApp desde el
-  móvil queda para Fritz. El tag `v1.0.0` va en el commit de la versión, y la documentación de esta
+  móvil la hizo Fritz el mismo día: salen la imagen, el título y la descripción. El tag `v1.0.0` va en el commit de la versión, y la documentación de esta
   tanda, un commit después.
