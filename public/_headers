@@ -4,16 +4,16 @@
 
 # Seguridad, en todo el sitio. Cloudflare añade de serie nosniff y Referrer-Policy.
 # HSTS sin preload a propósito. CSP: solo mismo origen, más Formspree en form-action y
-# connect-src (el formulario envía por POST sin JS y por fetch con main.ts, decisión 10).
-# img-src admite data: por si alguna máscara del CSS lo necesita.
-# Si se activa Web Analytics: añadir https://static.cloudflareinsights.com a script-src y
-# https://cloudflareinsights.com a connect-src. Probar cualquier cambio de cabeceras en la
-# previa de Pages antes de main.
+# connect-src (el formulario envía por POST sin JS y por fetch con main.ts, decisión 10), y
+# Web Analytics: Pages inyecta el beacon al desplegar (static.cloudflareinsights.com en
+# script-src) y este envía la visita a cloudflareinsights.com (connect-src). El build local no
+# lleva beacon. img-src admite data: por si alguna máscara del CSS lo necesita.
+# Probar cualquier cambio de cabeceras en la previa de Pages antes de main.
 /*
   Strict-Transport-Security: max-age=31536000; includeSubDomains
   X-Frame-Options: DENY
   Permissions-Policy: camera=(), microphone=(), geolocation=()
-  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://formspree.io; form-action 'self' https://formspree.io; frame-ancestors 'none'; base-uri 'self'; object-src 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://formspree.io https://cloudflareinsights.com; form-action 'self' https://formspree.io; frame-ancestors 'none'; base-uri 'self'; object-src 'none'
 
 # Tipografía: un año, inmutable.
 /fonts/*

@@ -152,16 +152,16 @@ for (const [path, type] of [
   });
 }
 
-test('las cabeceras de _headers: CSP con Formspree, HSTS, marcos y permisos', async ({
+test('las cabeceras de _headers: CSP con Formspree y Web Analytics, HSTS, marcos y permisos', async ({
   request,
 }) => {
   const headers = (await request.get('/')).headers();
   const csp = headers['content-security-policy'] ?? '';
   expect(csp).toContain("default-src 'self'");
-  expect(csp).toContain("script-src 'self';");
+  expect(csp).toContain("script-src 'self' https://static.cloudflareinsights.com;");
   expect(csp).toContain("style-src 'self';");
   expect(csp).toContain("form-action 'self' https://formspree.io");
-  expect(csp).toContain("connect-src 'self' https://formspree.io");
+  expect(csp).toContain("connect-src 'self' https://formspree.io https://cloudflareinsights.com");
   expect(csp).toContain("frame-ancestors 'none'");
   expect(headers['strict-transport-security']).toBe('max-age=31536000; includeSubDomains');
   expect(headers['x-frame-options']).toBe('DENY');

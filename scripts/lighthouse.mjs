@@ -4,8 +4,10 @@
 // https://fritzreigar.com (después del corte: hasta entonces sirve la web vieja). Sale con 1 si una
 // página se sale de lighthouse.budgets.json.
 //
-// Uso:  npm run lighthouse [-- --dominio] [--ci] [--pasadas N] [--solo /ruta] [--detalle] [--idioma en-US]
-//   --dominio      mide https://fritzreigar.com en vez de dist/
+// Uso:  npm run lighthouse [-- --dominio] [--vpn] [--ci] [--pasadas N] [--solo /ruta] [--detalle] [--idioma en-US]
+//   --dominio      mide https://fritzreigar.com en vez de dist/, sin contar visitas en Web Analytics
+//   --vpn          resuelve el beacon de Analytics fuera del DNS de la VPN (como en el estudio:
+//                  sin esto, prácticas 96 por errors-in-console). Es para esta máquina, no para CI
 //   --ci           umbrales de CI (rendimiento ≥ 90; el resto, igual)
 //   --pasadas N    N pasadas en todas las páginas (por defecto, 5 en la portada y 3 en el resto)
 //   --solo /ruta   una sola página
@@ -54,6 +56,12 @@ import { computeMedianRun } from 'lighthouse/core/lib/median-run.js';
 const WEB_DIR = join(dirname(fileURLToPath(import.meta.url)), '..');
 const LOCAL_ORIGIN = 'http://127.0.0.1:8789';
 const DOMAIN_ORIGIN = 'https://fritzreigar.com';
+// La IP que da 1.1.1.1 para el beacon (la misma regla que el estudio).
+const BEACON_RULE = 'MAP static.cloudflareinsights.com 104.16.79.73';
+// El envío con el que Web Analytics cuenta la visita. Contra el dominio se bloquea: si no, cada
+// pasada completa suma 34 visitas falsas al panel. El script del beacon sí se carga, como para
+// cualquier visitante.
+const RUM_PATTERN = '*/cdn-cgi/rum*';
 const CATEGORIES = ['performance', 'accessibility', 'best-practices', 'seo'];
 const BYTE_TYPES = ['document', 'script', 'stylesheet', 'font', 'image'];
 
@@ -76,6 +84,7 @@ const option = (name) => {
 };
 
 const useDomain = flag('--dominio');
+const useVpnRule = flag('--vpn');
 const ciMode = flag('--ci');
 const showDetail = flag('--detalle');
 const runsOverride = option('--pasadas') ? Number(option('--pasadas')) : undefined;
@@ -158,6 +167,8 @@ async function waitForServer(url, timeoutMs = 60_000) {
 
 async function measure(url) {
   const chromeFlags = ['--headless=new', `--lang=${browserLang}`];
+  // Un solo elemento del array: así llega entero a Chrome (partido, no funciona).
+  if (useVpnRule) chromeFlags.push(`--host-resolver-rules=${BEACON_RULE}`);
   const chrome = await chromeLauncher.launch({
     chromePath: chromium.executablePath(),
     chromeFlags,
@@ -166,6 +177,7 @@ async function measure(url) {
     const result = await lighthouse(url, {
       port: chrome.port,
       onlyCategories: CATEGORIES,
+      blockedUrlPatterns: useDomain ? [RUM_PATTERN] : [],
       output: 'json',
       logLevel: 'error',
     });
@@ -268,7 +280,9 @@ async function main() {
   try {
     if (server) await waitForServer(`${LOCAL_ORIGIN}/`);
     console.log(
-      `Lighthouse ${LIGHTHOUSE_VERSION} · móvil · ${origin}${ciMode ? ' · umbrales de CI' : ''}`,
+      `Lighthouse ${LIGHTHOUSE_VERSION} · móvil · ${origin}${useVpnRule ? ' · --vpn' : ''}${
+        ciMode ? ' · umbrales de CI' : ''
+      }`,
     );
     console.log(`Chrome: ${chromium.executablePath()}\n`);
 
