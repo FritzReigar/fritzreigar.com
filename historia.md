@@ -3,6 +3,37 @@
 Lo cerrado, sacado del `CLAUDE.md`. Lo más nuevo arriba. Lo que sigue mandando hoy está en el
 `CLAUDE.md`; esto es el porqué y cómo era antes. El detalle tanda a tanda vive en `plan/`.
 
+## 2026-11-16 — Web Analytics desde Pages (v1.0.1)
+
+fritzreigar.com mide visitas, rutas y referentes con Web Analytics, inyectada por el proyecto de
+Pages como en el estudio. Encargo suelto, planificado el 2026-11-13 en `plan/analitica.md`, que se
+borró al acabar (`git show 9d4b2f9:plan/analitica.md`). La receta para otras webs de Pages está en
+`~/Projects/propios/estudio-reigar/recetas/web-analytics-en-pages.md`.
+
+- **El 92 de buenas prácticas no era de Analytics:** era JavaScript Detections, encendido en la
+  zona (el estudio lo tiene apagado). El panel del plan Free no tiene interruptor, así que se apagó
+  por la API (`PUT bot_management {enable_js: false}`). La portada del dominio pasó de
+  100 / 100 / 92 / 100 a 98 / 100 / 100 / 100.
+- **Se borró un sitio para crear otro:** el sitio de Web Analytics que había atado a la zona
+  (`2c468758…`, automático y deshabilitado) no sirve con Pages Functions. Fritz lo borró y activó
+  Web Analytics en `fritzreigar-com`, que creó el sitio `8aba8274…` por hostname.
+- **El código:** la CSP abre `static.cloudflareinsights.com` y `cloudflareinsights.com`, y
+  `lighthouse.mjs` trae del estudio `--vpn` y el bloqueo del envío con `--dominio`. Commit `9d4b2f9`.
+- **Lo que no salió como estaba escrito:** el plan pedía un 2xx del envío en la previa, y en
+  `*.pages.dev` responde 503, también en la previa del estudio. Se comprobó en el dominio: tres
+  visitas de prueba contadas y ninguna de las 30 pasadas de Lighthouse. Los 404 no llevan beacon
+  (en el estudio tampoco).
+- **Los finales de línea:** la copia de trabajo había salido entera en CRLF por el
+  `core.autocrlf=true` del sistema, y Biome fallaba en archivos sin tocar. Se pasó a LF y el repo
+  tiene ahora `core.autocrlf input` en su configuración local.
+
+## 2026-11-09 — El favicon FR
+
+Era la F negra con el cuadrado rojo, el acento de la web de agosto. Pasó a «FR» en Archivo estrecha
+800, blanco sobre el cobalto `#1f4fa3`, porque es lo que mejor se lee a 16 px. Fritz lo eligió entre
+cuatro opciones; el retrato a tinta del avatar se descartó porque a ese tamaño se queda en una
+mancha. Las rutas de los iconos no cambiaron. Commit `d5f4534`.
+
 ## 2026-11-09 — El corte (v1.0.0)
 
 fritzreigar.com pasó a servir la web en Astro desde el proyecto de Pages `fritzreigar-com`, con
